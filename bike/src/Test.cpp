@@ -2,8 +2,10 @@
 #include "ide_listener.h"
 #include "cute_runner.h"
 
+//Comments!
+
 void thisIsATest() {
-	ASSERTM("start writing tests", false);	
+	ASSERTM("start writing tests", false);
 }
 
 void runSuite(){
