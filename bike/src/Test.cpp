@@ -3,6 +3,7 @@
 #include "cute_runner.h"
 
 //Comments!
+// It still works!!!
 
 void thisIsATest() {
 	ASSERTM("start writing tests", false);
