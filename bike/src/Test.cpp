@@ -13,11 +13,11 @@ void runSuite(){
 	cute::ide_listener lis;
 	cute::makeRunner(lis)(s, "The Suite");
 }
-
+/*
 int main(){
     runSuite();
     return 0;
 }
 
-
+*/
 
