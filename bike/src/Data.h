@@ -13,5 +13,7 @@ public:
 	Data();
 	Data(unsigned int ano, unsigned int mes, unsigned int dia);
 	string getDataStr();
+	friend bool operator<(Data data2);
+	friend bool operator==(Data data2);
 
 };
