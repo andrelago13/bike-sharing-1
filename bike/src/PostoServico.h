@@ -4,16 +4,17 @@
  *  Created on: 31/10/2014
  *      Author: edgar
  */
+
+#ifndef POSTOSERVICO_H_
+#define POSTOSERVICO_H_
+
 #include <iostream>
-#include<vector>
+#include <vector>
 #include <string>
 
 #include "Registo.h"
 #include "Bicicleta.h"
 using namespace std;
-
-#ifndef POSTOSERVICO_H_
-#define POSTOSERVICO_H_
 
 class PostoServico
 {

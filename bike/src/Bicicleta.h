@@ -4,16 +4,21 @@
  *  Created on: 31/10/2014
  *      Author: edgar
  */
-#include <iostream>
-#include <vector>
-#include <string>
-
-#include "Registo.h"
-#include "PostoServico.h"
-using namespace std;
 
 #ifndef BICICLETA_H_
 #define BICICLETA_H_
+
+
+#include <iostream>
+#include <vector>
+#include <string>
+#include <sstream>
+#include <stdlib.h>
+
+#include "Registo.h"
+#include "PostoServico.h"
+
+using namespace std;
 
 class Bicicleta
 {

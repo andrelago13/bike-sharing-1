@@ -1,3 +1,7 @@
+
+#ifndef DATA_H_
+#define DATA_H_
+
 #include <string>
 #include <iostream>
 
@@ -17,3 +21,5 @@ public:
 	friend bool operator==(Data data2);
 
 };
+
+#endif /* DATA_H_ */
