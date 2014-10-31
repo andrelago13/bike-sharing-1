@@ -22,16 +22,27 @@ using namespace std;
 
 class Bicicleta
 {
+	unsigned int ID;
+	string tipo;
+	int velocidades;
 public:
 	string empresa;
-	unsigned int ID;
 	vector<* Registo> bicicletas;
-	int avariada;
-	bool tipo;
-	int velocidades;
+	bool avariada;
+	unsigned int preço;
 
+	Bicicleta();
+	Bicicleta(unsigned int id, bool tipo, int velocidades);
+	int getID();
+	int getVelocidades();
+	bool getTipo();
+	vector <Bicicleta> historico_utilizacao;
+	string getEmpresa();
+	bool setPreco(int velocidades, string tipo);
+	bool velocidades_valido(int veloc);
+	bool tipo_valido();
 };
 
-
+class
 
 #endif /* BICICLETA_H_ */
