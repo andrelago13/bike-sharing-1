@@ -12,8 +12,8 @@ class Rede
 {
 public:
 	vector <Empresa> Empresas;
-	vector<* PostoServico> PostoServico;
-	vector<* Utilizador> Utilizadores;
+	vector<PostoServico*> PostoServico;
+	vector<Utilizador*> Utilizadores;
 }
 
 

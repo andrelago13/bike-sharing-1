@@ -22,7 +22,7 @@ using namespace std;
 
 class Bicicleta
 {
-	unsigned int ID;
+	unsigned int id_num;
 	string tipo;
 	int velocidades;
 public:

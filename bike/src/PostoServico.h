@@ -24,7 +24,7 @@ public:
 	int ID;
 	vector<Bicicleta*> disponiveis;
 	vector<Bicicleta*> avariadas;
-	vector<Registo*> utilizacao;
+	vector<Registo> utilizacao;
 
 };
 

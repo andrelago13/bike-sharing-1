@@ -20,7 +20,7 @@ class Empresa
 {
 public:
 	string nome;
-	vector<* Bicicleta> bicicletas;
+	vector<Bicicleta*> bicicletas;
 };
 
 
