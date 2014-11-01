@@ -17,10 +17,19 @@ using namespace std;
 
 class Utilizador
 {
-public:
 	string nome;
 	unsigned int idade;
-	vector <Registo*> users;
+	vector <Registo*> registos;
+public:
+	Utilizador();
+	Utilizador(string name, int age) : nome(name), idade(age) {}
+	void setNome(string nome);
+	void setIdade(int idade);
+	string getNome() const;
+	int getIdade() const;
+	vector <Registo *> getRegs() const;
+	void setRegs(vector <Registo *> regs);
+	Registo ultimoReg() const;
 };
  //FREQUENTES E OCASIONAIS
 
