@@ -22,9 +22,9 @@ public:
 	int lotacao;
 	int ocupacao;
 	int ID;
-	vector<* Bicicleta> disponiveis;
-	vector<* Bicicleta> avariadas;
-	vector<* Registo> utilizacao;
+	vector<Bicicleta*> disponiveis;
+	vector<Bicicleta*> avariadas;
+	vector<Registo*> utilizacao;
 
 };
 

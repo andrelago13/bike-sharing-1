@@ -27,9 +27,9 @@ class Bicicleta
 	int velocidades;
 public:
 	string empresa;
-	vector<* Registo> bicicletas;
+	vector<Registo*> bicicletas;
 	bool avariada;
-	unsigned int preço;
+	unsigned int preco;
 
 	Bicicleta();
 	Bicicleta(unsigned int id, bool tipo, int velocidades);
