@@ -1,10 +1,11 @@
 #include "Data.h"
-#include "string"
+#include <string>
 #include <iostream>
+#include <sstream>
 
 using namespace std;
 
-Data::Data() : dia(0), mes(0), ano(0) {}
+Data::Data() : ano(0), mes(0), dia(0) {}
 
 Data::Data(unsigned int ano, unsigned int mes, unsigned int dia) : ano(ano), mes(mes), dia(dia) {}
 

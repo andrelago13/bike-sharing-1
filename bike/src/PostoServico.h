@@ -14,6 +14,7 @@
 
 #include "Registo.h"
 #include "Bicicleta.h"
+
 using namespace std;
 
 class PostoServico

@@ -1,13 +1,23 @@
-#include <iostream>
+/*#include <iostream>
 #include <vector>
 #include <string>
 
 #include "Bicicleta.h"
+#include "PostoServico.h"*/
+
+#include <iostream>
+#include <vector>
+#include <string>
 #include "PostoServico.h"
+#include "Bicicleta.h"
+
 
 using namespace std;
 
-Bicicleta::Bicicleta(unsigned int id, bool tipo, int velocidades): ID(id),tipo(tipo),velocidades(velocidades){}
+Bicicleta::Bicicleta(unsigned int id, string tipo_bici, int mudancas) : id_num(id), tipo(tipo_bici), velocidades(mudancas), avariada(false), preco(0)
+{
+
+}
 
 int Bicicleta::getID()
 {
@@ -22,7 +32,7 @@ int Bicicleta::getVelocidades()
 bool Bicicleta::getTipo()
 {
 	//return tipo;												AQUI TENS DE RETORNAR UM BOOL E NÃO UMA STRING!
-	return false
+	return false;
 }
 
 string Bicicleta::getEmpresa()
@@ -46,5 +56,5 @@ bool Bicicleta::tipo_valido()
 }
 bool Bicicleta::setPreco(int velocidades, string tipo)
 {
-
+	return false;
 }

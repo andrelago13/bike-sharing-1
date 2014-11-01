@@ -20,7 +20,7 @@ class Utilizador
 public:
 	string nome;
 	unsigned int idade;
-	vector <* Registo> users;
+	vector <Registo*> users;
 };
  //FREQUENTES E OCASIONAIS
 

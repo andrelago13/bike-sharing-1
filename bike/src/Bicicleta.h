@@ -32,7 +32,7 @@ public:
 	unsigned int preco;
 
 	Bicicleta();
-	Bicicleta(unsigned int id, bool tipo, int velocidades);
+	Bicicleta(unsigned int id, string tipo_bici, int mudancas);
 	int getID();
 	int getVelocidades();
 	bool getTipo();
@@ -42,7 +42,5 @@ public:
 	bool velocidades_valido(int veloc);
 	bool tipo_valido();
 };
-
-class
 
 #endif /* BICICLETA_H_ */
