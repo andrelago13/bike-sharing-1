@@ -21,3 +21,13 @@ int main(){
 
 */
 
+#include "Data.h"
+
+using namespace std;
+
+int foo()
+{
+	Data d1;
+
+	return 0;
+}

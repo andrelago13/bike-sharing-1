@@ -47,5 +47,5 @@ bool Bicicleta::tipo_valido()
 }
 bool Bicicleta::setPreco(int velocidades, string tipo)
 {
-	if(veloc)
+
 }

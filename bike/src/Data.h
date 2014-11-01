@@ -16,10 +16,9 @@ public:
 
 	Data();
 	Data(unsigned int ano, unsigned int mes, unsigned int dia);
-	string getDataStr();
-	friend bool operator<(Data data1, Data data2);
-	friend bool operator==(Data data1, Data data2);
-
+	string getDataStr() const;
+	friend bool operator<(const Data data1, const Data data2);
+	friend bool operator==(const Data data1, const Data data2);
 };
 
 #endif /* DATA_H_ */
