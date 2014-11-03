@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string>
 
 using namespace std;
 
@@ -60,7 +61,7 @@ int menu_start()
 	{
 		getline(cin, option);
 		cin.ignore(1000, '\n');
-
+		
 		switch(option)
 		{
 		case "1":
