@@ -10,6 +10,9 @@ int menu_system();
 void clear_screen();
 int str_to_int(string &str);
 void get_option(int &option, int min_range, int max_range);
+int menu_regUsr();
+int menu_ocUsr();
+int menu_manager();
 
 int main()
 {
@@ -22,12 +25,23 @@ int menu_system()
 
 	while(menu >= 0)
 	{
+		clear_screen();
+
 		try
 		{
 			switch(menu)
 			{
 			case 0:
 				menu = menu_start();
+				break;
+			case 1:
+				menu = menu_regUsr();
+				break;
+			case 2:
+				menu = menu_ocUsr();
+				break;
+			case 3:
+				menu = menu_manager();
 				break;
 			default:
 				menu = -1;
@@ -51,8 +65,15 @@ void clear_screen()
 
 int menu_start()
 {
-	cout << endl << endl << "            Bike-sharing network" << endl << endl;
-	cout << "   Welcome to our bike-sharing network! Pick up and drop bikes from several spots in the city and enjoy the fresh air in town!" << endl;
+	cout << endl << endl << "            ______ _ _              _                _" << endl;
+	cout << "            | ___ (_) |            | |              (_)" << endl;
+	cout << "            | |_/ /_| | _____   ___| |__   __ _ _ __ _ _ __   __ _" << endl;
+	cout << "            | ___ \\ | |/ / _ \\ / __| '_ \\ / _` | '__| | '_ \\ / _` |" << endl;
+	cout << "            | |_/ / |   <  __/ \\__ \\ | | | (_| | |  | | | | | (_| |" << endl;
+	cout << "            \\____/|_|_|\\_\\___| |___/_| |_|\\__,_|_|  |_|_| |_|\\__, |" << endl;
+	cout << "                                                              __/ |" << endl;
+	cout << "                                                             |___/ " << endl << endl;
+	cout << "   Welcome to our bike-sharing network!" << endl;
 	cout << endl << endl << "==> Please select your type of login:" << endl;
 	cout << "1 - Registered user" << endl;
 	cout << "2 - Occasional user" << endl;
@@ -115,4 +136,22 @@ void get_option(int &option, int min_range, int max_range)
 
 		break;
 	}
+}
+
+// TO-DO //
+int menu_regUsr()
+{
+	return 0;
+}
+
+// TO-DO //
+int menu_ocUsr()
+{
+	return 0;
+}
+
+// TO-DO //
+int menu_manager()
+{
+	return 0;
 }
