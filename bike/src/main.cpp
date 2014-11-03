@@ -3,13 +3,12 @@
 #include <stdlib.h>
 #include <string>
 
-//Test 2
-
 using namespace std;
 
 int menu_start();
 int menu_system();
-void clear_screen();   ////////// Pending due to problems with system("cls"); ////////////
+void clear_screen();
+int str_to_int(string &str);
 
 int main()
 {
@@ -44,8 +43,10 @@ int menu_system()
 	return 0;
 }
 
-void clear_screen() {} /////// PENDING ////////////////////////////////////77
-
+void clear_screen()
+{
+	system("cls");
+}
 
 int menu_start()
 {
@@ -63,7 +64,7 @@ int menu_start()
 	{
 		getline(cin, option);
 		cin.ignore(1000, '\n');
-		
+		/*
 		switch(option)
 		{
 		case "1":
@@ -80,11 +81,23 @@ int menu_start()
 			break;
 		default:
 			cout << "Invalid option, please try again : ";
-		}
+		}*/
 	}
 
 
 	return -1;
 }
 
+int str_to_int(string &str)
+{
+	int result = 0;
+	int multiplier = 0;
+
+	for (unsigned int i = str.size() - 1; i >= 0; i--)
+	{
+		result += str[i] * pow(10, multiplier);
+	}
+
+	return result;
+}
 
