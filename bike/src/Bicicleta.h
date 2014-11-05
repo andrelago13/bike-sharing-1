@@ -1,10 +1,3 @@
-/*
- * Bicicleta.h
- *
- *  Created on: 31/10/2014
- *      Author: edgar
- */
-
 #ifndef BICICLETA_H_
 #define BICICLETA_H_
 
@@ -23,24 +16,30 @@ using namespace std;
 class Bicicleta
 {
 	unsigned int id_num;
-	string tipo;
+	string tipo; // tipos: eletrica, com ou sem cesto, passeio, montanha, corrida
+	string tamanho;
 	int velocidades;
 public:
 	string empresa;
 	vector<Registo*> bicicletas;
 	bool avariada;
 	unsigned int preco;
+	vector <Bicicleta> historico_utilizacao;
 
 	Bicicleta();
 	Bicicleta(unsigned int id, string tipo_bici, int mudancas);
-	int getID();
-	int getVelocidades();
-	bool getTipo();
-	vector <Bicicleta> historico_utilizacao;
-	string getEmpresa();
-	bool setPreco(int velocidades, string tipo);
-	bool velocidades_valido(int veloc);
-	bool tipo_valido();
+	int getID(); //
+	int getVelocidades();//
+	string getTipo();//
+	string getEmpresa(); //
+	bool getAvariada(); //
+	bool setPreco(int preco); //
+	bool velocidades_valido(int veloc); //
+	bool tipo_valido(); //
+	string imprime(); //
+	bool setID(); // .....
+	bool setTipo(string tipo); //
+
 };
 
 #endif /* BICICLETA_H_ */
