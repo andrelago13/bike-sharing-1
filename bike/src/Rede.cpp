@@ -246,11 +246,13 @@ int Rede::menu_regUsr_logged(Utilizador *user)
 		cout << " 2 - Return a bike" << endl;
 		cout << " 3 - Change password" << endl;
 		cout << " 4 - View rental log" << endl;
+		cout << " 5 - See monthly service cost" << endl;
 		cout << " 0 - Return to previous menu" << endl;
 
 		int option;
-		get_option(option, 0, 4);
+		get_option(option, 0, 5);
 		string old_pass, pass;
+		vector<Registo*> regs;
 
 		switch (option)
 		{
@@ -279,7 +281,27 @@ int Rede::menu_regUsr_logged(Utilizador *user)
 			system("pause");
 			break;
 		case 4:
-
+			regs = user->getRegs();
+			if (regs.size() == 0)
+			{
+				cout << endl << "Rental log is empty." << endl << endl;
+				system("pause");
+			}
+			else
+			{
+				clear_screen();
+				cout << endl << "===> Rental record:" << endl << endl;
+				for (unsigned int i = 0; i < regs.size(); i++)
+				{
+					regs[i]->print_sem_user();
+					cout << endl << endl;
+				}
+				system("pause");
+			}
+			break;
+		case 5:
+			cout << endl << " Monthly cost is 40 euros for all registered users." << endl << endl;
+			system("pause");
 			break;
 		case 0:
 			return MENU_start;

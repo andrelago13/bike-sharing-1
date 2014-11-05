@@ -51,3 +51,9 @@ string Data::getDataStr() const
 
 	return ss.str();
 }
+
+ostream& operator<<(ostream &o, const Data &data)
+{
+	o << data.getDataStr();
+	return o;
+}

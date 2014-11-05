@@ -19,6 +19,7 @@ public:
 	string getDataStr() const;
 	friend bool operator<(const Data data1, const Data data2);
 	friend bool operator==(const Data data1, const Data data2);
+	friend ostream& operator<<(ostream &o, const Data &data);
 };
 
 #endif /* DATA_H_ */
