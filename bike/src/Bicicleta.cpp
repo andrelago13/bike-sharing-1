@@ -8,7 +8,7 @@
 using namespace std;
 #define veloc_max 5
 
-Bicicleta::Bicicleta(unsigned int id, string tipo_bici, int mudancas) : id_num(id), tipo(tipo_bici), velocidades(mudancas)
+Bicicleta::Bicicleta(unsigned int id, string tipo_bici, string size, int mudancas, bool avariad, unsigned int preco1) : id_num(id), tipo(tipo_bici), tamanho(size), velocidades(mudancas), avariada(avariad), preco(preco1)
 {
 }
 
@@ -27,16 +27,27 @@ string Bicicleta::getTipo()
 	return tipo;
 }
 
+string Bicicleta::getTamanho()
+{
+	return tamanho;
+}
+
 string Bicicleta::getEmpresa()
 {
 	return empresa;
 }
 
-bool Bicicleta::getAvariada()
+string Bicicleta::getAvariada()
 {
-	return avariada;
+	if (avariada)
+		return "AVARIADA";
+	else return "NAO AVARIADA";
 }
 
+int Bicicleta::getPreco()
+{
+	return preco;
+}
 bool Bicicleta::velocidades_valido(int veloc)
 {
 	if (veloc == velocidades)
@@ -44,14 +55,14 @@ bool Bicicleta::velocidades_valido(int veloc)
 	return false;
 }
 
-bool Bicicleta::tipo_valido()
+string Bicicleta::tipo_valido()
 {
 	if (tipo == "eletrica" || tipo == "com cesto" || tipo == "sem cesto" || tipo == "passeio" || tipo == "corrida" || tipo == "montanha")
-		return true;
-	return false;
+		return "ESSE TIPO E VALIDO";
+	return "ESSE TIPO NAO E VALIDO";
 }
 
-bool Bicicleta::setPrecoDia(int preco) //verificar velocidades das bicicletas -> corrida 1 velocidade x
+bool Bicicleta::setPrecoDia(int velocidade, string tamanho) //verificar velocidades das bicicletas -> corrida 1 velocidade x
 {
 	if ((velocidades > veloc_max) || (velocidades == 0))
 		return false; //velocidades invalidades
@@ -175,14 +186,15 @@ bool Bicicleta::setPrecoDia(int preco) //verificar velocidades das bicicletas ->
 string Bicicleta::imprime()
 {
 	stringstream ss;
-	ss << id_num << ", " << tipo << ", " << velocidades;
+	ss << id_num << ", " << tipo << ", " << tamanho << ", " << velocidades << ", " << avariada << ", " << preco;
 	return ss.str();
 }
 
-void Bicicleta::setID()
+void Bicicleta::setID(int ID)
 {
-	int idnew = bicicletas.size() - 1;
-	id_num = idnew++;
+	/*int ID= bicicletas.size() - 1;
+	id_num = ID++;*/
+	this->id_num = ID;
 }
 
 void Bicicleta::setTipo(string tipo)
@@ -196,3 +208,13 @@ void Bicicleta::setBicis(vector<Registo *> bicis)
 }
 
 vector<Registo *> Bicicleta::getBicis() const { return bicicletas; }
+
+void Bicicleta::setTamanho(string tamanho)
+{
+	this->tamanho = tamanho;
+}
+
+void Bicicleta::setVeloc(int velocidades)
+{
+	this->velocidades = velocidades;
+}
