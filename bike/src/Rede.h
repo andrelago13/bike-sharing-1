@@ -16,9 +16,9 @@ using namespace std;
 
 class Rede
 {
-	vector <Empresa> Empresas;
-	vector<PostoServico*> PostoServico;
-	vector<Utilizador*> Utilizadores;
+	vector <Empresa> empresas;
+	vector<PostoServico*> postos;
+	vector<Utilizador*> utilizadores;
 public:
 	Rede() {}
 	void loadInfo(); // Load all Rede info from text files

@@ -92,12 +92,28 @@ int Rede::menu_start()
 // TO-DO //
 int Rede::menu_regUsr()
 {
-	clear_screen();
 	print_menu_header();
 
 	cout << endl << " User name : ";
 	string username;
 	getline(cin, username);
+
+	bool existe = false;
+
+	for (unsigned int i = 0; i < utilizadores.size(); i++)
+	{
+		if (utilizadores[i]->getNome() == username)
+			existe = true;
+	}
+
+	if (existe)
+	{
+		// ASK FOR PASSWORD
+	}
+	else
+	{
+		// CREATE NEW USER
+	}
 
 	return MENU_exit;
 }
@@ -141,7 +157,6 @@ void Rede::print_menu_header()
 
 void Rede::menu_exit_prog()
 {
-	clear_screen();
 	cout << endl << endl << "           _____                 _     ____" << endl;
 	cout << "          / ____|               | |   |  _ \\" << endl;
 	cout << "         | |  __  ___   ___   __| |   | |_) |" << endl;

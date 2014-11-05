@@ -1,50 +1,24 @@
+#ifndef TOOLS_H_
+#define TOOLS_H_
+
 #include <string>
-#include <iostream>
+#include <vector>
 
 using namespace std;
 
-int str_to_int(string &str)
-{
-	int result = atoi(str.c_str());
+int str_to_int(string &str);
 
-	if ((result == 0) && (str != "0"))
-	{
-		string error = "ERROR : Invalid input, must be a number";
-		throw error;
-	}
+void get_option(int &option, int min_range, int max_range);
 
-	return result;
-}
+void clear_screen();
 
-void get_option(int &option, int min_range, int max_range)
-{
-	string option_str;
+template <class Comparable>
+int sequentialSearch(const vector<Comparable> &v, Comparable x);
 
-	while (true)
-	{
-		cout << "Selection : ";
-		getline(cin, option_str);
-		option = 0;
+template <class Comparable>
+void insertionSort(vector<Comparable> &v);
 
-		try
-		{
-			option = str_to_int(option_str);
-		}
-		catch (string error)
-		{
-			cout << error << endl;
-			continue;
-		}
+string readPassword();
 
-		if ((option < min_range) || (option > max_range))
-		{
-			cout << "Invalid option, not in range." << endl;
-			continue;
-		}
 
-		break;
-	}
-}
-
-void clear_screen() { system("cls"); }
-
+#endif /* TOOLS_H_ */
