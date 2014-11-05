@@ -6,7 +6,7 @@
 
 
 using namespace std;
-#define veloc_max = 5;
+#define veloc_max 5
 
 Bicicleta::Bicicleta(unsigned int id, string tipo_bici, int mudancas) : id_num(id), tipo(tipo_bici), velocidades(mudancas)
 {
@@ -53,7 +53,7 @@ bool Bicicleta::tipo_valido()
 
 bool Bicicleta::setPrecoDia(int preco) //verificar velocidades das bicicletas -> corrida 1 velocidade x
 {
-	if (velocidades > veloc_max || velocidades == 0)
+	if ((velocidades > veloc_max) || (velocidades == 0))
 		return false; //velocidades invalidades
 
 	//cout do tamanho
@@ -170,6 +170,7 @@ bool Bicicleta::setPrecoDia(int preco) //verificar velocidades das bicicletas ->
 		}
 		return false;
 	}
+}
 
 string Bicicleta::imprime()
 {
