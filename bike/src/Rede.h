@@ -22,10 +22,13 @@ class Rede
 public:
 	Rede() {}
 	void loadInfo(); // Load all Rede info from text files
+
+	// Menu system base functions
 	int menu_system();
 	void print_menu_header();
 	void menu_exit_prog();
 
+	// Rede menus
 	int menu_start();
 	int menu_regUsr();
 	int menu_ocUsr();

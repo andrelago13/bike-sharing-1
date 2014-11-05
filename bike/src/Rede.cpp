@@ -1,5 +1,6 @@
 #include "Rede.h"
 #include "Tools.h"
+#include <iostream>
 
 using namespace std;
 
@@ -91,23 +92,12 @@ int Rede::menu_start()
 // TO-DO //
 int Rede::menu_regUsr()
 {
-	// There must be a way for a user to login to the Rede
-	/*
+	clear_screen();
 	print_menu_header();
-	cout << "===> Registered user secion" << endl << endl << "Select an option:" << endl;
-	cout << " 1 - Rent a bike" << endl;
-	cout << " 2 - Return a bike" << endl;
-	cout << " 3 - Report bike malfunction" << endl;
-	cout << " 0 - Return to previous menu" << endl;
 
-	int option;
-	get_option(option, 0, 5);
-
-	switch (option)
-	{
-	case 0:
-	return MENU_start;
-	}*/
+	cout << endl << " User name : ";
+	string username;
+	getline(cin, username);
 
 	return MENU_exit;
 }
