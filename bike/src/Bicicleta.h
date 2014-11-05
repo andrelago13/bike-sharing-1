@@ -33,7 +33,7 @@ public:
 	string getTipo();//
 	string getEmpresa(); //
 	bool getAvariada(); //
-	void setPreco(int preco); //
+	bool setPrecoDia(int preco); //
 	bool velocidades_valido(int veloc); //
 	bool tipo_valido(); //
 	string imprime(); //
