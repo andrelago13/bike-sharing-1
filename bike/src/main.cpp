@@ -10,4 +10,3 @@ int main()
 	network.menu_system();
 
 	return 0;
-}
