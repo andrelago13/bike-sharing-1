@@ -13,17 +13,24 @@ using namespace std;
 #define MENU_regUsr 1
 #define MENU_ocUsr 2
 #define MENU_manager 3
+#define MENU_mngr_supplyers 4
+#define MENU_mngr_spots 5
+#define MENU_mngr_bikes 6
+#define MENU_mngr_users 7
+#define MENU_mngr_logs 8
 
 class Rede
 {
 	vector <Empresa> empresas;
 	vector<PostoServico*> postos;
 	vector<Utilizador*> utilizadores;
+	string sys_password;
 
 public:
-	Rede() {}
+	Rede() : sys_password("") {}
 	~Rede();
 	void loadInfo(); // Load all Rede info from text files
+	void storeInfo(); // Store all Rede info into text files
 
 	// Rede functions
 	int addUser(Utilizador user);
@@ -40,6 +47,11 @@ public:
 	int menu_ocUsr();
 	int menu_manager();
 	int menu_regUsr_logged(Utilizador *user);
+	int menu_mngr_supplyers();
+	int menu_mngr_spots();
+	int menu_mngr_bikes();
+	int menu_mngr_users();
+	int menu_mngr_logs();
 
 };
 

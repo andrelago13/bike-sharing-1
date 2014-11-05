@@ -100,6 +100,7 @@ int Rede::menu_start()
 
 	int option;
 	get_option(option, 0, 3);
+	string pass;
 
 	switch (option)
 	{
@@ -108,7 +109,13 @@ int Rede::menu_start()
 	case 2:
 		return MENU_ocUsr;
 	case 3:
-		return MENU_manager;
+		cout << endl << " Please insert system password : ";
+		pass = readPassword();
+		if (pass == sys_password)
+			return MENU_manager;
+		cout << endl << endl << " Wrong password!" << endl << endl;
+		system("pause");
+		return MENU_start;
 	case 0:
 		return MENU_exit;
 	}
@@ -226,11 +233,19 @@ int Rede::menu_manager()
 
 	switch (option)
 	{
-	case 0:
-		return MENU_start;
+	case 1:
+		return MENU_mngr_supplyers;
+	case 2:
+		return MENU_mngr_spots;
+	case 3:
+		return MENU_mngr_bikes;
+	case 4:
+		return MENU_mngr_users;
+	case 5:
+		return MENU_mngr_logs;
 	}
 
-	return MENU_exit;
+	return MENU_start;
 }
 
 // TO-DO //
@@ -355,4 +370,73 @@ int Rede::createUser(string nome)
 	utilizadores.push_back(ptr);
 
 	return 0;
+}
+
+// TO-DO //
+int Rede::menu_mngr_supplyers()
+{
+	print_menu_header();
+
+	cout << endl << endl << "===> Please select an option:" << endl;
+	cout << " 1 - List all supplyers" << endl;
+	cout << " 2 - Add new supplier" << endl;
+	cout << " 3 - Edit existing supplier" << endl;
+	cout << " 4 - Delete supplier" << endl;
+	cout << " 0 - Return to previous menu" << endl;
+
+	int option, index;
+	get_option(option, 0, 4);
+	string nome;
+
+	switch (option)
+	{
+	case 0:
+		return MENU_manager;
+	case 1:
+		// List suppliers
+	case 2:
+		cout << endl << " Insert new supplier's name : ";
+		getline(cin, nome);
+		// Adicionar nova empresa ao vetor
+
+		return MENU_manager;
+	case 3:
+		// Edit supplier
+
+		return MENU_manager;
+	case 4:
+		cout << endl << " Insert the name of the supplier to delete : ";
+		getline(cin, nome);
+		
+		// Delete supplier
+
+		return MENU_manager;
+	}
+
+
+	return MENU_start;
+}
+
+// TO-DO //
+int Rede::menu_mngr_bikes()
+{
+	return MENU_start;
+}
+
+// TO-DO //
+int Rede::menu_mngr_logs()
+{
+	return MENU_start;
+}
+
+// TO-DO //
+int Rede::menu_mngr_spots()
+{
+	return MENU_start;
+}
+
+// TO-DO //
+int Rede::menu_mngr_users()
+{
+	return MENU_start;
 }
