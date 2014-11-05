@@ -19,9 +19,9 @@ class Bicicleta
 	string tipo; // tipos: eletrica, com ou sem cesto, passeio, montanha, corrida
 	string tamanho;
 	int velocidades;
+	vector<Registo*> bicicletas;
 public:
 	string empresa;
-	vector<Registo*> bicicletas;
 	bool avariada;
 	unsigned int preco;
 	vector <Bicicleta> historico_utilizacao;
@@ -33,12 +33,14 @@ public:
 	string getTipo();//
 	string getEmpresa(); //
 	bool getAvariada(); //
-	bool setPreco(int preco); //
+	void setPreco(int preco); //
 	bool velocidades_valido(int veloc); //
 	bool tipo_valido(); //
 	string imprime(); //
-	bool setID(); // .....
-	bool setTipo(string tipo); //
+	void setID(); // .....
+	void setTipo(string tipo); //
+	void setBicis(vector<Registo *> bicis); //
+	vector<Registo *> getBicis() const; //
 
 };
 

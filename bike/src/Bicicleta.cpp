@@ -51,7 +51,7 @@ bool Bicicleta::tipo_valido()
 	return false;
 }
 
-bool Bicicleta::setPreco(int preco)
+void Bicicleta::setPreco(int preco)
 {
 	this->preco = preco;
 }
@@ -62,13 +62,20 @@ string Bicicleta::imprime() {
 	return ss.str();
 }
 
-bool Bicicleta::setID()
+void Bicicleta::setID()
 {
 	int idnew = bicicletas.size() - 1;
 	id_num = idnew++;
 }
 
-bool Bicicleta::setTipo(string tipo)
+void Bicicleta::setTipo(string tipo)
 {
 	this->tipo = tipo;
 }
+
+void Bicicleta::setBicis(vector<Registo *> bicis)
+{
+	bicicletas = bicis;
+}
+
+vector<Registo *> Bicicleta::getBicis() const { return bicicletas; }
