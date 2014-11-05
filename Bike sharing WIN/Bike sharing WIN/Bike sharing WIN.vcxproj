@@ -67,8 +67,18 @@
     <ClCompile Include="..\..\bike\src\Bicicleta.cpp" />
     <ClCompile Include="..\..\bike\src\Data.cpp" />
     <ClCompile Include="..\..\bike\src\main.cpp" />
+    <ClCompile Include="..\..\bike\src\Rede.cpp" />
     <ClCompile Include="..\..\bike\src\Test.cpp" />
     <ClCompile Include="..\..\bike\src\Utilizador.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\bike\src\Bicicleta.h" />
+    <ClInclude Include="..\..\bike\src\Data.h" />
+    <ClInclude Include="..\..\bike\src\Empresa.h" />
+    <ClInclude Include="..\..\bike\src\PostoServico.h" />
+    <ClInclude Include="..\..\bike\src\Rede.h" />
+    <ClInclude Include="..\..\bike\src\Registo.h" />
+    <ClInclude Include="..\..\bike\src\Utilizador.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
