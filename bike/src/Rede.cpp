@@ -58,9 +58,6 @@ int Rede::menu_system()
 			case MENU_manager:
 				menu = menu_manager();
 				break;
-			case MENU_regUsr_logged:
-				menu = menu_regUsr_logged();
-				break;
 			case MENU_exit:
 				menu = MENU_exit;
 				break;
@@ -146,7 +143,10 @@ int Rede::menu_regUsr()
 
 		if (utilizadores[index]->getPassword() == pass)
 		{
-			return MENU_regUsr_logged;
+			while (true)
+			{
+				return menu_regUsr_logged(utilizadores[index]);
+			}
 		}
 		else
 		{
@@ -184,12 +184,27 @@ int Rede::menu_regUsr()
 int Rede::menu_ocUsr()
 {
 	print_menu_header();
-	cout << endl << endl << "===> Please select yan option:" << endl;
+	cout << endl << endl << "===> Please select an option:" << endl;
 	cout << " 1 - Rent a bike" << endl;
 	cout << " 2 - Return a bike" << endl;
-	cout << " 3 - Change password" << endl;
-	cout << " 4 - See rental log" << endl;
 	cout << " 0 - Return to previous menu" << endl;
+
+	int option;
+	get_option(option, 0, 2);
+
+	switch (option)
+	{
+	case 1:
+		// Rent bike
+
+		break;
+	case 2:
+		// Return bike
+
+		break;
+	case 0:
+		return MENU_start;
+	}
 
 	return MENU_start;
 }
@@ -219,8 +234,58 @@ int Rede::menu_manager()
 }
 
 // TO-DO //
-int Rede::menu_regUsr_logged()
+int Rede::menu_regUsr_logged(Utilizador *user)
 {
+	while (true)
+	{
+		clear_screen();
+		print_menu_header();
+
+		cout << endl << endl << "===> Please select an option:" << endl;
+		cout << " 1 - Rent a bike" << endl;
+		cout << " 2 - Return a bike" << endl;
+		cout << " 3 - Change password" << endl;
+		cout << " 4 - View rental log" << endl;
+		cout << " 0 - Return to previous menu" << endl;
+
+		int option;
+		get_option(option, 0, 4);
+		string old_pass, pass;
+
+		switch (option)
+		{
+		case 1:
+			// Rent bike
+
+			break;
+		case 2:
+			// Return bike
+
+			break;
+		case 3:
+			cout << endl << " Enter old password : ";
+
+			old_pass = readPassword();
+			if (old_pass != user->getPassword())
+			{
+				cout << endl << "Wrong password" << endl;
+				system("pause");
+				continue;
+			}
+			cout << endl << " Enter new password : ";
+			pass = readPassword();
+			user->setPassword(pass);
+			cout << endl << " Password changed successfully!" << endl;
+			system("pause");
+			break;
+		case 4:
+
+			break;
+		case 0:
+			return MENU_start;
+		}
+	}
+
 	return MENU_start;
 }
 

@@ -2,24 +2,24 @@
 #define REDE_H_
 
 #include<vector>
-
-using namespace std;
 #include "PostoServico.h"
 #include "Utilizador.h"
 #include "Empresa.h"
+
+using namespace std;
 
 #define MENU_exit -1
 #define MENU_start 0
 #define MENU_regUsr 1
 #define MENU_ocUsr 2
 #define MENU_manager 3
-#define MENU_regUsr_logged 4
 
 class Rede
 {
 	vector <Empresa> empresas;
 	vector<PostoServico*> postos;
 	vector<Utilizador*> utilizadores;
+
 public:
 	Rede() {}
 	~Rede();
@@ -39,7 +39,7 @@ public:
 	int menu_regUsr();
 	int menu_ocUsr();
 	int menu_manager();
-	int menu_regUsr_logged();
+	int menu_regUsr_logged(Utilizador *user);
 
 };
 

@@ -19,11 +19,15 @@ class Registo
 {
 public:
 	int ID_Bicicleta;
-	int ID_Posto;
+	int ID_posto_origem;
+	int ID_posto_chegada;
 	string nome_utilizador;
 	Data levantamento;
 	Data entrega;
 	bool ficou_avariada;
+
+	void print_reg() const;
+	void print_sem_user() const;
 };
 
 
