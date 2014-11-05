@@ -18,11 +18,13 @@ using namespace std;
 class Utilizador
 {
 	string nome;
+	string password;
 	unsigned int idade;
 	vector <Registo*> registos;
 public:
 	Utilizador();
-	Utilizador(string name, int age) : nome(name), idade(age) {}
+	Utilizador(string name, int age) : nome(name), idade(age), password("") {}
+	Utilizador(string name, int age, string pass) : nome(name), idade(age), password(pass) {}
 	void setNome(string nome);
 	void setIdade(int idade);
 	string getNome() const;
@@ -30,6 +32,9 @@ public:
 	vector <Registo *> getRegs() const;
 	void setRegs(vector <Registo *> regs);
 	Registo ultimoReg() const;
+	string getPassword() const { return password; }
+	void setPassword(string pass) { password = pass; }
+
 };
  //FREQUENTES E OCASIONAIS
 

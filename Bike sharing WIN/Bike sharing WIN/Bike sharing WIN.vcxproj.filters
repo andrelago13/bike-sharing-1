@@ -56,5 +56,8 @@
     <ClInclude Include="..\..\bike\src\Utilizador.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\bike\src\Tools.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

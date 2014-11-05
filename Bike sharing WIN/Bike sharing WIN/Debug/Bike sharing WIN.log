@@ -1,12 +1,17 @@
-﻿Build started 11/4/2014 12:25:50 AM.
+﻿Build started 11/5/2014 11:04:54 AM.
      1>Project "C:\Users\André\Documents\GitHub\bike-sharing-1\Bike sharing WIN\Bike sharing WIN\Bike sharing WIN.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\bike\src\main.cpp
-         main.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\bike\src\Rede.cpp ..\..\bike\src\Utilizador.cpp
+         Rede.cpp
+         Generating Code...
+         Compiling...
+         Utilizador.cpp
+         Generating Code...
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\André\Documents\GitHub\bike-sharing-1\Bike sharing WIN\Debug\Bike sharing WIN.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\André\Documents\GitHub\bike-sharing-1\Bike sharing WIN\Debug\Bike sharing WIN.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\André\Documents\GitHub\bike-sharing-1\Bike sharing WIN\Debug\Bike sharing WIN.lib" /MACHINE:X86 Debug\Bicicleta.obj
          Debug\Data.obj
          Debug\main.obj
+         Debug\Rede.obj
          Debug\Test.obj
          Debug\Utilizador.obj
          Bike sharing WIN.vcxproj -> C:\Users\André\Documents\GitHub\bike-sharing-1\Bike sharing WIN\Debug\Bike sharing WIN.exe
@@ -14,4 +19,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.78
+Time Elapsed 00:00:01.38

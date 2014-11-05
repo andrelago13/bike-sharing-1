@@ -78,6 +78,7 @@
     <ClInclude Include="..\..\bike\src\PostoServico.h" />
     <ClInclude Include="..\..\bike\src\Rede.h" />
     <ClInclude Include="..\..\bike\src\Registo.h" />
+    <ClInclude Include="..\..\bike\src\Tools.h" />
     <ClInclude Include="..\..\bike\src\Utilizador.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
