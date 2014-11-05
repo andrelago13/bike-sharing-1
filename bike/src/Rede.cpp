@@ -119,7 +119,6 @@ int Rede::menu_start()
 	return MENU_exit;
 }
 
-// TO-DO //
 int Rede::menu_regUsr()
 {
 	print_menu_header();
@@ -184,7 +183,15 @@ int Rede::menu_regUsr()
 // TO-DO //
 int Rede::menu_ocUsr()
 {
-	return 0;
+	print_menu_header();
+	cout << endl << endl << "===> Please select yan option:" << endl;
+	cout << " 1 - Rent a bike" << endl;
+	cout << " 2 - Return a bike" << endl;
+	cout << " 3 - Change password" << endl;
+	cout << " 4 - See rental log" << endl;
+	cout << " 0 - Return to previous menu" << endl;
+
+	return MENU_start;
 }
 
 // TO-DO //
@@ -214,7 +221,7 @@ int Rede::menu_manager()
 // TO-DO //
 int Rede::menu_regUsr_logged()
 {
-	return 0;
+	return MENU_start;
 }
 
 void Rede::print_menu_header()
@@ -249,6 +256,7 @@ int Rede::createUser(string nome)
 			cout << endl << "ERROR : Invalid age. Try again." << endl << " Enter your age : ";
 			continue;
 		}
+		break;
 	}
 
 	cout << endl << endl << " Enter your password : ";

@@ -8,13 +8,11 @@ using namespace std;
 int str_to_int(string &str)
 {
 	int result = atoi(str.c_str());
-
 	if ((result == 0) && (str != "0"))
 	{
 		string error = "ERROR : Invalid input, must be a number";
 		throw error;
 	}
-
 	return result;
 }
 
@@ -87,8 +85,10 @@ string readPassword()
 		if ((int)letter == 8)		// 8 corresponds to the BACKSPACE ASCII Code
 		{
 			if (password.length() > 0)
+			{
 				password.resize(password.size() - 1);
-			cout << "\b \b";
+				cout << "\b \b";
+			}
 		}
 		else
 		{
@@ -126,8 +126,7 @@ int readInt()
 			if (letter >= '0' && letter <= '9')
 			{
 				stringstream ss;
-				int x = letter;
-				x = x - '0';
+				int x = atoi(&letter);
 				ss << x;
 
 				num_str += ss.str();
