@@ -19,6 +19,7 @@ template <class Comparable>
 void insertionSort(vector<Comparable> &v);
 
 string readPassword();
+int readInt();
 
 
 #endif /* TOOLS_H_ */

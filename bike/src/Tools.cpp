@@ -1,6 +1,7 @@
 #include "Tools.h"
 #include <conio.h>
 #include <iostream>
+#include <sstream>
 
 using namespace std;
 
@@ -100,4 +101,42 @@ string readPassword()
 	}
 
 	return password;
+}
+
+int readInt()
+{
+	string num_str;
+	char letter = 0;
+
+	while ((int)letter != 13)		// 13 corresponds to the ENTER ASCII Code
+	{
+		letter = _getch();
+
+		if ((int)letter == 8)		// 8 corresponds to the BACKSPACE ASCII Code
+		{
+			if (num_str.length() > 0)
+			{
+				num_str.resize(num_str.size() - 1);
+				cout << "\b \b";
+			}
+			
+		}
+		else
+		{
+			if (letter >= '0' && letter <= '9')
+			{
+				stringstream ss;
+				int x = letter;
+				x = x - '0';
+				ss << x;
+
+				num_str += ss.str();
+				cout << letter;
+			}
+		}
+	}
+
+	if (num_str.size() > 0)
+		return str_to_int(num_str);
+	return 0;
 }

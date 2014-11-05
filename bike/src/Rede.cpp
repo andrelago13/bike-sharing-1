@@ -1,8 +1,32 @@
 #include "Rede.h"
 #include "Tools.h"
 #include <iostream>
+#include <conio.h>
 
 using namespace std;
+
+Rede::~Rede()
+{
+	for (unsigned int i = 0; i < utilizadores.size(); i++)
+		delete utilizadores[i];
+
+	for (unsigned int i = 0; i < postos.size(); i++)
+		delete postos[i];
+}
+
+int Rede::addUser(Utilizador user)
+{
+	for (unsigned int i = 0; i < utilizadores.size(); i++)
+	{
+		if (*utilizadores[i] == user)
+			return -1;
+	}
+
+	Utilizador *ptr = new Utilizador;
+	*ptr = user;
+	utilizadores.push_back(ptr);
+	return 0;
+}
 
 int Rede::menu_system()
 {
@@ -14,10 +38,10 @@ int Rede::menu_system()
 
 	int menu = 0;
 
+	clear_screen();
+
 	while (menu >= 0)
 	{
-		clear_screen();
-
 		try
 		{
 			switch (menu)
@@ -34,7 +58,11 @@ int Rede::menu_system()
 			case MENU_manager:
 				menu = menu_manager();
 				break;
+			case MENU_regUsr_logged:
+				menu = menu_regUsr_logged();
+				break;
 			case MENU_exit:
+				menu = MENU_exit;
 				break;
 			default:
 				string err = "ERROR : Unexpected function return.";
@@ -47,6 +75,8 @@ int Rede::menu_system()
 			cout << endl << endl << error << endl << endl;
 			return -1;
 		}
+
+		clear_screen();
 	}
 
 	menu_exit_prog();
@@ -98,24 +128,57 @@ int Rede::menu_regUsr()
 	string username;
 	getline(cin, username);
 
+	int index = 0;
 	bool existe = false;
 
-	for (unsigned int i = 0; i < utilizadores.size(); i++)
+	for (; index < utilizadores.size(); index++)
 	{
-		if (utilizadores[i]->getNome() == username)
+		if (utilizadores[index]->getNome() == username)
+		{
 			existe = true;
+			break;
+		}
 	}
 
 	if (existe)
 	{
-		// ASK FOR PASSWORD
+		cout << " Password : ";
+		string pass = readPassword();
+
+		if (utilizadores[index]->getPassword() == pass)
+		{
+			return MENU_regUsr_logged;
+		}
+		else
+		{
+			cout << endl << endl << " Wrong password!" << endl << endl;
+			system("pause");
+			return MENU_start;
+		}
 	}
 	else
 	{
-		// CREATE NEW USER
+		cout << endl << endl << " No user was found with that name.\n Would you like to create a new one? (Y/N) ";
+
+		while (true)
+		{
+			char letter = _getch();
+			if (toupper(letter) == 'Y')
+			{
+				int result = createUser(username);
+				if (result == 0)
+					cout << endl << endl << "    User created successfully!" << endl;
+				else
+					cout << endl << endl << "    An error has occurred while creating user." << endl;
+				system("pause");
+				break;
+			}
+			if (toupper(letter) == 'N')
+				return MENU_start;
+		}
 	}
 
-	return MENU_exit;
+	return MENU_start;
 }
 
 // TO-DO //
@@ -148,6 +211,12 @@ int Rede::menu_manager()
 	return MENU_exit;
 }
 
+// TO-DO //
+int Rede::menu_regUsr_logged()
+{
+	return 0;
+}
+
 void Rede::print_menu_header()
 {
 	cout << "      __          ___     __             __          __  " << endl;
@@ -165,4 +234,30 @@ void Rede::menu_exit_prog()
 	cout << "          \\_____|\\___/ \\___/ \\__,_|   |____/ \\__, |\\___|" << endl;
 	cout << "                                             __/ |     " << endl;
 	cout << "                                            |___/      " << endl << endl << endl << endl;
+}
+
+int Rede::createUser(string nome)
+{
+	cout << endl << endl << " Enter your age : ";
+	int age;
+
+	while (true)
+	{
+		age = readInt();
+		if ((age <= 0) || (age > 120))
+		{
+			cout << endl << "ERROR : Invalid age. Try again." << endl << " Enter your age : ";
+			continue;
+		}
+	}
+
+	cout << endl << endl << " Enter your password : ";
+	string pass = readPassword();
+
+	Utilizador usr(nome, age, pass);
+	Utilizador *ptr = new Utilizador;
+	*ptr = usr;
+	utilizadores.push_back(ptr);
+
+	return 0;
 }

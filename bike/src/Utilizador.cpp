@@ -34,3 +34,34 @@ Registo Utilizador::ultimoReg() const
 
 	return *registos[pos];
 }
+
+bool Utilizador::operator==(string name)
+{
+	if (nome == name)
+		return true;
+	return false;
+}
+
+bool Utilizador::operator==(Utilizador user)
+{
+	if (nome == user.nome)
+		return true;
+	return false;
+}
+
+void Utilizador::operator=(Utilizador user)
+{
+	nome = user.nome;
+	idade = user.idade;
+	password = user.password;
+
+	vector<Registo*> regs2 = user.getRegs();
+
+	for (unsigned int i = 0; i < regs2.size(); i++)
+	{
+		Registo *ptr;
+		ptr = new(Registo);
+		*ptr = *regs2[i];
+		registos.push_back(ptr);
+	}
+}

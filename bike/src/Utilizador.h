@@ -22,7 +22,7 @@ class Utilizador
 	unsigned int idade;
 	vector <Registo*> registos;
 public:
-	Utilizador();
+	Utilizador() : nome(""), password(""), idade(0) {}
 	Utilizador(string name, int age) : nome(name), idade(age), password("") {}
 	Utilizador(string name, int age, string pass) : nome(name), idade(age), password(pass) {}
 	void setNome(string nome);
@@ -34,6 +34,9 @@ public:
 	Registo ultimoReg() const;
 	string getPassword() const { return password; }
 	void setPassword(string pass) { password = pass; }
+	bool operator==(string name);
+	bool operator==(Utilizador user);
+	void operator=(Utilizador user);
 
 };
  //FREQUENTES E OCASIONAIS
