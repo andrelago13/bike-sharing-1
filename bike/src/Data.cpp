@@ -66,12 +66,75 @@ int dif_dias(Data d1, Data d2)
 	if (d1 == d2)
 		return 0;
 
-	int var1 = 365 * d1.ano + d1.ano / 4 - d1.ano / 100 + d1.ano / 400 + (153 * d1.mes - 457) / 5 + d1.dia - 306;
-	int var2 = 365 * d2.ano + d2.ano / 4 - d2.ano / 100 + d2.ano / 400 + (153 * d2.mes - 457) / 5 + d2.dia - 306;
+	int var1 = 0;
+	int var2 = 0;
+
+	if ((d1.ano % 4) == 0)
+	{
+		var1 += 366 * d1.ano;
+		if (d1.mes == 2)
+			var1 += 29;
+	}
+	else
+	{
+		if (d1.mes == 2)
+			var1 += 28;
+		var1 += 365 * d1.ano;
+	}
+
+	switch (d1.mes)
+	{
+	case 1:
+	case 3:
+	case 5:
+	case 7:
+	case 8:
+	case 10:
+	case 12:
+		var1 += 31 * d1.mes;
+		break;
+	case 4:
+	case 6:
+	case 9:
+	case 11:
+		var1 += 30 * d1.mes;
+		break;
+	}
+
+
+	if ((d2.ano % 4) == 0)
+	{
+		var2 += 366 * d2.ano;
+		if (d2.mes == 2)
+			var2 += 29;
+	}
+	else
+	{
+		if (d2.mes == 2)
+			var2 += 28;
+		var2 += 365 * d2.ano;
+	}
+
+	switch (d2.mes)
+	{
+	case 1:
+	case 3:
+	case 5:
+	case 7:
+	case 8:
+	case 10:
+	case 12:
+		var2 += 31 * d2.mes;
+		break;
+	case 4:
+	case 6:
+	case 9:
+	case 11:
+		var2 += 30 * d2.mes;
+		break;
+	}
 
 	return var2 - var1;
-	
-
 }
 
 Data::Data(string date)

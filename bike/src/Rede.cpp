@@ -432,7 +432,6 @@ int Rede::menu_manager()
 	return MENU_start;
 }
 
-// TO-DO //
 int Rede::menu_regUsr_logged(Utilizador *user)
 {
 	while (true)
@@ -453,11 +452,7 @@ int Rede::menu_regUsr_logged(Utilizador *user)
 		string old_pass, pass, nome, data;
 		vector<Registo*> regs;
 
-		//int option, index, dias, custo;
-		//get_option(option, 0, 2);
-		//string nome, cartao, data;
 		vector<Bicicleta*> bikes;
-		//Ut_ocasional user;
 		Ut_ocasional *ptr;
 		Registo reg;
 		Registo *reg_ptr;
@@ -466,7 +461,6 @@ int Rede::menu_regUsr_logged(Utilizador *user)
 		{
 		case 1:
 			reg_ptr = user->ultimoReg();
-			//if ((reg_ptr->ID_posto_chegada == 0) || (reg_ptr->ID_posto_origem == 0))
 			if (reg_ptr != NULL)
 			{
 				if ((reg_ptr->ID_posto_chegada <= 0))
@@ -541,7 +535,6 @@ int Rede::menu_regUsr_logged(Utilizador *user)
 			system("pause");
 			continue;
 		case 2:
-			// Return bike
 			reg_ptr = user->ultimoReg();
 			if ((reg_ptr->ID_posto_chegada != 0) || (reg_ptr->ID_posto_origem == 0))
 			{

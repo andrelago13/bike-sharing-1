@@ -5,25 +5,35 @@ using namespace std;
 
 void Registo::print_reg() const
 {
-	cout << "Utilizador : " << nome_utilizador << endl;
-	cout << "Bicicleta : " << ID_Bicicleta << endl;
-	cout << "Levantada no posto " << ID_posto_origem << " em " << levantamento << endl;
-	cout << "Entregue no posto " << ID_posto_chegada << " em " << entrega << endl;
+	cout << "User : " << nome_utilizador << endl;
+	cout << "Bike : " << ID_Bicicleta << endl;
+	cout << "Picked up at post " << ID_posto_origem << " em " << levantamento << endl;
+	if (ID_posto_chegada == 0)
+	{
+		cout << "This rental is still ongoing." << endl;
+		return;
+	}
+	cout << "Delivered at post " << ID_posto_chegada << " em " << entrega << endl;
 	if (ficou_avariada)
-		cout << "A bicicleta ficou avariada neste aluguer." << endl;
+		cout << "The bike got broken during this rental." << endl;
 	else
-		cout << "A bicicleta não sofreu avarias neste aluguer." << endl;
+		cout << "The bike did not get damaged during this rental." << endl;
 }
 
 void Registo::print_sem_user() const
 {
-	cout << "Bicicleta : " << ID_Bicicleta << endl;
-	cout << "Levantada no posto " << ID_posto_origem << " em " << levantamento << endl;
-	cout << "Entregue no posto " << ID_posto_chegada << " em " << entrega << endl;
+	cout << "Bike : " << ID_Bicicleta << endl;
+	cout << "Picked up at post " << ID_posto_origem << " em " << levantamento << endl;
+	if (ID_posto_chegada == 0)
+	{
+		cout << "This rental is still ongoing." << endl;
+		return;
+	}
+	cout << "Delivered at post " << ID_posto_chegada << " em " << entrega << endl;
 	if (ficou_avariada)
-		cout << "A bicicleta ficou avariada neste aluguer." << endl;
+		cout << "The bike got broken during this rental." << endl;
 	else
-		cout << "A bicicleta não sofreu avarias neste aluguer." << endl;
+		cout << "The bike did not get damaged during this rental." << endl;
 }
 
 Registo::Registo()

@@ -22,9 +22,8 @@ class Bicicleta
 	bool avariada;
 	unsigned int preco;
 	vector<Registo*> regs;
-public:
 	string empresa;
-	vector <Bicicleta> historico_utilizacao;
+public:
 
 	Bicicleta();
 	Bicicleta(unsigned int id, string tipo_bici, string size, int mudancas, bool avariad, unsigned int preco1);
