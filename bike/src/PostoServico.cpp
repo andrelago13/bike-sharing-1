@@ -182,23 +182,22 @@ bool PostoServico::removebicicleta(unsigned int id_bike)//remover utilizador e b
 
 bool PostoServico::removeutilizador(string user)
 {
-	vector<Registo*> utils = PostoServico::getUtlizacao();
-	vector<Registo*>::iterator it = utils.begin();
+	vector<Registo*>::iterator it = utilizacao.begin();
 
-	if (utils.size() == 0)
+	if (utilizacao.size() == 0)
 	{
-		cout << "No registers available" << endl;
+		//cout << "No registers available" << endl;
 		return false;
 	}
 
-	while (it != utils.end())
+	while (it != utilizacao.end())
 	{
 		if ((*it)->nome_utilizador == user)
 		{
-			utils.erase(it);
+			utilizacao.erase(it);
 			it--;
-			return true;
 		}
 		it++;
 	}
+	return true;
 }

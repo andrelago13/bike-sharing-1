@@ -812,6 +812,7 @@ int Rede::menu_mngr_users()
 	int option, index, idade;
 	get_option(option, 0, 4);
 	string nome, pass;
+	Registo *reg_ptr;
 
 	switch (option)
 	{
@@ -888,6 +889,34 @@ int Rede::menu_mngr_users()
 	case 4:
 		cout << endl << " Enter name of user to delete : ";
 		getline(cin, nome);
+
+		for (index = 0; index < utilizadores.size(); index++)
+		{
+			if (utilizadores[index]->getNome() == nome)
+				break;
+		}
+
+		if (index == utilizadores.size())
+		{
+			cout << endl << " There is no registered user with that name." << endl << endl;
+			system("pause");
+			return MENU_mngr_users;
+		}
+
+		reg_ptr = utilizadores[index]->ultimoReg();
+
+		if (reg_ptr == NULL)
+		{
+			utilizadores.erase(utilizadores.begin() + index);
+			cout << endl << " User deleted successfully." << endl << endl;
+			system("pause");
+			return MENU_mngr_users;
+		}
+		else if (reg_ptr->ID_posto_chegada != 0)
+		{
+
+		}
+
 
 		/*
 		Must verify:
