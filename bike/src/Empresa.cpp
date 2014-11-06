@@ -50,14 +50,14 @@ void Empresa::show_specs()
 			cout << "This company has no bikes!!!" << endl;
 		else
 		{
-			Bicicleta::imprime();
+			(*it)->imprime();
 			cout << endl;
 		}
 		it++;
 	}
 }
 
-vector<Bicicleta*> Empresa::setBicicletas(vector<Bicicleta*> bicicletas)
+void Empresa::setBicicletas(vector<Bicicleta*> bicicletas)
 {
 	this->bicicletas = bicicletas;
 }

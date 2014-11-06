@@ -9,7 +9,7 @@
 #include <stdlib.h>
 
 #include "Registo.h"
-#include "PostoServico.h"
+//#include "PostoServico.h"
 
 using namespace std;
 
@@ -33,7 +33,7 @@ public:
 	string getTipo();//
 	string getTamanho();
 	string getEmpresa(); //
-	string getAvariada(); //
+	bool getAvariada(); //
 	int getPreco();
 	void setPrecoDia(int velocidade, string tamanho); //
 	bool velocidades_valido(int veloc); //

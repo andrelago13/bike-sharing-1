@@ -11,6 +11,8 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include "Bicicleta.h"
+#include "Registo.h"
 
 using namespace std;
 

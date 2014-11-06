@@ -47,11 +47,9 @@ string Bicicleta::getEmpresa()
 	return empresa;
 }
 
-string Bicicleta::getAvariada()
+bool Bicicleta::getAvariada()
 {
-	if (avariada)
-		return "AVARIADA";
-	else return "NAO AVARIADA";
+	return avariada;
 }
 
 int Bicicleta::getPreco()
@@ -261,7 +259,7 @@ bool Bicicleta::remove_util(string nome)
 		it++;
 	}
 
-	setRegsBicis(vector<Registo*>result);
+	setRegsBicis(result);
 	return true;
 
 }

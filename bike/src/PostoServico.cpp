@@ -15,7 +15,7 @@ PostoServico::PostoServico()
 {
 }
 
-PostoServico::PostoServico(string ID, int ocupacao, int lotacao)
+PostoServico::PostoServico(int ID, int ocupacao, int lotacao)
 {
 	this->ID = ID;
 	this->lotacao = lotacao;
@@ -57,22 +57,22 @@ vector<Bicicleta*> PostoServico::getAvariadas()
 	return avariadas;
 }
 
-vector<Registo> PostoServico::getUtilizacao()
+vector<Registo*> PostoServico::getUtlizacao()
 {
 	return utilizacao;
 }
 
-vector<Bicicleta*> PostoServico::setDisponiveis(vector<Bicicleta*> disponiveis)
+void PostoServico::setDisponiveis(vector<Bicicleta*> disponiveis)
 {
 	this->disponiveis = disponiveis;
 }
 
-vector<Bicicleta*> PostoServico::setAvariadas(vector<Bicicleta*> avariadas)
+void PostoServico::setAvariadas(vector<Bicicleta*> avariadas)
 {
 	this->avariadas = avariadas;
 }
 
-vector<Registo> PostoServico::setUtilizacao(vector<Registo> utilizacao)
+void PostoServico::setUtilizacao(vector<Registo*> utilizacao)
 {
 	this->utilizacao = utilizacao;
 }
@@ -87,7 +87,7 @@ void PostoServico::adicionaAvariada(Bicicleta *bi1)
 	avariadas.push_back(bi1);
 }
 
-void PostoServico::adicionarUtilizacao(Registo *reg1)
+void PostoServico::adicionaUtilizacao(Registo *reg1)
 {
 	utilizacao.push_back(reg1);
 }
@@ -114,7 +114,6 @@ bool PostoServico::aluga(Bicicleta *bi1)	////-----////---////caso de querer rese
 				dispo.erase(it);
 				setLibertaOcup(1);
 				return true;
-				it--;
 			}
 			it++;
 		}
@@ -127,7 +126,7 @@ bool PostoServico::devolve(Bicicleta *bi1)
 
 	if (bi1->getAvariada())
 	{
-		avariadas.push_back();
+		avariadas.push_back(bi1);
 		//atualizar o de utilizacao
 		setPreencheOcup(1);
 		return false;
@@ -144,7 +143,7 @@ bool PostoServico::devolve(Bicicleta *bi1)
 bool PostoServico::removebicicleta(Bicicleta *bi1)
 {
 	vector<Bicicleta*> dispo = PostoServico::getDisponiveis();
-	vector<Registo> utils = PostoServico::getUtlizacao(); //Como criar o registo com essa bicicleta
+	vector<Registo*> utils = PostoServico::getUtlizacao(); //Como criar o registo com essa bicicleta
 
 	if (dispo.size() == 0)
 	{

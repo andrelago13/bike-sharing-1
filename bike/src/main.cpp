@@ -9,7 +9,7 @@ using namespace std;
 
 int main()
 {
-	/*Rede network;
+	Rede network;
 
 	Utilizador usr("Andre", 19, "123456");
 	network.addUser(usr);
@@ -17,7 +17,8 @@ int main()
 	network.menu_system();
 
 	return 0;
-	*/
+
+	/*
 	Bicicleta bic(1, "eletrica", "adulto", 3, false, 100);
 
 	cout << bic.imprime() << endl;
@@ -47,8 +48,8 @@ int main()
 	bici.setPrecoDia(1,"adulto");
 	
 	cout << bici.getPreco() << endl;
-
+	
 	system("pause");
 
-	return 0;
+	return 0;*/
 }
