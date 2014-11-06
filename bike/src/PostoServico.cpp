@@ -130,13 +130,13 @@ bool PostoServico::aluga(Bicicleta *bi1)	////-----////---////caso de querer rese
 			if ((*it) == bi1)
 			{
 				dispo.erase(it);
+				setDisponiveis(dispo);
 				setLibertaOcup(1);
 				return true;
 			}
 			it++;
 		}
 	}
-	setDisponiveis(dispo);
 }
 
 bool PostoServico::devolve(Bicicleta *bi1)
