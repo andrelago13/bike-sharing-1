@@ -3,6 +3,7 @@
 
 // TEST INCLUDES ------------- REMOVE
 #include "Tools.h"
+#include "Bicicleta.h"
 
 using namespace std;
 
@@ -39,8 +40,8 @@ int main()
 	Bicicleta bici;
 
 	cout << bici.setPrecoDia(0, "adulto") << endl;
-	cout << bici.getPreco() << endl;
-	*/
+	cout << bici.getPreco() << endl;*/
+	
 	
 	system("pause");
 
