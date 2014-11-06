@@ -139,33 +139,48 @@ bool PostoServico::devolve(Bicicleta *bi1)
 	return true;
 }
 
-
-bool PostoServico::removebicicleta(Bicicleta *bi1)
+bool PostoServico::removebicicleta(unsigned int id_bike)//remover utilizador e bicicleta
 {
-	vector<Bicicleta*> dispo = PostoServico::getDisponiveis();
-	vector<Registo*> utils = PostoServico::getUtlizacao(); //Como criar o registo com essa bicicleta
+	vector<Registo*> utils = PostoServico::getUtlizacao();
+	vector<Registo*>::iterator it = utils.begin();
 
-	if (dispo.size() == 0)
+	if (utils.size() == 0)
 	{
-		cout << "Impossible to remove since there are no bikes left on Posto Service!!!" << endl;
+		cout << "No registers available" << endl;
 		return false;
 	}
-	else
-	{
-		vector<Bicicleta*>::iterator it = dispo.begin();
 
-		while (it != dispo.end())
+		while (it != utils.end())
 		{
-			if ((*it) == bi1)
+			if ((*it)->ID_Bicicleta == id_bike)
 			{
-				//Apagar os registos dessa bicicleta na utilizacao
-
-				dispo.erase(it);
-				setLibertaOcup(1);
-				return true;
+				utils.erase(it);
 				it--;
+				return true;
 			}
 			it++;
 		}
+}
+
+bool PostoServico::removeutilizador(string user)
+{
+	vector<Registo*> utils = PostoServico::getUtlizacao();
+	vector<Registo*>::iterator it = utils.begin();
+
+	if (utils.size() == 0)
+	{
+		cout << "No registers available" << endl;
+		return false;
+	}
+
+	while (it != utils.end())
+	{
+		if ((*it)->nome_utilizador == user)
+		{
+			utils.erase(it);
+			it--;
+			return true;
+		}
+		it++;
 	}
 }

@@ -27,7 +27,7 @@ private:
 	vector<Registo*> utilizacao;
 public:
 	PostoServico();
-	PostoServico(int ID, int ocupacao, int lotacao);
+	PostoServico(int iD, int ocupacao, int lotacao);
 	int getID() const;
 	int getLotacao() const;
 	int getOcupacao() const;
@@ -43,9 +43,10 @@ public:
 	//  void show_posto_specs() const;
 	bool aluga(Bicicleta *bi1);			// Falta adicionar o registo ao vet de utilizacao
 	bool devolve(Bicicleta *bi1);		// Falta adicionar o registo ao vet de utilizacao
-	void setLibertaOcup(int lug);
-	void setPreencheOcup(int lug);
-	bool removebicicleta(Bicicleta *bi1);
+	void setLibertaOcup(int lug);		//ATENCAO - VER
+	void setPreencheOcup(int lug);		//ATENCAO - VER
+	bool removebicicleta(unsigned int id_bike);
+	bool removeutilizador(string user);
 };
 
 #endif /* POSTOSERVICO_H_ */
