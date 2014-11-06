@@ -33,7 +33,7 @@ public:
 	int getIdade() const;
 	vector <Registo *> getRegs() const;
 	void setRegs(vector <Registo *> regs);
-	Registo ultimoReg() const;
+	Registo* ultimoReg() const;
 	string getPassword() const { return password; }
 	void setPassword(string pass) { password = pass; }
 	bool operator==(string name);
@@ -41,6 +41,7 @@ public:
 	void operator=(Utilizador user);
 	int getTipo() { return tipo; }
 	virtual int getCusto();
+	void adicionaRegisto(Registo *reg) { registos.push_back(reg); }
 
 	friend ostream& operator<<(ostream &o, Utilizador &user);
 

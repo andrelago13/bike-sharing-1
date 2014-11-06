@@ -236,10 +236,10 @@ void Bicicleta::setTipo(string tipo)
 
 void Bicicleta::setRegsBicis(vector<Registo *> bicis)
 {
-	Regs = bicis;
+	regs = bicis;
 }
 
-vector<Registo *> Bicicleta::getRegsBicis() const { return Regs; }
+vector<Registo *> Bicicleta::getRegsBicis() const { return regs; }
 
 void Bicicleta::setTamanho(string tamanho)
 {

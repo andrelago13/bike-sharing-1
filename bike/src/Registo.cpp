@@ -25,3 +25,11 @@ void Registo::print_sem_user() const
 	else
 		cout << "A bicicleta não sofreu avarias neste aluguer." << endl;
 }
+
+Registo::Registo()
+{
+	ID_Bicicleta = 0;
+	ID_posto_origem = 0;
+	ID_posto_chegada = 0;
+	nome_utilizador = "";
+}

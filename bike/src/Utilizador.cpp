@@ -28,11 +28,14 @@ void Utilizador::setRegs(vector<Registo *> regs)
 	registos = regs;
 }
 
-Registo Utilizador::ultimoReg() const
+Registo* Utilizador::ultimoReg() const
 {
+	if (registos.size() == 0)
+		return NULL;
+
 	int pos = registos.size() - 1;
 
-	return *registos[pos];
+	return registos[pos];
 }
 
 bool Utilizador::operator==(string name)
@@ -83,8 +86,5 @@ int Utilizador::getCusto()
 
 int Ut_ocasional::getCusto()
 {
-	if (idade < 18)
-		return 1;
-
 	return 2;
 }

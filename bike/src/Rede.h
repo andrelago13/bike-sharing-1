@@ -28,6 +28,7 @@ class Rede
 	vector<Ut_ocasional*> ocasionais;
 	vector<Registo*> curr_rentals;
 	vector<Bicicleta*> rented_bikes;
+	vector<Bicicleta*> rented_bikes_freq;
 	string sys_password;
 
 public:

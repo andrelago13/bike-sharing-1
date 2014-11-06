@@ -28,6 +28,7 @@ public:
 
 	void print_reg() const;
 	void print_sem_user() const;
+	Registo();
 };
 
 

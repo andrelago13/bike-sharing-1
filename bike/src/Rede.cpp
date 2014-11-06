@@ -202,7 +202,6 @@ int Rede::menu_regUsr()
 	return MENU_start;
 }
 
-// TO-DO //
 int Rede::menu_ocUsr()
 {
 	print_menu_header();
@@ -211,7 +210,7 @@ int Rede::menu_ocUsr()
 	cout << " 2 - Return a bike" << endl;
 	cout << " 0 - Return to previous menu" << endl;
 
-	int option, index;
+	int option, index, dias, custo;
 	get_option(option, 0, 2);
 	string nome, cartao, data;
 	vector<Bicicleta*> bikes;
@@ -304,9 +303,80 @@ int Rede::menu_ocUsr()
 		system("pause");
 		return MENU_start;
 	case 2:
-		// Return bike
+		cout << endl << "Please enter your name : ";
+		getline(cin, nome);
 
-		break;
+		for (index = 0; index < ocasionais.size(); index++)
+		{
+			if (ocasionais[index]->getNome() == nome)
+				break;
+		}
+
+		if (index == ocasionais.size())
+		{
+			cout << endl << " No ocasional user was found with that name" << endl << endl;
+			system("pause");
+			return MENU_ocUsr;
+		}
+
+		cout << endl << endl << "===> Select a post to return the bike" << endl;
+		for (unsigned int i = 0; i < postos.size(); i++)
+		{
+			cout << " " << i + 1 << " - " << postos[i]->getID() << endl;
+		}
+		get_option(option, 1, postos.size());
+		option--;
+		
+		if (postos[option]->getEspacoLivre() <= 0)
+		{
+			cout << " This post has reached its occupation limit." << endl << endl;
+			system("pause");
+			return MENU_ocUsr;
+		}
+
+		cout << endl << " Insert current date (YYYY/MM/DD) : ";
+		getline(cin, data);
+
+		dias = dif_dias(curr_rentals[index]->levantamento, Data(data));
+		
+		if ((data.size() != 10) || (dias < 0))
+		{
+			cout << endl << " Invalid date." << endl << endl;
+			system("pause");
+			return MENU_ocUsr;
+		}
+
+		cout << endl << " Is this bike broken? (Y/N) : ";
+		while (true)
+		{
+			char letter = _getch();
+			if (toupper(letter) == 'Y')
+			{
+				rented_bikes[index]->setAvariada();
+				cout << letter;
+				break;
+			}
+			if (toupper(letter) == 'N')
+				cout << letter;
+				break;
+		}
+
+		custo = ocasionais[index]->getCusto();
+
+		curr_rentals[index]->ficou_avariada = rented_bikes[index]->getAvariada();
+		curr_rentals[index]->entrega = Data(data);
+		curr_rentals[index]->ID_posto_chegada = postos[option]->getID();
+		postos[option]->adicionaUtilizacao(curr_rentals[index]);
+		ocasionais.erase(ocasionais.begin() + index);
+		rented_bikes[index]->adicionaRegisto(curr_rentals[index]);
+		postos[option]->adicionabicicleta(rented_bikes[index]);
+		rented_bikes.erase(rented_bikes.begin() + index);
+		curr_rentals.erase(curr_rentals.begin() + index);
+
+		cout << endl << endl << " Bike returned. You were charged " << (dias + 1)*custo << " euros for " << dias + 1 << " day(s)" << endl << endl;
+		system("pause");
+		return MENU_start;
+
 	case 0:
 		return MENU_start;
 	}
@@ -378,21 +448,169 @@ int Rede::menu_regUsr_logged(Utilizador *user)
 		cout << " 5 - See monthly service cost" << endl;
 		cout << " 0 - Return to previous menu" << endl;
 
-		int option;
+		int option, index, dias, custo, id;
 		get_option(option, 0, 5);
-		string old_pass, pass;
+		string old_pass, pass, nome, data;
 		vector<Registo*> regs;
+
+		//int option, index, dias, custo;
+		//get_option(option, 0, 2);
+		//string nome, cartao, data;
+		vector<Bicicleta*> bikes;
+		//Ut_ocasional user;
+		Ut_ocasional *ptr;
+		Registo reg;
+		Registo *reg_ptr;
 
 		switch (option)
 		{
 		case 1:
-			// Rent bike
+			reg_ptr = user->ultimoReg();
+			//if ((reg_ptr->ID_posto_chegada == 0) || (reg_ptr->ID_posto_origem == 0))
+			if (reg_ptr != NULL)
+			{
+				if ((reg_ptr->ID_posto_chegada <= 0))
+				{
+					cout << endl << " Every user can only rent a bike at a time." << endl << endl;
+					system("pause");
+					continue;
+				}
+			}
 
-			break;
+
+			if (postos.size() == 0)
+			{
+				cout << endl << " There are no service posts available." << endl << endl;
+				system("pause");
+				continue;
+			}
+
+			clear_screen();
+			print_menu_header();
+			cout << endl << "===> Select a service post." << endl;
+			for (unsigned int i = 0; i < postos.size(); i++)
+			{
+				cout << " " << i + 1 << " - " << postos[i]->getID() << endl;
+			}
+			get_option(option, 1, postos.size());
+			option--;
+
+			bikes = postos[option]->getDisponiveis();
+
+			if (bikes.size() == 0)
+			{
+				cout << endl << " There are no bikes available in the selected post." << endl << endl;
+				system("pause");
+				continue;
+			}
+
+			cout << endl << "===> Select a bike : " << endl;
+			for (index = 0; index < bikes.size(); index++)
+			{
+				cout << " " << index + 1 << " - " << bikes[index]->imprime();
+				cout << endl;
+			}
+
+			cout << endl;
+			get_option(index, 1, bikes.size());
+			index--;
+
+			rented_bikes_freq.push_back(bikes[index]);
+			postos[option]->aluga(bikes[index]);
+
+			cout << " Please enter current date (YYYY/MM/DD) : ";
+			getline(cin, data);
+			if (data.size() != 10)
+			{
+				cout << endl << " Invalid date." << endl << endl;
+				system("pause");
+				return MENU_start;
+			}
+
+			reg.ID_Bicicleta = bikes[index]->getID();
+			reg.ID_posto_origem = postos[option]->getID();
+			reg.nome_utilizador = user->getNome();
+			reg.levantamento = Data(data);
+
+
+			reg_ptr = new Registo;
+			*reg_ptr = reg;
+			user->adicionaRegisto(reg_ptr);
+
+			cout << endl << " Bike rented" << endl << endl;
+			system("pause");
+			continue;
 		case 2:
 			// Return bike
+			reg_ptr = user->ultimoReg();
+			if ((reg_ptr->ID_posto_chegada != 0) || (reg_ptr->ID_posto_origem == 0))
+			{
+				cout << endl << " You have no bike to return" << endl << endl;
+				system("pause");
+				continue;
+			}
 
-			break;
+			cout << endl << endl << "===> Select a post to return the bike" << endl;
+			for (unsigned int i = 0; i < postos.size(); i++)
+			{
+				cout << " " << i + 1 << " - " << postos[i]->getID() << endl;
+			}
+			get_option(option, 1, postos.size());
+			option--;
+
+			if (postos[option]->getEspacoLivre() <= 0)
+			{
+				cout << " This post has reached its occupation limit." << endl << endl;
+				system("pause");
+				return MENU_ocUsr;
+			}
+
+			cout << endl << " Insert current date (YYYY/MM/DD) : ";
+			getline(cin, data);
+
+			dias = dif_dias(reg_ptr->levantamento, Data(data));
+
+			if ((data.size() != 10) || (dias < 0))
+			{
+				cout << endl << " Invalid date." << endl << endl;
+				system("pause");
+				return MENU_ocUsr;
+			}
+
+			cout << endl << " Is this bike broken? (Y/N) : ";
+			while (true)
+			{
+				char letter = _getch();
+				if (toupper(letter) == 'Y')
+				{
+					id = reg.ID_Bicicleta;
+					for (index = 0; index < rented_bikes_freq.size(); index++)
+					{
+						if (rented_bikes_freq[index]->getID() == id)
+						{
+							rented_bikes_freq[index]->setAvariada();
+							break;
+						}
+					}
+					cout << letter;
+					break;
+				}
+				if (toupper(letter) == 'N')
+					cout << letter;
+				break;
+			}
+
+			reg_ptr->ficou_avariada = rented_bikes[index]->getAvariada();
+			reg_ptr->entrega = Data(data);
+			reg_ptr->ID_posto_chegada = postos[option]->getID();
+			postos[option]->adicionaUtilizacao(reg_ptr);
+			rented_bikes_freq[index]->adicionaRegisto(reg_ptr);
+			postos[option]->adicionabicicleta(rented_bikes_freq[index]);
+			rented_bikes_freq.erase(rented_bikes_freq.begin() + index);
+
+			cout << endl << endl << " Bike returned." << endl << endl;
+			system("pause");
+			continue;
 		case 3:
 			cout << endl << " Enter old password : ";
 
