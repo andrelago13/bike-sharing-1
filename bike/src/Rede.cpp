@@ -480,17 +480,14 @@ int Rede::menu_mngr_logs()
 	print_menu_header();
 
 	cout << endl << endl << "===> Please select an option:" << endl;
-	cout << " 1 - List all bikes" << endl;
-	cout << " 2 - List available bikes" << endl;
-	cout << " 3 - List broken bikes" << endl;
-	cout << " 4 - List rented bikes" << endl;
-	cout << " 5 - Repair all bikes" << endl;
-	cout << " 6 - Add a new bike" << endl;
-	cout << " 7 - Delete a bike" << endl;
-	cout << " 0 - Return to previous menu" << endl;
+	cout << " 1 - Show the time a user has rented a bike" << endl;
+	cout << " 2 - Show money to charge a user" << endl;
+	cout << " 3 - Show number of users served by a company" << endl;
+	cout << " 4 - Show ongoing rentals" << endl;
+	cout << " 5 - Show most frequent service user" << endl;
 
 	int option;
-	get_option(option, 0, 7);
+	get_option(option, 0, 5);
 
 	return MENU_manager;
 }

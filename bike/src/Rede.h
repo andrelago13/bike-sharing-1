@@ -24,6 +24,8 @@ class Rede
 	vector <Empresa> empresas;
 	vector<PostoServico*> postos;
 	vector<Utilizador*> utilizadores;
+	vector<Utilizador*> ocasionais;
+	vector<Registo*> curr_rentals;
 	string sys_password;
 
 public:
