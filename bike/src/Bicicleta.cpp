@@ -8,6 +8,16 @@
 using namespace std;
 #define veloc_max 5
 
+Bicicleta::Bicicleta()
+{
+	id_num = 0;
+	tipo = "sem cesto";
+	tamanho = "adulto";
+	velocidades = 1;
+	avariada = false;
+	preco = 40;
+}
+
 Bicicleta::Bicicleta(unsigned int id, string tipo_bici, string size, int mudancas, bool avariad, unsigned int preco1) : id_num(id), tipo(tipo_bici), tamanho(size), velocidades(mudancas), avariada(avariad), preco(preco1)
 {
 }
@@ -62,15 +72,18 @@ string Bicicleta::tipo_valido()
 	return "ESSE TIPO NAO E VALIDO";
 }
 
-bool Bicicleta::setPrecoDia(int velocidade, string tamanho) //verificar velocidades das bicicletas -> corrida 1 velocidade x
+void Bicicleta::setPrecoDia(int velocidade, string tamanho) //verificar velocidades das bicicletas -> corrida 1 velocidade x
 {
-	if ((velocidades > veloc_max) || (velocidades == 0))
-		return false; //velocidades invalidades
-
+	if ((velocidade > veloc_max) || (velocidade == 0))
+	{
+		cout << "Velocidade invalida! " << endl << "Preco(anterior->por defeito): "; //velocidades invalidades
+		return;
+	}
+	
 	//cout do tamanho
 	if (tamanho == "adulto")
 	{
-		switch (velocidades)
+		switch (velocidade)
 		{
 		case 1:
 			if (tipo == "eletrica" || tipo == "montanha")
@@ -81,7 +94,8 @@ bool Bicicleta::setPrecoDia(int velocidade, string tamanho) //verificar velocida
 				preco = 50;
 			if (tipo == "sem cesto")
 				preco = 40;
-			return true;
+			cout << "Preco ajustado! " << endl << "Preco:" ;
+			return;
 		case 2:
 			if (tipo == "eletrica" || tipo == "montanha")
 				preco = 125;
@@ -91,7 +105,8 @@ bool Bicicleta::setPrecoDia(int velocidade, string tamanho) //verificar velocida
 				preco = 90;
 			if (tipo == "sem cesto")
 				preco = 80;
-			return true;
+			cout << "Preco ajustado! " << endl << "Preco:";
+			return;
 		case 3:
 			if (tipo == "eletrica" || tipo == "montanha")
 				preco = 170;
@@ -101,7 +116,8 @@ bool Bicicleta::setPrecoDia(int velocidade, string tamanho) //verificar velocida
 				preco = 130;
 			if (tipo == "sem cesto")
 				preco = 120;
-			return true;
+			cout << "Preco ajustado! " << endl << "Preco:";
+			return;
 		case 4:
 			if (tipo == "eletrica" || tipo == "montanha")
 				preco = 210;
@@ -111,7 +127,8 @@ bool Bicicleta::setPrecoDia(int velocidade, string tamanho) //verificar velocida
 				preco = 170;
 			if (tipo == "sem cesto")
 				preco = 160;
-			return true;
+			cout << "Preco ajustado! " << endl << "Preco:";
+			return;
 		case 5:
 			if (tipo == "eletrica" || tipo == "montanha")
 				preco = 250;
@@ -121,12 +138,13 @@ bool Bicicleta::setPrecoDia(int velocidade, string tamanho) //verificar velocida
 				preco = 210;
 			if (tipo == "sem cesto")
 				preco = 200;
-			return true;
+			cout << "Preco ajustado! " << endl << "Preco:";
+			return;
 		}
 	}
 	else if (tamanho == "crianca")
 	{
-		switch (velocidades)
+		switch (velocidade)
 		{
 		case 1:
 			if (tipo == "eletrica" || tipo == "montanha")
@@ -137,7 +155,8 @@ bool Bicicleta::setPrecoDia(int velocidade, string tamanho) //verificar velocida
 				preco = 20;
 			if (tipo == "sem cesto")
 				preco = 10;
-			return true;
+			cout << "Preco ajustado! " << endl << "Preco:";
+			return;
 		case 2:
 			if (tipo == "eletrica" || tipo == "montanha")
 				preco = 80;
@@ -147,7 +166,8 @@ bool Bicicleta::setPrecoDia(int velocidade, string tamanho) //verificar velocida
 				preco = 50;
 			if (tipo == "sem cesto")
 				preco = 40;
-			return true;
+			cout << "Preco ajustado! " << endl << "Preco:";
+			return;
 		case 3:
 			if (tipo == "eletrica" || tipo == "montanha")
 				preco = 110;
@@ -157,7 +177,8 @@ bool Bicicleta::setPrecoDia(int velocidade, string tamanho) //verificar velocida
 				preco = 80;
 			if (tipo == "sem cesto")
 				preco = 70;
-			return true;
+			cout << "Preco ajustado! " << endl << "Preco:";
+			return;
 		case 4:
 			if (tipo == "eletrica" || tipo == "montanha")
 				preco = 140;
@@ -167,7 +188,8 @@ bool Bicicleta::setPrecoDia(int velocidade, string tamanho) //verificar velocida
 				preco = 110;
 			if (tipo == "sem cesto")
 				preco = 100;
-			return true;
+			cout << "Preco ajustado! " << endl << "Preco:";
+			return;
 		case 5:
 			if (tipo == "eletrica" || tipo == "montanha")
 				preco = 170;
@@ -177,24 +199,26 @@ bool Bicicleta::setPrecoDia(int velocidade, string tamanho) //verificar velocida
 				preco = 150;
 			if (tipo == "sem cesto")
 				preco = 140;
-			return true;
+			cout << "Preco ajustado! " << endl << "Preco:";
+			return;
 		}
-		return false;
+		cout << "Parametros nao validos! " << endl;
+		return;
 	}
 }
 
 string Bicicleta::imprime()
 {
 	stringstream ss;
-	ss << id_num << ", " << tipo << ", " << tamanho << ", " << velocidades << ", " << avariada << ", " << preco;
+	ss << "Bicicleta: " << id_num << ", " << tipo << ", " << tamanho << ", " << velocidades << ", " << avariada << ", " << preco;
 	return ss.str();
 }
 
-void Bicicleta::setID(int ID)
+void Bicicleta::setID(int id)
 {
 	/*int ID= bicicletas.size() - 1;
 	id_num = ID++;*/
-	this->id_num = ID;
+	this->id_num = id;
 }
 
 void Bicicleta::setTipo(string tipo)

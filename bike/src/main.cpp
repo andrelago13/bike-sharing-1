@@ -9,7 +9,7 @@ using namespace std;
 
 int main()
 {
-	Rede network;
+	/*Rede network;
 
 	Utilizador usr("Andre", 19, "123456");
 	network.addUser(usr);
@@ -17,7 +17,7 @@ int main()
 	network.menu_system();
 
 	return 0;
-	/*
+	*/
 	Bicicleta bic(1, "eletrica", "adulto", 3, false, 100);
 
 	cout << bic.imprime() << endl;
@@ -31,7 +31,7 @@ int main()
 	cout << i << endl << p << endl << m << endl << a << endl;
 	cout << u << endl << e << endl;
 
-	cout << bic.tipo_valido() << endl;
+	cout << bic.tipo_valido() << endl << endl;
 
 	//////////////////////////////////////
 	//////////Sets -> erros (void)////////
@@ -39,8 +39,14 @@ int main()
 
 	Bicicleta bici;
 
-	cout << bici.setPrecoDia(0, "adulto") << endl;
-	cout << bici.getPreco() << endl;*/
+	bici.setID(2);
+	bici.setTamanho("crianca");
+	bici.setVeloc(2);
+	bici.setTipo("corrida");
+	cout << "Preco por defeito: " << bici.getPreco() << endl;
+	bici.setPrecoDia(1,"adulto");
+	
+	cout << bici.getPreco() << endl;
 	
 	
 	system("pause");

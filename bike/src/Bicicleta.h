@@ -35,11 +35,11 @@ public:
 	string getEmpresa(); //
 	string getAvariada(); //
 	int getPreco();
-	bool setPrecoDia(int velocidade, string tamanho); //
+	void setPrecoDia(int velocidade, string tamanho); //
 	bool velocidades_valido(int veloc); //
 	string tipo_valido(); //
 	string imprime(); //
-	void setID(int ID); // .....
+	void setID(int id); // .....
 	void setTipo(string tipo); //...
 	void setBicis(vector<Registo *> bicis); //
 	vector<Registo *> getBicis() const; //
