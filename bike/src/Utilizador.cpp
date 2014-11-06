@@ -71,3 +71,20 @@ ostream& operator<<(ostream &o, Utilizador &user)
 	o << user.nome << " - " << user.idade << " y/o";
 	return o;
 }
+
+Ut_ocasional::Ut_ocasional() : Utilizador(), cartao("") {}
+
+Ut_ocasional::Ut_ocasional(string name, int age, string pass, string novo_cartao) : Utilizador(name, age, pass), cartao(novo_cartao) {}
+
+int Utilizador::getCusto()
+{
+	return 40;
+}
+
+int Ut_ocasional::getCusto()
+{
+	if (idade < 18)
+		return 1;
+
+	return 2;
+}
