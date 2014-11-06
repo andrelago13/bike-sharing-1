@@ -136,6 +136,7 @@ bool PostoServico::aluga(Bicicleta *bi1)	////-----////---////caso de querer rese
 			it++;
 		}
 	}
+	setDisponiveis(dispo);
 }
 
 bool PostoServico::devolve(Bicicleta *bi1)
