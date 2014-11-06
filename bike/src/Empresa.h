@@ -18,15 +18,12 @@ public:
 	Empresa();
 	Empresa(string nome);
 	string getNome() const;
+	int num_users() const;
 	vector<Bicicleta *> getBicicletas() const;
 	void adicionaBicicleta(Bicicleta *bic);
-	void show_specs();
 	void setBicicletas(const vector<Bicicleta*> bicicletas);
 	void remove_bicis(unsigned int id);
-	int num_users() const;
+	void show_specs();
 };
 
 #endif /* EMPRESA_H_ */
-
-
-//set bicicletas com um vetor de apontadores OK

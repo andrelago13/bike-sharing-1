@@ -42,7 +42,6 @@ public:
 	void setDisponiveis(vector<Bicicleta*> disponiveis);
 	void setAvariadas(vector<Bicicleta*> avariadas);
 	void setUtilizacao(vector<Registo*> utilizacao);
-	//  void show_posto_specs() const;
 	bool aluga(Bicicleta *bi1);			
 	bool devolve(Bicicleta *bi1);		
 	void setLibertaOcup(int lug);		

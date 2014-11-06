@@ -30,7 +30,7 @@ void Empresa::adicionaBicicleta(Bicicleta *bic)
 	bicicletas.push_back(bic);
 }
 
-void Empresa::show_specs()
+void Empresa::show_specs()		//Imprime as especificações da empresa, ou seja, mostra o seu nome e de seguida todas as bicicletas da mesma
 {
 	string empresa = Empresa::getNome();
 	vector<Bicicleta*> bikes = Empresa::getBicicletas();
@@ -57,31 +57,31 @@ void Empresa::setBicicletas(vector<Bicicleta*> bicicletas)
 	this->bicicletas = bicicletas;
 }
 
-void Empresa::remove_bicis(unsigned int id)
+void Empresa::remove_bicis(unsigned int id)			// remove uma bicicleta da empresa de acordo com o id
 {
-	vector<Bicicleta *> result = getBicicletas();
+	vector<Bicicleta *> bikes = getBicicletas();
 
-	if (result.size() == 0)
+	if (bikes.size() == 0)
 		return;
 
-	vector<Bicicleta *>::const_iterator it = result.begin();
+	vector<Bicicleta *>::iterator it = bikes.begin();
 
-	while (it != result.end())
+	while (it != bikes.end())
 	{
 		if (id == (*it)->getID())
 		{
-			result.erase(it);
-			//it--;
+			bikes.erase(it);
+			it--;
 			break;
 		}
 		it++;
 	}
 
-	setBicicletas(result);
+	setBicicletas(bikes);
 	return;
 }
 
-int Empresa::num_users() const
+int Empresa::num_users() const		// devolve o numero de utilizadores registados na empresa sem estarem repetidos
 {
 	vector<Registo *> regs;
 	vector<string> nomes;

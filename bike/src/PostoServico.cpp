@@ -111,8 +111,8 @@ void PostoServico::adicionaUtilizacao(Registo *reg1)
 	utilizacao.push_back(reg1);
 }
 
-bool PostoServico::aluga(Bicicleta *bi1)	////-----////---////caso de querer reservar mais que uma?
-{																	////Como crio um registo sem sets?
+bool PostoServico::aluga(Bicicleta *bi1)		// O utilizador aluga uma das bicicletas disponiveis no posto de serviço
+{																	
 	vector<Bicicleta*> dispo = PostoServico::getDisponiveis();
 	int ocupacao = PostoServico::getOcupacao();
 
@@ -124,7 +124,7 @@ bool PostoServico::aluga(Bicicleta *bi1)	////-----////---////caso de querer rese
 	else
 	{
 		vector<Bicicleta*>::iterator it = dispo.begin();
-
+		// Percorre o vetor dispo e verifica se existe alguma bicicleta com as mesmas caracteristicas da bicicleta passada como parametro na função
 		while (it != dispo.end())
 		{
 			if ((*it) == bi1)
@@ -139,7 +139,7 @@ bool PostoServico::aluga(Bicicleta *bi1)	////-----////---////caso de querer rese
 	}
 }
 
-bool PostoServico::devolve(Bicicleta *bi1)
+bool PostoServico::devolve(Bicicleta *bi1)		// O utilizador devolve a bicicleta alugada ao posto de serviço
 {
 	int ocupacao = PostoServico::getOcupacao();
 
@@ -157,7 +157,7 @@ bool PostoServico::devolve(Bicicleta *bi1)
 	return true;
 }
 
-bool PostoServico::removebicicleta(unsigned int id_bike)//remover utilizador e bicicleta
+bool PostoServico::removebicicleta(unsigned int id_bike)	//remove bicicleta do vetor utilizacao(vetor que contem os registos do posto de serviço)
 {
 	vector<Registo*> utils = PostoServico::getUtlizacao();
 	vector<Registo*>::iterator it = utils.begin();
@@ -180,7 +180,7 @@ bool PostoServico::removebicicleta(unsigned int id_bike)//remover utilizador e b
 		}
 }
 
-bool PostoServico::removeutilizador(string user)
+bool PostoServico::removeutilizador(string user)		//remove utilizador do posto de serviço 
 {
 	vector<Registo*>::iterator it = utilizacao.begin();
 
