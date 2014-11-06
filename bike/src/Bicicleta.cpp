@@ -244,22 +244,22 @@ void Bicicleta::setVeloc(int velocidades)
 bool Bicicleta::remove_util(string nome)
 {
 	vector<Registo *> result = getRegsBicis();
-	vector<string> nomes;
 
 	if (result.size() == 0)
-		return false;
+		return true;
 	
 	vector<Registo *>::const_iterator it = result.begin(); 
 	
 	while (it!= result.end())
 	{
 		if (nome == (*it)->nome_utilizador)
+		{
 			result.erase(it);
-		
+			it--;
+		}		
 		it++;
 	}
 
 	setRegsBicis(result);
 	return true;
-
 }

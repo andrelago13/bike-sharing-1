@@ -1,9 +1,3 @@
-/*
-* Empresa.cpp
-*
-*  Created on: 02/11/2014
-*      Author: leonardo
-*/
 #include <iostream>
 #include <vector>
 #include <string>
@@ -60,4 +54,28 @@ void Empresa::show_specs()
 void Empresa::setBicicletas(vector<Bicicleta*> bicicletas)
 {
 	this->bicicletas = bicicletas;
+}
+
+void Empresa::remove_bicis(unsigned int id)
+{
+	vector<Bicicleta *> result = getBicicletas();
+
+	if (result.size() == 0)
+		return;
+
+	vector<Bicicleta *>::const_iterator it = result.begin();
+
+	while (it != result.end())
+	{
+		if (id == (*it)->getID)
+		{
+			result.erase(it);
+			//it--;
+			break;
+		}
+		it++;
+	}
+
+	setBicicletas(result);
+	return;
 }

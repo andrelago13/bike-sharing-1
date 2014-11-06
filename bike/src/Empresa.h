@@ -1,10 +1,3 @@
-/*
-* Empresa.h
-*
-*  Created on: 02/11/2014
-*      Author: leonardo
-*/
-
 #ifndef EMPRESA_H_
 #define EMPRESA_H_
 
@@ -29,6 +22,7 @@ public:
 	void adicionaBicicleta(Bicicleta *bic);
 	void show_specs();
 	void setBicicletas(const vector<Bicicleta*> bicicletas);
+	void remove_bicis(unsigned int id)
 };
 
 #endif /* EMPRESA_H_ */
