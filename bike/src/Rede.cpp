@@ -524,7 +524,7 @@ int Rede::menu_regUsr_logged(Utilizador *user)
 			{
 				cout << endl << " Invalid date." << endl << endl;
 				system("pause");
-				return MENU_start;
+				continue;
 			}
 
 			reg.ID_Bicicleta = bikes[index]->getID();
@@ -562,19 +562,32 @@ int Rede::menu_regUsr_logged(Utilizador *user)
 			{
 				cout << " This post has reached its occupation limit." << endl << endl;
 				system("pause");
-				return MENU_ocUsr;
+				continue;
 			}
 
 			cout << endl << " Insert current date (YYYY/MM/DD) : ";
 			getline(cin, data);
 
-			dias = dif_dias(reg_ptr->levantamento, Data(data));
-
-			if ((data.size() != 10) || (dias < 0))
+			if (data.size() != 10)
 			{
 				cout << endl << " Invalid date." << endl << endl;
 				system("pause");
-				return MENU_ocUsr;
+				continue;
+			}
+			dias = dif_dias(reg_ptr->levantamento, Data(data));
+
+			if (dias < 0)
+			{
+				cout << endl << " Invalid date." << endl << endl;
+				system("pause");
+				continue;
+			}
+
+			id = reg_ptr->ID_Bicicleta;
+			for (index = 0; index < rented_bikes_freq.size(); index++)
+			{
+				if (rented_bikes_freq[index]->getID() == id)
+					break;
 			}
 
 			cout << endl << " Is this bike broken? (Y/N) : ";
@@ -583,15 +596,7 @@ int Rede::menu_regUsr_logged(Utilizador *user)
 				char letter = _getch();
 				if (toupper(letter) == 'Y')
 				{
-					id = reg.ID_Bicicleta;
-					for (index = 0; index < rented_bikes_freq.size(); index++)
-					{
-						if (rented_bikes_freq[index]->getID() == id)
-						{
-							rented_bikes_freq[index]->setAvariada();
-							break;
-						}
-					}
+					rented_bikes_freq[index]->setAvariada();
 					cout << letter;
 					break;
 				}
@@ -600,7 +605,7 @@ int Rede::menu_regUsr_logged(Utilizador *user)
 				break;
 			}
 
-			reg_ptr->ficou_avariada = rented_bikes[index]->getAvariada();
+			reg_ptr->ficou_avariada = rented_bikes_freq[index]->getAvariada();
 			reg_ptr->entrega = Data(data);
 			reg_ptr->ID_posto_chegada = postos[option]->getID();
 			postos[option]->adicionaUtilizacao(reg_ptr);
