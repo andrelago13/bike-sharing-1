@@ -37,6 +37,11 @@ int PostoServico::getOcupacao() const
 	return ocupacao;
 }
 
+int PostoServico::getEspacoLivre() const
+{
+	return (PostoServico::getLotacao() - PostoServico::getOcupacao());
+}
+
 void PostoServico::setPreencheOcup(int lug)
 {
 	ocupacao = (PostoServico::getDisponiveis()).size() + (PostoServico::getAvariadas()).size() - lug;
@@ -78,11 +83,19 @@ void PostoServico::setUtilizacao(vector<Registo*> utilizacao)
 }
 
 void PostoServico::adicionabicicleta(Bicicleta *bi1)
+
 {
-	disponiveis.push_back(bi1);
-	setPreencheOcup(1);
+	if (bi1->getAvariada())
+	{
+		avariadas.push_back(bi1);
+		setPreencheOcup(1);
+	}
+	else
+		disponiveis.push_back(bi1);
+		setPreencheOcup(1);
 
 }
+
 void PostoServico::adicionaDisponivel(Bicicleta *bi1)
 {
 	disponiveis.push_back(bi1);

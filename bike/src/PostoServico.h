@@ -31,6 +31,7 @@ public:
 	int getID() const;
 	int getLotacao() const;
 	int getOcupacao() const;
+	int getEspacoLivre() const;
 	vector<Bicicleta*> getDisponiveis();
 	vector<Bicicleta*> getAvariadas();
 	vector<Registo*> getUtlizacao();
