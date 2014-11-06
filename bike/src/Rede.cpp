@@ -797,7 +797,6 @@ int Rede::menu_mngr_spots()
 	return MENU_start;
 }
 
-// TO-DO //   Falta delete_user das outras classes
 int Rede::menu_mngr_users()
 {
 	print_menu_header();
@@ -813,6 +812,7 @@ int Rede::menu_mngr_users()
 	get_option(option, 0, 4);
 	string nome, pass;
 	Registo *reg_ptr;
+	vector<Bicicleta *> bikes;
 
 	switch (option)
 	{
@@ -914,19 +914,55 @@ int Rede::menu_mngr_users()
 		}
 		else if (reg_ptr->ID_posto_chegada != 0)
 		{
+			for (unsigned int i = 0; i < postos.size(); i++)
+				postos[i]->removeutilizador(utilizadores[index]->getNome());
+			for (unsigned int i = 0; i < rented_bikes_freq.size(); i++)
+				rented_bikes_freq[i]->remove_util(utilizadores[index]->getNome());
+			utilizadores.erase(utilizadores.begin() + index);
 
+			cout << endl << " User deleted successfully." << endl << endl;
+			system("pause");
+			return MENU_mngr_users;
 		}
+		else
+		{
+			cout << endl << " This user is currently renting a bike." << endl <<
+				" Which post should the bike go to?" << endl << endl;
+			for (unsigned int i = 0; i < postos.size(); i++)
+			{
+				cout << " " << i + 1 << " - " << postos[i]->getID() << endl;
+			}
+			get_option(option, 1, postos.size());
+			option--;
 
+			if (postos[option]->getEspacoLivre() <= 0)
+			{
+				cout << " This post has reached its occupation limit." << endl << endl;
+				system("pause");
+				return MENU_mngr_users;
+			}
 
-		/*
-		Must verify:
-			- if user exists
-			- if user is currently renting a bike
+			for (unsigned int i = 0; i < rented_bikes_freq.size(); i++)
+			{
+				if (rented_bikes_freq[i]->getID() == reg_ptr->ID_Bicicleta)
+				{
+					postos[option]->adicionabicicleta(rented_bikes_freq[i]);
+					rented_bikes_freq.erase(rented_bikes_freq.begin() + i);
 
-		Then, call user deletion for Rede, Posto and Bicicleta
-		*/
+				}
+			}
+			for (unsigned int i = 0; i < postos.size(); i++)
+				postos[i]->removeutilizador(utilizadores[index]->getNome());
+			for (unsigned int i = 0; i < rented_bikes_freq.size(); i++)
+				rented_bikes_freq[i]->remove_util(utilizadores[index]->getNome());
+			utilizadores.erase(utilizadores.begin() + index);
+
+			cout << endl << " User deleted successfully." << endl << endl;
+			system("pause");
+			return MENU_mngr_users;
+		}
+		break;
 	}
-
 
 	return MENU_start;
 }

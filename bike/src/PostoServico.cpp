@@ -199,5 +199,11 @@ bool PostoServico::removeutilizador(string user)
 		}
 		it++;
 	}
+
+	for (unsigned int i = 0; i < disponiveis.size(); i++)
+		disponiveis[i]->remove_util(user);
+	for (unsigned int i = 0; i < avariadas.size(); i++)
+		avariadas[i]->remove_util(user);
+
 	return true;
 }
