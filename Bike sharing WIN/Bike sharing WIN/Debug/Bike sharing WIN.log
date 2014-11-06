@@ -1,19 +1,57 @@
-﻿Build started 11/5/2014 2:02:47 PM.
+﻿Build started 11/6/2014 10:47:05 PM.
      1>Project "C:\Users\André\Documents\GitHub\bike-sharing-1\Bike sharing WIN\Bike sharing WIN\Bike sharing WIN.vcxproj" on node 2 (Build target(s)).
-     1>Link:
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\bike\src\Bicicleta.cpp ..\..\bike\src\Data.cpp ..\..\bike\src\Rede.cpp ..\..\bike\src\Test.cpp ..\..\bike\src\Utilizador.cpp ..\..\bike\src\main.cpp
+         main.cpp
+         Utilizador.cpp
+         Rede.cpp
+     1>c:\users\andré\documents\github\bike-sharing-1\bike\src\rede.cpp(152): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\andré\documents\github\bike-sharing-1\bike\src\rede.cpp(253): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\andré\documents\github\bike-sharing-1\bike\src\rede.cpp(309): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\andré\documents\github\bike-sharing-1\bike\src\rede.cpp(502): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\andré\documents\github\bike-sharing-1\bike\src\rede.cpp(580): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\andré\documents\github\bike-sharing-1\bike\src\rede.cpp(456): warning C4101: 'ptr' : unreferenced local variable
+     1>c:\users\andré\documents\github\bike-sharing-1\bike\src\rede.cpp(450): warning C4101: 'custo' : unreferenced local variable
+     1>c:\users\andré\documents\github\bike-sharing-1\bike\src\rede.cpp(717): warning C4101: 'index' : unreferenced local variable
+     1>c:\users\andré\documents\github\bike-sharing-1\bike\src\rede.cpp(771): warning C4060: switch statement contains no 'case' or 'default' labels
+     1>c:\users\andré\documents\github\bike-sharing-1\bike\src\rede.cpp(928): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\andré\documents\github\bike-sharing-1\bike\src\rede.cpp(963): warning C4018: '<' : signed/unsigned mismatch
+         Data.cpp
+         Bicicleta.cpp
+         Generating Code...
+         Compiling...
+         Test.cpp
+         Generating Code...
+       Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\André\Documents\GitHub\bike-sharing-1\Bike sharing WIN\Debug\Bike sharing WIN.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\André\Documents\GitHub\bike-sharing-1\Bike sharing WIN\Debug\Bike sharing WIN.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\André\Documents\GitHub\bike-sharing-1\Bike sharing WIN\Debug\Bike sharing WIN.lib" /MACHINE:X86 Debug\Bicicleta.obj
          Debug\Data.obj
          Debug\main.obj
          Debug\Rede.obj
          Debug\Test.obj
          Debug\Utilizador.obj
-     1>Rede.obj : error LNK2005: "void __cdecl clear_screen(void)" (?clear_screen@@YAXXZ) already defined in main.obj
-     1>Rede.obj : error LNK2005: "void __cdecl get_option(int &,int,int)" (?get_option@@YAXAAHHH@Z) already defined in main.obj
-     1>Rede.obj : error LNK2005: "class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > __cdecl readPassword(void)" (?readPassword@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ) already defined in main.obj
-     1>Rede.obj : error LNK2005: "int __cdecl str_to_int(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > &)" (?str_to_int@@YAHAAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z) already defined in main.obj
-     1>C:\Users\André\Documents\GitHub\bike-sharing-1\Bike sharing WIN\Debug\Bike sharing WIN.exe : fatal error LNK1169: one or more multiply defined symbols found
+     1>Data.obj : error LNK2019: unresolved external symbol "int __cdecl str_to_int(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > &)" (?str_to_int@@YAHAAV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z) referenced in function "public: __thiscall Data::Data(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (??0Data@@QAE@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+     1>main.obj : error LNK2019: unresolved external symbol "public: __thiscall PostoServico::PostoServico(void)" (??0PostoServico@@QAE@XZ) referenced in function _main
+     1>main.obj : error LNK2019: unresolved external symbol "public: __thiscall PostoServico::PostoServico(int,int,int)" (??0PostoServico@@QAE@HHH@Z) referenced in function _main
+     1>main.obj : error LNK2019: unresolved external symbol "public: void __thiscall PostoServico::adicionabicicleta(class Bicicleta *)" (?adicionabicicleta@PostoServico@@QAEXPAVBicicleta@@@Z) referenced in function _main
+     1>Rede.obj : error LNK2001: unresolved external symbol "public: void __thiscall PostoServico::adicionabicicleta(class Bicicleta *)" (?adicionabicicleta@PostoServico@@QAEXPAVBicicleta@@@Z)
+     1>Rede.obj : error LNK2019: unresolved external symbol "public: void __thiscall Registo::print_sem_user(void)const " (?print_sem_user@Registo@@QBEXXZ) referenced in function "public: int __thiscall Rede::menu_regUsr_logged(class Utilizador *)" (?menu_regUsr_logged@Rede@@QAEHPAVUtilizador@@@Z)
+     1>Rede.obj : error LNK2019: unresolved external symbol "public: __thiscall Registo::Registo(void)" (??0Registo@@QAE@XZ) referenced in function "public: int __thiscall Rede::menu_ocUsr(void)" (?menu_ocUsr@Rede@@QAEHXZ)
+     1>Utilizador.obj : error LNK2001: unresolved external symbol "public: __thiscall Registo::Registo(void)" (??0Registo@@QAE@XZ)
+     1>Rede.obj : error LNK2019: unresolved external symbol "public: int __thiscall PostoServico::getID(void)const " (?getID@PostoServico@@QBEHXZ) referenced in function "public: int __thiscall Rede::menu_mngr_users(void)" (?menu_mngr_users@Rede@@QAEHXZ)
+     1>Rede.obj : error LNK2019: unresolved external symbol "public: int __thiscall PostoServico::getEspacoLivre(void)const " (?getEspacoLivre@PostoServico@@QBEHXZ) referenced in function "public: int __thiscall Rede::menu_mngr_users(void)" (?menu_mngr_users@Rede@@QAEHXZ)
+     1>Rede.obj : error LNK2019: unresolved external symbol "public: class std::vector<class Bicicleta *,class std::allocator<class Bicicleta *> > __thiscall PostoServico::getDisponiveis(void)" (?getDisponiveis@PostoServico@@QAE?AV?$vector@PAVBicicleta@@V?$allocator@PAVBicicleta@@@std@@@std@@XZ) referenced in function "public: int __thiscall Rede::menu_ocUsr(void)" (?menu_ocUsr@Rede@@QAEHXZ)
+     1>Rede.obj : error LNK2019: unresolved external symbol "public: void __thiscall PostoServico::adicionaUtilizacao(class Registo *)" (?adicionaUtilizacao@PostoServico@@QAEXPAVRegisto@@@Z) referenced in function "public: int __thiscall Rede::menu_ocUsr(void)" (?menu_ocUsr@Rede@@QAEHXZ)
+     1>Rede.obj : error LNK2019: unresolved external symbol "public: bool __thiscall PostoServico::aluga(class Bicicleta *)" (?aluga@PostoServico@@QAE_NPAVBicicleta@@@Z) referenced in function "public: int __thiscall Rede::menu_ocUsr(void)" (?menu_ocUsr@Rede@@QAEHXZ)
+     1>Rede.obj : error LNK2019: unresolved external symbol "public: bool __thiscall PostoServico::removeutilizador(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?removeutilizador@PostoServico@@QAE_NV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z) referenced in function "public: int __thiscall Rede::menu_mngr_users(void)" (?menu_mngr_users@Rede@@QAEHXZ)
+     1>Rede.obj : error LNK2019: unresolved external symbol "public: class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > __thiscall Empresa::getNome(void)const " (?getNome@Empresa@@QBE?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ) referenced in function "public: int __thiscall Rede::menu_mngr_logs(void)" (?menu_mngr_logs@Rede@@QAEHXZ)
+     1>Rede.obj : error LNK2019: unresolved external symbol "public: int __thiscall Empresa::num_users(void)const " (?num_users@Empresa@@QBEHXZ) referenced in function "public: int __thiscall Rede::menu_mngr_logs(void)" (?menu_mngr_logs@Rede@@QAEHXZ)
+     1>Rede.obj : error LNK2019: unresolved external symbol "void __cdecl get_option(int &,int,int)" (?get_option@@YAXAAHHH@Z) referenced in function "public: int __thiscall Rede::menu_manager(void)" (?menu_manager@Rede@@QAEHXZ)
+     1>Rede.obj : error LNK2019: unresolved external symbol "void __cdecl clear_screen(void)" (?clear_screen@@YAXXZ) referenced in function "public: int __thiscall Rede::menu_mngr_users(void)" (?menu_mngr_users@Rede@@QAEHXZ)
+     1>Rede.obj : error LNK2019: unresolved external symbol "class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > __cdecl readPassword(void)" (?readPassword@@YA?AV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@XZ) referenced in function "public: int __thiscall Rede::createUser(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?createUser@Rede@@QAEHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+     1>Rede.obj : error LNK2019: unresolved external symbol "int __cdecl readInt(void)" (?readInt@@YAHXZ) referenced in function "public: int __thiscall Rede::createUser(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?createUser@Rede@@QAEHV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z)
+     1>C:\Users\André\Documents\GitHub\bike-sharing-1\Bike sharing WIN\Debug\Bike sharing WIN.exe : fatal error LNK1120: 18 unresolved externals
      1>Done Building Project "C:\Users\André\Documents\GitHub\bike-sharing-1\Bike sharing WIN\Bike sharing WIN\Bike sharing WIN.vcxproj" (Build target(s)) -- FAILED.
 
 Build FAILED.
 
-Time Elapsed 00:00:00.18
+Time Elapsed 00:00:03.14

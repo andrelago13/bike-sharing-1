@@ -1,7 +1,8 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include"Empresa.h"
+#include "Empresa.h"
+#include "Tools.h"
 
 using namespace std;
 
@@ -78,4 +79,23 @@ void Empresa::remove_bicis(unsigned int id)
 
 	setBicicletas(result);
 	return;
+}
+
+int Empresa::num_users() const
+{
+	vector<Registo *> regs;
+	vector<string> nomes;
+
+	for (unsigned int i = 0; i < bicicletas.size(); i++)
+	{
+		regs = bicicletas[i]->getRegsBicis();
+		for (unsigned int j = 0; j < regs.size(); j++)
+		{
+			int result = sequentialSearch(nomes, regs[j]->nome_utilizador);
+			if (result == -1)
+				nomes.push_back(regs[j]->nome_utilizador);
+		}
+	}
+
+	return nomes.size();
 }

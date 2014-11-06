@@ -88,3 +88,19 @@ int Ut_ocasional::getCusto()
 {
 	return 2;
 }
+
+int Utilizador::tempo_aluguer()
+{
+	int soma = 0;
+
+	if ((registos.size() == 0) || ((registos.size() == 1) && (registos[registos.size() - 1]->ID_posto_chegada == 0)))
+		return 0;
+
+	for (unsigned int j = 0; j < registos.size(); j++)
+	{
+		if (registos[j]->ID_posto_chegada != 0)
+			soma += dif_dias(registos[j]->levantamento, registos[j]->entrega) + 1;
+	}
+	
+	return soma;
+}

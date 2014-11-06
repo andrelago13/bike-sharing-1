@@ -784,9 +784,79 @@ int Rede::menu_mngr_logs()
 	cout << " 3 - Show number of users served by a company" << endl;
 	cout << " 4 - Show ongoing rentals" << endl;
 	cout << " 5 - Show most frequent service user" << endl;
+	cout << " 0 - Return to the previous menu" << endl;
 
-	int option;
+	int option, soma;
 	get_option(option, 0, 5);
+	string name;
+	vector<Registo *> regs;
+	vector<Utilizador*> users;
+	vector<Bicicleta*> bici;
+
+	switch (option)
+	{
+	case 1:
+		cout << " Enter the name of the user : ";
+		getline(cin, name);
+
+		for (unsigned int i = 0; i < utilizadores.size(); i++)
+		{
+			if (utilizadores[i]->getNome() == name)
+			{
+				soma = utilizadores[i]->tempo_aluguer();
+				if (soma == 0)
+				{
+					cout << " This user has never rented a bike" << endl << endl;
+					system("pause");
+					return MENU_mngr_logs;
+				}
+
+				cout << " This user has rented a bike for " << soma << " day(s)" << endl << endl;
+				system("pause");
+				return MENU_mngr_logs;
+			}
+		}
+
+
+		cout << " There is no user with that name" << endl << endl;
+		system("pause");
+		return MENU_mngr_logs;
+	case 2:
+		cout << " Enter the name of the user : ";
+		getline(cin, name);
+
+		for (unsigned int i = 0; i < utilizadores.size(); i++)
+		{
+			if (utilizadores[i]->getNome() == name)
+			{
+				cout << " The service cost for all registered users is 40 euros" << endl << endl;
+				system("pause");
+				return MENU_mngr_logs;
+			}
+		}
+
+		cout << " There is no user with that name" << endl << endl;
+		system("pause");
+		return MENU_mngr_logs;
+	case 3:
+		cout << " Enter the name of the company : ";
+		getline(cin, name);
+
+		for (unsigned int i = 0; i < empresas.size(); i++)
+		{
+			if (empresas[i].getNome() == name)
+			{
+				soma = empresas[i].num_users();
+				cout << endl << " This company has served " << soma << " user(s)" << endl << endl;
+				system("pause");
+				return MENU_mngr_logs;
+			}
+		}
+
+		cout << " There is no company with that name" << endl << endl;
+		system("pause");
+		return MENU_mngr_logs;
+	}
 
 	return MENU_manager;
 }
