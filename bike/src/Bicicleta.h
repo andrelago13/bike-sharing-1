@@ -21,7 +21,7 @@ class Bicicleta
 	int velocidades;
 	bool avariada;
 	unsigned int preco;
-	vector<Registo*> bicicletas;
+	vector<Registo*> Regs;
 public:
 	string empresa;
 	vector <Bicicleta> historico_utilizacao;
@@ -41,10 +41,11 @@ public:
 	string imprime(); //
 	void setID(int id); // .....
 	void setTipo(string tipo); //...
-	void setBicis(vector<Registo *> bicis); //
-	vector<Registo *> getBicis() const; //
+	void setRegsBicis(vector<Registo *> bicis); //
+	vector<Registo *> getRegsBicis() const; //
 	void setTamanho(string tamanho);//.....
 	void setVeloc(int velocidades);// .....
+	bool remove_util(string nome);
 
 };
 
