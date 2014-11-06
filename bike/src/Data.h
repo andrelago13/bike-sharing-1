@@ -17,6 +17,7 @@ public:
 	Data();
 	Data(unsigned int ano, unsigned int mes, unsigned int dia);
 	string getDataStr() const;
+	friend int dif_dias(Data d1, Data d2);
 	friend bool operator<(const Data data1, const Data data2);
 	friend bool operator==(const Data data1, const Data data2);
 	friend ostream& operator<<(ostream &o, const Data &data);

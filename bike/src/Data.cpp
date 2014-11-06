@@ -57,3 +57,18 @@ ostream& operator<<(ostream &o, const Data &data)
 	o << data.getDataStr();
 	return o;
 }
+
+int dif_dias(Data d1, Data d2)
+{
+	if (d2 < d1)
+		return -1;
+	if (d1 == d2)
+		return 0;
+
+	int var1 = 365 * d1.ano + d1.ano / 4 - d1.ano / 100 + d1.ano / 400 + (153 * d1.mes - 457) / 5 + d1.dia - 306;
+	int var2 = 365 * d2.ano + d2.ano / 4 - d2.ano / 100 + d2.ano / 400 + (153 * d2.mes - 457) / 5 + d2.dia - 306;
+
+	return var2 - var1;
+	
+
+}

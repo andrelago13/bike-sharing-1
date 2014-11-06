@@ -47,8 +47,7 @@ int main()
 	bici.setPrecoDia(1,"adulto");
 	
 	cout << bici.getPreco() << endl;
-	
-	
+
 	system("pause");
 
 	return 0;
