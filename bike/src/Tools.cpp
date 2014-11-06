@@ -54,9 +54,9 @@ void clear_screen()
 template <class Comparable>
 int sequentialSearch(const vector<Comparable> &v, Comparable x)
 {
-	for (unsigned int i = 0; i < v.size(); i++)
-	if (v[i] == x)
-		return i;   // encontrou
+	for (unsigned int pos = 0; pos < v.size(); pos++)
+	if (v[pos] == x)
+		return pos;   // encontrou
 	return -1;     // não encontrou
 }
 

@@ -91,8 +91,11 @@ int Empresa::num_users() const
 		regs = bicicletas[i]->getRegsBicis();
 		for (unsigned int j = 0; j < regs.size(); j++)
 		{
-			int result = sequentialSearch(nomes, regs[j]->nome_utilizador);
-			if (result == -1)
+			bool existe = false;
+			for (unsigned int k = 0; k < nomes.size(); k++)
+			if (nomes[k] == regs[j]->nome_utilizador)
+				existe = true;
+			if (existe == false)
 				nomes.push_back(regs[j]->nome_utilizador);
 		}
 	}

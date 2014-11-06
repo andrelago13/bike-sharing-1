@@ -21,16 +21,28 @@
     <ClCompile Include="..\..\bike\src\Data.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\bike\src\Empresa.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\bike\src\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\bike\src\PostoServico.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\bike\src\Rede.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\bike\src\Registo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\bike\src\Test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\bike\src\Utilizador.cpp">
+    <ClCompile Include="..\..\bike\src\Tools.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\bike\src\Rede.cpp">
+    <ClCompile Include="..\..\bike\src\Utilizador.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -53,10 +65,10 @@
     <ClInclude Include="..\..\bike\src\Registo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\bike\src\Utilizador.h">
+    <ClInclude Include="..\..\bike\src\Tools.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\bike\src\Tools.h">
+    <ClInclude Include="..\..\bike\src\Utilizador.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
