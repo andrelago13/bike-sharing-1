@@ -52,6 +52,11 @@ bool Bicicleta::getAvariada()
 	return avariada;
 }
 
+void Bicicleta::setAvariada()
+{
+	avariada = true;
+}
+
 int Bicicleta::getPreco()
 {
 	return preco;

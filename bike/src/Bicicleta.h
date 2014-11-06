@@ -34,6 +34,7 @@ public:
 	string getTamanho();
 	string getEmpresa(); //
 	bool getAvariada(); //
+	void setAvariada();
 	int getPreco();
 	void setPrecoDia(int velocidade, string tamanho); //
 	bool velocidades_valido(int veloc); //

@@ -43,14 +43,13 @@ public:
 	void setAvariadas(vector<Bicicleta*> avariadas);
 	void setUtilizacao(vector<Registo*> utilizacao);
 	//  void show_posto_specs() const;
-	bool aluga(Bicicleta *bi1);			// Falta adicionar o registo ao vet de utilizacao
-	bool devolve(Bicicleta *bi1);		// Falta adicionar o registo ao vet de utilizacao
-	void setLibertaOcup(int lug);		//ATENCAO - VER
-	void setPreencheOcup(int lug);		//ATENCAO - VER
+	bool aluga(Bicicleta *bi1);			
+	bool devolve(Bicicleta *bi1);		
+	void setLibertaOcup(int lug);		
+	void setPreencheOcup(int lug);		
 	bool removebicicleta(unsigned int id_bike);
 	bool removeutilizador(string user);
 };
 
 #endif /* POSTOSERVICO_H_ */
 
-//remover uma bicicleta no posto de serviço e o seu registo
