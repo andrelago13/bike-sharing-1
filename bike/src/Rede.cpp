@@ -14,7 +14,7 @@ Rede::~Rede()
 		delete postos[i];
 }
 
-int Rede::addUser(Utilizador user)
+int Rede::addUser(Utilizador user) //função adiciona utilizador ao vetor utilizadores da rede
 {
 	for (unsigned int i = 0; i < utilizadores.size(); i++)
 	{
@@ -96,7 +96,7 @@ int Rede::menu_system()
 	return 0;
 }
 
-int Rede::menu_start()
+int Rede::menu_start() //função correspondente ao menu inicial da rede
 {
 	cout << endl << endl << "            ______ _ _              _                _" << endl;
 	cout << "            | ___ (_) |            | |              (_)" << endl;
@@ -117,13 +117,13 @@ int Rede::menu_start()
 	get_option(option, 0, 3);
 	string pass;
 
-	switch (option)
+	switch (option)					//elaborar as opções que o utilizador possa tomar e as consequências das mesmas(menus onde vai dar)
 	{
 	case 1:
 		return MENU_regUsr;
 	case 2:
 		return MENU_ocUsr;
-	case 3:
+	case 3:							//menu de configuração necessita de acesso priveligiado (password)
 		cout << endl << " Please insert system password : ";
 		pass = readPassword();
 		if (pass == sys_password)
@@ -138,7 +138,7 @@ int Rede::menu_start()
 	return MENU_exit;
 }
 
-int Rede::menu_regUsr()
+int Rede::menu_regUsr() //menu onde se possibilita a entrada do utilizador(que se nao for registado tem a possibilidade de o fazer)
 {
 	print_menu_header();
 
@@ -158,12 +158,12 @@ int Rede::menu_regUsr()
 		}
 	}
 
-	if (existe)
+	if (existe) //se o nome do utilizador for válido pede a password do sistema
 	{
 		cout << " Password : ";
 		string pass = readPassword();
 
-		if (utilizadores[index]->getPassword() == pass)
+		if (utilizadores[index]->getPassword() == pass) //se pass se verificar acede ao próximo menu
 		{
 			while (true)
 			{
@@ -172,29 +172,29 @@ int Rede::menu_regUsr()
 		}
 		else
 		{
-			cout << endl << endl << " Wrong password!" << endl << endl;
+			cout << endl << endl << " Wrong password!" << endl << endl; //se pass não for a correta mostra mensagem de erro
 			system("pause");
-			return MENU_start;
+			return MENU_start; //volta para o menu inicial
 		}
 	}
 	else
 	{
-		cout << endl << endl << " No user was found with that name.\n Would you like to create a new one? (Y/N) ";
+		cout << endl << endl << " No user was found with that name.\n Would you like to create a new one? (Y/N) "; //se o nome de utilizador nao for valido mostra mensagem de erro e pergunta se quer criar um utilizador com esse nome
 
 		while (true)
 		{
 			char letter = _getch();
-			if (toupper(letter) == 'Y')
+			if (toupper(letter) == 'Y') //se utilizador quer criar um user com o nome dado pressiona "Y"
 			{
 				int result = createUser(username);
 				if (result == 0)
-					cout << endl << endl << "    User created successfully!" << endl;
+					cout << endl << endl << "    User created successfully!" << endl; //se utilizador é criado com sucesso (significa que bool ficou a 0) mostra mensagem de sucesso
 				else
-					cout << endl << endl << "    An error has occurred while creating user." << endl;
+					cout << endl << endl << "    An error has occurred while creating user." << endl; ////se utilizador não é criado com sucesso (significa que bool ficou a 1) mostra mensagem de erro
 				system("pause");
 				break;
 			}
-			if (toupper(letter) == 'N')
+			if (toupper(letter) == 'N') //se nao se quer criar utilizador com nome dado o programa volta para o menu inicial
 				return MENU_start;
 		}
 	}
