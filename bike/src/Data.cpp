@@ -2,6 +2,7 @@
 #include <string>
 #include <iostream>
 #include <sstream>
+#include "Tools.h"
 
 using namespace std;
 
@@ -71,4 +72,25 @@ int dif_dias(Data d1, Data d2)
 	return var2 - var1;
 	
 
+}
+
+Data::Data(string date)
+{
+	string ano_str;
+	ano_str += date[0];
+	ano_str += date[1];
+	ano_str += date[2];
+	ano_str += date[3];
+	int ano_int = str_to_int(ano_str);
+	string mes_str;
+	mes_str += date[5];
+	mes_str += date[6];
+	int mes_int = str_to_int(mes_str);
+	string dia_str;
+	dia_str += date[8];
+	dia_str += date[9];
+	int dia_int = str_to_int(dia_str);
+	this->ano = ano_int;
+	this->mes = mes_int;
+	this->dia = dia_int;
 }

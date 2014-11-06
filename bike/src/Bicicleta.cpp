@@ -208,7 +208,7 @@ void Bicicleta::setPrecoDia(int velocidade, string tamanho) //verificar velocida
 string Bicicleta::imprime()
 {
 	stringstream ss;
-	ss << "Bicicleta: " << id_num << ", " << tipo << ", " << tamanho << ", " << velocidades << ", " << avariada << ", " << preco;
+	ss << id_num << ", " << tipo << ", " << tamanho << ", " << velocidades << ", " << avariada << ", " << preco;
 	return ss.str();
 }
 

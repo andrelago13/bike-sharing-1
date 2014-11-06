@@ -67,7 +67,7 @@ void Empresa::remove_bicis(unsigned int id)
 
 	while (it != result.end())
 	{
-		if (id == (*it)->getID)
+		if (id == (*it)->getID())
 		{
 			result.erase(it);
 			//it--;

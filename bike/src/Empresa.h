@@ -22,7 +22,7 @@ public:
 	void adicionaBicicleta(Bicicleta *bic);
 	void show_specs();
 	void setBicicletas(const vector<Bicicleta*> bicicletas);
-	void remove_bicis(unsigned int id)
+	void remove_bicis(unsigned int id);
 };
 
 #endif /* EMPRESA_H_ */

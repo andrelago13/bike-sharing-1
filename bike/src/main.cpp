@@ -14,6 +14,19 @@ int main()
 	Utilizador usr("Andre", 19, "123456");
 	network.addUser(usr);
 
+	Bicicleta bici(1, "eletrica", "adulto", 3, false, 100);
+	Bicicleta *ptr = new Bicicleta();
+	*ptr = bici;
+
+	PostoServico posto(123, 2, 10);
+	posto.adicionabicicleta(ptr);
+
+	PostoServico *ptr2 = new PostoServico;
+	*ptr2 = posto;
+
+	network.addPosto(ptr2);
+
+
 	network.menu_system();
 
 	return 0;

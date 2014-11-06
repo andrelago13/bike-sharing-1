@@ -211,15 +211,98 @@ int Rede::menu_ocUsr()
 	cout << " 2 - Return a bike" << endl;
 	cout << " 0 - Return to previous menu" << endl;
 
-	int option;
+	int option, index;
 	get_option(option, 0, 2);
+	string nome, cartao, data;
+	vector<Bicicleta*> bikes;
+	Ut_ocasional user;
+	Ut_ocasional *ptr;
+	Registo reg;
+	Registo *reg_ptr;
+
 
 	switch (option)
 	{
 	case 1:
-		// Rent bike
+		if (postos.size() == 0)
+		{
+			cout << endl << " There are no service posts available." << endl << endl;
+			system("pause");
+			return MENU_ocUsr;
+		}
 
-		break;
+		clear_screen();
+		print_menu_header();
+		cout << endl << "===> Select a service post." << endl;
+		for (unsigned int i = 0; i < postos.size(); i++)
+		{
+			cout << " " << i + 1 << " - " << postos[i]->getID() << endl;
+		}
+		get_option(option, 1, postos.size());
+		option--;
+
+		bikes = postos[option]->getDisponiveis();
+
+		if (bikes.size() == 0)
+		{
+			cout << endl << " There are no bikes available in the selected post." << endl << endl;
+			system("pause");
+			return MENU_ocUsr;
+		}
+
+		cout << endl << "===> Select a bike : " << endl;
+		for (index = 0; index < bikes.size(); index++)
+		{
+			cout << " " << index+1 << " - " << bikes[index]->imprime();
+			cout << endl;
+		}
+
+		cout << endl;
+		get_option(index, 1, bikes.size());
+		index--;
+
+		cout << endl << " Please enter your name : ";
+		getline(cin, nome);
+
+		if (existeUtilizador(nome))
+		{
+			cout << endl << " That user already exists" << endl << endl;
+			system("pause");
+			return MENU_ocUsr;
+		}
+
+		cout << " Please enter your credit card number : ";
+		getline(cin, cartao);
+		user = Ut_ocasional(nome, 5, "", cartao);
+
+		rented_bikes.push_back(bikes[index]);
+		postos[option]->aluga(bikes[index]);
+		ptr = new Ut_ocasional();
+		*ptr = user;
+		ocasionais.push_back(ptr);
+
+		cout << " Please enter current date (YYYY/MM/DD) : ";
+		getline(cin, data);
+		if (data.size() != 10)
+		{
+			cout << endl << " Invalid date." << endl << endl;
+			system("pause");
+			return MENU_start;
+		}
+		
+		reg.ID_Bicicleta = bikes[index]->getID();
+		reg.ID_posto_origem = postos[option]->getID();
+		reg.nome_utilizador = user.getNome();
+		reg.levantamento = Data(data);
+		
+
+		reg_ptr = new Registo;
+		*reg_ptr = reg;
+		curr_rentals.push_back(reg_ptr);
+
+		cout << endl << " Bike rented" << endl << endl;
+		system("pause");
+		return MENU_start;
 	case 2:
 		// Return bike
 
@@ -601,4 +684,38 @@ int Rede::menu_mngr_users()
 
 
 	return MENU_start;
+}
+
+bool Rede::existeUtilizador(string nome)
+{
+	for (unsigned int i = 0; i < utilizadores.size(); i++)
+	{
+		if (utilizadores[i]->getNome() == nome)
+			return true;
+	}
+
+	for (unsigned int i = 0; i < ocasionais.size(); i++)
+	{
+		if (ocasionais[i]->getNome() == nome)
+			return true;
+	}
+
+	return false;
+}
+
+int Rede::tipoUser(string nome)
+{
+	for (unsigned int i = 0; i < utilizadores.size(); i++)
+	{
+		if (utilizadores[i]->getNome() == nome)
+			return utilizadores[i]->getTipo();
+	}
+
+	for (unsigned int i = 0; i < ocasionais.size(); i++)
+	{
+		if (ocasionais[i]->getNome() == nome)
+			ocasionais[i]->getTipo();
+	}
+
+	return -1;
 }

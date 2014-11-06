@@ -5,6 +5,7 @@
 #include "PostoServico.h"
 #include "Utilizador.h"
 #include "Empresa.h"
+#include "Bicicleta.h"
 
 using namespace std;
 
@@ -24,8 +25,9 @@ class Rede
 	vector <Empresa> empresas;
 	vector<PostoServico*> postos;
 	vector<Utilizador*> utilizadores;
-	vector<Utilizador*> ocasionais;
+	vector<Ut_ocasional*> ocasionais;
 	vector<Registo*> curr_rentals;
+	vector<Bicicleta*> rented_bikes;
 	string sys_password;
 
 public:
@@ -37,6 +39,9 @@ public:
 	// Rede functions
 	int addUser(Utilizador user);
 	int createUser(string nome);
+	bool existeUtilizador(string nome);
+	int tipoUser(string nome);
+	void addPosto(PostoServico *posto) { postos.push_back(posto); }
 
 	// Menu system base functions
 	int menu_system();
