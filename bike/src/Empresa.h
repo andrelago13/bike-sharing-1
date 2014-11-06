@@ -1,9 +1,10 @@
 /*
- * Empresa.h
- *
- *  Created on: 31/10/2014
- *      Author: edgar
- */
+* Empresa.h
+*
+*  Created on: 02/11/2014
+*      Author: leonardo
+*/
+
 #ifndef EMPRESA_H_
 #define EMPRESA_H_
 
@@ -11,18 +12,24 @@
 #include <vector>
 #include <string>
 
-#include "Registo.h"
-#include "PostoServico.h"
-#include "Bicicleta.h"
 using namespace std;
 
 class Empresa
 {
-public:
+private:
 	string nome;
 	vector<Bicicleta*> bicicletas;
+public:
+	Empresa();
+	Empresa(string nome);
+	string getNome() const;
+	vector<Bicicleta *> getBicicletas() const;
+	void adicionaBicicleta(Bicicleta *bic);
+	void show_specs();
+	void setBicicletas(const vector<Bicicleta*> bicicletas);
 };
 
-
-
 #endif /* EMPRESA_H_ */
+
+
+//set bicicletas com um vetor de apontadores OK
