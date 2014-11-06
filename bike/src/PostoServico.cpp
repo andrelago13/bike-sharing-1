@@ -110,7 +110,6 @@ bool PostoServico::aluga(Bicicleta *bi1)	////-----////---////caso de querer rese
 		{
 			if ((*it) == bi1)
 			{
-				//atualizar o vetor de utilizacao
 				dispo.erase(it);
 				setLibertaOcup(1);
 				return true;
@@ -127,7 +126,6 @@ bool PostoServico::devolve(Bicicleta *bi1)
 	if (bi1->getAvariada())
 	{
 		avariadas.push_back(bi1);
-		//atualizar o de utilizacao
 		setPreencheOcup(1);
 		return false;
 	}
