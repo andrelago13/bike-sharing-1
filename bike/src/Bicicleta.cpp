@@ -61,6 +61,11 @@ int Bicicleta::getPreco()
 {
 	return preco;
 }
+
+void Bicicleta::adicionaRegisto(Registo *reg1)
+{
+	regs.push_back(reg1);
+}
 bool Bicicleta::velocidades_valido(int veloc)
 {
 	if (veloc == velocidades)
