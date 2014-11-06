@@ -77,6 +77,12 @@ void PostoServico::setUtilizacao(vector<Registo*> utilizacao)
 	this->utilizacao = utilizacao;
 }
 
+void PostoServico::adicionabicicleta(Bicicleta *bi1)
+{
+	disponiveis.push_back(bi1);
+	setPreencheOcup(1);
+
+}
 void PostoServico::adicionaDisponivel(Bicicleta *bi1)
 {
 	disponiveis.push_back(bi1);

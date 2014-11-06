@@ -34,6 +34,7 @@ public:
 	vector<Bicicleta*> getDisponiveis();
 	vector<Bicicleta*> getAvariadas();
 	vector<Registo*> getUtlizacao();
+	void adicionabicicleta(Bicicleta *bi1);
 	void adicionaDisponivel(Bicicleta *bi1);
 	void adicionaAvariada(Bicicleta *bi1);
 	void adicionaUtilizacao(Registo *reg1);
