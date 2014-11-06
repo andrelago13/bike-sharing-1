@@ -38,6 +38,8 @@ public:
 	bool operator==(Utilizador user);
 	void operator=(Utilizador user);
 
+	friend ostream& operator<<(ostream &o, Utilizador &user);
+
 };
  //FREQUENTES E OCASIONAIS
 

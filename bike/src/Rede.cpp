@@ -58,6 +58,21 @@ int Rede::menu_system()
 			case MENU_manager:
 				menu = menu_manager();
 				break;
+			case MENU_mngr_supplyers:
+				menu = menu_mngr_users();
+				break;
+			case MENU_mngr_spots:
+				menu = menu_mngr_spots();
+				break;
+			case MENU_mngr_bikes:
+				menu = menu_mngr_bikes();
+				break;
+			case MENU_mngr_users:
+				menu = menu_mngr_users();
+				break;
+			case MENU_mngr_logs:
+				menu = menu_mngr_logs();
+				break;
 			case MENU_exit:
 				menu = MENU_exit;
 				break;
@@ -216,7 +231,6 @@ int Rede::menu_ocUsr()
 	return MENU_start;
 }
 
-// TO-DO //
 int Rede::menu_manager()
 {
 	print_menu_header();
@@ -226,10 +240,12 @@ int Rede::menu_manager()
 	cout << " 3 - Bicicles" << endl;
 	cout << " 4 - Registered users" << endl;
 	cout << " 5 - Event logs" << endl;
+	cout << " 6 - Change system password" << endl;
 	cout << " 0 - Return to previous menu" << endl;
 
 	int option;
-	get_option(option, 0, 5);
+	get_option(option, 0, 6);
+	string pass;
 
 	switch (option)
 	{
@@ -243,6 +259,21 @@ int Rede::menu_manager()
 		return MENU_mngr_users;
 	case 5:
 		return MENU_mngr_logs;
+	case 6:
+		cout << endl << " Old password : ";
+		pass = readPassword();
+		if (pass != sys_password)
+		{
+			cout << endl << " ERROR : Wrong password" << endl << endl;
+			system("pause");
+			return MENU_start;
+		}
+		cout << endl << " New password : ";
+		pass = readPassword();
+		sys_password = pass;
+		cout << endl << " Password successfully changed" << endl << endl;
+		system("pause");
+		return MENU_manager;
 	}
 
 	return MENU_start;
@@ -347,7 +378,7 @@ void Rede::menu_exit_prog()
 
 int Rede::createUser(string nome)
 {
-	cout << endl << endl << " Enter your age : ";
+	cout << endl << endl << " Enter user age : ";
 	int age;
 
 	while (true)
@@ -361,7 +392,7 @@ int Rede::createUser(string nome)
 		break;
 	}
 
-	cout << endl << endl << " Enter your password : ";
+	cout << endl << endl << " Enter user password : ";
 	string pass = readPassword();
 
 	Utilizador usr(nome, age, pass);
@@ -435,8 +466,107 @@ int Rede::menu_mngr_spots()
 	return MENU_start;
 }
 
-// TO-DO //
+// TO-DO //   Falta delete_user das outras classes
 int Rede::menu_mngr_users()
 {
+	print_menu_header();
+
+	cout << endl << endl << "===> Please select an option:" << endl;
+	cout << " 1 - List all users" << endl;
+	cout << " 2 - Create a new user" << endl;
+	cout << " 3 - Edit existing user" << endl;
+	cout << " 4 - Delete user" << endl;
+	cout << " 0 - Return to previous menu" << endl;
+
+	int option, index, idade;
+	get_option(option, 0, 4);
+	string nome, pass;
+
+	switch (option)
+	{
+	case 0:
+		return MENU_manager;
+	case 1:
+		if (utilizadores.size() == 0)
+		{
+			cout << endl << "There are no registered users." << endl << endl;
+			system("pause");
+			return MENU_mngr_users;
+		}
+
+		clear_screen();
+		print_menu_header();
+		cout << endl << "===> List of all users" << endl << endl;
+		for (unsigned int i = 0; i < utilizadores.size(); i++)
+		{
+			cout << *utilizadores[i] << endl;
+		}
+		cout << endl;
+		system("pause");
+		return MENU_mngr_users;
+	case 2:
+		cout << endl << "Please enter new user name : ";
+		getline(cin, nome);
+		for (unsigned int i = 0; i < utilizadores.size(); i++)
+		{
+			if (utilizadores[i]->getNome() == nome)
+			{
+				cout << endl << "ERROR : That username already exists" << endl;
+				system("pause");
+				return MENU_mngr_users;
+			}
+		}
+
+		createUser(nome);
+		return MENU_mngr_users;
+	case 3:
+		cout << endl << " Enter name of user to edit : ";
+		getline(cin, nome);
+		
+		for (index = 0; index < utilizadores.size(); index++)
+		{
+			if (utilizadores[index]->getNome() == nome)
+				break;
+		}
+		if (index == utilizadores.size())
+		{
+			cout << endl << " ERROR : That user does not exit" << endl << endl;
+			system("pause");
+			return MENU_mngr_users;
+		}
+		cout << " Current user age : " << utilizadores[index]->getIdade();
+		cout << endl << " New user age : ";
+		while (true)
+		{
+			idade = readInt();
+			if ((idade <= 0) || (idade > 120))
+			{
+				cout << endl << "ERROR : Invalid age. Try again." << endl << " New user age : ";
+				continue;
+			}
+			break;
+		}
+		utilizadores[index]->setIdade(idade);
+		cout << endl << " Current user password : " << utilizadores[index]->getPassword() << endl;
+		cout << " New user password : ";
+		pass = readPassword();
+		utilizadores[index]->setPassword(pass);
+		cout << endl << " User successfully edited." << endl << endl;
+		system("pause");
+		return MENU_mngr_users;
+	case 4:
+		cout << endl << " Enter name of user to delete : ";
+		getline(cin, nome);
+
+		/*
+		Must verify:
+			- if user exists
+			- if user is currently renting a bike
+
+		Then, call user deletion for Rede, Posto and Bicicleta
+		*/
+	}
+
+
 	return MENU_start;
 }

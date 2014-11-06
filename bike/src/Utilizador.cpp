@@ -65,3 +65,9 @@ void Utilizador::operator=(Utilizador user)
 		registos.push_back(ptr);
 	}
 }
+
+ostream& operator<<(ostream &o, Utilizador &user)
+{
+	o << user.nome << " - " << user.idade << " y/o";
+	return o;
+}
