@@ -22,65 +22,65 @@ Bicicleta::Bicicleta(unsigned int id, string tipo_bici, string size, int mudanca
 {
 }
 
-int Bicicleta::getID()
+int Bicicleta::getID() //função retorna o id caracteristico da bicicleta
 {
 	return id_num;
 }
 
-int Bicicleta::getVelocidades()
+int Bicicleta::getVelocidades() //função retorna as velocidades da bicicleta
 {
 	return velocidades;
 }
 
-string Bicicleta::getTipo()
+string Bicicleta::getTipo() //função retorna o tipo da bicicleta(que pode ser eletrica, com ou sem cesto, passeio, montanha ou de corrida)
 {
 	return tipo;
 }
 
-string Bicicleta::getTamanho()
+string Bicicleta::getTamanho() //função retorna o tamanho da bicicleta(adulto ou criança)
 {
 	return tamanho;
 }
 
-string Bicicleta::getEmpresa()
+string Bicicleta::getEmpresa() //função retorna a empresa onde a bicicleta esta registada
 {
 	return empresa;
 }
 
-bool Bicicleta::getAvariada()
+bool Bicicleta::getAvariada() //função retorna se a bicicleta está avariada
 {
 	return avariada;
 }
 
-void Bicicleta::setAvariada()
+void Bicicleta::setAvariada() //função põe avariada como verdadeiro 
 {
 	avariada = true;
 }
 
-int Bicicleta::getPreco()
+int Bicicleta::getPreco() //função retorna o preço da bicicleta
 {
 	return preco;
 }
 
-void Bicicleta::adicionaRegisto(Registo *reg1)
+void Bicicleta::adicionaRegisto(Registo *reg1) //função adiciona um registo ao vetor de registos das bicicletas
 {
 	regs.push_back(reg1);
 }
-bool Bicicleta::velocidades_valido(int veloc)
+bool Bicicleta::velocidades_valido(int veloc) //funçao retorna verdadeiro se as velocidades foram válidas ou falso se nao o foram
 {
 	if (veloc == velocidades)
 		return true;
 	return false;
 }
 
-string Bicicleta::tipo_valido()
+string Bicicleta::tipo_valido() //função retorna se o tipo é válido ou não 
 {
 	if (tipo == "eletrica" || tipo == "com cesto" || tipo == "sem cesto" || tipo == "passeio" || tipo == "corrida" || tipo == "montanha")
 		return "ESSE TIPO E VALIDO";
 	return "ESSE TIPO NAO E VALIDO";
 }
 
-void Bicicleta::setPrecoDia(int velocidade, string tamanho) //verificar velocidades das bicicletas -> corrida 1 velocidade x
+void Bicicleta::setPrecoDia(int velocidade, string tamanho) //função coloca o preço das bicicletas por dia a um certo valor mediante tamanho e velocidades
 {
 	if ((velocidade > veloc_max) || (velocidade == 0))
 	{
@@ -91,10 +91,10 @@ void Bicicleta::setPrecoDia(int velocidade, string tamanho) //verificar velocida
 	//cout do tamanho
 	if (tamanho == "adulto")
 	{
-		switch (velocidade)
+		switch (velocidade) //as várias opções para as velocidades
 		{
 		case 1:
-			if (tipo == "eletrica" || tipo == "montanha")
+			if (tipo == "eletrica" || tipo == "montanha") //preços mediantes os tipos das bicicletas
 				preco = 90;
 			if (tipo == "corrida")
 				preco = 150;
@@ -215,47 +215,47 @@ void Bicicleta::setPrecoDia(int velocidade, string tamanho) //verificar velocida
 	}
 }
 
-string Bicicleta::imprime()
+string Bicicleta::imprime() //função que imprime os dados de uma determinada bicicleta
 {
 	stringstream ss;
 	ss << "ID- " << id_num << ", " << tipo << ", " << tamanho << ", " << velocidades << " velocidade(s), " << avariada << ", " << preco << " euros ";
 	return ss.str();
 }
 
-void Bicicleta::setID(int id)
+void Bicicleta::setID(int id) //função que coloca o id a um certo valor(sem devolver nada)
 {
 	/*int ID= bicicletas.size() - 1;
 	id_num = ID++;*/
 	this->id_num = id;
 }
 
-void Bicicleta::setTipo(string tipo)
+void Bicicleta::setTipo(string tipo) //função que coloca bicicleta com um tipo específico(sem devolver nada)
 {
 	this->tipo = tipo;
 }
 
-void Bicicleta::setRegsBicis(vector<Registo *> bicis)
+void Bicicleta::setRegsBicis(vector<Registo *> bicis) //função que coloca um vetor de registos de uma bicicleta, ou varias, no vetor original existente na classe(sem devolver nada)
 {
 	regs = bicis;
 }
 
-vector<Registo *> Bicicleta::getRegsBicis() const { return regs; }
+vector<Registo *> Bicicleta::getRegsBicis() const { return regs; } //vetor que devolve o vetor de registos das bicicletas existente na classe
 
-void Bicicleta::setTamanho(string tamanho)
+void Bicicleta::setTamanho(string tamanho) //função que coloca o tamanho a um certo valor(sem devolver nada)
 {
 	this->tamanho = tamanho;
 }
 
-void Bicicleta::setVeloc(int velocidades)
+void Bicicleta::setVeloc(int velocidades) //função que coloca as velocidades a um certo valor(sem devolver nada)
 {
 	this->velocidades = velocidades;
 }
 
-bool Bicicleta::remove_util(string nome)
+bool Bicicleta::remove_util(string nome) //função que remove um utilizador do vetor de registos das bicicletas
 {
-	vector<Registo *> result = getRegsBicis();
+	vector<Registo *> result = getRegsBicis(); //vetor resultado para o qual se carrega o vetor de registos das bicicletas
 
-	if (result.size() == 0)
+	if (result.size() == 0) //se vetor estiver vazio o utilizador ja foi "removido"
 		return true;
 	
 	vector<Registo *>::const_iterator it = result.begin(); 
@@ -270,6 +270,6 @@ bool Bicicleta::remove_util(string nome)
 		it++;
 	}
 
-	setRegsBicis(result);
+	setRegsBicis(result); //colocar o vetor resultado como o vetor de registos, agora sem o utilizador
 	return true;
 }

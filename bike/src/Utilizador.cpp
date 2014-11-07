@@ -104,3 +104,13 @@ int Utilizador::tempo_aluguer()
 	
 	return soma;
 }
+
+int Utilizador::num_aluguer()
+{
+	if (registos.size() == 0)
+		return 0;
+	else if (registos[registos.size() - 1]->ID_posto_chegada == 0)
+		return registos.size() - 1;
+
+	return registos.size();
+}

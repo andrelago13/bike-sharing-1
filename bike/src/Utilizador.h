@@ -43,6 +43,7 @@ public:
 	virtual int getCusto();
 	void adicionaRegisto(Registo *reg) { registos.push_back(reg); }
 	int tempo_aluguer();
+	int num_aluguer();
 
 	friend ostream& operator<<(ostream &o, Utilizador &user);
 
