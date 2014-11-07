@@ -56,7 +56,7 @@ void PostoServico::setID(int id)		// função modifica o id de um posto de serviço
 	iD = id;
 }
 
-void PostoServico::setLotacao(int lot)			// funçao modifica a lotação de um posto de serviço
+void PostoServico::setLotacao(int lot)			// funçao modifica a lotação de um posto de serviço 
 {
 	lotacao = lot;
 }
