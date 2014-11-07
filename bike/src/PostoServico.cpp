@@ -5,65 +5,65 @@
 
 using namespace std;
 
-PostoServico::PostoServico()
+PostoServico::PostoServico()		// Cria um posto de serviço por defeito
 {
 }
 
-PostoServico::PostoServico(int iD, int ocupacao, int lotacao)
+PostoServico::PostoServico(int iD, int ocupacao, int lotacao)		// Cria um posto de serviço que aceita parâmetros id, ocupação e lotação
 {
 	this->iD = iD;
 	this->lotacao = lotacao;
 	this->ocupacao = ocupacao;
 }
 
-int PostoServico::getID() const
+int PostoServico::getID() const		// função retorna o id do posto de serviço
 {
 	return iD;
 }
 
-int PostoServico::getLotacao() const
+int PostoServico::getLotacao() const		// função retorna a lotação do posto de serviço
 {
 	return lotacao;
 }
 
-int PostoServico::getOcupacao() const
+int PostoServico::getOcupacao() const		// função retorna a ocupação do posto de serviço
 {
 	return ocupacao;
 }
 
-int PostoServico::getEspacoLivre() const
+int PostoServico::getEspacoLivre() const		// função retorna o espaço livre do posto de serviço
 {
 	return (PostoServico::getLotacao() - PostoServico::getOcupacao());
 }
 
-vector<Bicicleta*> PostoServico::getDisponiveis()
+vector<Bicicleta*> PostoServico::getDisponiveis()			// função retorna as bicicletas disponiveis do posto de serviço
 {
 	return disponiveis;
 }
 
-vector<Bicicleta*> PostoServico::getAvariadas()
+vector<Bicicleta*> PostoServico::getAvariadas()			// função retorna as bicicletas avariadas do posto de serviço
 {
 	return avariadas;
 }
 
-vector<Registo*> PostoServico::getUtlizacao()
+vector<Registo*> PostoServico::getUtlizacao()		// função retorna um vetor com os registos de todas as bicicletas
 {
 	return utilizacao;
 }
 
-void PostoServico::setDisponiveis(vector<Bicicleta*> disponiveis)
+void PostoServico::setDisponiveis(vector<Bicicleta*> disponiveis)		// função modifica as bicicletas disponiveis com o vetor de bicicletas passado na função atualizando a ocupação do posto de serviço
 {
 		this ->disponiveis = disponiveis;
 		ocupacao = disponiveis.size() + avariadas.size();		
 }
 
-void PostoServico::setAvariadas(vector<Bicicleta*> avariadas)
+void PostoServico::setAvariadas(vector<Bicicleta*> avariadas)		// função modifica as bicicletas avariadas pelo vetor de bicicletas passado como na função atualizando a ocupação do posto de serviço
 {
 		this->avariadas = avariadas;			
 		ocupacao = disponiveis.size() + avariadas.size();
 }
 
-void PostoServico::setUtilizacao(vector<Registo*> utilizacao)
+void PostoServico::setUtilizacao(vector<Registo*> utilizacao)		// função modifica o vetor de registos pelo que é passado como parametro da função
 {
 	this->utilizacao = utilizacao;
 }
@@ -214,13 +214,28 @@ bool PostoServico::removeutilizador(string user)		//remove utilizador do posto d
 	return true;
 }
 
-void PostoServico::arranja_bicicletas()
+void PostoServico::arranja_bicicletas()			//fazer um arranja_bicicleta(int id_bike) tipo bool se tudo correr bem e retorna false se não existir no posto
 {
 	for (unsigned int i = 0; i < avariadas.size(); i++)
 	{
 		disponiveis.push_back(avariadas[i]);
 		avariadas.erase(avariadas.begin());
 	}
+}
+
+bool PostoServico::arranja_bicicleta(int id_bike)
+{
+	for (unsigned int i = 0; i < avariadas.size(); i++)
+	{
+		if (avariadas[i]->getID == id_bike)
+		{
+			disponiveis.push_back(avariadas[i]);
+			avariadas.erase(avariadas.begin() + i);
+			return true;
+		}
+	}
+
+	return false;
 }
 
 void PostoServico::setID(int id)
