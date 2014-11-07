@@ -15,16 +15,16 @@ PostoServico::PostoServico()
 {
 }
 
-PostoServico::PostoServico(int ID, int ocupacao, int lotacao)
+PostoServico::PostoServico(int iD, int ocupacao, int lotacao)
 {
-	this->ID = ID;
+	this->iD = iD;
 	this->lotacao = lotacao;
 	this->ocupacao = ocupacao;
 }
 
 int PostoServico::getID() const
 {
-	return ID;
+	return iD;
 }
 
 int PostoServico::getLotacao() const
