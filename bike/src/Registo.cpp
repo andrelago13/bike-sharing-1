@@ -3,7 +3,7 @@
 
 using namespace std;
 
-void Registo::print_reg() const
+void Registo::print_reg() const //funçao que permite saber o estado do aluguer da bicicleta e se esta ficou ou nao avariada durante o mesmo
 {
 	cout << "User : " << nome_utilizador << endl;
 	cout << "Bike : " << ID_Bicicleta << endl;
@@ -20,7 +20,7 @@ void Registo::print_reg() const
 		cout << "The bike did not get damaged during this rental." << endl;
 }
 
-void Registo::print_sem_user() const
+void Registo::print_sem_user() const //funçao que permite saber o estado do aluguer da bicicleta e se esta ficou ou nao avariada durante o mesmo tudo isto relativo a um utilizador ocasional(ou seja sem ter de identificar o utilizador)
 {
 	cout << "Bike : " << ID_Bicicleta << endl;
 	cout << "Picked up at post " << ID_posto_origem << " em " << levantamento << endl;
@@ -36,7 +36,7 @@ void Registo::print_sem_user() const
 		cout << "The bike did not get damaged during this rental." << endl;
 }
 
-Registo::Registo()
+Registo::Registo() //construtor por defeito de um registo em que todos os parâmetros estao inicializados com os valores "basicos iniciais" --> 0 nos id e string vazia no nome do utilizador
 {
 	ID_Bicicleta = 0;
 	ID_posto_origem = 0;
