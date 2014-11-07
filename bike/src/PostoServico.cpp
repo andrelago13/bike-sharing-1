@@ -1,9 +1,3 @@
-/*
-* PostoServico.cpp
-*
-*  Created on: 05/11/2014
-*      Author: leonardo
-*/
 #include "PostoServico.h"
 #include <iostream>
 #include <vector>

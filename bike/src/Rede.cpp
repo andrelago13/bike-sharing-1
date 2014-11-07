@@ -1232,8 +1232,10 @@ int Rede::menu_mngr_spots()
 	cout << " 7 - List all bikes for a service post" << endl;
 	cout << " 0 - Return to the previous menu" << endl;
 
-	int option;
+	int option, id, lotacao, index;
 	get_option(option, 0, 7);
+	PostoServico posto, *posto_ptr;
+
 
 	switch (option)
 	{
@@ -1253,6 +1255,77 @@ int Rede::menu_mngr_spots()
 		cout << endl;
 		system("pause");
 		return MENU_mngr_spots;
+
+	case 2:
+		cout << endl << " Enter new post ID : ";
+		id = readInt();
+
+		for (unsigned int i = 0; i < postos.size(); i++)
+		{
+			if (postos[i]->getID() == id)
+			{
+				cout << endl << " There already is a post with that ID." << endl << endl;
+				system("pause");
+				return MENU_mngr_spots;
+			}
+		}
+
+		cout << endl << " Enter new post capacity : ";
+		lotacao = readInt();
+
+		posto = PostoServico(id, 0, lotacao);
+		posto_ptr = new PostoServico;
+		*posto_ptr = posto;
+		postos.push_back(posto_ptr);
+		cout << endl << " Service post added" << endl << endl;
+		system("pause");
+		return MENU_mngr_spots;
+	case 3:
+		cout << endl << " Enter new post ID : ";
+		id = readInt();
+		index = -1;
+
+		for (unsigned int i = 0; i < postos.size(); i++)
+		{
+			if (postos[i]->getID() == id)
+			{
+				index = i;
+				break;
+			}
+		}
+
+		if (index == -1)
+		{
+			cout << endl << " There is no post with that id." << endl << endl;
+			system("pause");
+			return MENU_mngr_spots;
+		}
+
+		cout << " Post occupation : " << postos[index]->getOcupacao() << "/" << postos[index]->getLotacao() << " bike slots taken" << endl << endl;
+		cout << " Insert new post id : ";
+		id = readInt();
+
+		for (unsigned int i = 0; i < postos.size(); i++)
+		{
+			if ((postos[i]->getID() == id) && (i != index))
+			{
+				cout << endl << " There already is a post with that ID." << endl << endl;
+				system("pause");
+				return MENU_mngr_spots;
+			}
+		}
+
+		cout << endl << " Insert new post capacity : ";
+		lotacao = readInt();
+
+		if (lotacao < postos[index]->getOcupacao())
+		{
+			cout << " New capacity can't be less than current occupation. No changes were made." << endl << endl;
+			system("pause");
+			return MENU_mngr_spots;
+		}
+
+		
 	}
 
 

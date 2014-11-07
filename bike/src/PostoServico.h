@@ -1,10 +1,3 @@
-/*
-* PostoServico.h
-*
-*  Created on: 02/11/2014
-*      Author: leonardo
-*/
-
 #ifndef POSTOSERVICO_H_
 #define POSTOSERVICO_H_
 
