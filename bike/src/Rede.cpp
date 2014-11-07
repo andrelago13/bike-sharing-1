@@ -597,8 +597,10 @@ int Rede::menu_regUsr_logged(Utilizador *user)	//menu existente para os utilizad
 					break;
 				}
 				if (toupper(letter) == 'N')
+				{
 					cout << letter;
-				break;
+					break;
+				}
 			}
 
 			reg_ptr->ficou_avariada = rented_bikes_freq[index]->getAvariada();
@@ -765,10 +767,10 @@ int Rede::menu_mngr_bikes()
 	cout << " 7 - Delete a bike" << endl;
 	cout << " 0 - Return to previous menu" << endl;
 
-	int option;
+	int option, id;
 	get_option(option, 0, 7);
 	vector<Bicicleta *> bikes, bikes_dispo, bikes_avariadas;
-	bool imprimiu;
+	bool imprimiu, apagou;
 
 	switch (option)
 	{
@@ -865,10 +867,46 @@ int Rede::menu_mngr_bikes()
 		system("pause");
 		return MENU_mngr_bikes;
 	case 5:
+		for (unsigned int i = 0; i < postos.size(); i++)
+			postos[i]->arranja_bicicletas();
+
+		cout << endl << " All bikes were repaired." << endl << endl;
 		system("pause");
+		return MENU_mngr_bikes;
+	case 6:
+		create_add_bike();
+		cout << endl << endl;
+		system("pause");
+		return MENU_mngr_bikes;
+	case 7:
+		cout << endl << " Please insert bike ID : ";
+		id = readInt();
+
+		apagou = false;
+		for (unsigned int i = 0; i < empresas.size(); i++)
+		{
+			bikes = empresas[i].getBicicletas();
+			for (unsigned int j = 0; j < bikes.size(); j++)
+			{
+				if (bikes[j]->getID() == id)
+				{
+					apagou = true;
+					empresas[i].remove_bicis(id);
+				}
+			}
+		}
+
+		if (!apagou)
+		{
+			cout << endl << " There is no bike with that id, registered by a supplying company." << endl << endl;
+			system("pause");
+			return MENU_mngr_bikes;
+		}
+
+		
 	}
 
-	return MENU_mngr_bikes;
+	return MENU_manager;
 }
 
 int Rede::menu_mngr_logs()
@@ -1254,4 +1292,138 @@ string Rede::is_busy(int id_bici, bool print) const
 			return utilizadores[i]->getNome();;
 		}
 	}
+}
+
+int Rede::create_add_bike()
+{
+	clear_screen();
+	print_menu_header();
+	cout << endl << " Please enter bike ID : ";
+	int id = readInt();
+	vector<Bicicleta *> bikes;
+
+	for (unsigned int i = 0; i < empresas.size(); i++)
+	{
+		bikes = empresas[i].getBicicletas();
+		for (unsigned int j = 0; j < bikes.size(); j++)
+		{
+			if (bikes[j]->getID() == id)
+			{
+				cout << endl << " There already is a bike with that ID";
+				return -1;
+			}
+		}
+	}
+
+	cout << endl << endl << " Please select a bike type : " << endl;
+	cout << " 1 - Eletrica" << endl;
+	cout << " 2 - Com cesto" << endl;
+	cout << " 3 - Sem cesto" << endl;
+	cout << " 4 - Passeio" << endl;
+	cout << " 5 - Montanha" << endl;
+	cout << " 6 - Corrida" << endl;
+
+	int option, preco, velocidades;
+	get_option(option, 1, 6);
+	string tipo, tamanho, empresa;
+
+	switch (option)
+	{
+	case 1:
+		tipo = "eletrica";
+		break;
+	case 2:
+		tipo = "com cesto";
+		break;
+	case 3:
+		tipo = "sem cesto";
+		break;
+	case 4:
+		tipo = "passeio";
+		break;
+	case 5:
+		tipo = "montanha";
+		break;
+	case 6:
+		tipo = "corrida";
+		break;
+	}
+
+	cout << endl << endl << " Please select a bike size : " << endl;
+	cout << " 1 - Crianca" << endl;
+	cout << " 2 - Adulto" << endl;
+
+	get_option(option, 1, 2);
+
+	switch (option)
+	{
+	case 1:
+		tamanho = "crianca";
+		break;
+	case 2:
+		tamanho = "adulto";
+		break;
+	}
+
+	cout << endl << endl << " Please indicate bike shifts : " << endl;
+	cout << " 1" << endl;
+	cout << " 2" << endl;
+	cout << " 3" << endl;
+	cout << " 4" << endl;
+	cout << " 5" << endl;
+
+	get_option(option, 1, 5);
+
+	velocidades = option;
+
+	cout << endl << endl << " Please indicate a bike price : ";
+	preco = readInt();
+
+	cout << endl << " Please indicate a company to associate the bike : ";
+	getline(cin, empresa);
+
+	int index;
+	bool found = false;
+
+	for (unsigned int i = 0; i < empresas.size(); i++)
+	{
+		if (empresas[i].getNome() == empresa)
+		{
+			found = true;
+			index = i;
+		}
+	}
+
+	if (!found)
+	{
+		cout << endl << " No company was found with that name.";
+		return -1;
+	}
+
+	int posto_id;
+
+	cout << endl << " Please indicate the id of the post to insert the bike : ";
+	posto_id = readInt();
+
+	for (unsigned int i = 0; i < postos.size(); i++)
+	{
+		if (postos[i]->getID() == posto_id)
+		{
+			if (postos[i]->getEspacoLivre() <= 0)
+			{
+				cout << " That post has no room for one more bike.";
+				return -1;
+			}
+
+			Bicicleta bike(id, tipo, tamanho, velocidades, false, preco);
+			Bicicleta *bike_ptr = new Bicicleta;
+			*bike_ptr = bike;
+
+			empresas[index].adicionaBicicleta(bike_ptr);
+			postos[i]->adicionabicicleta(bike_ptr);
+		}
+	}
+
+	cout << endl << " Bike added successfully.";
+	return 0;
 }

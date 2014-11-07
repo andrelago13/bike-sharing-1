@@ -44,6 +44,7 @@ public:
 	int tipoUser(string nome);
 	void addPosto(PostoServico *posto) { postos.push_back(posto); }
 	string is_busy(int id_bici, bool print) const;
+	int create_add_bike();
 
 	// Menu system base functions
 	int menu_system();
