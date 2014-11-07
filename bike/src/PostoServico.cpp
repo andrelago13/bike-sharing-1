@@ -42,14 +42,14 @@ int PostoServico::getEspacoLivre() const
 	return (PostoServico::getLotacao() - PostoServico::getOcupacao());
 }
 
-void PostoServico::setPreencheOcup(int lug)
+void PostoServico::setMaisOcup(int ocup)
 {
-	ocupacao = (PostoServico::getDisponiveis()).size() + (PostoServico::getAvariadas()).size() - lug;
+	ocupacao = (PostoServico::getDisponiveis()).size() + (PostoServico::getAvariadas()).size() + ocup;
 }
 
-void PostoServico::setLibertaOcup(int lug)
+void PostoServico::setMenosOcup(int ocup)
 {
-	ocupacao = (PostoServico::getDisponiveis()).size() + (PostoServico::getAvariadas()).size() + lug;
+	ocupacao = (PostoServico::getDisponiveis()).size() + (PostoServico::getAvariadas()).size() - ocup;
 }
 
 vector<Bicicleta*> PostoServico::getDisponiveis()
@@ -69,12 +69,14 @@ vector<Registo*> PostoServico::getUtlizacao()
 
 void PostoServico::setDisponiveis(vector<Bicicleta*> disponiveis)
 {
-	this->disponiveis = disponiveis;
+		this ->disponiveis = disponiveis;
+		setMenosOcup(0);						// ou setMaisOcup. É indiferente visto que somar ou subtrair 0 é igual.
 }
 
 void PostoServico::setAvariadas(vector<Bicicleta*> avariadas)
 {
-	this->avariadas = avariadas;
+		this->avariadas = avariadas;			// ou setMaisOcup. É indiferente visto que somar ou subtrair 0 é igual.
+		setMenosOcup(0);
 }
 
 void PostoServico::setUtilizacao(vector<Registo*> utilizacao)
@@ -88,22 +90,24 @@ void PostoServico::adicionabicicleta(Bicicleta *bi1)
 	if (bi1->getAvariada())
 	{
 		avariadas.push_back(bi1);
-		setPreencheOcup(1);
+		setMaisOcup(1);
 	}
 	else
 		disponiveis.push_back(bi1);
-		setPreencheOcup(1);
+		setMaisOcup(1);
 
 }
 
 void PostoServico::adicionaDisponivel(Bicicleta *bi1)
 {
 	disponiveis.push_back(bi1);
+	setMaisOcup(1);
 }
 
 void PostoServico::adicionaAvariada(Bicicleta *bi1)
 {
 	avariadas.push_back(bi1);
+	setMaisOcup(1);
 }
 
 void PostoServico::adicionaUtilizacao(Registo *reg1)
@@ -131,7 +135,7 @@ bool PostoServico::aluga(Bicicleta *bi1)		// O utilizador aluga uma das biciclet
 			{
 				dispo.erase(it);
 				setDisponiveis(dispo);
-				setLibertaOcup(1);
+				setMenosOcup(1);
 				return true;
 			}
 			it++;
@@ -146,21 +150,27 @@ bool PostoServico::devolve(Bicicleta *bi1)		// O utilizador devolve a bicicleta 
 	if (bi1->getAvariada())
 	{
 		avariadas.push_back(bi1);
-		setPreencheOcup(1);
+		setMaisOcup(1);
 		return false;
 	}
 	else
 	{
 		disponiveis.push_back(bi1);
-		setPreencheOcup(1);
+		setMaisOcup(1);
 	}
 	return true;
 }
 
 bool PostoServico::removebicicleta(unsigned int id_bike)	//remove bicicleta do vetor utilizacao(vetor que contem os registos do posto de serviço)
 {
-	vector<Registo*> utils = PostoServico::getUtlizacao();
+	vector<Registo*> utils = PostoServico::getUtlizacao();		// apaga do registo a bicicleta segundo o id dado
 	vector<Registo*>::iterator it = utils.begin();
+
+	vector<Bicicleta*> dispon = PostoServico::getDisponiveis();		// apaga das disponiveis a bicicleta segundo um id dado
+	vector<Bicicleta*>::iterator ot = dispon.begin();
+
+	vector<Bicicleta*> avariad = PostoServico::getAvariadas();		// se não encontrar nas disponiveis, procura nas avariadas e apaga
+	vector<Bicicleta*>::iterator ut = avariad.begin();
 
 	if (utils.size() == 0)
 	{
@@ -171,12 +181,36 @@ bool PostoServico::removebicicleta(unsigned int id_bike)	//remove bicicleta do v
 		while (it != utils.end())
 		{
 			if ((*it)->ID_Bicicleta == id_bike)
+				{
+					utils.erase(it);
+					it--;
+					setUtilizacao(utils);
+				}
+			it++;
+		}
+
+		while (ot != dispon.end())
+		{
+			if ((*ot)->getID() == id_bike)
 			{
-				utils.erase(it);
-				it--;
+				dispon.erase(ot);
+				ot--;
+				setDisponiveis(dispon);
 				return true;
 			}
-			it++;
+			ot++;
+		}
+
+		while (ut != avariad.end())
+		{
+			if ((*ut)->getID() == id_bike)
+			{
+				avariad.erase(ut);
+				ut--;
+				setAvariadas(avariad);
+				return true;
+			}
+			ut++;
 		}
 }
 

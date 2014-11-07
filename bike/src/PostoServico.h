@@ -44,8 +44,8 @@ public:
 	void setUtilizacao(vector<Registo*> utilizacao);
 	bool aluga(Bicicleta *bi1);			
 	bool devolve(Bicicleta *bi1);		
-	void setLibertaOcup(int lug);		
-	void setPreencheOcup(int lug);		
+	void setMenosOcup(int ocup);		
+	void setMaisOcup(int ocup);		
 	bool removebicicleta(unsigned int id_bike);
 	bool removeutilizador(string user);
 	void arranja_bicicletas();
