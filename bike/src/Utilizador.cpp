@@ -115,7 +115,7 @@ int Utilizador::num_aluguer() //função que retorna o nº de alugueres existentes 
 	return registos.size();
 }
 
-void Utilizador::remove_bici(int id)
+void Utilizador::remove_bici(int id) //função que remove uma bicicleta com um determinado id
 {
 	for (unsigned int i = 0; i < registos.size(); i++)
 	{

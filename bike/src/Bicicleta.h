@@ -27,25 +27,25 @@ public:
 
 	Bicicleta();
 	Bicicleta(unsigned int id, string tipo_bici, string size, int mudancas, bool avariad, unsigned int preco1);
-	int getID(); //
-	int getVelocidades();//
-	string getTipo();//
+	int getID(); 
+	int getVelocidades();
+	string getTipo();
 	string getTamanho();
-	string getEmpresa(); //
-	bool getAvariada(); //
+	string getEmpresa(); 
+	bool getAvariada(); 
 	void setAvariada();
 	int getPreco();
-	void setPrecoDia(int velocidade, string tamanho); //
-	bool velocidades_valido(int veloc); //
-	string tipo_valido(); //
-	string imprime(); //
-	void setID(int id); // .....
-	void setTipo(string tipo); //...
-	void setRegsBicis(vector<Registo *> bicis); //
-	vector<Registo *> getRegsBicis() const; //
+	void setPrecoDia(int velocidade, string tamanho); 
+	bool velocidades_valido(int veloc); 
+	string tipo_valido(); 
+	string imprime(); 
+	void setID(int id); 
+	void setTipo(string tipo); 
+	void setRegsBicis(vector<Registo *> bicis); 
+	vector<Registo *> getRegsBicis() const; 
 	void adicionaRegisto(Registo *reg1);
-	void setTamanho(string tamanho);//.....
-	void setVeloc(int velocidades);// .....
+	void setTamanho(string tamanho);
+	void setVeloc(int velocidades);
 	bool remove_util(string nome);
 
 };

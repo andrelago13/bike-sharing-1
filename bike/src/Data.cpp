@@ -6,27 +6,27 @@
 
 using namespace std;
 
-Data::Data() : ano(0), mes(0), dia(0) {}
+Data::Data() : ano(0), mes(0), dia(0) {} //construtor por defeito da classe data inicializada como dia "0"
 
-Data::Data(unsigned int ano, unsigned int mes, unsigned int dia) : ano(ano), mes(mes), dia(dia) {}
+Data::Data(unsigned int ano, unsigned int mes, unsigned int dia) : ano(ano), mes(mes), dia(dia) {}//construtor da classe data inicializando ano como ano, mes como mes e dia como dia
 
 
 
-bool operator<(const Data data1, const Data data2)
+bool operator<(const Data data1, const Data data2) //função que redefine o operador "<" para que se possa comparar se uma data é menor que a outra(mais fácil para obter essa situação posteriormente)
 {
-	if (data1.ano < data2.ano)
+	if (data1.ano < data2.ano)//data é menor se ano for menor
 		return true;
 	else if (data1.ano > data2.ano)
 		return false;
 	else
 	{
-		if(data1.mes < data2.mes)
+		if(data1.mes < data2.mes) //posteriormente, data é menor se mes for menor
 			return true;
 		else if (data1.mes > data2.mes)
 			return false;
 		else
 		{
-			if (data1.dia < data2.dia)
+			if (data1.dia < data2.dia)//e por fim, data é menor se dia for menor
 				return true;
 			else
 				return false;
@@ -36,7 +36,7 @@ bool operator<(const Data data1, const Data data2)
 	return false;
 }
 
-bool operator==(const Data data1, const Data data2)
+bool operator==(const Data data1, const Data data2)//função que redefine o operador "==" que permite comparar se duas datas são iguais 
 {
 	if (data1.getDataStr() == data2.getDataStr())
 		return true;
@@ -44,7 +44,7 @@ bool operator==(const Data data1, const Data data2)
 	return false;
 }
 
-string Data::getDataStr() const
+string Data::getDataStr() const //função que retorna/imprime a data
 {
 	stringstream ss;
 
@@ -53,36 +53,36 @@ string Data::getDataStr() const
 	return ss.str();
 }
 
-ostream& operator<<(ostream &o, const Data &data)
+ostream& operator<<(ostream &o, const Data &data) //função que permite cout de uma data 
 {
 	o << data.getDataStr();
 	return o;
 }
 
-int dif_dias(Data d1, Data d2)
+int dif_dias(Data d1, Data d2) //função que calcula a diferença de dias entre duas datas
 {
 	if (d2 < d1)
-		return -1;
+		return -1; //se uma data e menos que a segunda a diferença vai ser negativa --> não se quer
 	if (d1 == d2)
-		return 0;
+		return 0; //se a data é igual a diferença é nula
 
 	int var1 = 0;
 	int var2 = 0;
 
-	if ((d1.ano % 4) == 0)
+	if ((d1.ano % 4) == 0) //ano bissexto
 	{
 		var1 += 366 * d1.ano;
-		if (d1.mes == 2)
+		if (d1.mes == 2) //no caso do mes ser fevereiro
 			var1 += 29;
 	}
 	else
 	{
-		if (d1.mes == 2)
+		if (d1.mes == 2) //ano normal
 			var1 += 28;
 		var1 += 365 * d1.ano;
 	}
 
-	switch (d1.mes)
+	switch (d1.mes) //calculo dos dias dos meses
 	{
 	case 1:
 	case 3:
@@ -91,17 +91,17 @@ int dif_dias(Data d1, Data d2)
 	case 8:
 	case 10:
 	case 12:
-		var1 += 31 * d1.mes;
+		var1 += 31 * d1.mes; //atualização da var em questão para meses com 31 dias
 		break;
 	case 4:
 	case 6:
 	case 9:
 	case 11:
-		var1 += 30 * d1.mes;
+		var1 += 30 * d1.mes;//atualização da var em questão para meses com 30 dias
 		break;
 	}
 
-
+	//repetição do processo para a segunda data
 	if ((d2.ano % 4) == 0)
 	{
 		var2 += 366 * d2.ano;
@@ -137,7 +137,7 @@ int dif_dias(Data d1, Data d2)
 	return var2 - var1;
 }
 
-Data::Data(string date)
+Data::Data(string date) //construtor de data que constrói a data através de uma string
 {
 	string ano_str;
 	ano_str += date[0];
