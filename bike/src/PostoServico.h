@@ -21,7 +21,7 @@ class PostoServico
 private:
 	int lotacao;
 	int ocupacao;
-	int ID;
+	int iD;
 	vector<Bicicleta*> disponiveis;
 	vector<Bicicleta*> avariadas;
 	vector<Registo*> utilizacao;
