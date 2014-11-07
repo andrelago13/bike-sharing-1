@@ -43,6 +43,7 @@ public:
 	bool removeutilizador(string user);
 	void arranja_bicicletas();
 	bool arranja_bicicleta(int id_bike);
+
 };
 
 #endif /* POSTOSERVICO_H_ */

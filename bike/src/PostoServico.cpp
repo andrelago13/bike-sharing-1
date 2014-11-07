@@ -214,7 +214,7 @@ bool PostoServico::removeutilizador(string user)		//remove utilizador do posto d
 	return true;
 }
 
-void PostoServico::arranja_bicicletas()			//fazer um arranja_bicicleta(int id_bike) tipo bool se tudo correr bem e retorna false se não existir no posto
+void PostoServico::arranja_bicicletas()			
 {
 	for (unsigned int i = 0; i < avariadas.size(); i++)
 	{
