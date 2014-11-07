@@ -752,7 +752,6 @@ int Rede::menu_mngr_supplyers()
 	return MENU_start;
 }
 
-// TO-DO // ongoing
 int Rede::menu_mngr_bikes()
 {
 	print_menu_header();
@@ -771,6 +770,7 @@ int Rede::menu_mngr_bikes()
 	get_option(option, 0, 7);
 	vector<Bicicleta *> bikes, bikes_dispo, bikes_avariadas;
 	bool imprimiu, apagou;
+	string nome;
 
 	switch (option)
 	{
@@ -903,7 +903,24 @@ int Rede::menu_mngr_bikes()
 			return MENU_mngr_bikes;
 		}
 
-		
+		nome = is_busy(id, true);
+
+		if (nome.size() == 0)
+		{
+			cout << endl << endl;
+			system("pause");
+			return MENU_mngr_bikes;
+		}
+
+		for (unsigned int i = 0; i < utilizadores.size(); i++)
+		{
+			utilizadores[i]->remove_bici(id);
+		}
+
+		for (unsigned int i = 0; i < postos.size(); i++)
+		{
+			postos[i]->removebicicleta(id);
+		}
 	}
 
 	return MENU_manager;
@@ -1292,6 +1309,8 @@ string Rede::is_busy(int id_bici, bool print) const
 			return utilizadores[i]->getNome();;
 		}
 	}
+
+	return "";
 }
 
 int Rede::create_add_bike()

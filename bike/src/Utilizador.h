@@ -39,6 +39,7 @@ public:
 	void adicionaRegisto(Registo *reg) { registos.push_back(reg); }
 	int tempo_aluguer();
 	int num_aluguer();
+	void remove_bici(int id);
 
 	friend ostream& operator<<(ostream &o, Utilizador &user);
 
