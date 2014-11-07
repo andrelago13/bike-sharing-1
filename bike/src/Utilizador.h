@@ -1,9 +1,4 @@
-/*
- * Utilizador.h
- *
- *  Created on: 31/10/2014
- *      Author: edgar
- */
+
 #ifndef UTILIZADOR_H_
 #define UTILIZADOR_H_
 
