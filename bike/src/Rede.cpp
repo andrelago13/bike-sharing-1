@@ -767,35 +767,108 @@ int Rede::menu_mngr_bikes()
 
 	int option;
 	get_option(option, 0, 7);
+	vector<Bicicleta *> bikes, bikes_dispo, bikes_avariadas;
+	bool imprimiu;
 
 	switch (option)
 	{
-	case 0:
-		return MENU_manager;
-	case 1: //nao esta a funcionar pq nao sei em que vetor se pega		
-		if (rented_bikes.size() == 0)
+	case 1:	
+		imprimiu = false;
+		for (unsigned int i = 0; i < empresas.size(); i++)
 		{
-			cout << endl << "There are no bikes." << endl << endl;
-			system("pause");
-			return MENU_mngr_bikes;
+			bikes = empresas[i].getBicicletas();
+			for (unsigned int i = 0; i < bikes.size(); i++)
+			{
+				if (!imprimiu)
+				{
+					imprimiu = true;
+					cout << endl << "===> List of all bikes" << endl << endl;
+				}
+				cout << bikes[i]->imprime() << endl;
+			}
 		}
 
+		if (!imprimiu)
+		{
+			cout << endl << "There are no bikes in the network, registered by supplying companies";
+		}
+		cout << endl << endl;
+		system("pause");
+		return MENU_mngr_bikes;
+	case 2:
+		for (unsigned int i = 0; i < postos.size(); i++)
+		{
+			bikes = postos[i]->getDisponiveis();
+			bikes_dispo.insert(bikes_dispo.end(), bikes.begin(), bikes.end());
+		}
+
+		if (bikes_dispo.size() == 0)
+			cout << endl << " There are no bikes available.";
+		else
+		{
+			cout << endl << "===> List of available bikes." << endl << endl;
+			for (unsigned int i = 0; i < bikes_dispo.size(); i++)
+			{
+				cout << bikes_dispo[i]->imprime() << endl;
+			}
+		}
+		cout << endl << endl;
+		system("pause");
+		return MENU_mngr_bikes;
+	case 3:
+		for (unsigned int i = 0; i < postos.size(); i++)
+		{
+			bikes = postos[i]->getAvariadas();
+			bikes_avariadas.insert(bikes_avariadas.end(), bikes.begin(), bikes.end());
+		}
+
+		if (bikes_avariadas.size() == 0)
+			cout << endl << " There are no broken bikes.";
+		else
+		{
+			cout << endl << "===> List of broken bikes." << endl << endl;
+			for (unsigned int i = 0; i < bikes_avariadas.size(); i++)
+			{
+				cout << bikes_avariadas[i]->imprime() << endl;
+			}
+		}
+		cout << endl << endl;
+		system("pause");
+		return MENU_mngr_bikes;
+	case 4:
 		clear_screen();
 		print_menu_header();
-		cout << endl << "===> List of all bikes" << endl << endl;
-		for (unsigned int i = 0; i < rented_bikes.size(); i++)
+		
+		if (rented_bikes.size() == 0)
+			cout << endl << " There are no bikes rented by occasional users." << endl << endl;
+		else
 		{
-			cout << *rented_bikes[i] << endl;
+			cout << endl << "===> Bikes currently rented by occasional users :" << endl << endl;
+			for (unsigned int i = 0; i < rented_bikes.size(); i++)
+			{
+				cout << rented_bikes[i]->imprime() << endl;
+			}
 		}
+
+		if (rented_bikes_freq.size() == 0)
+			cout << endl << " There are no bikes rented by registered users." << endl << endl;
+		else
+		{
+			cout << endl << "===> Bikes currently rented by registered users :" << endl << endl;
+			for (unsigned int i = 0; i < rented_bikes_freq.size(); i++)
+			{
+				cout << rented_bikes_freq[i]->imprime() << endl;
+			}
+		}
+
 		cout << endl;
 		system("pause");
-		return MENU_mngr_users;
-
-	case 2:
-
+		return MENU_mngr_bikes;
+	case 5:
+		system("pause");
 	}
 
-	return MENU_manager;
+	return MENU_mngr_bikes;
 }
 
 int Rede::menu_mngr_logs()

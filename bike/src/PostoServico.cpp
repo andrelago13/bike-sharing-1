@@ -207,3 +207,12 @@ bool PostoServico::removeutilizador(string user)		//remove utilizador do posto d
 
 	return true;
 }
+
+void PostoServico::arranja_bicicletas()
+{
+	for (unsigned int i = 0; i < avariadas.size(); i++)
+	{
+		disponiveis.push_back(avariadas[i]);
+		avariadas.erase(avariadas.begin());
+	}
+}

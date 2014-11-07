@@ -48,6 +48,7 @@ public:
 	void setPreencheOcup(int lug);		
 	bool removebicicleta(unsigned int id_bike);
 	bool removeutilizador(string user);
+	void arranja_bicicletas();
 };
 
 #endif /* POSTOSERVICO_H_ */
