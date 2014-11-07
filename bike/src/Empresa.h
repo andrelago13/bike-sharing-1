@@ -24,6 +24,7 @@ public:
 	void setBicicletas(const vector<Bicicleta*> bicicletas);
 	void remove_bicis(unsigned int id);
 	void show_specs();
+	void setNome(string novo_nome);
 };
 
 #endif /* EMPRESA_H_ */

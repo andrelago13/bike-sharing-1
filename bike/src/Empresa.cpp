@@ -71,7 +71,6 @@ void Empresa::remove_bicis(unsigned int id)			// remove uma bicicleta da empresa
 		if (id == (*it)->getID())
 		{
 			bikes.erase(it);
-			it--;
 			break;
 		}
 		it++;
@@ -101,4 +100,9 @@ int Empresa::num_users() const		// devolve o numero de utilizadores registados n
 	}
 
 	return nomes.size();
+}
+
+void Empresa::setNome(string novo_nome)
+{
+	nome = novo_nome;
 }

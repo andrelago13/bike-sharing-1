@@ -60,7 +60,7 @@ int Rede::menu_system()
 				menu = menu_manager();
 				break;
 			case MENU_mngr_supplyers:
-				menu = menu_mngr_users();
+				menu = menu_mngr_supplyers();
 				break;
 			case MENU_mngr_spots:
 				menu = menu_mngr_spots();
@@ -707,7 +707,6 @@ int Rede::createUser(string nome)
 	return 0;
 }
 
-// TO-DO //
 int Rede::menu_mngr_supplyers()
 {
 	print_menu_header();
@@ -717,39 +716,178 @@ int Rede::menu_mngr_supplyers()
 	cout << " 2 - Add new supplier" << endl;
 	cout << " 3 - Edit existing supplier" << endl;
 	cout << " 4 - Delete supplier" << endl;
+	cout << " 5 - List all bikes for a supplyer" << endl;
 	cout << " 0 - Return to previous menu" << endl;
 
 	int option, index;
-	get_option(option, 0, 4);
+	get_option(option, 0, 5);
 	string nome;
+	Empresa emp;
+	vector<int> id_s;
+	vector<Bicicleta *> bicis;
 
 	switch (option)
 	{
-	case 0:
-		return MENU_manager;
 	case 1:
-		// List suppliers
+		if (empresas.size() == 0)
+		{
+			cout << endl << " There are no registered supplyers." << endl << endl;
+			system("pause");
+			return MENU_mngr_supplyers;
+		}
+
+		cout << endl << "===> List of supplyers:" << endl << endl;
+		for (unsigned int i = 0; i < empresas.size(); i++)
+		{
+			cout << " -> " << empresas[i].getNome() << endl;
+		}
+		cout << endl;
+		system("pause");
+		return MENU_mngr_supplyers;
+
 	case 2:
 		cout << endl << " Insert new supplier's name : ";
 		getline(cin, nome);
-		// Adicionar nova empresa ao vetor
 
-		return MENU_manager;
+		for (unsigned int i = 0; i < empresas.size(); i++)
+		{
+			if (empresas[i].getNome() == nome)
+			{
+				cout << endl << " There already is a supplyer with that name." << endl << endl;
+				system("pause");
+				return MENU_mngr_supplyers;
+			}
+		}
+		
+		emp = Empresa(nome);
+		empresas.push_back(emp);
+
+		cout << endl << endl << " Supplyer added to the network." << endl << endl;
+		system("pause");
+		return MENU_mngr_supplyers;
+
 	case 3:
-		// Edit supplier
+		cout << endl << " Please insert name of supplyer to edit : ";
+		getline(cin, nome);
 
-		return MENU_manager;
+		for (unsigned int i = 0; i < empresas.size(); i++)
+		{
+			if (empresas[i].getNome() == nome)
+			{
+				cout << endl << " Insert new supplyer name : ";
+				getline(cin, nome);
+
+				for (unsigned int j = 0; j < empresas.size(); j++)
+				{
+					if ((empresas[j].getNome() == nome) && (j != i))
+					{
+						cout << endl << " There already is a supplyer with that name." << endl << endl;
+						system("pause");
+						return MENU_mngr_supplyers;
+					}
+				}
+
+				empresas[i].setNome(nome);
+				cout << endl << endl << " Supplyer edited successfully." << endl << endl;
+				system("pause");
+				return MENU_mngr_supplyers;
+			}
+		}
+
+		cout << endl << endl << " No supplyer was found with that name." << endl << endl;
+		system("pause");
+		return MENU_mngr_supplyers;
+
 	case 4:
 		cout << endl << " Insert the name of the supplier to delete : ";
 		getline(cin, nome);
-		
-		// Delete supplier
 
-		return MENU_manager;
+		index = -1;
+		for (unsigned int i = 0; i < empresas.size(); i++)
+		{
+			if (empresas[i].getNome() == nome)
+			{
+				index = i;
+			}
+		}
+
+		if (index == -1)
+		{
+			cout << endl << endl << " No supplyer was found with that name." << endl << endl;
+			system("pause");
+			return MENU_mngr_supplyers;
+		}
+
+		bicis = empresas[index].getBicicletas();
+		for (unsigned int i = 0; i < bicis.size(); i++)
+		{
+			id_s.push_back(bicis[i]->getID());
+		}
+
+		for (unsigned int i = 0; i < id_s.size(); i++)
+		{
+			if (is_busy(id_s[i], false).size() != 0)
+			{
+				cout << endl << " It is impossible to delete this supplyer because one or more bikes are currently being rented." << endl << endl;
+				system("pause");
+				return MENU_mngr_supplyers;
+			}
+		}
+
+		for (unsigned int i = 0; i < id_s.size(); i++)
+		{
+			for (unsigned int j = 0; j < utilizadores.size(); j++)
+				utilizadores[j]->remove_bici(id_s[i]);
+			for (unsigned int j = 0; j < postos.size(); j++)
+				postos[j]->removebicicleta(id_s[i]);
+		}
+
+		empresas.erase(empresas.begin() + index);
+		
+		cout << endl << " Supplyer successfully removed." << endl << endl;
+		system("pause");
+		return MENU_mngr_supplyers;
+
+	case 5:
+		cout << endl << " Insert the name of the supplier to list : ";
+		getline(cin, nome);
+
+		index = -1;
+		for (unsigned int i = 0; i < empresas.size(); i++)
+		{
+			if (empresas[i].getNome() == nome)
+			{
+				index = i;
+				bicis = empresas[i].getBicicletas();
+			}
+		}
+
+		if (index == -1)
+		{
+			cout << endl << endl << " No supplyer was found with that name." << endl << endl;
+			system("pause");
+			return MENU_mngr_supplyers;
+		}
+
+		if (bicis.size() == 0)
+		{
+			cout << endl << endl << " This supplyer has no bikes." << endl << endl;
+			system("pause");
+			return MENU_mngr_supplyers;
+		}
+
+		cout << endl;
+		for (unsigned int i = 0; i < bicis.size(); i++)
+		{
+			cout << bicis[i]->imprime() << endl;
+		}
+		cout << endl;
+		system("pause");
+		return MENU_mngr_supplyers;
 	}
 
 
-	return MENU_start;
+	return MENU_manager;
 }
 
 int Rede::menu_mngr_bikes()
@@ -882,6 +1020,15 @@ int Rede::menu_mngr_bikes()
 		cout << endl << " Please insert bike ID : ";
 		id = readInt();
 
+		nome = is_busy(id, true);
+
+		if (nome.size() != 0)
+		{
+			cout << endl << endl;
+			system("pause");
+			return MENU_mngr_bikes;
+		}
+
 		apagou = false;
 		for (unsigned int i = 0; i < empresas.size(); i++)
 		{
@@ -903,15 +1050,6 @@ int Rede::menu_mngr_bikes()
 			return MENU_mngr_bikes;
 		}
 
-		nome = is_busy(id, true);
-
-		if (nome.size() == 0)
-		{
-			cout << endl << endl;
-			system("pause");
-			return MENU_mngr_bikes;
-		}
-
 		for (unsigned int i = 0; i < utilizadores.size(); i++)
 		{
 			utilizadores[i]->remove_bici(id);
@@ -921,6 +1059,10 @@ int Rede::menu_mngr_bikes()
 		{
 			postos[i]->removebicicleta(id);
 		}
+
+		cout << endl << " Bike successfully removed" << endl << endl;
+		system("pause");
+		return MENU_mngr_bikes;
 	}
 
 	return MENU_manager;
@@ -1423,11 +1565,13 @@ int Rede::create_add_bike()
 
 	cout << endl << " Please indicate the id of the post to insert the bike : ";
 	posto_id = readInt();
+	found = false;
 
 	for (unsigned int i = 0; i < postos.size(); i++)
 	{
 		if (postos[i]->getID() == posto_id)
 		{
+			found = true;
 			if (postos[i]->getEspacoLivre() <= 0)
 			{
 				cout << " That post has no room for one more bike.";
@@ -1441,6 +1585,12 @@ int Rede::create_add_bike()
 			empresas[index].adicionaBicicleta(bike_ptr);
 			postos[i]->adicionabicicleta(bike_ptr);
 		}
+	}
+
+	if (!found)
+	{
+		cout << endl << " No service post with that ID was found";
+		return -1;
 	}
 
 	cout << endl << " Bike added successfully.";

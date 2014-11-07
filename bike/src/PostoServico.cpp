@@ -172,46 +172,35 @@ bool PostoServico::removebicicleta(unsigned int id_bike)	//remove bicicleta do v
 	vector<Bicicleta*> avariad = PostoServico::getAvariadas();		// se não encontrar nas disponiveis, procura nas avariadas e apaga
 	vector<Bicicleta*>::iterator ut = avariad.begin();
 
-	if (utils.size() == 0)
+	for (unsigned int i = 0; i < utils.size(); i++)
 	{
-		cout << "No registers available" << endl;
-		return false;
+		if (utils[i]->ID_Bicicleta == id_bike)
+		{
+			utils.erase(utils.begin() + i);
+		}
+	}
+	setUtilizacao(utils);
+
+	for (unsigned int i = 0; i < dispon.size(); i++)
+	{
+		if (dispon[i]->getID() == id_bike)
+		{
+			dispon.erase(dispon.begin() + i);
+			setDisponiveis(dispon);
+			return true;
+		}
 	}
 
-		while (it != utils.end())
+	for (unsigned int i = 0; i < avariad.size(); i++)
+	{
+		if (avariad[i]->getID() == id_bike)
 		{
-			if ((*it)->ID_Bicicleta == id_bike)
-				{
-					utils.erase(it);
-					it--;
-					setUtilizacao(utils);
-				}
-			it++;
+			avariad.erase(avariad.begin() + i);
+			setAvariadas(avariad);
+			return true;
 		}
-
-		while (ot != dispon.end())
-		{
-			if ((*ot)->getID() == id_bike)
-			{
-				dispon.erase(ot);
-				ot--;
-				setDisponiveis(dispon);
-				return true;
-			}
-			ot++;
-		}
-
-		while (ut != avariad.end())
-		{
-			if ((*ut)->getID() == id_bike)
-			{
-				avariad.erase(ut);
-				ut--;
-				setAvariadas(avariad);
-				return true;
-			}
-			ut++;
-		}
+	}
+	return false;
 }
 
 bool PostoServico::removeutilizador(string user)		//remove utilizador do posto de serviço 
