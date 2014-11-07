@@ -18,7 +18,7 @@ int main()
 	Bicicleta *ptr = new Bicicleta();
 	*ptr = bici;
 
-	PostoServico posto(123, 2, 10);
+	PostoServico posto(123, 0, 10);
 	posto.adicionabicicleta(ptr);
 
 	PostoServico *ptr2 = new PostoServico;

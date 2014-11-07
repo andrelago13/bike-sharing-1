@@ -93,9 +93,10 @@ void PostoServico::adicionabicicleta(Bicicleta *bi1)
 		setMaisOcup(1);
 	}
 	else
+	{
 		disponiveis.push_back(bi1);
 		setMaisOcup(1);
-
+	}
 }
 
 void PostoServico::adicionaDisponivel(Bicicleta *bi1)

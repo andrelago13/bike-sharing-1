@@ -1220,7 +1220,44 @@ int Rede::menu_mngr_logs()
 // TO-DO //
 int Rede::menu_mngr_spots()
 {
-	return MENU_start;
+	print_menu_header();
+
+	cout << endl << endl << "===> Please select an option:" << endl;
+	cout << " 1 - Show all service posts" << endl;
+	cout << " 2 - Add a new service post" << endl;
+	cout << " 3 - Edit a service post" << endl;
+	cout << " 4 - Delete a service post" << endl;
+	cout << " 5 - Repair a specific bike" << endl;
+	cout << " 6 - Repair all bikes in a service post" << endl;
+	cout << " 7 - List all bikes for a service post" << endl;
+	cout << " 0 - Return to the previous menu" << endl;
+
+	int option;
+	get_option(option, 0, 7);
+
+	switch (option)
+	{
+	case 1:
+		if (postos.size() == 0)
+		{
+			cout << endl << " There are no service posts." << endl << endl;
+			system("pause");
+			return MENU_mngr_spots;
+		}
+
+		cout << endl << "===> List of service posts : " << endl << endl;
+		for (unsigned int i = 0; i < postos.size(); i++)
+		{
+			cout << " -> " << postos[i]->getID() << " : " << postos[i]->getOcupacao() << "/" << postos[i]->getLotacao() << " bike slots taken" << endl;
+		}
+		cout << endl;
+		system("pause");
+		return MENU_mngr_spots;
+	}
+
+
+
+	return MENU_manager;
 }
 
 int Rede::menu_mngr_users()
