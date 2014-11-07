@@ -43,6 +43,7 @@ public:
 	bool existeUtilizador(string nome);
 	int tipoUser(string nome);
 	void addPosto(PostoServico *posto) { postos.push_back(posto); }
+	string is_busy(int id_bici, bool print) const;
 
 	// Menu system base functions
 	int menu_system();

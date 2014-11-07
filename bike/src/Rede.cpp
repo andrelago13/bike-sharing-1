@@ -1156,3 +1156,29 @@ int Rede::tipoUser(string nome)
 
 	return -1;
 }
+
+string Rede::is_busy(int id_bici, bool print) const
+{
+	for (unsigned int i = 0; i < curr_rentals.size(); i++)
+	{
+		if (rented_bikes[i]->getID() == id_bici)
+		{
+			if (print)
+				cout << " This bike is currently rented by occasional user " << curr_rentals[i]->nome_utilizador << endl;
+			return curr_rentals[i]->nome_utilizador;
+		}
+	}
+
+	for (unsigned int i = 0; i < utilizadores.size(); i++)
+	{
+		Registo *reg_ptr;
+		reg_ptr = utilizadores[i]->ultimoReg();
+
+		if ((reg_ptr != NULL) && (reg_ptr->ID_Bicicleta == id_bici) && (reg_ptr->ID_posto_chegada == 0))
+		{
+			if (print)
+				cout << " This bike is currently rented by registered user " << utilizadores[i]->getNome() << endl;
+			return utilizadores[i]->getNome();;
+		}
+	}
+}
