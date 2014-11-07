@@ -1,9 +1,4 @@
-/*
- * Registo.h
- *
- *  Created on: 31/10/2014
- *      Author: edgar
- */
+
 #ifndef REGISTO_H_
 #define REGISTO_H_
 

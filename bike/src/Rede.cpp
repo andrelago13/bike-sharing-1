@@ -25,6 +25,7 @@ int Rede::addUser(Utilizador user) //função adiciona utilizador ao vetor utiliza
 	Utilizador *ptr = new Utilizador;
 	*ptr = user;
 	utilizadores.push_back(ptr);
+	cout << "User created sucessfully!";
 	return 0;
 }
 
@@ -384,7 +385,7 @@ int Rede::menu_ocUsr()
 	return MENU_start;
 }
 
-int Rede::menu_manager()
+int Rede::menu_manager() //menu relativo à parte de configurações
 {
 	print_menu_header();
 	cout << "===> Management section" << endl << endl << "Select an option:" << endl;
@@ -400,7 +401,7 @@ int Rede::menu_manager()
 	get_option(option, 0, 6);
 	string pass;
 
-	switch (option)
+	switch (option)//opções de ida para cada uma das escolhas feitas pelo utilizador
 	{
 	case 1:
 		return MENU_mngr_supplyers;
@@ -432,7 +433,9 @@ int Rede::menu_manager()
 	return MENU_start;
 }
 
-int Rede::menu_regUsr_logged(Utilizador *user)
+int Rede::menu_regUsr_logged(Utilizador *user)	//menu existente para os utilizadores registados poderem efetuar
+												//todas as ações que pretenderem em relação as bicicletas
+												// (alugar, retornar, etc.) bem como informações da sua conta
 {
 	while (true)
 	{
@@ -698,7 +701,7 @@ int Rede::createUser(string nome)
 	Utilizador *ptr = new Utilizador;
 	*ptr = usr;
 	utilizadores.push_back(ptr);
-
+	cout << endl << "User created sucessfully!" << endl;
 	return 0;
 }
 
@@ -747,7 +750,7 @@ int Rede::menu_mngr_supplyers()
 	return MENU_start;
 }
 
-// TO-DO //
+// TO-DO // ongoing
 int Rede::menu_mngr_bikes()
 {
 	print_menu_header();
@@ -767,7 +770,29 @@ int Rede::menu_mngr_bikes()
 
 	switch (option)
 	{
-		// COMPLETAR
+	case 0:
+		return MENU_manager;
+	case 1: //nao esta a funcionar pq nao sei em que vetor se pega		
+		if (rented_bikes.size() == 0)
+		{
+			cout << endl << "There are no bikes." << endl << endl;
+			system("pause");
+			return MENU_mngr_bikes;
+		}
+
+		clear_screen();
+		print_menu_header();
+		cout << endl << "===> List of all bikes" << endl << endl;
+		for (unsigned int i = 0; i < rented_bikes.size(); i++)
+		{
+			cout << *rented_bikes[i] << endl;
+		}
+		cout << endl;
+		system("pause");
+		return MENU_mngr_users;
+
+	case 2:
+
 	}
 
 	return MENU_manager;
