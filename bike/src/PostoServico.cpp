@@ -42,16 +42,6 @@ int PostoServico::getEspacoLivre() const
 	return (PostoServico::getLotacao() - PostoServico::getOcupacao());
 }
 
-void PostoServico::setMaisOcup(int ocup)
-{
-	ocupacao = (PostoServico::getDisponiveis()).size() + (PostoServico::getAvariadas()).size() + ocup;
-}
-
-void PostoServico::setMenosOcup(int ocup)
-{
-	ocupacao = (PostoServico::getDisponiveis()).size() + (PostoServico::getAvariadas()).size() - ocup;
-}
-
 vector<Bicicleta*> PostoServico::getDisponiveis()
 {
 	return disponiveis;
@@ -70,13 +60,13 @@ vector<Registo*> PostoServico::getUtlizacao()
 void PostoServico::setDisponiveis(vector<Bicicleta*> disponiveis)
 {
 		this ->disponiveis = disponiveis;
-		ocupacao = lotacao - disponiveis.size() - avariadas.size();		// ou setMaisOcup. É indiferente visto que somar ou subtrair 0 é igual.
+		ocupacao = disponiveis.size() + avariadas.size();		
 }
 
 void PostoServico::setAvariadas(vector<Bicicleta*> avariadas)
 {
-		this->avariadas = avariadas;			// ou setMaisOcup. É indiferente visto que somar ou subtrair 0 é igual.
-		ocupacao = lotacao - disponiveis.size() - avariadas.size();
+		this->avariadas = avariadas;			
+		ocupacao = disponiveis.size() + avariadas.size();
 }
 
 void PostoServico::setUtilizacao(vector<Registo*> utilizacao)

@@ -43,9 +43,7 @@ public:
 	void setAvariadas(vector<Bicicleta*> avariadas);
 	void setUtilizacao(vector<Registo*> utilizacao);
 	bool aluga(Bicicleta *bi1);			
-	bool devolve(Bicicleta *bi1);		
-	void setMenosOcup(int ocup);		
-	void setMaisOcup(int ocup);		
+	bool devolve(Bicicleta *bi1);	
 	bool removebicicleta(unsigned int id_bike);
 	bool removeutilizador(string user);
 	void arranja_bicicletas();
