@@ -222,3 +222,13 @@ void PostoServico::arranja_bicicletas()
 		avariadas.erase(avariadas.begin());
 	}
 }
+
+void PostoServico::setID(int id)
+{
+	iD = id;
+}
+
+void PostoServico::setLotacao(int lot)
+{
+	lotacao = lot;
+}

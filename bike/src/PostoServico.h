@@ -35,6 +35,8 @@ public:
 	void setDisponiveis(vector<Bicicleta*> disponiveis);
 	void setAvariadas(vector<Bicicleta*> avariadas);
 	void setUtilizacao(vector<Registo*> utilizacao);
+	void setID(int id);
+	void setLotacao(int lot);
 	bool aluga(Bicicleta *bi1);			
 	bool devolve(Bicicleta *bi1);	
 	bool removebicicleta(unsigned int id_bike);
