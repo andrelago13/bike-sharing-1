@@ -536,7 +536,7 @@ int Rede::menu_regUsr_logged(Utilizador *user)
 			continue;
 		case 2:
 			reg_ptr = user->ultimoReg();
-			if ((reg_ptr->ID_posto_chegada != 0) || (reg_ptr->ID_posto_origem == 0))
+			if ((reg_ptr == NULL) || (reg_ptr->ID_posto_chegada != 0) || (reg_ptr->ID_posto_origem == 0))
 			{
 				cout << endl << " You have no bike to return" << endl << endl;
 				system("pause");
@@ -773,7 +773,6 @@ int Rede::menu_mngr_bikes()
 	return MENU_manager;
 }
 
-// TO-DO //
 int Rede::menu_mngr_logs()
 {
 	print_menu_header();
@@ -786,9 +785,10 @@ int Rede::menu_mngr_logs()
 	cout << " 5 - Show most frequent service user" << endl;
 	cout << " 0 - Return to the previous menu" << endl;
 
-	int option, soma;
+	int option, soma, max;
 	get_option(option, 0, 5);
 	string name;
+	Registo *reg_ptr;
 	vector<Registo *> regs;
 	vector<Utilizador*> users;
 	vector<Bicicleta*> bici;
@@ -854,6 +854,67 @@ int Rede::menu_mngr_logs()
 		}
 
 		cout << " There is no company with that name" << endl << endl;
+		system("pause");
+		return MENU_mngr_logs;
+	case 4:
+		clear_screen();
+		print_menu_header();
+		cout << endl;
+		if (curr_rentals.size() == 0)
+			cout << " There are no current rentals from occasional users." << endl << endl;
+		else
+		{
+			cout << "===> Rentals from occasional users : " << endl << endl;
+			for (unsigned int i = 0; i < curr_rentals.size(); i++)
+			{
+				curr_rentals[i]->print_reg();
+				cout << endl;
+			}
+		}
+		
+		for (unsigned int i = 0; i < utilizadores.size(); i++)
+		{
+			reg_ptr = utilizadores[i]->ultimoReg();
+			if ((reg_ptr != NULL) && (reg_ptr->ID_posto_chegada == 0))
+			{
+				regs.push_back(reg_ptr);
+			}
+		}
+
+		if (regs.size() == 0)
+			cout << " There are no current rentals from registered users." << endl << endl;
+		else
+		{
+			cout << "===> Rentals from registered users : " << endl << endl;
+			for (unsigned int i = 0; i < regs.size(); i++)
+			{
+				regs[i]->print_reg();
+				cout << endl;
+			}
+		}
+
+		cout << endl;
+		system("pause");
+		return MENU_mngr_logs;
+	case 5:
+		if (utilizadores.size() == 0)
+			cout << " There are no registered users. This log is impossible to calculate." << endl << endl;
+		else
+		{
+			max = 0;
+			for (unsigned int i = 0; i < utilizadores.size(); i++)
+			{
+				soma = utilizadores[i]->num_aluguer();
+				if (soma >= max)
+				{
+					name = utilizadores[i]->getNome();
+					max = soma;
+				}
+			}
+
+			cout << " The most frequent service user is " << name << endl << endl;
+		}
+
 		system("pause");
 		return MENU_mngr_logs;
 	}
