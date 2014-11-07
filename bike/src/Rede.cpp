@@ -1217,7 +1217,6 @@ int Rede::menu_mngr_logs()
 	return MENU_manager;
 }
 
-// TO-DO //
 int Rede::menu_mngr_spots()
 {
 	print_menu_header();
@@ -1232,9 +1231,11 @@ int Rede::menu_mngr_spots()
 	cout << " 7 - List all bikes for a service post" << endl;
 	cout << " 0 - Return to the previous menu" << endl;
 
-	int option, id, lotacao, index;
+	int option, id, lotacao, index, id_bici;
 	get_option(option, 0, 7);
 	PostoServico posto, *posto_ptr;
+	vector<Bicicleta *> bicis, bicis2;
+	bool result;
 
 
 	switch (option)
@@ -1325,7 +1326,159 @@ int Rede::menu_mngr_spots()
 			return MENU_mngr_spots;
 		}
 
+		postos[index]->setID(id);
+		postos[index]->setLotacao(lotacao);
+
+		cout << " Service post successfully edited" << endl << endl;
+		system("pause");
+		return MENU_mngr_spots;
+	case 4:
+		cout << endl << " Enter post ID : ";
+		id = readInt();
+		index = -1;
+
+		for (unsigned int i = 0; i < postos.size(); i++)
+		{
+			if (postos[i]->getID() == id)
+			{
+				index = i;
+				break;
+			}
+		}
+
+		if (index == -1)
+		{
+			cout << endl << " There is no post with that id." << endl << endl;
+			system("pause");
+			return MENU_mngr_spots;
+		}
+
+		bicis = postos[index]->getDisponiveis();
+		bicis2 = postos[index]->getAvariadas();
+		bicis.insert(bicis.end(), bicis2.begin(), bicis2.end());
+
+		for (unsigned int i = 0; i < bicis.size(); i++)
+		{
+			for (unsigned int i = 0; i < utilizadores.size(); i++)
+				utilizadores[i]->remove_bici(id);
+
+			for (unsigned int j = 0; j < empresas.size(); j++)
+				empresas[j].remove_bicis(bicis[i]->getID());
+		}
+
+		postos.erase(postos.begin() + index);
+
+		cout << endl << " Service post deleted" << endl << endl;
+		system("pause");
+		return MENU_mngr_spots;
+	case 5:
+		cout << endl << " Enter post ID : ";
+		id = readInt();
+		index = -1;
+
+		for (unsigned int i = 0; i < postos.size(); i++)
+		{
+			if (postos[i]->getID() == id)
+			{
+				index = i;
+				break;
+			}
+		}
+
+		if (index == -1)
+		{
+			cout << endl << " There is no post with that id." << endl << endl;
+			system("pause");
+			return MENU_mngr_spots;
+		}
+
+		cout << endl << " Enter bike ID : ";
+		id_bici = readInt();
+
+		result = postos[index]->arranja_bicicleta(id_bici);
 		
+		if (!result)
+			cout << endl << " There is no bike with that ID in this post." << endl << endl;
+		else
+			cout << endl << " Bike repaired." << endl << endl;
+
+		system("pause");
+		return MENU_mngr_spots;
+
+	case 6:
+		cout << endl << " Enter post ID : ";
+		id = readInt();
+
+		for (unsigned int i = 0; i < postos.size(); i++)
+		{
+			if (postos[i]->getID() == id)
+			{
+				postos[i]->arranja_bicicletas();
+				cout << " All bikes were repaired in post " << id << endl << endl;
+				system("pause");
+				return MENU_mngr_spots;
+			}
+		}
+
+		cout << endl << " There is no post with that id." << endl << endl;
+		system("pause");
+		return MENU_mngr_spots;
+
+	case 7:
+		cout << endl << " Enter post ID : ";
+		id = readInt();
+		index = -1;
+
+		for (unsigned int i = 0; i < postos.size(); i++)
+		{
+			if (postos[i]->getID() == id)
+			{
+				index = i;
+				break;
+			}
+		}
+
+		if (index == -1)
+		{
+			cout << endl << " There is no post with that id." << endl << endl;
+			system("pause");
+			return MENU_mngr_spots;
+		}
+
+		bicis = postos[index]->getDisponiveis();
+		bicis2 = postos[index]->getAvariadas();
+
+		if ((bicis.size() == 0) && (bicis2.size() == 0))
+		{
+			cout << endl << " This post has no bikes." << endl << endl;
+			system("pause");
+			return MENU_mngr_spots;
+		}
+
+		clear_screen();
+		print_menu_header();
+
+		if (bicis.size() == 0)
+			cout << endl << " There are no available bikes in this post";
+		else
+		{
+			cout << endl << "===> List of available bikes in this post" << endl << endl;
+			for (unsigned int i = 0; i < bicis.size(); i++)
+				cout << " -> " << bicis[i]->imprime() << endl;
+		}
+
+		if (bicis2.size() == 0)
+			cout << endl << " There are no broken bikes in this post";
+		else
+		{
+			cout << endl << "===> List of broken bikes in this post" << endl << endl;
+			for (unsigned int i = 0; i < bicis2.size(); i++)
+				cout << " -> " << bicis2[i]->imprime() << endl;
+		}
+
+		cout << endl << endl;
+		system("pause");
+		return MENU_mngr_spots;
 	}
 
 
