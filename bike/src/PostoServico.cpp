@@ -227,7 +227,7 @@ bool PostoServico::arranja_bicicleta(int id_bike)
 {
 	for (unsigned int i = 0; i < avariadas.size(); i++)
 	{
-		if (avariadas[i]->getID == id_bike)
+		if (avariadas[i]->getID() == id_bike)
 		{
 			disponiveis.push_back(avariadas[i]);
 			avariadas.erase(avariadas.begin() + i);

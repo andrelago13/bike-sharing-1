@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include "Registo.h"
 
 using namespace std;
 
@@ -20,6 +21,8 @@ void insertionSort(vector<Comparable> &v);
 
 string readPassword();
 int readInt();
+
+void insert_no_repeat(vector<Registo *> &v1, vector<Registo *> &v2);
 
 
 #endif /* TOOLS_H_ */

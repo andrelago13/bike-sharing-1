@@ -45,6 +45,7 @@ public:
 	void addPosto(PostoServico *posto) { postos.push_back(posto); }
 	string is_busy(int id_bici, bool print) const;
 	int create_add_bike();
+	vector<Registo *> get_regs() const;
 
 	// Menu system base functions
 	int menu_system();

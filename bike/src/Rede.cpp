@@ -2,6 +2,7 @@
 #include "Tools.h"
 #include <iostream>
 #include <conio.h>
+#include <fstream>
 
 using namespace std;
 
@@ -36,6 +37,8 @@ int Rede::menu_system()
 	Each menu is assigned a number, its ID. Every menu has a corresponding function. This function's return
 	specifies which menu must be loaded next, according to the user's actions during it's execution. For example,
 	if a menu function wishes to return to the main menu, it must return 0, main menu's ID.*/
+
+	//loadInfo();
 
 	int menu = 0;
 
@@ -94,6 +97,7 @@ int Rede::menu_system()
 
 	menu_exit_prog();
 	system("pause");
+	storeInfo();
 	return 0;
 }
 
@@ -205,6 +209,7 @@ int Rede::menu_regUsr() //menu onde se possibilita a entrada do utilizador(que s
 
 int Rede::menu_ocUsr()
 {
+	
 	print_menu_header();
 	cout << endl << endl << "===> Please select an option:" << endl;
 	cout << " 1 - Rent a bike" << endl;
@@ -1858,4 +1863,101 @@ int Rede::create_add_bike()
 
 	cout << endl << " Bike added successfully.";
 	return 0;
+}
+
+vector<Registo *> Rede::get_regs() const
+{
+	vector<Registo *> result;
+
+	for (unsigned int i = 0; i < postos.size(); i++)
+	{
+		insert_no_repeat(result, postos[i]->getUtlizacao());
+	}
+
+	for (unsigned int i = 0; i < utilizadores.size(); i++)
+	{
+		insert_no_repeat(result, utilizadores[i]->getRegs());
+	}
+
+	for (unsigned int i = 0; i < rented_bikes.size(); i++)
+	{
+		insert_no_repeat(result, rented_bikes[i]->getRegsBicis());
+	}
+
+	for (unsigned int i = 0; i < rented_bikes_freq.size(); i++)
+	{
+		insert_no_repeat(result, rented_bikes_freq[i]->getRegsBicis());
+	}
+
+	return result;
+}
+
+void Rede::storeInfo()
+{
+	/*ofstream rede_file;
+	rede_file.open("rede.txt");
+
+	rede_file << sys_password << endl;
+
+	for (unsigned int i = 0; i < curr_rentals.size(); i++)
+	{
+		rede_file << curr_rentals[i]->ID_Bicicleta << endl << curr_rentals[i]->ID_posto_origem
+			<< endl << curr_rentals[i]->ID_posto_chegada << endl << curr_rentals[i]->nome_utilizador
+			<< endl << curr_rentals[i]->levantamento.getDataStr() << endl << curr_rentals[i]->entrega.getDataStr() << endl;
+		if (curr_rentals[i]->ficou_avariada)
+			rede_file << 1 << endl;
+		else
+			rede_file << 0 << endl;
+	}
+
+	rede_file.close();
+
+	ofstream empresas_file;
+	empresas_file.open("rede_empresas.txt");
+	vector<Bicicleta *> bicis;
+	vector<Registo *> regs;
+
+	for (unsigned int i = 0; i < empresas.size(); i++)
+		empresas_file << empresas[i].getNome() << endl;
+
+	empresas_file.close;
+
+	ofstream postos_file;
+	postos_file.open("rede_postos.txt");
+
+	for (unsigned int i = 0; i < postos.size(); postos++)
+	{
+		postos_file << postos[i]->getID() << endl << postos[i]->getLotacao() << endl;
+		regs = postos[i]->getUtlizacao();
+		for (unsigned int j = 0; j < regs.size(); j++)
+		{
+			postos_file << regs[j]->ID_Bicicleta << endl << regs[j]->ID_posto_origem
+				<< endl << regs[j]->ID_posto_chegada << endl << regs[j]->nome_utilizador
+				<< endl << regs[j]->levantamento.getDataStr() << endl << regs[j]->entrega.getDataStr() << endl;
+			if (regs[j]->ficou_avariada)
+				postos_file << 1 << endl;
+			else
+				postos_file << 0 << endl;
+		}
+
+		postos_file << "-" << endl;
+
+		bicis = postos[i]->getAvariadas();
+		vector<Bicicleta *> bicis2 = postos[i]->getDisponiveis();
+		bicis.insert(bicis.end(), bicis2.begin(), bicis2.end());
+
+		for (unsigned int j = 0; j < bicis.size(); j++)
+		{
+			postos_file <<
+		}
+	}
+
+
+
+	postos_file.close();*/
+
+	ofstream main_file("rede.txt");
+
+	main_file << sys_password << endl;
+	
 }

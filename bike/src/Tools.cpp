@@ -139,3 +139,22 @@ int readInt()
 		return str_to_int(num_str);
 	return 0;
 }
+
+void insert_no_repeat(vector<Registo *> &v1, vector<Registo *> &v2)
+{
+	for (unsigned int i = 0; i < v2.size(); i++)
+	{
+		bool exists = false;
+		for (unsigned int j = 0; j < v1.size(); j++)
+		{
+			if (*v1[j] == *v2[1])
+			{
+				exists = true;
+				break;
+			}
+		}
+
+		if (!exists)
+			v1.push_back(v2[i]);
+	}
+}

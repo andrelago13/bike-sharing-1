@@ -43,3 +43,10 @@ Registo::Registo() //construtor por defeito de um registo em que todos os parâme
 	ID_posto_chegada = 0;
 	nome_utilizador = "";
 }
+
+bool operator==(const Registo reg1, const Registo reg2)
+{
+	if ((reg1.ID_Bicicleta == reg2.ID_Bicicleta) && (reg1.ID_posto_origem == reg2.ID_posto_origem) && (reg1.ID_posto_chegada == reg2.ID_posto_chegada) && (reg1.nome_utilizador == reg2.nome_utilizador) && (reg1.levantamento.getDataStr() == reg2.levantamento.getDataStr()) && (reg1.entrega.getDataStr() == reg2.entrega.getDataStr()) && (reg1.ficou_avariada == reg2.ficou_avariada))
+		return true;
+	return false;
+}
