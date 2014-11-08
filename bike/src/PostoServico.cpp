@@ -238,13 +238,3 @@ bool PostoServico::arranja_bicicleta(int id_bike)		// arranja uma bicicleta em e
 
 	return false;
 }
-
-void PostoServico::setID(int id)
-{
-	this->iD = id;
-}
-
-void PostoServico::setLotacao(int lot)
-{
-	lotacao = lot;
-}
