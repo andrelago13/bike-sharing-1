@@ -1,8 +1,10 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <sstream>
 #include "PostoServico.h"
 #include "Bicicleta.h"
+#include "Tools.h"
 
 
 using namespace std;
@@ -66,6 +68,7 @@ void Bicicleta::adicionaRegisto(Registo *reg1) //função adiciona um registo ao v
 {
 	regs.push_back(reg1);
 }
+
 bool Bicicleta::velocidades_valido(int veloc) //funçao retorna verdadeiro se as velocidades foram válidas ou falso se nao o foram
 {
 	if (veloc == velocidades)
@@ -272,4 +275,41 @@ bool Bicicleta::remove_util(string nome) //função que remove um utilizador do ve
 
 	setRegsBicis(result); //colocar o vetor resultado como o vetor de registos, agora sem o utilizador
 	return true;
+}
+
+string Bicicleta::get_str() const
+{
+	stringstream ss;
+	ss << id_num << endl << tipo << endl << tamanho << endl << velocidades << endl
+		<< preco << endl << empresa << endl;
+	if (avariada)
+		ss << "1" << endl;
+	else
+		ss << "0" << endl;
+
+	return ss.str();
+}
+
+void Bicicleta::make_str(string bike)
+{
+	stringstream ss(bike);
+	string temp;
+
+	getline(ss, temp);
+	id_num = str_to_int(temp);
+	getline(ss, temp);
+	tipo = temp;
+	getline(ss, temp);
+	tamanho = temp;
+	getline(ss, temp);
+	velocidades = str_to_int(temp);
+	getline(ss, temp);
+	preco = str_to_int(temp);
+	getline(ss, temp);
+	empresa = temp;
+	getline(ss, temp);
+	if (temp == "1")
+		avariada = true;
+	else
+		avariada = false;
 }

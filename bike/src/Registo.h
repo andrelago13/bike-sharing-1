@@ -25,6 +25,8 @@ public:
 	void print_sem_user() const;
 	Registo();
 	friend bool operator==(const Registo reg1, const Registo reg2);
+	string get_str() const;
+	void make_from_str(string reg);
 };
 
 

@@ -47,6 +47,9 @@ public:
 	void setTamanho(string tamanho);
 	void setVeloc(int velocidades);
 	bool remove_util(string nome);
+	string get_str() const;
+	void make_str(string bike);
+	void setEmpresa(string emp) { empresa = emp; }
 
 };
 

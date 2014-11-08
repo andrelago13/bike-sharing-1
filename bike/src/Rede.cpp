@@ -38,7 +38,7 @@ int Rede::menu_system()
 	specifies which menu must be loaded next, according to the user's actions during it's execution. For example,
 	if a menu function wishes to return to the main menu, it must return 0, main menu's ID.*/
 
-	//loadInfo();
+	loadInfo();
 
 	int menu = 0;
 
@@ -400,10 +400,11 @@ int Rede::menu_manager() //menu relativo à parte de configurações
 	cout << " 4 - Registered users" << endl;
 	cout << " 5 - Event logs" << endl;
 	cout << " 6 - Change system password" << endl;
+	cout << " 7 - Reset network" << endl;
 	cout << " 0 - Return to previous menu" << endl;
 
 	int option;
-	get_option(option, 0, 6);
+	get_option(option, 0, 7);
 	string pass;
 
 	switch (option)//opções de ida para cada uma das escolhas feitas pelo utilizador
@@ -433,6 +434,22 @@ int Rede::menu_manager() //menu relativo à parte de configurações
 		cout << endl << " Password successfully changed" << endl << endl;
 		system("pause");
 		return MENU_manager;
+	case 7:
+		cout << endl << " Are you sure you wish to reset the network system? (Y/N) ";
+
+		while (true)
+		{
+			char letter = _getch();
+			if (toupper(letter) == 'Y')
+			{
+				reset();
+				cout << endl << endl << " System and password have been reset." << endl << endl;
+				system("pause");
+				return MENU_start;
+			}
+			if (toupper(letter) == 'N')
+				return MENU_manager;
+		}
 	}
 
 	return MENU_start;
@@ -1793,13 +1810,8 @@ int Rede::create_add_bike()
 		tamanho = "adulto";
 		break;
 	}
-
-	cout << endl << endl << " Please indicate bike shifts : " << endl;
-	cout << " 1" << endl;
-	cout << " 2" << endl;
-	cout << " 3" << endl;
-	cout << " 4" << endl;
-	cout << " 5" << endl;
+	
+	cout << endl << endl << " Please indicate bike shifts (1-5)  : ";
 
 	get_option(option, 1, 5);
 
@@ -1847,6 +1859,7 @@ int Rede::create_add_bike()
 			}
 
 			Bicicleta bike(id, tipo, tamanho, velocidades, false, preco);
+			bike.setEmpresa(empresa);
 			Bicicleta *bike_ptr = new Bicicleta;
 			*bike_ptr = bike;
 
@@ -1892,72 +1905,345 @@ vector<Registo *> Rede::get_regs() const
 	return result;
 }
 
-void Rede::storeInfo()
+void Rede::assign_regs(vector<Registo *> &regs)
 {
-	/*ofstream rede_file;
-	rede_file.open("rede.txt");
-
-	rede_file << sys_password << endl;
-
-	for (unsigned int i = 0; i < curr_rentals.size(); i++)
+	for (unsigned int i = 0; i < postos.size(); i++)
 	{
-		rede_file << curr_rentals[i]->ID_Bicicleta << endl << curr_rentals[i]->ID_posto_origem
-			<< endl << curr_rentals[i]->ID_posto_chegada << endl << curr_rentals[i]->nome_utilizador
-			<< endl << curr_rentals[i]->levantamento.getDataStr() << endl << curr_rentals[i]->entrega.getDataStr() << endl;
-		if (curr_rentals[i]->ficou_avariada)
-			rede_file << 1 << endl;
-		else
-			rede_file << 0 << endl;
-	}
-
-	rede_file.close();
-
-	ofstream empresas_file;
-	empresas_file.open("rede_empresas.txt");
-	vector<Bicicleta *> bicis;
-	vector<Registo *> regs;
-
-	for (unsigned int i = 0; i < empresas.size(); i++)
-		empresas_file << empresas[i].getNome() << endl;
-
-	empresas_file.close;
-
-	ofstream postos_file;
-	postos_file.open("rede_postos.txt");
-
-	for (unsigned int i = 0; i < postos.size(); postos++)
-	{
-		postos_file << postos[i]->getID() << endl << postos[i]->getLotacao() << endl;
-		regs = postos[i]->getUtlizacao();
 		for (unsigned int j = 0; j < regs.size(); j++)
 		{
-			postos_file << regs[j]->ID_Bicicleta << endl << regs[j]->ID_posto_origem
-				<< endl << regs[j]->ID_posto_chegada << endl << regs[j]->nome_utilizador
-				<< endl << regs[j]->levantamento.getDataStr() << endl << regs[j]->entrega.getDataStr() << endl;
-			if (regs[j]->ficou_avariada)
-				postos_file << 1 << endl;
-			else
-				postos_file << 0 << endl;
+			if ((regs[j]->ID_posto_chegada == postos[i]->getID()) || (regs[j]->ID_posto_origem == postos[i]->getID()))
+				postos[i]->adicionaUtilizacao(regs[j]);
 		}
 
-		postos_file << "-" << endl;
+		vector<Bicicleta *> bikes = postos[i]->getBicicletas();
 
-		bicis = postos[i]->getAvariadas();
-		vector<Bicicleta *> bicis2 = postos[i]->getDisponiveis();
-		bicis.insert(bicis.end(), bicis2.begin(), bicis2.end());
-
-		for (unsigned int j = 0; j < bicis.size(); j++)
+		for (unsigned int j = 0; j < bikes.size(); j++)
 		{
-			postos_file <<
+			for (unsigned int k = 0; k < regs.size(); k++)
+			{
+				if (regs[k]->ID_Bicicleta == bikes[j]->getID())
+					bikes[j]->adicionaRegisto(regs[k]);
+			}
 		}
 	}
 
+	for (unsigned int i = 0; i < utilizadores.size(); i++)
+	{
+		for (unsigned int j = 0; j < regs.size(); j++)
+		{
+			if (regs[j]->nome_utilizador == utilizadores[i]->getNome())
+				utilizadores[i]->adicionaRegisto(regs[j]);
+		}
+	}
 
+	for (unsigned int i = 0; i < rented_bikes.size(); i++)
+	{
+		for (unsigned int j = 0; j < regs.size(); j++)
+		{
+			if (regs[j]->ID_Bicicleta == rented_bikes[i]->getID())
+				rented_bikes[i]->adicionaRegisto(regs[j]);
+		}
+	}
 
-	postos_file.close();*/
+	for (unsigned int i = 0; i < rented_bikes_freq.size(); i++)
+	{
+		for (unsigned int j = 0; j < regs.size(); j++)
+		{
+			if (regs[j]->ID_Bicicleta == rented_bikes_freq[i]->getID())
+				rented_bikes_freq[i]->adicionaRegisto(regs[j]);
+		}
+	}
+}
 
+void Rede::reset()
+{
+	empresas.clear();
+	postos.clear();
+	utilizadores.clear();
+	ocasionais.clear();
+	curr_rentals.clear();
+	rented_bikes.clear();
+	rented_bikes_freq.clear();
+	sys_password = "";
+}
+
+void Rede::storeInfo()
+{
+	/// Main file ///////////////////////////////////////////////////////////
 	ofstream main_file("rede.txt");
 
 	main_file << sys_password << endl;
-	
+	for (unsigned int i = 0; i < empresas.size(); i++)
+	{
+		main_file << empresas[i].getNome() << endl;
+	}
+
+	main_file << "-" << endl;
+	vector<Registo *> all_regs = get_regs();
+
+	for (unsigned int i = 0; i < all_regs.size(); i++)
+	{
+		string temp = all_regs[i]->get_str();
+		main_file << temp;
+	}
+
+	main_file << "#" << endl;
+
+	for (unsigned int i = 0; i < curr_rentals.size(); i++)
+	{
+		string temp = curr_rentals[i]->get_str();
+		main_file << temp;
+	}
+
+	main_file.close();
+
+	/// Spots file ///////////////////////////////////////////////////////////
+
+	ofstream spots_file("rede_spots.txt");
+
+	for (unsigned int i = 0; i < postos.size(); i++)
+	{
+		spots_file << postos[i]->getID() << endl << postos[i]->getLotacao() << endl;
+		vector<Bicicleta *> bicis = postos[i]->getBicicletas();
+
+		for (unsigned int j = 0; j < bicis.size(); j++)
+		{
+			spots_file << bicis[j]->get_str();
+		}
+		spots_file << "#" << endl;
+	}
+
+	spots_file.close();
+
+	/// Users file ///////////////////////////////////////////////////////////
+
+	ofstream user_file("rede_user.txt");
+
+	for (unsigned int i = 0; i < utilizadores.size(); i++)
+	{
+		user_file << utilizadores[i]->get_str();
+	}
+	for (unsigned int i = 0; i < ocasionais.size(); i++)
+	{
+		user_file << ocasionais[i]->get_str();
+	}
+
+	user_file.close();
+
+	/// Rented bikes file ///////////////////////////////////////////////////////////
+
+	ofstream bike_file("rede_bikes.txt");
+
+	for (unsigned int i = 0; i < rented_bikes.size(); i++)
+	{
+		bike_file << rented_bikes[i]->get_str();
+	}
+	bike_file << "#" << endl;
+	for (unsigned int i = 0; i < rented_bikes_freq.size(); i++)
+	{
+		bike_file << rented_bikes_freq[i]->get_str();
+	}
+
+	bike_file.close();
+}
+
+void Rede::loadInfo()
+{
+	/// Main file ///////////////////////////////////////////////////////////
+
+	ifstream main_file("rede.txt");
+
+	string temp;
+
+	getline(main_file, temp);
+	sys_password = temp;
+
+	while (main_file.peek() != ((int) '-'))
+	{
+		getline(main_file, temp);
+		Empresa emp(temp);
+		empresas.push_back(temp);
+	}
+
+	vector<Registo *> all_regs;
+
+	getline(main_file, temp);  // Para remover '-'
+
+	while (main_file.peek() != '#')
+	{
+		stringstream ss(ios_base::app | ios_base::out);
+		string temp;
+		ss.clear();
+		for (unsigned int i = 0; i < 7; i++)
+		{
+			getline(main_file, temp);
+			ss << temp << endl;
+		}
+		Registo reg, *reg_ptr;
+		reg.make_from_str(ss.str());
+		reg_ptr = new Registo;
+		*reg_ptr = reg;
+		all_regs.push_back(reg_ptr);
+	}
+
+	getline(main_file, temp);  // Para remover '#'
+
+	while ((main_file.peek() != EOF) || (!main_file.eof()))
+	{
+		stringstream ss;
+		string temp;
+		ss.clear();
+		for (unsigned int i = 0; i < 7; i++)
+		{
+			getline(main_file, temp);
+			ss << temp << endl;
+		}
+		Registo reg, *reg_ptr;
+		reg.make_from_str(ss.str());
+		reg_ptr = new Registo;
+		*reg_ptr = reg;
+		curr_rentals.push_back(reg_ptr);
+	}
+
+	main_file.close();
+
+	/// Spots file ///////////////////////////////////////////////////////////
+
+	ifstream spots_file("rede_spots.txt");
+
+
+	while ((spots_file.peek() != EOF) && (!spots_file.eof()))
+	{
+		string temp;
+		int id, lotacao;
+		getline(spots_file, temp);
+		id = str_to_int(temp);
+		getline(spots_file, temp);
+		lotacao = str_to_int(temp);
+
+		PostoServico posto(id, 0, lotacao);
+		PostoServico *posto_ptr;
+		posto_ptr = new PostoServico;
+		*posto_ptr = posto;
+
+		if (spots_file.peek() == '#')
+		{
+			postos.push_back(posto_ptr);
+			getline(spots_file, temp);  // para remover '#'
+			continue;
+		}
+
+		while ((spots_file.peek() != '#') && (spots_file.peek() != EOF) && (!spots_file.eof()))
+		{
+			stringstream ss;
+			for (int i = 0; i < 7; i++)
+			{
+				getline(spots_file, temp);
+				ss << temp << endl;
+			}
+			Bicicleta bici, *bici_ptr;
+			bici.make_str(ss.str());
+			bici_ptr = new Bicicleta;
+			*bici_ptr = bici;
+			posto_ptr->adicionabicicleta(bici_ptr);
+
+			for (unsigned int i = 0; i < empresas.size(); i++)
+			{
+				if (empresas[i].getNome() == bici_ptr->getEmpresa())
+					empresas[i].adicionaBicicleta(bici_ptr);
+			}
+		}
+		postos.push_back(posto_ptr);
+		getline(spots_file, temp); // para remover '#'
+	}
+
+	spots_file.close();
+
+	/// Users file ///////////////////////////////////////////////////////////
+
+	ifstream user_file("rede_user.txt");
+	string nome, pass, cartao;
+	int idade, tipo;
+
+	while ((user_file.peek() != EOF) && (!user_file.eof()))
+	{
+		getline(user_file, nome);
+		getline(user_file, pass);
+		getline(user_file, temp);
+		idade = str_to_int(temp);
+		getline(user_file, temp);
+		if (temp == "0")
+		{
+			Utilizador user(nome, idade, pass);
+			Utilizador *user_ptr;
+			user_ptr = new Utilizador;
+			*user_ptr = user;
+			utilizadores.push_back(user_ptr);
+		}
+		else
+		{
+			getline(user_file, cartao);
+			Ut_ocasional oc(nome, idade, pass, cartao);
+			Ut_ocasional *oc_ptr;
+			oc_ptr = new Ut_ocasional;
+			*oc_ptr = oc;
+			ocasionais.push_back(oc_ptr);
+		}
+	}
+
+	user_file.close();
+
+	/// Rented bikes file ///////////////////////////////////////////////////////////
+
+	ifstream bike_file("rede_bikes.txt");
+
+	while (bike_file.peek() != '#')
+	{
+		stringstream ss;
+		ss.clear();
+		for (int i = 0; i < 7; i++)
+		{
+			getline(bike_file, temp);
+			ss << temp << endl;
+		}
+		Bicicleta bici, *bici_ptr;
+		bici.make_str(ss.str());
+		bici_ptr = new Bicicleta;
+		*bici_ptr = bici;
+		rented_bikes.push_back(bici_ptr);
+
+		for (unsigned int i = 0; i < empresas.size(); i++)
+		{
+			if (empresas[i].getNome() == bici_ptr->getEmpresa())
+				empresas[i].adicionaBicicleta(bici_ptr);
+		}
+	}
+
+	getline(bike_file, temp); // para remover '#'
+
+	while ((bike_file.peek() != EOF) || (!bike_file.eof()))
+	{
+		stringstream ss;
+		ss.clear();
+		for (int i = 0; i < 7; i++)
+		{
+			getline(bike_file, temp);
+			ss << temp << endl;
+		}
+		Bicicleta bici, *bici_ptr;
+		bici.make_str(ss.str());
+		bici_ptr = new Bicicleta;
+		*bici_ptr = bici;
+		rented_bikes_freq.push_back(bici_ptr);
+
+		for (unsigned int i = 0; i < empresas.size(); i++)
+		{
+			if (empresas[i].getNome() == bici_ptr->getEmpresa())
+				empresas[i].adicionaBicicleta(bici_ptr);
+		}
+	}
+
+	bike_file.close();
+
+	assign_regs(all_regs);
 }

@@ -238,3 +238,10 @@ bool PostoServico::arranja_bicicleta(int id_bike)		// arranja uma bicicleta em e
 
 	return false;
 }
+
+vector<Bicicleta*> PostoServico::getBicicletas()
+{
+	vector<Bicicleta *> bicis = disponiveis;
+	bicis.insert(bicis.end(), avariadas.begin(), avariadas.end());
+	return bicis;
+}

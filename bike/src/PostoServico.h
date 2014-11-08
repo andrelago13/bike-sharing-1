@@ -27,6 +27,7 @@ public:
 	int getEspacoLivre() const;
 	vector<Bicicleta*> getDisponiveis();
 	vector<Bicicleta*> getAvariadas();
+	vector<Bicicleta*> getBicicletas();
 	vector<Registo*> getUtlizacao();
 	void adicionabicicleta(Bicicleta *bi1);
 	void adicionaDisponivel(Bicicleta *bi1);
@@ -43,6 +44,7 @@ public:
 	bool removeutilizador(string user);
 	void arranja_bicicletas();
 	bool arranja_bicicleta(int id_bike);
+
 
 };
 

@@ -40,6 +40,8 @@ public:
 	int tempo_aluguer();
 	int num_aluguer();
 	void remove_bici(int id);
+	virtual string get_str() const;
+	virtual void make_str(string user);
 
 	friend ostream& operator<<(ostream &o, Utilizador &user);
 
@@ -55,6 +57,8 @@ public:
 	string get_cartao() { return cartao; }
 	void set_cartao(string novo) { cartao = novo; }
 	int getCusto();
+	string get_str() const;
+	void make_str(string user);
 };
 
 

@@ -3,6 +3,7 @@
 #include <iostream>
 #include <sstream>
 #include "Tools.h"
+#include <iomanip> 
 
 using namespace std;
 
@@ -48,7 +49,7 @@ string Data::getDataStr() const //função que retorna/imprime a data
 {
 	stringstream ss;
 
-	ss << ano << "/" << mes << "/" << dia;
+	ss << setfill('0') << setw(4) << ano << "/" << setfill('0') << setw(2) << mes << "/" << setfill('0') << setw(2) << dia;
 
 	return ss.str();
 }
@@ -61,80 +62,32 @@ ostream& operator<<(ostream &o, const Data &data) //função que permite cout de u
 
 int dif_dias(Data d1, Data d2) //função que calcula a diferença de dias entre duas datas
 {
-	if (d2 < d1)
-		return -1; //se uma data e menos que a segunda a diferença vai ser negativa --> não se quer
-	if (d1 == d2)
-		return 0; //se a data é igual a diferença é nula
+	static int month_days[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+	int dias = 0;
 
-	int var1 = 0;
-	int var2 = 0;
-
-	if ((d1.ano % 4) == 0) //ano bissexto
+	if (d1.ano == d2.ano)
 	{
-		var1 += 366 * d1.ano;
-		if (d1.mes == 2) //no caso do mes ser fevereiro
-			var1 += 29;
+		if (d1.mes == d2.mes)
+			dias = d2.dia - d1.dia;
+		else
+		{
+			for (int i = d1.mes; i < d2.mes - 1; i++)
+				dias += month_days[i];
+			dias += month_days[d1.mes - 1] - d1.dia + d2.dia;
+		}
 	}
 	else
 	{
-		if (d1.mes == 2) //ano normal
-			var1 += 28;
-		var1 += 365 * d1.ano;
+		for (int i = 0; i < d2.mes - 1; i++)
+			dias += month_days[i];
+		for (int i = d1.mes; i < 12; i++)
+			dias += month_days[i];
+		if (d2.ano - d1.ano >= 0)
+			dias += (d2.ano - d1.ano - 1) * 365 +
+			month_days[d1.mes - 1] - d1.dia + d2.dia;
 	}
 
-	switch (d1.mes) //calculo dos dias dos meses
-	{
-	case 1:
-	case 3:
-	case 5:
-	case 7:
-	case 8:
-	case 10:
-	case 12:
-		var1 += 31 * d1.mes; //atualização da var em questão para meses com 31 dias
-		break;
-	case 4:
-	case 6:
-	case 9:
-	case 11:
-		var1 += 30 * d1.mes;//atualização da var em questão para meses com 30 dias
-		break;
-	}
-
-	//repetição do processo para a segunda data
-	if ((d2.ano % 4) == 0)
-	{
-		var2 += 366 * d2.ano;
-		if (d2.mes == 2)
-			var2 += 29;
-	}
-	else
-	{
-		if (d2.mes == 2)
-			var2 += 28;
-		var2 += 365 * d2.ano;
-	}
-
-	switch (d2.mes)
-	{
-	case 1:
-	case 3:
-	case 5:
-	case 7:
-	case 8:
-	case 10:
-	case 12:
-		var2 += 31 * d2.mes;
-		break;
-	case 4:
-	case 6:
-	case 9:
-	case 11:
-		var2 += 30 * d2.mes;
-		break;
-	}
-
-	return var2 - var1;
+	return dias;
 }
 
 Data::Data(string date) //construtor de data que constrói a data através de uma string

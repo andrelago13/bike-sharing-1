@@ -11,7 +11,8 @@ int str_to_int(string &str)
 	if ((result == 0) && (str != "0"))
 	{
 		string error = "ERROR : Invalid input, must be a number";
-		throw error;
+		//throw error;
+		return -1;
 	}
 	return result;
 }
@@ -147,7 +148,7 @@ void insert_no_repeat(vector<Registo *> &v1, vector<Registo *> &v2)
 		bool exists = false;
 		for (unsigned int j = 0; j < v1.size(); j++)
 		{
-			if (*v1[j] == *v2[1])
+			if (*v1[j] == *v2[i])
 			{
 				exists = true;
 				break;

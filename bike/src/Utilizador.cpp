@@ -1,9 +1,11 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <sstream>
 
 #include "Registo.h"
 #include "Utilizador.h"
+#include "Tools.h"
 
 using namespace std;
 
@@ -75,9 +77,12 @@ ostream& operator<<(ostream &o, Utilizador &user) //funçao que redefine a expres
 	return o;
 }
 
-Ut_ocasional::Ut_ocasional() : Utilizador(), cartao("") {} //construtor por defeito para utilizador ocasional
+Ut_ocasional::Ut_ocasional() : Utilizador(), cartao("") { tipo = 1; } //construtor por defeito para utilizador ocasional
 
-Ut_ocasional::Ut_ocasional(string name, int age, string pass, string novo_cartao) : Utilizador(name, age, pass), cartao(novo_cartao) {} //construtor de utilizador ocasional com todos os parametros característicos de utilizador adicionando o cartão (de crédito)
+Ut_ocasional::Ut_ocasional(string name, int age, string pass, string novo_cartao) : Utilizador(name, age, pass), cartao(novo_cartao)
+{
+	tipo = 1;
+} //construtor de utilizador ocasional com todos os parametros característicos de utilizador adicionando o cartão (de crédito)
 
 int Utilizador::getCusto() //função que retorna o custo do dia de utilização das bicicletas -> utilizador normal/freq
 {
@@ -125,4 +130,52 @@ void Utilizador::remove_bici(int id) //função que remove uma bicicleta com um de
 			i--;
 		}
 	}
+}
+
+string Utilizador::get_str() const
+{
+	stringstream ss;
+	ss << nome << endl << password << endl << idade << endl << tipo << endl;
+	return ss.str();
+}
+
+void Utilizador::make_str(string user)
+{
+	stringstream ss(user);
+	string temp;
+
+	getline(ss, temp);
+	nome = temp;
+	getline(ss, temp);
+	password = temp;
+	getline(ss, temp);
+	idade = str_to_int(temp);
+	getline(ss, temp);
+	tipo = str_to_int(temp);
+}
+
+string Ut_ocasional::get_str() const
+{
+	string user = Utilizador::get_str();
+	stringstream ss(user, ios_base::app | ios_base::out);
+	ss << cartao << endl;
+	string x = ss.str();
+	return ss.str();
+}
+
+void Ut_ocasional::make_str(string user)
+{
+	stringstream ss(user);
+	string temp;
+
+	getline(ss, temp);
+	nome = temp;
+	getline(ss, temp);
+	password = temp;
+	getline(ss, temp);
+	idade = str_to_int(temp);
+	getline(ss, temp);
+	tipo = str_to_int(temp);
+	getline(ss, temp);
+	cartao = temp;
 }
