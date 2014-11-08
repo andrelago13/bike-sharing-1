@@ -51,13 +51,23 @@ vector<Registo*> PostoServico::getUtlizacao()		// função retorna um vetor com os
 	return utilizacao;
 }
 
-void PostoServico::setDisponiveis(vector<Bicicleta*> disponiveis)		// função modifica as bicicletas disponiveis com o vetor de bicicletas passado na função atualizando a ocupação do posto de serviço
+void PostoServico::setID(int id)		// função modifica o id de um posto de serviço
+{
+	iD = id;
+}
+
+void PostoServico::setLotacao(int lot)			// funçao modifica a lotação de um posto de serviço 
+{
+	lotacao = lot;
+}
+
+void PostoServico::setDisponiveis(vector<Bicicleta*> disponiveis)		// função modifica as bicicletas disponiveis pelo vetor de bicicletas passado como parametro na função atualizando a ocupação do posto
 {
 		this ->disponiveis = disponiveis;
 		ocupacao = disponiveis.size() + avariadas.size();		
 }
 
-void PostoServico::setAvariadas(vector<Bicicleta*> avariadas)		// função modifica as bicicletas avariadas pelo vetor de bicicletas passado como na função atualizando a ocupação do posto de serviço
+void PostoServico::setAvariadas(vector<Bicicleta*> avariadas)		// função modifica as bicicletas avariadas pelo vetor de bicicletas passado como parametro na função atualizando a ocupação do posto
 {
 		this->avariadas = avariadas;			
 		ocupacao = disponiveis.size() + avariadas.size();
@@ -68,7 +78,7 @@ void PostoServico::setUtilizacao(vector<Registo*> utilizacao)		// função modific
 	this->utilizacao = utilizacao;
 }
 
-void PostoServico::adicionabicicleta(Bicicleta *bi1)
+void PostoServico::adicionabicicleta(Bicicleta *bi1)		// função adiciona uma nova bicicleta ao posto de serviço. Se estiver avariada é guardada nas avariadas caso contrario fica nas disponiveis sendo que em ambos os casos a ocupação do posto é atualizada
 
 {
 	if (bi1->getAvariada())
@@ -79,27 +89,26 @@ void PostoServico::adicionabicicleta(Bicicleta *bi1)
 	ocupacao++;
 }
 
-void PostoServico::adicionaDisponivel(Bicicleta *bi1)
+void PostoServico::adicionaDisponivel(Bicicleta *bi1)		// função adiciona uma nova bicicleta ás disponiveis atualizando a ocupação do posto
 {
 	disponiveis.push_back(bi1);
 	ocupacao++;
 }
 
-void PostoServico::adicionaAvariada(Bicicleta *bi1)
+void PostoServico::adicionaAvariada(Bicicleta *bi1)			// função adiciona uma nova bicicleta ás avariadas atualizando a ocupação do posto
 {
 	avariadas.push_back(bi1);
 	ocupacao++;
 }
 
-void PostoServico::adicionaUtilizacao(Registo *reg1)
+void PostoServico::adicionaUtilizacao(Registo *reg1)		// função adiciona um novo registo ao vetor de registos
 {
 	utilizacao.push_back(reg1);
 }
 
-bool PostoServico::aluga(Bicicleta *bi1)		// O utilizador aluga uma das bicicletas disponiveis no posto de serviço
+bool PostoServico::aluga(Bicicleta *bi1)			// O utilizador aluga uma das bicicletas disponiveis no posto de serviço
 {																	
 	vector<Bicicleta*> dispo = PostoServico::getDisponiveis();
-	//int ocupacao = PostoServico::getOcupacao();
 
 	if (dispo.size() == 0)
 	{
@@ -109,6 +118,7 @@ bool PostoServico::aluga(Bicicleta *bi1)		// O utilizador aluga uma das biciclet
 	else
 	{
 		vector<Bicicleta*>::iterator it = dispo.begin();
+
 		// Percorre o vetor dispo e verifica se existe alguma bicicleta com as mesmas caracteristicas da bicicleta passada como parametro na função
 		while (it != dispo.end())
 		{
@@ -124,10 +134,8 @@ bool PostoServico::aluga(Bicicleta *bi1)		// O utilizador aluga uma das biciclet
 	}
 }
 
-bool PostoServico::devolve(Bicicleta *bi1)		// O utilizador devolve a bicicleta alugada ao posto de serviço
+bool PostoServico::devolve(Bicicleta *bi1)				// o utilizador devolve a bicicleta alugada ao posto de serviço
 {
-	//int ocupacao = PostoServico::getOcupacao();
-
 	if (bi1->getAvariada())
 	{
 		avariadas.push_back(bi1);
@@ -142,18 +150,13 @@ bool PostoServico::devolve(Bicicleta *bi1)		// O utilizador devolve a bicicleta 
 	return true;
 }
 
-bool PostoServico::removebicicleta(unsigned int id_bike)	//remove bicicleta do vetor utilizacao(vetor que contem os registos do posto de serviço)
+bool PostoServico::removebicicleta(unsigned int id_bike)	// remove bicicleta do vetor utilizacao
 {
-	vector<Registo*> utils = PostoServico::getUtlizacao();		// apaga do registo a bicicleta segundo o id dado
-	vector<Registo*>::iterator it = utils.begin();
+	vector<Registo*> utils = PostoServico::getUtlizacao();		
+	vector<Bicicleta*> dispon = PostoServico::getDisponiveis();		
+	vector<Bicicleta*> avariad = PostoServico::getAvariadas();		
 
-	vector<Bicicleta*> dispon = PostoServico::getDisponiveis();		// apaga das disponiveis a bicicleta segundo um id dado
-	vector<Bicicleta*>::iterator ot = dispon.begin();
-
-	vector<Bicicleta*> avariad = PostoServico::getAvariadas();		// se não encontrar nas disponiveis, procura nas avariadas e apaga
-	vector<Bicicleta*>::iterator ut = avariad.begin();
-
-	for (unsigned int i = 0; i < utils.size(); i++)
+	for (unsigned int i = 0; i < utils.size(); i++)			// apaga do registo a bicicleta segundo o id dado
 	{
 		if (utils[i]->ID_Bicicleta == id_bike)
 		{
@@ -162,7 +165,7 @@ bool PostoServico::removebicicleta(unsigned int id_bike)	//remove bicicleta do v
 	}
 	setUtilizacao(utils);
 
-	for (unsigned int i = 0; i < dispon.size(); i++)
+	for (unsigned int i = 0; i < dispon.size(); i++)			// apaga das disponiveis a bicicleta segundo um id dado
 	{
 		if (dispon[i]->getID() == id_bike)
 		{
@@ -173,7 +176,7 @@ bool PostoServico::removebicicleta(unsigned int id_bike)	//remove bicicleta do v
 		}
 	}
 
-	for (unsigned int i = 0; i < avariad.size(); i++)
+	for (unsigned int i = 0; i < avariad.size(); i++)			// se não encontrar nas disponiveis, procura nas avariadas e apaga
 	{
 		if (avariad[i]->getID() == id_bike)
 		{
@@ -191,10 +194,8 @@ bool PostoServico::removeutilizador(string user)		//remove utilizador do posto d
 	vector<Registo*>::iterator it = utilizacao.begin();
 
 	if (utilizacao.size() == 0)
-	{
-		//cout << "No registers available" << endl;
 		return false;
-	}
+
 
 	while (it != utilizacao.end())
 	{
@@ -214,7 +215,7 @@ bool PostoServico::removeutilizador(string user)		//remove utilizador do posto d
 	return true;
 }
 
-void PostoServico::arranja_bicicletas()			
+void PostoServico::arranja_bicicletas()				// arranja as bicicletas avariadas e coloca as nas disponiveis apagando as mesmas das avariadas
 {
 	for (unsigned int i = 0; i < avariadas.size(); i++)
 	{
@@ -223,7 +224,7 @@ void PostoServico::arranja_bicicletas()
 	}
 }
 
-bool PostoServico::arranja_bicicleta(int id_bike)
+bool PostoServico::arranja_bicicleta(int id_bike)		// arranja uma bicicleta em especifico (segundo um id) e coloca a nas disponiveis apagando a mesma das avariadas
 {
 	for (unsigned int i = 0; i < avariadas.size(); i++)
 	{
@@ -236,14 +237,4 @@ bool PostoServico::arranja_bicicleta(int id_bike)
 	}
 
 	return false;
-}
-
-void PostoServico::setID(int id)
-{
-	iD = id;
-}
-
-void PostoServico::setLotacao(int lot)
-{
-	lotacao = lot;
 }
