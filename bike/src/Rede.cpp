@@ -900,10 +900,7 @@ int Rede::menu_regUsr()
 
 		if (utilizadores[index]->getPassword() == pass)
 		{
-			while (true)
-			{
-				return menu_regUsr_logged(utilizadores[index]);
-			}
+			return menu_regUsr_logged(utilizadores[index]);
 		}
 		else
 		{
@@ -1016,21 +1013,32 @@ int Rede::menu_ocUsr()
 		getline(cin, cartao);
 		user = Ut_ocasional(nome, 5, "", cartao);
 
-		rented_bikes.push_back(bikes[index]);
-		postos[option]->aluga(bikes[index]);
-		ptr = new Ut_ocasional();
-		*ptr = user;
-		ocasionais.push_back(ptr);
-
 		// Current date
 		cout << " Please enter current date (YYYY/MM/DD) : ";
 		getline(cin, data);
-		if (data.size() != 10)
+		//if (data.size() != 10)
+		if (!valid_date(data))
 		{
 			cout << endl << " Invalid date." << endl << endl;
 			system("pause");
 			return MENU_start;
 		}
+		else
+		{
+			reg_ptr = bikes[index]->ultimo_reg();
+			if (Data(data) < reg_ptr->entrega)
+			{
+				cout << endl << " Current date must be greater than date of last bike rental" << endl << endl;
+				system("pause");
+				return MENU_start;
+			}
+		}
+
+		rented_bikes.push_back(bikes[index]);
+		postos[option]->aluga(bikes[index]);
+		ptr = new Ut_ocasional();
+		*ptr = user;
+		ocasionais.push_back(ptr);
 		
 		reg.ID_Bicicleta = bikes[index]->getID();
 		reg.ID_posto_origem = postos[option]->getID();
@@ -1081,12 +1089,17 @@ int Rede::menu_ocUsr()
 
 		cout << endl << " Insert current date (YYYY/MM/DD) : ";
 		getline(cin, data);
-
-		dias = dif_dias(curr_rentals[index]->levantamento, Data(data));
 		
-		if ((data.size() != 10) || (dias < 0))
+		if (!valid_date(data))
 		{
 			cout << endl << " Invalid date." << endl << endl;
+			system("pause");
+			return MENU_ocUsr;
+		}
+		dias = dif_dias(curr_rentals[index]->levantamento, Data(data));
+		if (dias < 0)
+		{
+			cout << endl << " Return date must be after rental date." << endl << endl;
 			system("pause");
 			return MENU_ocUsr;
 		}
@@ -1219,7 +1232,7 @@ int Rede::menu_regUsr_logged(Utilizador *user)
 		vector<Bicicleta*> bikes;
 		Ut_ocasional *ptr;
 		Registo reg;
-		Registo *reg_ptr;
+		Registo *reg_ptr, *reg_ptr2;
 
 		switch (option)
 		{
@@ -1274,17 +1287,26 @@ int Rede::menu_regUsr_logged(Utilizador *user)
 			get_option(index, 1, bikes.size());
 			index--;
 
-			rented_bikes_freq.push_back(bikes[index]);
-			postos[option]->aluga(bikes[index]);
-
 			cout << " Please enter current date (YYYY/MM/DD) : ";
 			getline(cin, data);
-			if (data.size() != 10)
+
+			if (!valid_date(data))
 			{
 				cout << endl << " Invalid date." << endl << endl;
 				system("pause");
 				continue;
 			}
+			reg_ptr = user->ultimoReg();
+			reg_ptr2 = bikes[index]->ultimo_reg();
+			if ((Data(data) < reg_ptr->entrega) || (Data(data) < reg_ptr2->entrega))
+			{
+				cout << endl << " Current date must be later than last bike and user rentals." << endl << endl;
+				system("pause");
+				continue;
+			}
+
+			rented_bikes_freq.push_back(bikes[index]);
+			postos[option]->aluga(bikes[index]);
 
 			reg.ID_Bicicleta = bikes[index]->getID();
 			reg.ID_posto_origem = postos[option]->getID();
@@ -1327,7 +1349,7 @@ int Rede::menu_regUsr_logged(Utilizador *user)
 			cout << endl << " Insert current date (YYYY/MM/DD) : ";
 			getline(cin, data);
 
-			if (data.size() != 10)
+			if (!valid_date(data))
 			{
 				cout << endl << " Invalid date." << endl << endl;
 				system("pause");

@@ -159,3 +159,62 @@ void insert_no_repeat(vector<Registo *> &v1, vector<Registo *> &v2)
 			v1.push_back(v2[i]);
 	}
 }
+
+bool is_letter(char letra)
+{
+	if ((toupper(letra) > 'A') && (toupper(letra) < 'Z'))
+		return true;
+	return false;
+}
+
+bool is_number(char letra)
+{
+	if ((letra > '0') && (letra < '9'))
+		return true;
+	return false;
+}
+
+bool valid_date(string date)
+{
+	if (date.size() == 0)
+	{
+		if (is_number(date[0]) && is_number(date[1]) && is_number(date[2]) && is_number(date[3]) % (date[4] == '/'))
+		{
+			if (is_number(date[5]) && is_number(date[6]) && (date[7] == '/') && is_number(date[8]) && is_number(date[9]))
+			{
+				int ano = str_to_int(date.substr(0, 4));
+				int mes = str_to_int(date.substr(5, 2));
+				int dia = str_to_int(date.substr(8, 2));
+
+				switch (mes)
+				{
+				case 1:
+				case 3:
+				case 5:
+				case 7:
+				case 8:
+				case 10:
+				case 12:
+					if ((dia > 0) && (dia < 32))
+						return true;
+					break;
+				case 4:
+				case 6:
+				case 9:
+				case 11:
+					if ((dia > 0) && (dia < 31))
+						return true;
+					break;
+				case 2:
+					if ((((ano % 4) == 0) && (dia > 0) && (dia < 30)) || (((ano % 4) != 0) && (dia > 0) && (dia < 29)))
+						return true;
+					break;
+				default:
+					return false;
+				}
+			}
+		}
+	}
+
+	return false;
+}

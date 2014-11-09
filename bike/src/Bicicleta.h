@@ -50,6 +50,7 @@ public:
 	string get_str() const;
 	void make_str(string bike);
 	void setEmpresa(string emp) { empresa = emp; }
+	Registo* ultimo_reg() const;
 
 };
 

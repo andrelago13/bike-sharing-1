@@ -313,3 +313,8 @@ void Bicicleta::make_str(string bike)
 	else
 		avariada = false;
 }
+
+Registo* Bicicleta::ultimo_reg() const
+{
+	return regs[regs.size() - 1];
+}

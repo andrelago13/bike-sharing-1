@@ -24,5 +24,11 @@ int readInt();
 
 void insert_no_repeat(vector<Registo *> &v1, vector<Registo *> &v2);
 
+bool valid_date(string date);
+
+bool is_letter(char letra);
+
+bool is_number(char letra);
+
 
 #endif /* TOOLS_H_ */
