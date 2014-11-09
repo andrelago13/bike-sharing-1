@@ -9,7 +9,6 @@
 #include <stdlib.h>
 
 #include "Registo.h"
-//#include "PostoServico.h"
 
 using namespace std;
 
