@@ -70,7 +70,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -90,6 +90,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">Registo Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><a class="el" href="class_registo.html" title="Registo - Auxiliary program class. ">Registo</a> - Auxiliary program class.  
+ <a href="class_registo.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_registo_8h_source.html">Registo.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -136,14 +141,17 @@ Friends</h2></td></tr>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const <a class="el" href="class_registo.html">Registo</a> reg1, const <a class="el" href="class_registo.html">Registo</a> reg2)</td></tr>
 <tr class="separator:aaf8e089b26abe6bc63d1c2399433bce6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/>The documentation for this class was generated from the following files:<ul>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="class_registo.html" title="Registo - Auxiliary program class. ">Registo</a> - Auxiliary program class. </p>
+<p>This class allows the program objects to keep track of their history in the Bike-Sharing network. A <a class="el" href="class_registo.html" title="Registo - Auxiliary program class. ">Registo</a> objects stores the important information of a bike rental. It keeps track of the ID of the rented bike, the ID's of the source and destination service posts (<a class="el" href="class_posto_servico.html" title="PostoServico - Auxiliary program class. ">PostoServico</a>), the name of the renting user (<a class="el" href="class_utilizador.html" title="Utilizador - class representing users of the network. ">Utilizador</a>), the date (<a class="el" href="class_data.html" title="Data - auxiliary class to keep track of time. ">Data</a>) of rental and return of the bike and determines if the bike got broken or not during the rental </p>
+</div><hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="_registo_8h_source.html">Registo.h</a></li>
-<li>Registo.cpp</li>
+<li><a class="el" href="_registo_8cpp.html">Registo.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Nov 9 2014 17:53:55 for My Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Nov 9 2014 20:37:11 for My Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

@@ -70,7 +70,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -96,6 +96,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a0c0699d33419180c9c0792823964418c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0c0699d33419180c9c0792823964418c"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rede.html#a0c0699d33419180c9c0792823964418c">Rede</a> ()</td></tr>
+<tr class="memdesc:a0c0699d33419180c9c0792823964418c"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_rede.html" title="Rede - main program class. ">Rede</a> default constructor Initializes password as an empty string. <br /></td></tr>
+<tr class="separator:a0c0699d33419180c9c0792823964418c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1751f922073f6172ba676a56959a1540"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1751f922073f6172ba676a56959a1540"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rede.html#a1751f922073f6172ba676a56959a1540">loadInfo</a> ()</td></tr>
 <tr class="memdesc:a1751f922073f6172ba676a56959a1540"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load <a class="el" href="class_rede.html" title="Rede - main program class. ">Rede</a> information from text files. Loads information on rede.txt, rede_bikes.txt, rede_spots.txt and rede_user.txt according to format specified by function storeInfo. <br /></td></tr>
@@ -105,76 +109,86 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memdesc:abec1da6660663cd58e6851737219959e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Store <a class="el" href="class_rede.html" title="Rede - main program class. ">Rede</a> information from text files. Stores information on rede.txt, rede_bikes.txt, rede_spots.txt and rede_user.txt according to format specified by function storeInfo. <br /></td></tr>
 <tr class="separator:abec1da6660663cd58e6851737219959e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae78851a9d7efe2a9e0d2ead64f68ef73"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rede.html#ae78851a9d7efe2a9e0d2ead64f68ef73">addUser</a> (<a class="el" href="class_utilizador.html">Utilizador</a> user)</td></tr>
-<tr class="memdesc:ae78851a9d7efe2a9e0d2ead64f68ef73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add's a <a class="el" href="class_utilizador.html">Utilizador</a> object to the system.  <a href="#ae78851a9d7efe2a9e0d2ead64f68ef73">More...</a><br /></td></tr>
+<tr class="memdesc:ae78851a9d7efe2a9e0d2ead64f68ef73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add's a <a class="el" href="class_utilizador.html" title="Utilizador - class representing users of the network. ">Utilizador</a> object to the system.  <a href="#ae78851a9d7efe2a9e0d2ead64f68ef73">More...</a><br /></td></tr>
 <tr class="separator:ae78851a9d7efe2a9e0d2ead64f68ef73"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a39d746dc37d11b8c870701a3afa9328e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rede.html#a39d746dc37d11b8c870701a3afa9328e">createUser</a> (string nome)</td></tr>
-<tr class="memdesc:a39d746dc37d11b8c870701a3afa9328e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create and add a <a class="el" href="class_utilizador.html">Utilizador</a> object.  <a href="#a39d746dc37d11b8c870701a3afa9328e">More...</a><br /></td></tr>
+<tr class="memdesc:a39d746dc37d11b8c870701a3afa9328e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create and add a <a class="el" href="class_utilizador.html" title="Utilizador - class representing users of the network. ">Utilizador</a> object.  <a href="#a39d746dc37d11b8c870701a3afa9328e">More...</a><br /></td></tr>
 <tr class="separator:a39d746dc37d11b8c870701a3afa9328e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a00b09749f19ec7535127e75531281511"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a00b09749f19ec7535127e75531281511"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rede.html#a00b09749f19ec7535127e75531281511">addPosto</a> (<a class="el" href="class_posto_servico.html">PostoServico</a> *posto)</td></tr>
-<tr class="memdesc:a00b09749f19ec7535127e75531281511"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a <a class="el" href="class_posto_servico.html">PostoServico</a> to postos vector. <br /></td></tr>
+<tr class="memdesc:a00b09749f19ec7535127e75531281511"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a <a class="el" href="class_posto_servico.html" title="PostoServico - Auxiliary program class. ">PostoServico</a> to postos vector. <br /></td></tr>
 <tr class="separator:a00b09749f19ec7535127e75531281511"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4177da39d4aa05cd0451d52a7220b7c5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rede.html#a4177da39d4aa05cd0451d52a7220b7c5">create_add_bike</a> ()</td></tr>
-<tr class="memdesc:a4177da39d4aa05cd0451d52a7220b7c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create and add a <a class="el" href="class_bicicleta.html">Bicicleta</a> object to a <a class="el" href="class_posto_servico.html">PostoServico</a>.  <a href="#a4177da39d4aa05cd0451d52a7220b7c5">More...</a><br /></td></tr>
+<tr class="memdesc:a4177da39d4aa05cd0451d52a7220b7c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create and add a <a class="el" href="class_bicicleta.html" title="Bicicleta - Auxiliary program class. ">Bicicleta</a> object to a <a class="el" href="class_posto_servico.html" title="PostoServico - Auxiliary program class. ">PostoServico</a>.  <a href="#a4177da39d4aa05cd0451d52a7220b7c5">More...</a><br /></td></tr>
 <tr class="separator:a4177da39d4aa05cd0451d52a7220b7c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adec8c4515163174c0fab8068e36c6cc5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adec8c4515163174c0fab8068e36c6cc5"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rede.html#adec8c4515163174c0fab8068e36c6cc5">reset</a> ()</td></tr>
 <tr class="memdesc:adec8c4515163174c0fab8068e36c6cc5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets all <a class="el" href="class_rede.html" title="Rede - main program class. ">Rede</a> information Restarts all <a class="el" href="class_rede.html" title="Rede - main program class. ">Rede</a> information by clearing all vector members of the class. <br /></td></tr>
 <tr class="separator:adec8c4515163174c0fab8068e36c6cc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad38e26e59622727f978b995f6b9955c5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rede.html#ad38e26e59622727f978b995f6b9955c5">assign_regs</a> (vector&lt; <a class="el" href="class_registo.html">Registo</a> * &gt; &amp;regs)</td></tr>
-<tr class="memdesc:ad38e26e59622727f978b995f6b9955c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assing <a class="el" href="class_registo.html">Registo</a> object pointers in a vector to the class members.  <a href="#ad38e26e59622727f978b995f6b9955c5">More...</a><br /></td></tr>
+<tr class="memdesc:ad38e26e59622727f978b995f6b9955c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assing <a class="el" href="class_registo.html" title="Registo - Auxiliary program class. ">Registo</a> object pointers in a vector to the class members.  <a href="#ad38e26e59622727f978b995f6b9955c5">More...</a><br /></td></tr>
 <tr class="separator:ad38e26e59622727f978b995f6b9955c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a42b5a88380e63b78e5c99894aee0dfbc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a42b5a88380e63b78e5c99894aee0dfbc"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rede.html#a42b5a88380e63b78e5c99894aee0dfbc">existeUtilizador</a> (string nome)</td></tr>
-<tr class="memdesc:a42b5a88380e63b78e5c99894aee0dfbc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets all <a class="el" href="class_rede.html" title="Rede - main program class. ">Rede</a> information Restarts all <a class="el" href="class_rede.html" title="Rede - main program class. ">Rede</a> information by clearing all vector members of the class. <br /></td></tr>
+<tr class="memitem:a42b5a88380e63b78e5c99894aee0dfbc"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rede.html#a42b5a88380e63b78e5c99894aee0dfbc">existeUtilizador</a> (string nome)</td></tr>
+<tr class="memdesc:a42b5a88380e63b78e5c99894aee0dfbc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if user exists.  <a href="#a42b5a88380e63b78e5c99894aee0dfbc">More...</a><br /></td></tr>
 <tr class="separator:a42b5a88380e63b78e5c99894aee0dfbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac74ae338ed2ddb5b8f94c9ed33e172ef"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac74ae338ed2ddb5b8f94c9ed33e172ef"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>tipoUser</b> (string nome)</td></tr>
+<tr class="memitem:ac74ae338ed2ddb5b8f94c9ed33e172ef"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rede.html#ac74ae338ed2ddb5b8f94c9ed33e172ef">tipoUser</a> (string nome)</td></tr>
+<tr class="memdesc:ac74ae338ed2ddb5b8f94c9ed33e172ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find type of a user.  <a href="#ac74ae338ed2ddb5b8f94c9ed33e172ef">More...</a><br /></td></tr>
 <tr class="separator:ac74ae338ed2ddb5b8f94c9ed33e172ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aba033af0c2cd9a4f70ca1f9459a6a3ee"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aba033af0c2cd9a4f70ca1f9459a6a3ee"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>is_busy</b> (int id_bici, bool print) const </td></tr>
+<tr class="memitem:aba033af0c2cd9a4f70ca1f9459a6a3ee"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rede.html#aba033af0c2cd9a4f70ca1f9459a6a3ee">is_busy</a> (int id_bici, bool print) const </td></tr>
+<tr class="memdesc:aba033af0c2cd9a4f70ca1f9459a6a3ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determine if a bike is rented and by whom.  <a href="#aba033af0c2cd9a4f70ca1f9459a6a3ee">More...</a><br /></td></tr>
 <tr class="separator:aba033af0c2cd9a4f70ca1f9459a6a3ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0862364a4ce27c157b2b756184526748"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0862364a4ce27c157b2b756184526748"></a>
-vector&lt; <a class="el" href="class_registo.html">Registo</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>get_regs</b> () const </td></tr>
+<tr class="memitem:a0862364a4ce27c157b2b756184526748"><td class="memItemLeft" align="right" valign="top">vector&lt; <a class="el" href="class_registo.html">Registo</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rede.html#a0862364a4ce27c157b2b756184526748">get_regs</a> () const </td></tr>
+<tr class="memdesc:a0862364a4ce27c157b2b756184526748"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get pointers to all <a class="el" href="class_registo.html" title="Registo - Auxiliary program class. ">Registo</a> objects relative to completed rentals in the system.  <a href="#a0862364a4ce27c157b2b756184526748">More...</a><br /></td></tr>
 <tr class="separator:a0862364a4ce27c157b2b756184526748"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a906023ec85b2043b4610e627951e93b8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a906023ec85b2043b4610e627951e93b8"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>menu_system</b> ()</td></tr>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rede.html#a906023ec85b2043b4610e627951e93b8">menu_system</a> ()</td></tr>
+<tr class="memdesc:a906023ec85b2043b4610e627951e93b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Menu controller function This function controls the whole menu system, by calling the function corresponding to the pretended menu. Basically, it consists of a while(true) cycle that keeps calling the menu functions and analyzes their return values. The return of all menu functions indicates the menu that should be loaded next. Each menu is assigned a number. For example, if a menu function wishes to return to the main menu, it must return 0, main menu's number. This function also calls loadInfo and storeInfo. <br /></td></tr>
 <tr class="separator:a906023ec85b2043b4610e627951e93b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7f6b41951357f14d8be5c0c23f59bca9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7f6b41951357f14d8be5c0c23f59bca9"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>print_menu_header</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rede.html#a7f6b41951357f14d8be5c0c23f59bca9">print_menu_header</a> ()</td></tr>
+<tr class="memdesc:a7f6b41951357f14d8be5c0c23f59bca9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints menu header This is a very simple function that only prints a small "Bike Sharing" header that appears in all <a class="el" href="class_rede.html" title="Rede - main program class. ">Rede</a> menus, except for the start menu, which has it's own, bigger, header. <br /></td></tr>
 <tr class="separator:a7f6b41951357f14d8be5c0c23f59bca9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab94437bdbb3cb32b8489591748c1a57e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab94437bdbb3cb32b8489591748c1a57e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>menu_exit_prog</b> ()</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rede.html#ab94437bdbb3cb32b8489591748c1a57e">menu_exit_prog</a> ()</td></tr>
+<tr class="memdesc:ab94437bdbb3cb32b8489591748c1a57e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print goodbye message This is a very simple function that prints a big "Goodbye" message upon program exit, through the menu system. <br /></td></tr>
 <tr class="separator:ab94437bdbb3cb32b8489591748c1a57e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad5f01d997329c28cc736b42e9962c2b6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad5f01d997329c28cc736b42e9962c2b6"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>menu_start</b> ()</td></tr>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rede.html#ad5f01d997329c28cc736b42e9962c2b6">menu_start</a> ()</td></tr>
+<tr class="memdesc:ad5f01d997329c28cc736b42e9962c2b6"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_rede.html" title="Rede - main program class. ">Rede</a> starting menu Main <a class="el" href="class_rede.html" title="Rede - main program class. ">Rede</a> menu. This is the menu loaded upon system startup, and allows access to all the other menus. <br /></td></tr>
 <tr class="separator:ad5f01d997329c28cc736b42e9962c2b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa36d94723cae863269eb20375c4491c4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa36d94723cae863269eb20375c4491c4"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>menu_regUsr</b> ()</td></tr>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rede.html#aa36d94723cae863269eb20375c4491c4">menu_regUsr</a> ()</td></tr>
+<tr class="memdesc:aa36d94723cae863269eb20375c4491c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Registered user menu This is the menu where registered users perform login, and where new users are registered. <br /></td></tr>
 <tr class="separator:aa36d94723cae863269eb20375c4491c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8865f7a80236b7a399e948a486c86bac"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8865f7a80236b7a399e948a486c86bac"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>menu_ocUsr</b> ()</td></tr>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rede.html#a8865f7a80236b7a399e948a486c86bac">menu_ocUsr</a> ()</td></tr>
+<tr class="memdesc:a8865f7a80236b7a399e948a486c86bac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ocasional user menu This is the menu where occasional users rent and return bikes. <br /></td></tr>
 <tr class="separator:a8865f7a80236b7a399e948a486c86bac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a71b157db8d1ec17c2e5100faeb95e3d2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a71b157db8d1ec17c2e5100faeb95e3d2"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>menu_manager</b> ()</td></tr>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rede.html#a71b157db8d1ec17c2e5100faeb95e3d2">menu_manager</a> ()</td></tr>
+<tr class="memdesc:a71b157db8d1ec17c2e5100faeb95e3d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Management main menu This is the menu for system management. For it to be accessed, a system password is requested on <a class="el" href="class_rede.html#ad5f01d997329c28cc736b42e9962c2b6" title="Rede starting menu Main Rede menu. This is the menu loaded upon system startup, and allows access to ...">menu_start()</a>. This menu allows CRUD operations on all members of the <a class="el" href="class_rede.html" title="Rede - main program class. ">Rede</a>. <br /></td></tr>
 <tr class="separator:a71b157db8d1ec17c2e5100faeb95e3d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af5dd3d55b3cb2f252349128787a96e27"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af5dd3d55b3cb2f252349128787a96e27"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>menu_regUsr_logged</b> (<a class="el" href="class_utilizador.html">Utilizador</a> *user)</td></tr>
+<tr class="memitem:af5dd3d55b3cb2f252349128787a96e27"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rede.html#af5dd3d55b3cb2f252349128787a96e27">menu_regUsr_logged</a> (<a class="el" href="class_utilizador.html">Utilizador</a> *user)</td></tr>
+<tr class="memdesc:af5dd3d55b3cb2f252349128787a96e27"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logged in registered user menu This is a slightly different menu, because it needed to receive an argument, the logged in user. Therefore, it's return is "analyzed" by <a class="el" href="class_rede.html#aa36d94723cae863269eb20375c4491c4" title="Registered user menu This is the menu where registered users perform login, and where new users are r...">menu_regUsr()</a> and not by <a class="el" href="class_rede.html#a906023ec85b2043b4610e627951e93b8" title="Menu controller function This function controls the whole menu system, by calling the function corres...">menu_system()</a>, but it's return means the same. This menu allows the logged in registered user to rent and return bikes, change his password, view his rental log and see his monthly service cost.  <a href="#af5dd3d55b3cb2f252349128787a96e27">More...</a><br /></td></tr>
 <tr class="separator:af5dd3d55b3cb2f252349128787a96e27"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a11e8c9a0d004251882872f9cc3da54da"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a11e8c9a0d004251882872f9cc3da54da"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>menu_mngr_supplyers</b> ()</td></tr>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rede.html#a11e8c9a0d004251882872f9cc3da54da">menu_mngr_supplyers</a> ()</td></tr>
+<tr class="memdesc:a11e8c9a0d004251882872f9cc3da54da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Management menu for supplying companies Allows the system manager to perform CRUD operations on <a class="el" href="class_empresa.html" title="Empresa - Auxiliary program class. ">Empresa</a> objects. It also allows the listing of all bikes for a supplying company. <br /></td></tr>
 <tr class="separator:a11e8c9a0d004251882872f9cc3da54da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0d7d6e769f20ff9f3ce54441ec88727e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0d7d6e769f20ff9f3ce54441ec88727e"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>menu_mngr_spots</b> ()</td></tr>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rede.html#a0d7d6e769f20ff9f3ce54441ec88727e">menu_mngr_spots</a> ()</td></tr>
+<tr class="memdesc:a0d7d6e769f20ff9f3ce54441ec88727e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Management menu for service posts Allows the system manager to perform CRUD operations on <a class="el" href="class_posto_servico.html" title="PostoServico - Auxiliary program class. ">PostoServico</a> objects, as well as repair one or more bikes in one or all of those objects, and listing of the bikes in a service post. <br /></td></tr>
 <tr class="separator:a0d7d6e769f20ff9f3ce54441ec88727e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2f83a9dde6e018ac57f1aefcfca388b2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2f83a9dde6e018ac57f1aefcfca388b2"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>menu_mngr_bikes</b> ()</td></tr>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rede.html#a2f83a9dde6e018ac57f1aefcfca388b2">menu_mngr_bikes</a> ()</td></tr>
+<tr class="memdesc:a2f83a9dde6e018ac57f1aefcfca388b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Management menu for bikes Allows the system manager to perform CRUD operation on <a class="el" href="class_bicicleta.html" title="Bicicleta - Auxiliary program class. ">Bicicleta</a> objects. It also allows the listing of all available and broken bikes, as well as rented bikes. It's based on the principle that <b>all</b> bikes must be assigned to an <a class="el" href="class_empresa.html" title="Empresa - Auxiliary program class. ">Empresa</a> object. <br /></td></tr>
 <tr class="separator:a2f83a9dde6e018ac57f1aefcfca388b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a609866278eb7f37d19397f078a5a6ea6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a609866278eb7f37d19397f078a5a6ea6"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>menu_mngr_users</b> ()</td></tr>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rede.html#a609866278eb7f37d19397f078a5a6ea6">menu_mngr_users</a> ()</td></tr>
+<tr class="memdesc:a609866278eb7f37d19397f078a5a6ea6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Management menu for users Allows the system manager to perform CRUD operations on <a class="el" href="class_utilizador.html" title="Utilizador - class representing users of the network. ">Utilizador</a> objects. <br /></td></tr>
 <tr class="separator:a609866278eb7f37d19397f078a5a6ea6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae11dd331c071a1d4dace9fc89d82e251"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae11dd331c071a1d4dace9fc89d82e251"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>menu_mngr_logs</b> ()</td></tr>
+<tr class="memitem:ae11dd331c071a1d4dace9fc89d82e251"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_rede.html#ae11dd331c071a1d4dace9fc89d82e251">menu_mngr_logs</a> ()</td></tr>
+<tr class="memdesc:ae11dd331c071a1d4dace9fc89d82e251"><td class="mdescLeft">&#160;</td><td class="mdescRight">Management menu for rental logs. Allows the system manager to view information about the Bike-sharing network in a easy way. Some of the lists are:  <a href="#ae11dd331c071a1d4dace9fc89d82e251">More...</a><br /></td></tr>
 <tr class="separator:ae11dd331c071a1d4dace9fc89d82e251"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -195,14 +209,14 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>menu_mngr_logs</b> ()<
       </table>
 </div><div class="memdoc">
 
-<p>Add's a <a class="el" href="class_utilizador.html">Utilizador</a> object to the system. </p>
+<p>Add's a <a class="el" href="class_utilizador.html" title="Utilizador - class representing users of the network. ">Utilizador</a> object to the system. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">user</td><td>- <a class="el" href="class_utilizador.html">Utilizador</a> object to be added </td></tr>
+    <tr><td class="paramname">user</td><td>- <a class="el" href="class_utilizador.html" title="Utilizador - class representing users of the network. ">Utilizador</a> object to be added </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>0 if successfull, 1 if <a class="el" href="class_utilizador.html">Utilizador</a> already exists Add a user to the registered users vector, if there is none equal to it </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if successfull, 1 if <a class="el" href="class_utilizador.html" title="Utilizador - class representing users of the network. ">Utilizador</a> already exists Add a user to the registered users vector, if there is none equal to it </dd></dl>
 
 </div>
 </div>
@@ -220,10 +234,10 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>menu_mngr_logs</b> ()<
       </table>
 </div><div class="memdoc">
 
-<p>Assing <a class="el" href="class_registo.html">Registo</a> object pointers in a vector to the class members. </p>
+<p>Assing <a class="el" href="class_registo.html" title="Registo - Auxiliary program class. ">Registo</a> object pointers in a vector to the class members. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">regs</td><td>- vector of <a class="el" href="class_registo.html">Registo</a> pointers to assign to class members This function is meant for the load information process. During the store information process, the program saves all <a class="el" href="class_registo.html">Registo</a>'s from completed rentals in a vector, and later saves it in the text file. At the load information process, this function gets the vector with all the meantioned above <a class="el" href="class_registo.html">Registo</a>'s, and add's this <a class="el" href="class_registo.html">Registo</a>'s to the correct objects (<a class="el" href="class_bicicleta.html">Bicicleta</a>, <a class="el" href="class_posto_servico.html">PostoServico</a> and <a class="el" href="class_utilizador.html">Utilizador</a>). </td></tr>
+    <tr><td class="paramname">regs</td><td>- vector of <a class="el" href="class_registo.html" title="Registo - Auxiliary program class. ">Registo</a> pointers to assign to class members This function is meant for the load information process. During the store information process, the program saves all <a class="el" href="class_registo.html" title="Registo - Auxiliary program class. ">Registo</a>'s from completed rentals in a vector, and later saves it in the text file. At the load information process, this function gets the vector with all the meantioned above <a class="el" href="class_registo.html" title="Registo - Auxiliary program class. ">Registo</a>'s, and add's this <a class="el" href="class_registo.html" title="Registo - Auxiliary program class. ">Registo</a>'s to the correct objects (<a class="el" href="class_bicicleta.html" title="Bicicleta - Auxiliary program class. ">Bicicleta</a>, <a class="el" href="class_posto_servico.html" title="PostoServico - Auxiliary program class. ">PostoServico</a> and <a class="el" href="class_utilizador.html" title="Utilizador - class representing users of the network. ">Utilizador</a>). </td></tr>
   </table>
   </dd>
 </dl>
@@ -243,8 +257,8 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>menu_mngr_logs</b> ()<
       </table>
 </div><div class="memdoc">
 
-<p>Create and add a <a class="el" href="class_bicicleta.html">Bicicleta</a> object to a <a class="el" href="class_posto_servico.html">PostoServico</a>. </p>
-<dl class="section return"><dt>Returns</dt><dd>0 if successfull, 1 if <a class="el" href="class_bicicleta.html">Bicicleta</a> already exists Creates a <a class="el" href="class_bicicleta.html">Bicicleta</a> object and inserts it in the correct vector, in this case, of a <a class="el" href="class_posto_servico.html">PostoServico</a> </dd></dl>
+<p>Create and add a <a class="el" href="class_bicicleta.html" title="Bicicleta - Auxiliary program class. ">Bicicleta</a> object to a <a class="el" href="class_posto_servico.html" title="PostoServico - Auxiliary program class. ">PostoServico</a>. </p>
+<dl class="section return"><dt>Returns</dt><dd>0 if successfull, 1 if <a class="el" href="class_bicicleta.html" title="Bicicleta - Auxiliary program class. ">Bicicleta</a> already exists Creates a <a class="el" href="class_bicicleta.html" title="Bicicleta - Auxiliary program class. ">Bicicleta</a> object and inserts it in the correct vector, in this case, of a <a class="el" href="class_posto_servico.html" title="PostoServico - Auxiliary program class. ">PostoServico</a> </dd></dl>
 
 </div>
 </div>
@@ -262,25 +276,172 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>menu_mngr_logs</b> ()<
       </table>
 </div><div class="memdoc">
 
-<p>Create and add a <a class="el" href="class_utilizador.html">Utilizador</a> object. </p>
+<p>Create and add a <a class="el" href="class_utilizador.html" title="Utilizador - class representing users of the network. ">Utilizador</a> object. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">nome</td><td>- name of the <a class="el" href="class_utilizador.html">Utilizador</a> object to create </td></tr>
+    <tr><td class="paramname">nome</td><td>- name of the <a class="el" href="class_utilizador.html" title="Utilizador - class representing users of the network. ">Utilizador</a> object to create </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>0 if successfull, 1 if <a class="el" href="class_utilizador.html">Utilizador</a> already exists Creates a <a class="el" href="class_utilizador.html">Utilizador</a> object and inserts it in the vector, withou repetitions </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>0 if successfull, 1 if <a class="el" href="class_utilizador.html" title="Utilizador - class representing users of the network. ">Utilizador</a> already exists Creates a <a class="el" href="class_utilizador.html" title="Utilizador - class representing users of the network. ">Utilizador</a> object and inserts it in the vector, without repetitions </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a42b5a88380e63b78e5c99894aee0dfbc"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Rede::existeUtilizador </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>nome</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if user exists. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nome</td><td>- name of <a class="el" href="class_utilizador.html" title="Utilizador - class representing users of the network. ">Utilizador</a> to search Searches for the existance of a <a class="el" href="class_utilizador.html" title="Utilizador - class representing users of the network. ">Utilizador</a> with that name </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true is <a class="el" href="class_utilizador.html" title="Utilizador - class representing users of the network. ">Utilizador</a> already exists, false otherwise </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a0862364a4ce27c157b2b756184526748"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt; <a class="el" href="class_registo.html">Registo</a> * &gt; Rede::get_regs </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get pointers to all <a class="el" href="class_registo.html" title="Registo - Auxiliary program class. ">Registo</a> objects relative to completed rentals in the system. </p>
+<dl class="section return"><dt>Returns</dt><dd>vector with mentioned <a class="el" href="class_registo.html" title="Registo - Auxiliary program class. ">Registo</a> pointers, without repeated ones This function is useful for storeInfo </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aba033af0c2cd9a4f70ca1f9459a6a3ee"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">string Rede::is_busy </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>id_bici</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>print</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Determine if a bike is rented and by whom. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id_bici</td><td>- ID of <a class="el" href="class_bicicleta.html" title="Bicicleta - Auxiliary program class. ">Bicicleta</a> to search </td></tr>
+    <tr><td class="paramname">print</td><td>- decide wether to print messages to the user or not </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>name of user renting the <a class="el" href="class_bicicleta.html" title="Bicicleta - Auxiliary program class. ">Bicicleta</a>, or an empty string if <a class="el" href="class_bicicleta.html" title="Bicicleta - Auxiliary program class. ">Bicicleta</a> is available </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ae11dd331c071a1d4dace9fc89d82e251"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Rede::menu_mngr_logs </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Management menu for rental logs. Allows the system manager to view information about the Bike-sharing network in a easy way. Some of the lists are: </p>
+<p>"Time a user has rented a bike" "Money to charge a user" "Number of users served by a company" "Ongoing rentals" "Most frequent service user" </p>
+
+</div>
+</div>
+<a class="anchor" id="af5dd3d55b3cb2f252349128787a96e27"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Rede::menu_regUsr_logged </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_utilizador.html">Utilizador</a> *&#160;</td>
+          <td class="paramname"><em>user</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Logged in registered user menu This is a slightly different menu, because it needed to receive an argument, the logged in user. Therefore, it's return is "analyzed" by <a class="el" href="class_rede.html#aa36d94723cae863269eb20375c4491c4" title="Registered user menu This is the menu where registered users perform login, and where new users are r...">menu_regUsr()</a> and not by <a class="el" href="class_rede.html#a906023ec85b2043b4610e627951e93b8" title="Menu controller function This function controls the whole menu system, by calling the function corres...">menu_system()</a>, but it's return means the same. This menu allows the logged in registered user to rent and return bikes, change his password, view his rental log and see his monthly service cost. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">user</td><td>- pointer to the user that just logged in, that allows the function to know which <a class="el" href="class_utilizador.html" title="Utilizador - class representing users of the network. ">Utilizador</a> object to modify </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Same as other menu functions, it's effect will be the same </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ac74ae338ed2ddb5b8f94c9ed33e172ef"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Rede::tipoUser </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>nome</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Find type of a user. </p>
+<dl class="section return"><dt>Returns</dt><dd>user type if it exists, -1 otherwise </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nome</td><td>- name of <a class="el" href="class_utilizador.html" title="Utilizador - class representing users of the network. ">Utilizador</a> whose type must be determined Searches for a user with the given name to find out it's type (occasional or registered) </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="_rede_8h_source.html">Rede.h</a></li>
-<li>Rede.cpp</li>
+<li><a class="el" href="_rede_8cpp.html">Rede.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Nov 9 2014 17:53:55 for My Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Nov 9 2014 20:37:11 for My Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

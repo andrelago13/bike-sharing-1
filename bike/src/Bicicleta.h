@@ -12,6 +12,12 @@
 
 using namespace std;
 
+/*! \class Bicicleta
+\brief Bicicleta - Auxiliary program class
+
+This class is used to represent bikes, storing all it's important features like size or type, identifying it with an ID and
+storing the record of it's use
+*/
 class Bicicleta
 {
 	unsigned int id_num;
@@ -48,6 +54,10 @@ public:
 	bool remove_util(string nome);
 	string get_str() const;
 	void make_str(string bike);
+	/*! 
+	\brief Sets the empresa attribute of the object to emp
+	\param emp - New empresa for the object
+	*/
 	void setEmpresa(string emp) { empresa = emp; }
 	Registo* ultimo_reg() const;
 

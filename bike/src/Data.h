@@ -7,6 +7,13 @@
 
 using namespace std;
 
+/*! \class Data
+\brief Data - auxiliary class to keep track of time
+
+This is a simple class we built to simplify the order of time in the rental events of Rede.
+Though, it was made in a way that it can be used in other, unrelated projects, because it has a simple, public, interface and
+has methods that allow easy convertion between Data and other formats
+*/
 class Data
 {
 public:

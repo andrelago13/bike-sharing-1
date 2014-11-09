@@ -9,12 +9,11 @@
 
 using namespace std;
 
-/*! \class Rede
-\brief Rede - Auxiliary program class
+/*! \class Empresa
+\brief Empresa - Auxiliary program class
 
 This class functions as a bridge that connects PostoServico to Rede and is very important in many ways
 */
-
 class Empresa
 {
 private:

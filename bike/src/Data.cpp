@@ -7,13 +7,29 @@
 
 using namespace std;
 
-Data::Data() : ano(0), mes(0), dia(0) {} //construtor por defeito da classe data inicializada como dia "0"
+/*!
+\brief Default constructor of Data class
+It initializes the object as being date 0000/00/00
+*/
+Data::Data() : ano(0), mes(0), dia(0) {}
 
-Data::Data(unsigned int ano, unsigned int mes, unsigned int dia) : ano(ano), mes(mes), dia(dia) {}//construtor da classe data inicializando ano como ano, mes como mes e dia como dia
+/*!
+\brief Complete Data constructor
+\param ano - New object's year
+\param mes - New object's month
+\param dia - New object's day
+*/
+Data::Data(unsigned int ano, unsigned int mes, unsigned int dia) : ano(ano), mes(mes), dia(dia) {}/
 
 
-
-bool operator<(const Data data1, const Data data2) //função que redefine o operador "<" para que se possa comparar se uma data é menor que a outra(mais fácil para obter essa situação posteriormente)
+/*!
+\brief Operator < to compare Data objects
+Compares two Data objects to determine if one is "before" the other
+\param data1 - First Data object
+\param data2 - Second Data object
+\return true if data1 is prior to data2, and false otherwise
+*/
+bool operator<(const Data data1, const Data data2)
 {
 	if (data1.ano < data2.ano)//data é menor se ano for menor
 		return true;
@@ -37,7 +53,13 @@ bool operator<(const Data data1, const Data data2) //função que redefine o opera
 	return false;
 }
 
-bool operator==(const Data data1, const Data data2)//função que redefine o operador "==" que permite comparar se duas datas são iguais 
+/*!
+\brief Operator == to determine equality of two Data objects
+\param data1 - First Data object
+\param data2 - Second Data object
+\return true if data1 is equal to data2, and false otherwise
+*/
+bool operator==(const Data data1, const Data data2)
 {
 	if (data1.getDataStr() == data2.getDataStr())
 		return true;
@@ -45,7 +67,12 @@ bool operator==(const Data data1, const Data data2)//função que redefine o opera
 	return false;
 }
 
-string Data::getDataStr() const //função que retorna/imprime a data
+/*!
+\brief Convert Data object to string
+This funtion converts the Data object into a string in format YYYY/MM/DD
+\return current Data object in string format
+*/
+string Data::getDataStr() const
 {
 	stringstream ss;
 
@@ -54,13 +81,25 @@ string Data::getDataStr() const //função que retorna/imprime a data
 	return ss.str();
 }
 
-ostream& operator<<(ostream &o, const Data &data) //função que permite cout de uma data 
+/*!
+\brief Allows operator << to use a Data object
+Converts the object to a string using getDataStr() and "sends" it to the ostream o
+\return ostream reference to allow multiple, inline, << operators
+*/
+ostream& operator<<(ostream &o, const Data &data)
 {
 	o << data.getDataStr();
 	return o;
 }
 
-int dif_dias(Data d1, Data d2) //função que calcula a diferença de dias entre duas datas
+/*!
+\brief Calculates the difference between two dates in days
+\param d1 - First Data object
+\param d2 - Second Data object
+\return day difference between two dates, given that d1 is "older"
+Calculates the difference between the two dates, considering the number of days in a month and other factors
+*/
+int dif_dias(Data d1, Data d2)
 {
 	static int month_days[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 	int dias = 0;
@@ -90,7 +129,12 @@ int dif_dias(Data d1, Data d2) //função que calcula a diferença de dias entre du
 	return dias;
 }
 
-Data::Data(string date) //construtor de data que constrói a data através de uma string
+/*!
+\brief Constructor of Date from a string
+\param date - string with a date in format YYYY/MM/DD
+Constructs a date object from a string in the specified format, useful for construction of objects on loadInfo function of Rede class
+*/
+Data::Data(string date)
 {
 	string ano_str;
 	ano_str += date[0];

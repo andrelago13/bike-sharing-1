@@ -1,84 +1,454 @@
 \hypertarget{class_posto_servico}{\section{Posto\+Servico Class Reference}
 \label{class_posto_servico}\index{Posto\+Servico@{Posto\+Servico}}
 }
+
+
+\hyperlink{class_posto_servico}{Posto\+Servico} -\/ Auxiliary program class.  
+
+
+
+
+{\ttfamily \#include $<$Posto\+Servico.\+h$>$}
+
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_posto_servico_a53b6ddb92aebadb5168570cbf9f87bae}{{\bfseries Posto\+Servico} (int i\+D, int ocupacao, int lotacao)}\label{class_posto_servico_a53b6ddb92aebadb5168570cbf9f87bae}
+\hyperlink{class_posto_servico_a53b6ddb92aebadb5168570cbf9f87bae}{Posto\+Servico} (int i\+D, int ocupacao, int lotacao)
+\begin{DoxyCompactList}\small\item\em Creates a service spot. \end{DoxyCompactList}\item 
+int \hyperlink{class_posto_servico_a12d2e1c64b373009aec51fb7f4df44ec}{get\+I\+D} () const 
+\begin{DoxyCompactList}\small\item\em Gets the service spot's id. \end{DoxyCompactList}\item 
+int \hyperlink{class_posto_servico_a467b1b77cd1a56131f0e5a6776a55885}{get\+Lotacao} () const 
+\begin{DoxyCompactList}\small\item\em Gets the service spot's lotacao. \end{DoxyCompactList}\item 
+int \hyperlink{class_posto_servico_a2f09c305c18b3c08686a852e2e8702ac}{get\+Ocupacao} () const 
+\begin{DoxyCompactList}\small\item\em Gets the service spot's ocupacao. \end{DoxyCompactList}\item 
+int \hyperlink{class_posto_servico_a9efdef3b0af8965d366dacb6e61bb6d9}{get\+Espaco\+Livre} () const 
+\begin{DoxyCompactList}\small\item\em Gets the service spot's free space. \end{DoxyCompactList}\item 
+vector$<$ \hyperlink{class_bicicleta}{Bicicleta} $\ast$ $>$ \hyperlink{class_posto_servico_a0d3be8347bcfe2ff61915f0fe4688f11}{get\+Disponiveis} ()
+\begin{DoxyCompactList}\small\item\em Gets the service spot's disponiveis bikes. \end{DoxyCompactList}\item 
+vector$<$ \hyperlink{class_bicicleta}{Bicicleta} $\ast$ $>$ \hyperlink{class_posto_servico_ae2675fbf3044cd0cc366fbec67449969}{get\+Avariadas} ()
+\begin{DoxyCompactList}\small\item\em Gets the service spot's avariadas bikes. \end{DoxyCompactList}\item 
+vector$<$ \hyperlink{class_bicicleta}{Bicicleta} $\ast$ $>$ \hyperlink{class_posto_servico_a747fd34e7c83f28f1697284b6e139e2e}{get\+Bicicletas} ()
+\begin{DoxyCompactList}\small\item\em Gets the service spot's bikes. \end{DoxyCompactList}\item 
+vector$<$ \hyperlink{class_registo}{Registo} $\ast$ $>$ \hyperlink{class_posto_servico_abfe611099f0fb1d79f7a2344496af023}{get\+Utlizacao} ()
+\begin{DoxyCompactList}\small\item\em Gets the regists of all bikes of service spot. \end{DoxyCompactList}\item 
+void \hyperlink{class_posto_servico_afceba43d75e3b42c54cc6e8ff59ff22f}{adicionabicicleta} (\hyperlink{class_bicicleta}{Bicicleta} $\ast$bi1)
+\begin{DoxyCompactList}\small\item\em Adds a bike object to the service spot. \end{DoxyCompactList}\item 
+void \hyperlink{class_posto_servico_a1b250081e0af407dc3ea0e7755da99a2}{adiciona\+Disponivel} (\hyperlink{class_bicicleta}{Bicicleta} $\ast$bi1)
+\begin{DoxyCompactList}\small\item\em Adds a bike object to the service spot. \end{DoxyCompactList}\item 
+void \hyperlink{class_posto_servico_a2e01d6a12f30c50ca8c6d2eb50b33e0e}{adiciona\+Avariada} (\hyperlink{class_bicicleta}{Bicicleta} $\ast$bi1)
+\begin{DoxyCompactList}\small\item\em Adds a bike object to the service spot. \end{DoxyCompactList}\item 
+void \hyperlink{class_posto_servico_a0371ddda624f3760c76f04a4b6e767d0}{adiciona\+Utilizacao} (\hyperlink{class_registo}{Registo} $\ast$reg1)
+\begin{DoxyCompactList}\small\item\em Adds a new regist object to the service spot. \end{DoxyCompactList}\item 
+void \hyperlink{class_posto_servico_a0ee0fe238467db3ea6f207d528a6e2e9}{set\+Disponiveis} (vector$<$ \hyperlink{class_bicicleta}{Bicicleta} $\ast$ $>$ disponiveis)
+\begin{DoxyCompactList}\small\item\em Sets a new group of disponiveis bikes on the company. \end{DoxyCompactList}\item 
+void \hyperlink{class_posto_servico_afb5c121f880c880bdcc75033eb9bc7f2}{set\+Avariadas} (vector$<$ \hyperlink{class_bicicleta}{Bicicleta} $\ast$ $>$ avariadas)
+\begin{DoxyCompactList}\small\item\em Sets a new group of avariadas bikes on the company. \end{DoxyCompactList}\item 
+void \hyperlink{class_posto_servico_ae63f7836c55f4eb38d8916c140f62162}{set\+Utilizacao} (vector$<$ \hyperlink{class_registo}{Registo} $\ast$ $>$ utilizacao)
+\begin{DoxyCompactList}\small\item\em Sets a new group of regists to the service spot. \end{DoxyCompactList}\item 
+void \hyperlink{class_posto_servico_a68ca412e4456c344981f6cb0b01c4184}{set\+I\+D} (int id)
+\begin{DoxyCompactList}\small\item\em Sets a new service spot's id. \end{DoxyCompactList}\item 
+void \hyperlink{class_posto_servico_a0acde19dbfc74b355e1aa2e34f25fa11}{set\+Lotacao} (int lot)
+\begin{DoxyCompactList}\small\item\em Sets a new service spot's lotacao. \end{DoxyCompactList}\item 
+bool \hyperlink{class_posto_servico_a30d51d2560c0239ecb513db121a604a7}{aluga} (\hyperlink{class_bicicleta}{Bicicleta} $\ast$bi1)
+\begin{DoxyCompactList}\small\item\em The user rents a bike. \end{DoxyCompactList}\item 
+bool \hyperlink{class_posto_servico_a9b7c97136f4b1e2cc7d90cbdb54c3f53}{devolve} (\hyperlink{class_bicicleta}{Bicicleta} $\ast$bi1)
+\begin{DoxyCompactList}\small\item\em The user returns a bike. \end{DoxyCompactList}\item 
+bool \hyperlink{class_posto_servico_a01c59324f65bf70ce5400718cde0791a}{removebicicleta} (unsigned int id\+\_\+bike)
+\begin{DoxyCompactList}\small\item\em The service spot removes a bike. \end{DoxyCompactList}\item 
+bool \hyperlink{class_posto_servico_a9cab807cf7fcecad5e8231abdb7ef491}{removeutilizador} (string user)
+\begin{DoxyCompactList}\small\item\em The service spot removes a user. \end{DoxyCompactList}\item 
+\hypertarget{class_posto_servico_a15a1ac03805060f0b2282e32c8f95da2}{void \hyperlink{class_posto_servico_a15a1ac03805060f0b2282e32c8f95da2}{arranja\+\_\+bicicletas} ()}\label{class_posto_servico_a15a1ac03805060f0b2282e32c8f95da2}
 
-\item 
-\hypertarget{class_posto_servico_a12d2e1c64b373009aec51fb7f4df44ec}{int {\bfseries get\+I\+D} () const }\label{class_posto_servico_a12d2e1c64b373009aec51fb7f4df44ec}
+\begin{DoxyCompactList}\small\item\em The service spot fix the broken bikes The servide spot fix the broken bikes and put then back to disponiveis. \end{DoxyCompactList}\item 
+bool \hyperlink{class_posto_servico_a116efc301c6955001083ba199ed96ed2}{arranja\+\_\+bicicleta} (int id\+\_\+bike)
+\begin{DoxyCompactList}\small\item\em The service spot fix an especific broken bike. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
-\item 
-\hypertarget{class_posto_servico_a467b1b77cd1a56131f0e5a6776a55885}{int {\bfseries get\+Lotacao} () const }\label{class_posto_servico_a467b1b77cd1a56131f0e5a6776a55885}
 
-\item 
-\hypertarget{class_posto_servico_a2f09c305c18b3c08686a852e2e8702ac}{int {\bfseries get\+Ocupacao} () const }\label{class_posto_servico_a2f09c305c18b3c08686a852e2e8702ac}
+\subsection{Detailed Description}
+\hyperlink{class_posto_servico}{Posto\+Servico} -\/ Auxiliary program class. 
 
-\item 
-\hypertarget{class_posto_servico_a9efdef3b0af8965d366dacb6e61bb6d9}{int {\bfseries get\+Espaco\+Livre} () const }\label{class_posto_servico_a9efdef3b0af8965d366dacb6e61bb6d9}
+This class lets us manage everything about bikes. Here we can rent or return a bike, fix broken bikes and remove bikes or users. Therefore is class that help us have a clear vision of what bike-\/sharing really is 
 
-\item 
-\hypertarget{class_posto_servico_a0d3be8347bcfe2ff61915f0fe4688f11}{vector$<$ \hyperlink{class_bicicleta}{Bicicleta} $\ast$ $>$ {\bfseries get\+Disponiveis} ()}\label{class_posto_servico_a0d3be8347bcfe2ff61915f0fe4688f11}
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_posto_servico_a53b6ddb92aebadb5168570cbf9f87bae}{\index{Posto\+Servico@{Posto\+Servico}!Posto\+Servico@{Posto\+Servico}}
+\index{Posto\+Servico@{Posto\+Servico}!Posto\+Servico@{Posto\+Servico}}
+\subsubsection[{Posto\+Servico}]{\setlength{\rightskip}{0pt plus 5cm}Posto\+Servico\+::\+Posto\+Servico (
+\begin{DoxyParamCaption}
+\item[{int}]{i\+D, }
+\item[{int}]{ocupacao, }
+\item[{int}]{lotacao}
+\end{DoxyParamCaption}
+)}}\label{class_posto_servico_a53b6ddb92aebadb5168570cbf9f87bae}
 
-\item 
-\hypertarget{class_posto_servico_ae2675fbf3044cd0cc366fbec67449969}{vector$<$ \hyperlink{class_bicicleta}{Bicicleta} $\ast$ $>$ {\bfseries get\+Avariadas} ()}\label{class_posto_servico_ae2675fbf3044cd0cc366fbec67449969}
 
-\item 
-\hypertarget{class_posto_servico_a747fd34e7c83f28f1697284b6e139e2e}{vector$<$ \hyperlink{class_bicicleta}{Bicicleta} $\ast$ $>$ {\bfseries get\+Bicicletas} ()}\label{class_posto_servico_a747fd34e7c83f28f1697284b6e139e2e}
+Creates a service spot. 
 
-\item 
-\hypertarget{class_posto_servico_abfe611099f0fb1d79f7a2344496af023}{vector$<$ \hyperlink{class_registo}{Registo} $\ast$ $>$ {\bfseries get\+Utlizacao} ()}\label{class_posto_servico_abfe611099f0fb1d79f7a2344496af023}
 
-\item 
-\hypertarget{class_posto_servico_afceba43d75e3b42c54cc6e8ff59ff22f}{void {\bfseries adicionabicicleta} (\hyperlink{class_bicicleta}{Bicicleta} $\ast$bi1)}\label{class_posto_servico_afceba43d75e3b42c54cc6e8ff59ff22f}
+\begin{DoxyParams}{Parameters}
+{\em i\+D} & -\/ Name given to the new the service spot \\
+\hline
+{\em ocupacao} & -\/ ocupation of the new service spot \\
+\hline
+{\em lotacao} & -\/ include free space and ocupation of the service spot Creates a service spot with a new id, new ocupacao and new lotacao \\
+\hline
+\end{DoxyParams}
 
-\item 
-\hypertarget{class_posto_servico_a1b250081e0af407dc3ea0e7755da99a2}{void {\bfseries adiciona\+Disponivel} (\hyperlink{class_bicicleta}{Bicicleta} $\ast$bi1)}\label{class_posto_servico_a1b250081e0af407dc3ea0e7755da99a2}
 
-\item 
-\hypertarget{class_posto_servico_a2e01d6a12f30c50ca8c6d2eb50b33e0e}{void {\bfseries adiciona\+Avariada} (\hyperlink{class_bicicleta}{Bicicleta} $\ast$bi1)}\label{class_posto_servico_a2e01d6a12f30c50ca8c6d2eb50b33e0e}
+\subsection{Member Function Documentation}
+\hypertarget{class_posto_servico_a2e01d6a12f30c50ca8c6d2eb50b33e0e}{\index{Posto\+Servico@{Posto\+Servico}!adiciona\+Avariada@{adiciona\+Avariada}}
+\index{adiciona\+Avariada@{adiciona\+Avariada}!Posto\+Servico@{Posto\+Servico}}
+\subsubsection[{adiciona\+Avariada}]{\setlength{\rightskip}{0pt plus 5cm}void Posto\+Servico\+::adiciona\+Avariada (
+\begin{DoxyParamCaption}
+\item[{{\bf Bicicleta} $\ast$}]{bi1}
+\end{DoxyParamCaption}
+)}}\label{class_posto_servico_a2e01d6a12f30c50ca8c6d2eb50b33e0e}
 
-\item 
-\hypertarget{class_posto_servico_a0371ddda624f3760c76f04a4b6e767d0}{void {\bfseries adiciona\+Utilizacao} (\hyperlink{class_registo}{Registo} $\ast$reg1)}\label{class_posto_servico_a0371ddda624f3760c76f04a4b6e767d0}
 
-\item 
-\hypertarget{class_posto_servico_a0ee0fe238467db3ea6f207d528a6e2e9}{void {\bfseries set\+Disponiveis} (vector$<$ \hyperlink{class_bicicleta}{Bicicleta} $\ast$ $>$ disponiveis)}\label{class_posto_servico_a0ee0fe238467db3ea6f207d528a6e2e9}
+Adds a bike object to the service spot. 
 
-\item 
-\hypertarget{class_posto_servico_afb5c121f880c880bdcc75033eb9bc7f2}{void {\bfseries set\+Avariadas} (vector$<$ \hyperlink{class_bicicleta}{Bicicleta} $\ast$ $>$ avariadas)}\label{class_posto_servico_afb5c121f880c880bdcc75033eb9bc7f2}
 
-\item 
-\hypertarget{class_posto_servico_ae63f7836c55f4eb38d8916c140f62162}{void {\bfseries set\+Utilizacao} (vector$<$ \hyperlink{class_registo}{Registo} $\ast$ $>$ utilizacao)}\label{class_posto_servico_ae63f7836c55f4eb38d8916c140f62162}
+\begin{DoxyParams}{Parameters}
+{\em $\ast$bi1} & -\/ New bike to be added Add a bike to the service spot's vector avariadas and increments ocupacao \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_posto_servico_afceba43d75e3b42c54cc6e8ff59ff22f}{\index{Posto\+Servico@{Posto\+Servico}!adicionabicicleta@{adicionabicicleta}}
+\index{adicionabicicleta@{adicionabicicleta}!Posto\+Servico@{Posto\+Servico}}
+\subsubsection[{adicionabicicleta}]{\setlength{\rightskip}{0pt plus 5cm}void Posto\+Servico\+::adicionabicicleta (
+\begin{DoxyParamCaption}
+\item[{{\bf Bicicleta} $\ast$}]{bi1}
+\end{DoxyParamCaption}
+)}}\label{class_posto_servico_afceba43d75e3b42c54cc6e8ff59ff22f}
 
-\item 
-\hypertarget{class_posto_servico_a68ca412e4456c344981f6cb0b01c4184}{void {\bfseries set\+I\+D} (int id)}\label{class_posto_servico_a68ca412e4456c344981f6cb0b01c4184}
 
-\item 
-\hypertarget{class_posto_servico_a0acde19dbfc74b355e1aa2e34f25fa11}{void {\bfseries set\+Lotacao} (int lot)}\label{class_posto_servico_a0acde19dbfc74b355e1aa2e34f25fa11}
+Adds a bike object to the service spot. 
 
-\item 
-\hypertarget{class_posto_servico_a30d51d2560c0239ecb513db121a604a7}{bool {\bfseries aluga} (\hyperlink{class_bicicleta}{Bicicleta} $\ast$bi1)}\label{class_posto_servico_a30d51d2560c0239ecb513db121a604a7}
 
-\item 
-\hypertarget{class_posto_servico_a9b7c97136f4b1e2cc7d90cbdb54c3f53}{bool {\bfseries devolve} (\hyperlink{class_bicicleta}{Bicicleta} $\ast$bi1)}\label{class_posto_servico_a9b7c97136f4b1e2cc7d90cbdb54c3f53}
+\begin{DoxyParams}{Parameters}
+{\em $\ast$bi1} & -\/ New bike to be added Adds a bike to the service spot. If it is broken, is implemented on avariadas otherwise it goes to disponiveis \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_posto_servico_a1b250081e0af407dc3ea0e7755da99a2}{\index{Posto\+Servico@{Posto\+Servico}!adiciona\+Disponivel@{adiciona\+Disponivel}}
+\index{adiciona\+Disponivel@{adiciona\+Disponivel}!Posto\+Servico@{Posto\+Servico}}
+\subsubsection[{adiciona\+Disponivel}]{\setlength{\rightskip}{0pt plus 5cm}void Posto\+Servico\+::adiciona\+Disponivel (
+\begin{DoxyParamCaption}
+\item[{{\bf Bicicleta} $\ast$}]{bi1}
+\end{DoxyParamCaption}
+)}}\label{class_posto_servico_a1b250081e0af407dc3ea0e7755da99a2}
 
-\item 
-\hypertarget{class_posto_servico_a01c59324f65bf70ce5400718cde0791a}{bool {\bfseries removebicicleta} (unsigned int id\+\_\+bike)}\label{class_posto_servico_a01c59324f65bf70ce5400718cde0791a}
 
-\item 
-\hypertarget{class_posto_servico_a9cab807cf7fcecad5e8231abdb7ef491}{bool {\bfseries removeutilizador} (string user)}\label{class_posto_servico_a9cab807cf7fcecad5e8231abdb7ef491}
+Adds a bike object to the service spot. 
 
-\item 
-\hypertarget{class_posto_servico_a15a1ac03805060f0b2282e32c8f95da2}{void {\bfseries arranja\+\_\+bicicletas} ()}\label{class_posto_servico_a15a1ac03805060f0b2282e32c8f95da2}
 
-\item 
-\hypertarget{class_posto_servico_a116efc301c6955001083ba199ed96ed2}{bool {\bfseries arranja\+\_\+bicicleta} (int id\+\_\+bike)}\label{class_posto_servico_a116efc301c6955001083ba199ed96ed2}
+\begin{DoxyParams}{Parameters}
+{\em $\ast$bi1} & -\/ New bike to be added Adds a bike to the service spot's vector disponiveis and increments ocupacao \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_posto_servico_a0371ddda624f3760c76f04a4b6e767d0}{\index{Posto\+Servico@{Posto\+Servico}!adiciona\+Utilizacao@{adiciona\+Utilizacao}}
+\index{adiciona\+Utilizacao@{adiciona\+Utilizacao}!Posto\+Servico@{Posto\+Servico}}
+\subsubsection[{adiciona\+Utilizacao}]{\setlength{\rightskip}{0pt plus 5cm}void Posto\+Servico\+::adiciona\+Utilizacao (
+\begin{DoxyParamCaption}
+\item[{{\bf Registo} $\ast$}]{reg1}
+\end{DoxyParamCaption}
+)}}\label{class_posto_servico_a0371ddda624f3760c76f04a4b6e767d0}
 
-\end{DoxyCompactItemize}
+
+Adds a new regist object to the service spot. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$reg1} & -\/ New regist to be added Add a bike to the service spot's vector avariadas and increments ocupacao \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_posto_servico_a30d51d2560c0239ecb513db121a604a7}{\index{Posto\+Servico@{Posto\+Servico}!aluga@{aluga}}
+\index{aluga@{aluga}!Posto\+Servico@{Posto\+Servico}}
+\subsubsection[{aluga}]{\setlength{\rightskip}{0pt plus 5cm}bool Posto\+Servico\+::aluga (
+\begin{DoxyParamCaption}
+\item[{{\bf Bicicleta} $\ast$}]{bi1}
+\end{DoxyParamCaption}
+)}}\label{class_posto_servico_a30d51d2560c0239ecb513db121a604a7}
+
+
+The user rents a bike. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$bi1} & -\/ bike object to be rentes \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if successfull, false if does not exist The user rentes a bike from disponiveis through a parameter and then the ocupacao is decremented 
+\end{DoxyReturn}
+\hypertarget{class_posto_servico_a116efc301c6955001083ba199ed96ed2}{\index{Posto\+Servico@{Posto\+Servico}!arranja\+\_\+bicicleta@{arranja\+\_\+bicicleta}}
+\index{arranja\+\_\+bicicleta@{arranja\+\_\+bicicleta}!Posto\+Servico@{Posto\+Servico}}
+\subsubsection[{arranja\+\_\+bicicleta}]{\setlength{\rightskip}{0pt plus 5cm}bool Posto\+Servico\+::arranja\+\_\+bicicleta (
+\begin{DoxyParamCaption}
+\item[{int}]{id\+\_\+bike}
+\end{DoxyParamCaption}
+)}}\label{class_posto_servico_a116efc301c6955001083ba199ed96ed2}
+
+
+The service spot fix an especific broken bike. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id\+\_\+bike} & -\/ identifies the bike to be fixed \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if successfull, false if the bike does not exist on avariadas The servide spot fix a bike through an id\+\_\+bike. Then it removes from avariadas and put him on disponiveis 
+\end{DoxyReturn}
+\hypertarget{class_posto_servico_a9b7c97136f4b1e2cc7d90cbdb54c3f53}{\index{Posto\+Servico@{Posto\+Servico}!devolve@{devolve}}
+\index{devolve@{devolve}!Posto\+Servico@{Posto\+Servico}}
+\subsubsection[{devolve}]{\setlength{\rightskip}{0pt plus 5cm}bool Posto\+Servico\+::devolve (
+\begin{DoxyParamCaption}
+\item[{{\bf Bicicleta} $\ast$}]{bi1}
+\end{DoxyParamCaption}
+)}}\label{class_posto_servico_a9b7c97136f4b1e2cc7d90cbdb54c3f53}
+
+
+The user returns a bike. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$bi1} & -\/ bike object to be return \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if successfull, false if the user returns the bike broken The user returns a bike and if it is broken, it goes to avariadas otherwise goes to disponiveis.\+On both cases the ocupacao is incremented 
+\end{DoxyReturn}
+\hypertarget{class_posto_servico_ae2675fbf3044cd0cc366fbec67449969}{\index{Posto\+Servico@{Posto\+Servico}!get\+Avariadas@{get\+Avariadas}}
+\index{get\+Avariadas@{get\+Avariadas}!Posto\+Servico@{Posto\+Servico}}
+\subsubsection[{get\+Avariadas}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ {\bf Bicicleta} $\ast$ $>$ Posto\+Servico\+::get\+Avariadas (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_posto_servico_ae2675fbf3044cd0cc366fbec67449969}
+
+
+Gets the service spot's avariadas bikes. 
+
+\begin{DoxyReturn}{Returns}
+the avariadas bikes of the service spot Let us get a vector of type \hyperlink{class_bicicleta}{Bicicleta} with avariadas bikes of the service spot 
+\end{DoxyReturn}
+\hypertarget{class_posto_servico_a747fd34e7c83f28f1697284b6e139e2e}{\index{Posto\+Servico@{Posto\+Servico}!get\+Bicicletas@{get\+Bicicletas}}
+\index{get\+Bicicletas@{get\+Bicicletas}!Posto\+Servico@{Posto\+Servico}}
+\subsubsection[{get\+Bicicletas}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ {\bf Bicicleta} $\ast$ $>$ Posto\+Servico\+::get\+Bicicletas (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_posto_servico_a747fd34e7c83f28f1697284b6e139e2e}
+
+
+Gets the service spot's bikes. 
+
+\begin{DoxyReturn}{Returns}
+a vector with all the service spot's bikes Let us get a vector of type \hyperlink{class_bicicleta}{Bicicleta} with all bikes of the service spot 
+\end{DoxyReturn}
+\hypertarget{class_posto_servico_a0d3be8347bcfe2ff61915f0fe4688f11}{\index{Posto\+Servico@{Posto\+Servico}!get\+Disponiveis@{get\+Disponiveis}}
+\index{get\+Disponiveis@{get\+Disponiveis}!Posto\+Servico@{Posto\+Servico}}
+\subsubsection[{get\+Disponiveis}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ {\bf Bicicleta} $\ast$ $>$ Posto\+Servico\+::get\+Disponiveis (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_posto_servico_a0d3be8347bcfe2ff61915f0fe4688f11}
+
+
+Gets the service spot's disponiveis bikes. 
+
+\begin{DoxyReturn}{Returns}
+the disponiveis bikes of the service spot Let us get a vector of type \hyperlink{class_bicicleta}{Bicicleta} with disponiveis bikes of the service spot 
+\end{DoxyReturn}
+\hypertarget{class_posto_servico_a9efdef3b0af8965d366dacb6e61bb6d9}{\index{Posto\+Servico@{Posto\+Servico}!get\+Espaco\+Livre@{get\+Espaco\+Livre}}
+\index{get\+Espaco\+Livre@{get\+Espaco\+Livre}!Posto\+Servico@{Posto\+Servico}}
+\subsubsection[{get\+Espaco\+Livre}]{\setlength{\rightskip}{0pt plus 5cm}int Posto\+Servico\+::get\+Espaco\+Livre (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_posto_servico_a9efdef3b0af8965d366dacb6e61bb6d9}
+
+
+Gets the service spot's free space. 
+
+\begin{DoxyReturn}{Returns}
+the free space of the service spot Let us get the free space of the service spot 
+\end{DoxyReturn}
+\hypertarget{class_posto_servico_a12d2e1c64b373009aec51fb7f4df44ec}{\index{Posto\+Servico@{Posto\+Servico}!get\+I\+D@{get\+I\+D}}
+\index{get\+I\+D@{get\+I\+D}!Posto\+Servico@{Posto\+Servico}}
+\subsubsection[{get\+I\+D}]{\setlength{\rightskip}{0pt plus 5cm}int Posto\+Servico\+::get\+I\+D (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_posto_servico_a12d2e1c64b373009aec51fb7f4df44ec}
+
+
+Gets the service spot's id. 
+
+\begin{DoxyReturn}{Returns}
+the id of the service spot Let us get the id of the service spot 
+\end{DoxyReturn}
+\hypertarget{class_posto_servico_a467b1b77cd1a56131f0e5a6776a55885}{\index{Posto\+Servico@{Posto\+Servico}!get\+Lotacao@{get\+Lotacao}}
+\index{get\+Lotacao@{get\+Lotacao}!Posto\+Servico@{Posto\+Servico}}
+\subsubsection[{get\+Lotacao}]{\setlength{\rightskip}{0pt plus 5cm}int Posto\+Servico\+::get\+Lotacao (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_posto_servico_a467b1b77cd1a56131f0e5a6776a55885}
+
+
+Gets the service spot's lotacao. 
+
+\begin{DoxyReturn}{Returns}
+the lotacao of the service spot Let us get the lotacao of the service spot 
+\end{DoxyReturn}
+\hypertarget{class_posto_servico_a2f09c305c18b3c08686a852e2e8702ac}{\index{Posto\+Servico@{Posto\+Servico}!get\+Ocupacao@{get\+Ocupacao}}
+\index{get\+Ocupacao@{get\+Ocupacao}!Posto\+Servico@{Posto\+Servico}}
+\subsubsection[{get\+Ocupacao}]{\setlength{\rightskip}{0pt plus 5cm}int Posto\+Servico\+::get\+Ocupacao (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_posto_servico_a2f09c305c18b3c08686a852e2e8702ac}
+
+
+Gets the service spot's ocupacao. 
+
+\begin{DoxyReturn}{Returns}
+the ocupacao of the service spot Let us get the ocupacao of the service spot 
+\end{DoxyReturn}
+\hypertarget{class_posto_servico_abfe611099f0fb1d79f7a2344496af023}{\index{Posto\+Servico@{Posto\+Servico}!get\+Utlizacao@{get\+Utlizacao}}
+\index{get\+Utlizacao@{get\+Utlizacao}!Posto\+Servico@{Posto\+Servico}}
+\subsubsection[{get\+Utlizacao}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ {\bf Registo} $\ast$ $>$ Posto\+Servico\+::get\+Utlizacao (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_posto_servico_abfe611099f0fb1d79f7a2344496af023}
+
+
+Gets the regists of all bikes of service spot. 
+
+\begin{DoxyReturn}{Returns}
+the the regists of all bikes of the service spot Let us get a vector of type \hyperlink{class_registo}{Registo} with all bikes of the service spot 
+\end{DoxyReturn}
+\hypertarget{class_posto_servico_a01c59324f65bf70ce5400718cde0791a}{\index{Posto\+Servico@{Posto\+Servico}!removebicicleta@{removebicicleta}}
+\index{removebicicleta@{removebicicleta}!Posto\+Servico@{Posto\+Servico}}
+\subsubsection[{removebicicleta}]{\setlength{\rightskip}{0pt plus 5cm}bool Posto\+Servico\+::removebicicleta (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{id\+\_\+bike}
+\end{DoxyParamCaption}
+)}}\label{class_posto_servico_a01c59324f65bf70ce5400718cde0791a}
+
+
+The service spot removes a bike. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id\+\_\+bike} & -\/ identifies the bike to be removed \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if successfull, false if the bike does not exist on disponiveis and avariadas The servide spot removes a bike through an id\+\_\+bike. To do so, the service spot erases the regist of that bike from utilizacao and removes the bike from disponiveis or avariadas depending on which section they are. The ocupacao is decremented 
+\end{DoxyReturn}
+\hypertarget{class_posto_servico_a9cab807cf7fcecad5e8231abdb7ef491}{\index{Posto\+Servico@{Posto\+Servico}!removeutilizador@{removeutilizador}}
+\index{removeutilizador@{removeutilizador}!Posto\+Servico@{Posto\+Servico}}
+\subsubsection[{removeutilizador}]{\setlength{\rightskip}{0pt plus 5cm}bool Posto\+Servico\+::removeutilizador (
+\begin{DoxyParamCaption}
+\item[{string}]{user}
+\end{DoxyParamCaption}
+)}}\label{class_posto_servico_a9cab807cf7fcecad5e8231abdb7ef491}
+
+
+The service spot removes a user. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user} & -\/ the user to be deleted \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if successfull, false if the bike does not exist on disponiveis and avariadas The servide spot removes the User through an user. To do so, the service spot erases the regist of that user from utilizacao and from disponiveis or avariadas 
+\end{DoxyReturn}
+\hypertarget{class_posto_servico_afb5c121f880c880bdcc75033eb9bc7f2}{\index{Posto\+Servico@{Posto\+Servico}!set\+Avariadas@{set\+Avariadas}}
+\index{set\+Avariadas@{set\+Avariadas}!Posto\+Servico@{Posto\+Servico}}
+\subsubsection[{set\+Avariadas}]{\setlength{\rightskip}{0pt plus 5cm}void Posto\+Servico\+::set\+Avariadas (
+\begin{DoxyParamCaption}
+\item[{vector$<$ {\bf Bicicleta} $\ast$ $>$}]{avariadas}
+\end{DoxyParamCaption}
+)}}\label{class_posto_servico_afb5c121f880c880bdcc75033eb9bc7f2}
+
+
+Sets a new group of avariadas bikes on the company. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em disponiveis} & -\/ New pack of avariadas bikes to be implemented Sets a new pack of avariadas bikes to the service spot's vector avariadas \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_posto_servico_a0ee0fe238467db3ea6f207d528a6e2e9}{\index{Posto\+Servico@{Posto\+Servico}!set\+Disponiveis@{set\+Disponiveis}}
+\index{set\+Disponiveis@{set\+Disponiveis}!Posto\+Servico@{Posto\+Servico}}
+\subsubsection[{set\+Disponiveis}]{\setlength{\rightskip}{0pt plus 5cm}void Posto\+Servico\+::set\+Disponiveis (
+\begin{DoxyParamCaption}
+\item[{vector$<$ {\bf Bicicleta} $\ast$ $>$}]{disponiveis}
+\end{DoxyParamCaption}
+)}}\label{class_posto_servico_a0ee0fe238467db3ea6f207d528a6e2e9}
+
+
+Sets a new group of disponiveis bikes on the company. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em disponiveis} & -\/ New pack of disponiveis bikes to be implemented Sets a new pack of disponiveis bikes to the service spot's vector disponiveis \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_posto_servico_a68ca412e4456c344981f6cb0b01c4184}{\index{Posto\+Servico@{Posto\+Servico}!set\+I\+D@{set\+I\+D}}
+\index{set\+I\+D@{set\+I\+D}!Posto\+Servico@{Posto\+Servico}}
+\subsubsection[{set\+I\+D}]{\setlength{\rightskip}{0pt plus 5cm}void Posto\+Servico\+::set\+I\+D (
+\begin{DoxyParamCaption}
+\item[{int}]{id}
+\end{DoxyParamCaption}
+)}}\label{class_posto_servico_a68ca412e4456c344981f6cb0b01c4184}
+
+
+Sets a new service spot's id. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & -\/ New id to be implemented Sets a new id to the service spot \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_posto_servico_a0acde19dbfc74b355e1aa2e34f25fa11}{\index{Posto\+Servico@{Posto\+Servico}!set\+Lotacao@{set\+Lotacao}}
+\index{set\+Lotacao@{set\+Lotacao}!Posto\+Servico@{Posto\+Servico}}
+\subsubsection[{set\+Lotacao}]{\setlength{\rightskip}{0pt plus 5cm}void Posto\+Servico\+::set\+Lotacao (
+\begin{DoxyParamCaption}
+\item[{int}]{lot}
+\end{DoxyParamCaption}
+)}}\label{class_posto_servico_a0acde19dbfc74b355e1aa2e34f25fa11}
+
+
+Sets a new service spot's lotacao. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & -\/ New lotacao to be implemented Sets a new lotacao to the service spot \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_posto_servico_ae63f7836c55f4eb38d8916c140f62162}{\index{Posto\+Servico@{Posto\+Servico}!set\+Utilizacao@{set\+Utilizacao}}
+\index{set\+Utilizacao@{set\+Utilizacao}!Posto\+Servico@{Posto\+Servico}}
+\subsubsection[{set\+Utilizacao}]{\setlength{\rightskip}{0pt plus 5cm}void Posto\+Servico\+::set\+Utilizacao (
+\begin{DoxyParamCaption}
+\item[{vector$<$ {\bf Registo} $\ast$ $>$}]{utilizacao}
+\end{DoxyParamCaption}
+)}}\label{class_posto_servico_ae63f7836c55f4eb38d8916c140f62162}
+
+
+Sets a new group of regists to the service spot. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em disponiveis} & -\/ New pack of regists to be implemented Sets a new pack of regists to the service spot's vector utilizacao \\
+\hline
+\end{DoxyParams}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-Posto\+Servico.\+h\item 
-Posto\+Servico.\+cpp\end{DoxyCompactItemize}
+\hyperlink{_posto_servico_8h}{Posto\+Servico.\+h}\item 
+\hyperlink{_posto_servico_8cpp}{Posto\+Servico.\+cpp}\end{DoxyCompactItemize}

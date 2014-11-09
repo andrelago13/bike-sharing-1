@@ -1,0 +1,50 @@
+\hypertarget{_utilizador_8cpp}{\section{Utilizador.\+cpp File Reference}
+\label{_utilizador_8cpp}\index{Utilizador.\+cpp@{Utilizador.\+cpp}}
+}
+
+
+Implementation of \hyperlink{class_utilizador}{Utilizador} and \hyperlink{class_ut__ocasional}{Ut\+\_\+ocasional} classes This classes are necessary for the project. \hyperlink{class_ut__ocasional}{Ut\+\_\+ocasional} is a derived class of \hyperlink{class_utilizador}{Utilizador} that didn't necessarily need to be made, but we though it could be useful for future utilizations.  
+
+
+{\ttfamily \#include $<$iostream$>$}\\*
+{\ttfamily \#include $<$vector$>$}\\*
+{\ttfamily \#include $<$string$>$}\\*
+{\ttfamily \#include $<$sstream$>$}\\*
+{\ttfamily \#include \char`\"{}Registo.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Utilizador.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}Tools.\+h\char`\"{}}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+ostream \& \hyperlink{_utilizador_8cpp_adc23de1728e267f4b2dc5aed8a410e9e}{operator$<$$<$} (ostream \&o, \hyperlink{class_utilizador}{Utilizador} \&user)
+\begin{DoxyCompactList}\small\item\em Overload of $<$$<$ operator, to allow output of user Outputs user's information, inline, but only name and age. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implementation of \hyperlink{class_utilizador}{Utilizador} and \hyperlink{class_ut__ocasional}{Ut\+\_\+ocasional} classes This classes are necessary for the project. \hyperlink{class_ut__ocasional}{Ut\+\_\+ocasional} is a derived class of \hyperlink{class_utilizador}{Utilizador} that didn't necessarily need to be made, but we though it could be useful for future utilizations. 
+
+
+
+\subsection{Function Documentation}
+\hypertarget{_utilizador_8cpp_adc23de1728e267f4b2dc5aed8a410e9e}{\index{Utilizador.\+cpp@{Utilizador.\+cpp}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Utilizador.\+cpp@{Utilizador.\+cpp}}
+\subsubsection[{operator$<$$<$}]{\setlength{\rightskip}{0pt plus 5cm}ostream\& operator$<$$<$ (
+\begin{DoxyParamCaption}
+\item[{ostream \&}]{o, }
+\item[{{\bf Utilizador} \&}]{user}
+\end{DoxyParamCaption}
+)}}\label{_utilizador_8cpp_adc23de1728e267f4b2dc5aed8a410e9e}
+
+
+Overload of $<$$<$ operator, to allow output of user Outputs user's information, inline, but only name and age. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em o} & -\/ stream to output to \\
+\hline
+{\em user} & -\/ \hyperlink{class_utilizador}{Utilizador} to output \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+stream to allow inline multiple $<$$<$ operators 
+\end{DoxyReturn}

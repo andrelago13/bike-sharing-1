@@ -60,6 +60,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -68,7 +69,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -82,7 +83,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">Data.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
+<a href="_data_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#ifndef DATA_H_</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#define DATA_H_</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;</div>
@@ -91,30 +92,34 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">using namespace </span><a class="code" href="namespacestd.html">std</a>;</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
-<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="class_data.html">   10</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_data.html">Data</a></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;{</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> ano;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> mes;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> dia;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <a class="code" href="class_data.html">Data</a>();</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <a class="code" href="class_data.html">Data</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> ano, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> mes, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> dia);</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <a class="code" href="class_data.html">Data</a>(<span class="keywordtype">string</span> date);</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keywordtype">string</span> getDataStr() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keyword">friend</span> <span class="keywordtype">int</span> dif_dias(<a class="code" href="class_data.html">Data</a> d1, <a class="code" href="class_data.html">Data</a> d2);</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keyword">friend</span> <span class="keywordtype">bool</span> operator&lt;(<span class="keyword">const</span> <a class="code" href="class_data.html">Data</a> data1, <span class="keyword">const</span> <a class="code" href="class_data.html">Data</a> data2);</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keyword">friend</span> <span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> <a class="code" href="class_data.html">Data</a> data1, <span class="keyword">const</span> <a class="code" href="class_data.html">Data</a> data2);</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">friend</span> ostream&amp; operator&lt;&lt;(ostream &amp;o, <span class="keyword">const</span> <a class="code" href="class_data.html">Data</a> &amp;data);</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;};</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* DATA_H_ */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="class_data_html"><div class="ttname"><a href="class_data.html">Data</a></div><div class="ttdef"><b>Definition:</b> Data.h:10</div></div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="class_data.html">   17</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_data.html">Data</a></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;{</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> ano;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> mes;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> dia;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <a class="code" href="class_data.html">Data</a>();</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="class_data.html">Data</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> ano, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> mes, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> dia);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="class_data.html">Data</a>(<span class="keywordtype">string</span> date);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordtype">string</span> getDataStr() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keyword">friend</span> <span class="keywordtype">int</span> <a class="code" href="_data_8cpp.html#a950a6321928619d329831ee195416f79">dif_dias</a>(<a class="code" href="class_data.html">Data</a> d1, <a class="code" href="class_data.html">Data</a> d2);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">friend</span> <span class="keywordtype">bool</span> <a class="code" href="_data_8cpp.html#a301f290080098e5d3983bdf4e870c3b9">operator&lt;</a>(<span class="keyword">const</span> <a class="code" href="class_data.html">Data</a> data1, <span class="keyword">const</span> <a class="code" href="class_data.html">Data</a> data2);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keyword">friend</span> <span class="keywordtype">bool</span> <a class="code" href="_data_8cpp.html#a3cf90128ca701a628213a73c2ae1d5ea">operator==</a>(<span class="keyword">const</span> <a class="code" href="class_data.html">Data</a> data1, <span class="keyword">const</span> <a class="code" href="class_data.html">Data</a> data2);</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keyword">friend</span> ostream&amp; <a class="code" href="_data_8cpp.html#a9daa61b4e0bee256d9481803c4778000">operator&lt;&lt;</a>(ostream &amp;o, <span class="keyword">const</span> <a class="code" href="class_data.html">Data</a> &amp;data);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;};</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* DATA_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="_data_8cpp_html_a301f290080098e5d3983bdf4e870c3b9"><div class="ttname"><a href="_data_8cpp.html#a301f290080098e5d3983bdf4e870c3b9">operator&lt;</a></div><div class="ttdeci">bool operator&lt;(const Data data1, const Data data2)</div><div class="ttdoc">Operator < to compare Data objects Compares two Data objects to determine if one is "before" the othe...</div><div class="ttdef"><b>Definition:</b> Data.cpp:32</div></div>
+<div class="ttc" id="class_data_html"><div class="ttname"><a href="class_data.html">Data</a></div><div class="ttdoc">Data - auxiliary class to keep track of time. </div><div class="ttdef"><b>Definition:</b> Data.h:17</div></div>
 <div class="ttc" id="namespacestd_html"><div class="ttname"><a href="namespacestd.html">std</a></div></div>
+<div class="ttc" id="_data_8cpp_html_a950a6321928619d329831ee195416f79"><div class="ttname"><a href="_data_8cpp.html#a950a6321928619d329831ee195416f79">dif_dias</a></div><div class="ttdeci">int dif_dias(Data d1, Data d2)</div><div class="ttdoc">Calculates the difference between two dates in days. </div><div class="ttdef"><b>Definition:</b> Data.cpp:102</div></div>
+<div class="ttc" id="_data_8cpp_html_a9daa61b4e0bee256d9481803c4778000"><div class="ttname"><a href="_data_8cpp.html#a9daa61b4e0bee256d9481803c4778000">operator&lt;&lt;</a></div><div class="ttdeci">ostream &amp; operator&lt;&lt;(ostream &amp;o, const Data &amp;data)</div><div class="ttdoc">Allows operator << to use a Data object Converts the object to a string using getDataStr() and "sends...</div><div class="ttdef"><b>Definition:</b> Data.cpp:89</div></div>
+<div class="ttc" id="_data_8cpp_html_a3cf90128ca701a628213a73c2ae1d5ea"><div class="ttname"><a href="_data_8cpp.html#a3cf90128ca701a628213a73c2ae1d5ea">operator==</a></div><div class="ttdeci">bool operator==(const Data data1, const Data data2)</div><div class="ttdoc">Operator == to determine equality of two Data objects. </div><div class="ttdef"><b>Definition:</b> Data.cpp:62</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Nov 9 2014 17:53:55 for My Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Nov 9 2014 20:37:11 for My Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

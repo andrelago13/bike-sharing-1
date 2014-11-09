@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['storeinfo',['storeInfo',['../class_rede.html#abec1da6660663cd58e6851737219959e',1,'Rede']]]
+  ['is_5fbusy',['is_busy',['../class_rede.html#aba033af0c2cd9a4f70ca1f9459a6a3ee',1,'Rede']]]
 ];

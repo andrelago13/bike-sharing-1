@@ -1,39 +1,173 @@
 \hypertarget{class_empresa}{\section{Empresa Class Reference}
 \label{class_empresa}\index{Empresa@{Empresa}}
 }
+
+
+\hyperlink{class_empresa}{Empresa} -\/ Auxiliary program class.  
+
+
+
+
+{\ttfamily \#include $<$Empresa.\+h$>$}
+
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_empresa_ac5bccaf3758b25fea4803a63d4362236}{{\bfseries Empresa} (string nome)}\label{class_empresa_ac5bccaf3758b25fea4803a63d4362236}
+\hyperlink{class_empresa_ac5bccaf3758b25fea4803a63d4362236}{Empresa} (string nome)
+\begin{DoxyCompactList}\small\item\em Creates a company. \end{DoxyCompactList}\item 
+string \hyperlink{class_empresa_a22e7cb6769eca729ad9f9d8a0cb0168a}{get\+Nome} () const 
+\begin{DoxyCompactList}\small\item\em Gets the name of a company. \end{DoxyCompactList}\item 
+vector$<$ \hyperlink{class_bicicleta}{Bicicleta} $\ast$ $>$ \hyperlink{class_empresa_aa5786b3765e8321ca420b0c5be4bb21c}{get\+Bicicletas} () const 
+\begin{DoxyCompactList}\small\item\em Gets the company's bikes. \end{DoxyCompactList}\item 
+void \hyperlink{class_empresa_a1b02af861954e1ddfd89c988faa62895}{adiciona\+Bicicleta} (\hyperlink{class_bicicleta}{Bicicleta} $\ast$bic)
+\begin{DoxyCompactList}\small\item\em Adds a bike object to the company. \end{DoxyCompactList}\item 
+void \hyperlink{class_empresa_a585cffc1ecf217ea29827fb8e7fd6091}{set\+Bicicletas} (const vector$<$ \hyperlink{class_bicicleta}{Bicicleta} $\ast$ $>$ bicicletas)
+\begin{DoxyCompactList}\small\item\em Sets a new group of bikes on the company. \end{DoxyCompactList}\item 
+void \hyperlink{class_empresa_a86f2b94b2ea2e7b11edbf645b4e55bac}{set\+Nome} (string novo\+\_\+nome)
+\begin{DoxyCompactList}\small\item\em Sets a company's name. \end{DoxyCompactList}\item 
+void \hyperlink{class_empresa_ac09f08cdc3415311fd222cfadbaf6cb4}{remove\+\_\+bicis} (unsigned int id)
+\begin{DoxyCompactList}\small\item\em Removes a bike(s) of the company. \end{DoxyCompactList}\item 
+\hypertarget{class_empresa_aa7fb06c4029739ea9e33216942cb4686}{void \hyperlink{class_empresa_aa7fb06c4029739ea9e33216942cb4686}{show\+\_\+specs} ()}\label{class_empresa_aa7fb06c4029739ea9e33216942cb4686}
 
-\item 
-\hypertarget{class_empresa_a22e7cb6769eca729ad9f9d8a0cb0168a}{string {\bfseries get\+Nome} () const }\label{class_empresa_a22e7cb6769eca729ad9f9d8a0cb0168a}
+\begin{DoxyCompactList}\small\item\em Shows the company's specifications Shows all the company's information, the name and all the bikes. \end{DoxyCompactList}\item 
+int \hyperlink{class_empresa_a0cd3335f43eb48e7da506a454d95fdb5}{num\+\_\+users} () const 
+\begin{DoxyCompactList}\small\item\em Gets the number of users. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
-\item 
-\hypertarget{class_empresa_a0cd3335f43eb48e7da506a454d95fdb5}{int {\bfseries num\+\_\+users} () const }\label{class_empresa_a0cd3335f43eb48e7da506a454d95fdb5}
 
-\item 
-\hypertarget{class_empresa_aa5786b3765e8321ca420b0c5be4bb21c}{vector$<$ \hyperlink{class_bicicleta}{Bicicleta} $\ast$ $>$ {\bfseries get\+Bicicletas} () const }\label{class_empresa_aa5786b3765e8321ca420b0c5be4bb21c}
+\subsection{Detailed Description}
+\hyperlink{class_empresa}{Empresa} -\/ Auxiliary program class. 
 
-\item 
-\hypertarget{class_empresa_a1b02af861954e1ddfd89c988faa62895}{void {\bfseries adiciona\+Bicicleta} (\hyperlink{class_bicicleta}{Bicicleta} $\ast$bic)}\label{class_empresa_a1b02af861954e1ddfd89c988faa62895}
+This class functions as a bridge that connects \hyperlink{class_posto_servico}{Posto\+Servico} to \hyperlink{class_rede}{Rede} and is very important in many ways 
 
-\item 
-\hypertarget{class_empresa_a585cffc1ecf217ea29827fb8e7fd6091}{void {\bfseries set\+Bicicletas} (const vector$<$ \hyperlink{class_bicicleta}{Bicicleta} $\ast$ $>$ bicicletas)}\label{class_empresa_a585cffc1ecf217ea29827fb8e7fd6091}
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_empresa_ac5bccaf3758b25fea4803a63d4362236}{\index{Empresa@{Empresa}!Empresa@{Empresa}}
+\index{Empresa@{Empresa}!Empresa@{Empresa}}
+\subsubsection[{Empresa}]{\setlength{\rightskip}{0pt plus 5cm}Empresa\+::\+Empresa (
+\begin{DoxyParamCaption}
+\item[{string}]{nome}
+\end{DoxyParamCaption}
+)}}\label{class_empresa_ac5bccaf3758b25fea4803a63d4362236}
 
-\item 
-\hypertarget{class_empresa_ac09f08cdc3415311fd222cfadbaf6cb4}{void {\bfseries remove\+\_\+bicis} (unsigned int id)}\label{class_empresa_ac09f08cdc3415311fd222cfadbaf6cb4}
 
-\item 
-\hypertarget{class_empresa_aa7fb06c4029739ea9e33216942cb4686}{void {\bfseries show\+\_\+specs} ()}\label{class_empresa_aa7fb06c4029739ea9e33216942cb4686}
+Creates a company. 
 
-\item 
-\hypertarget{class_empresa_a86f2b94b2ea2e7b11edbf645b4e55bac}{void {\bfseries set\+Nome} (string novo\+\_\+nome)}\label{class_empresa_a86f2b94b2ea2e7b11edbf645b4e55bac}
 
-\end{DoxyCompactItemize}
+\begin{DoxyParams}{Parameters}
+{\em nome} & -\/ Name given to the new company Creates a company with the the the name passed as argument \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_empresa_a1b02af861954e1ddfd89c988faa62895}{\index{Empresa@{Empresa}!adiciona\+Bicicleta@{adiciona\+Bicicleta}}
+\index{adiciona\+Bicicleta@{adiciona\+Bicicleta}!Empresa@{Empresa}}
+\subsubsection[{adiciona\+Bicicleta}]{\setlength{\rightskip}{0pt plus 5cm}void Empresa\+::adiciona\+Bicicleta (
+\begin{DoxyParamCaption}
+\item[{{\bf Bicicleta} $\ast$}]{bic}
+\end{DoxyParamCaption}
+)}}\label{class_empresa_a1b02af861954e1ddfd89c988faa62895}
+
+
+Adds a bike object to the company. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em $\ast$bic} & -\/ New bike to be added Add a bike to the the company's bikes vector \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_empresa_aa5786b3765e8321ca420b0c5be4bb21c}{\index{Empresa@{Empresa}!get\+Bicicletas@{get\+Bicicletas}}
+\index{get\+Bicicletas@{get\+Bicicletas}!Empresa@{Empresa}}
+\subsubsection[{get\+Bicicletas}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ {\bf Bicicleta} $\ast$ $>$ Empresa\+::get\+Bicicletas (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_empresa_aa5786b3765e8321ca420b0c5be4bb21c}
+
+
+Gets the company's bikes. 
+
+\begin{DoxyReturn}{Returns}
+a vector with all the company's bikes Let us get a vector of type \hyperlink{class_bicicleta}{Bicicleta} with all bikes of the company 
+\end{DoxyReturn}
+\hypertarget{class_empresa_a22e7cb6769eca729ad9f9d8a0cb0168a}{\index{Empresa@{Empresa}!get\+Nome@{get\+Nome}}
+\index{get\+Nome@{get\+Nome}!Empresa@{Empresa}}
+\subsubsection[{get\+Nome}]{\setlength{\rightskip}{0pt plus 5cm}string Empresa\+::get\+Nome (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_empresa_a22e7cb6769eca729ad9f9d8a0cb0168a}
+
+
+Gets the name of a company. 
+
+\begin{DoxyReturn}{Returns}
+a string with the company's name Let us get the name of a company on a string 
+\end{DoxyReturn}
+\hypertarget{class_empresa_a0cd3335f43eb48e7da506a454d95fdb5}{\index{Empresa@{Empresa}!num\+\_\+users@{num\+\_\+users}}
+\index{num\+\_\+users@{num\+\_\+users}!Empresa@{Empresa}}
+\subsubsection[{num\+\_\+users}]{\setlength{\rightskip}{0pt plus 5cm}int Empresa\+::num\+\_\+users (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_empresa_a0cd3335f43eb48e7da506a454d95fdb5}
+
+
+Gets the number of users. 
+
+\begin{DoxyReturn}{Returns}
+the number of users Let us get the number of user without repeting users 
+\end{DoxyReturn}
+\hypertarget{class_empresa_ac09f08cdc3415311fd222cfadbaf6cb4}{\index{Empresa@{Empresa}!remove\+\_\+bicis@{remove\+\_\+bicis}}
+\index{remove\+\_\+bicis@{remove\+\_\+bicis}!Empresa@{Empresa}}
+\subsubsection[{remove\+\_\+bicis}]{\setlength{\rightskip}{0pt plus 5cm}void Empresa\+::remove\+\_\+bicis (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{id}
+\end{DoxyParamCaption}
+)}}\label{class_empresa_ac09f08cdc3415311fd222cfadbaf6cb4}
+
+
+Removes a bike(s) of the company. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & -\/ identifies the bike(s) to be removed Deletes bike(s) from the company's bikes vector through an id \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_empresa_a585cffc1ecf217ea29827fb8e7fd6091}{\index{Empresa@{Empresa}!set\+Bicicletas@{set\+Bicicletas}}
+\index{set\+Bicicletas@{set\+Bicicletas}!Empresa@{Empresa}}
+\subsubsection[{set\+Bicicletas}]{\setlength{\rightskip}{0pt plus 5cm}void Empresa\+::set\+Bicicletas (
+\begin{DoxyParamCaption}
+\item[{const vector$<$ {\bf Bicicleta} $\ast$ $>$}]{bicicletas}
+\end{DoxyParamCaption}
+)}}\label{class_empresa_a585cffc1ecf217ea29827fb8e7fd6091}
+
+
+Sets a new group of bikes on the company. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bicicletas} & -\/ New pack of bicicletas implemented Sets a new pack of bicicletas to the company's bikes vector \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_empresa_a86f2b94b2ea2e7b11edbf645b4e55bac}{\index{Empresa@{Empresa}!set\+Nome@{set\+Nome}}
+\index{set\+Nome@{set\+Nome}!Empresa@{Empresa}}
+\subsubsection[{set\+Nome}]{\setlength{\rightskip}{0pt plus 5cm}void Empresa\+::set\+Nome (
+\begin{DoxyParamCaption}
+\item[{string}]{novo\+\_\+nome}
+\end{DoxyParamCaption}
+)}}\label{class_empresa_a86f2b94b2ea2e7b11edbf645b4e55bac}
+
+
+Sets a company's name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em novo\+\_\+nome} & -\/ New name to be implemented Sets a new name to the company \\
+\hline
+\end{DoxyParams}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-Empresa.\+h\item 
-Empresa.\+cpp\end{DoxyCompactItemize}
+\hyperlink{_empresa_8h}{Empresa.\+h}\item 
+\hyperlink{_empresa_8cpp}{Empresa.\+cpp}\end{DoxyCompactItemize}

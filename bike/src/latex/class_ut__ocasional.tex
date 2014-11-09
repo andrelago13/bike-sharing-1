@@ -1,6 +1,15 @@
 \hypertarget{class_ut__ocasional}{\section{Ut\+\_\+ocasional Class Reference}
 \label{class_ut__ocasional}\index{Ut\+\_\+ocasional@{Ut\+\_\+ocasional}}
 }
+
+
+\hyperlink{class_ut__ocasional}{Ut\+\_\+ocasional} -\/ occasional network users.  
+
+
+
+
+{\ttfamily \#include $<$Utilizador.\+h$>$}
+
 Inheritance diagram for Ut\+\_\+ocasional\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -10,28 +19,73 @@ Inheritance diagram for Ut\+\_\+ocasional\+:\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_ut__ocasional_acf3a4c7d6ef3d9000c6284a93201d4b1}{{\bfseries Ut\+\_\+ocasional} (string name, int age, string pass, string novo\+\_\+cartao)}\label{class_ut__ocasional_acf3a4c7d6ef3d9000c6284a93201d4b1}
+\hypertarget{class_ut__ocasional_ad26b95c8f79ed12f221da29f19896e82}{\hyperlink{class_ut__ocasional_ad26b95c8f79ed12f221da29f19896e82}{Ut\+\_\+ocasional} ()}\label{class_ut__ocasional_ad26b95c8f79ed12f221da29f19896e82}
 
-\item 
+\begin{DoxyCompactList}\small\item\em Default constructor of \hyperlink{class_ut__ocasional}{Ut\+\_\+ocasional} Initializes everything like \hyperlink{class_utilizador}{Utilizador} default constructor, except for tipo (now equal to 1) \end{DoxyCompactList}\item 
+\hypertarget{class_ut__ocasional_acf3a4c7d6ef3d9000c6284a93201d4b1}{\hyperlink{class_ut__ocasional_acf3a4c7d6ef3d9000c6284a93201d4b1}{Ut\+\_\+ocasional} (string name, int age, string pass, string novo\+\_\+cartao)}\label{class_ut__ocasional_acf3a4c7d6ef3d9000c6284a93201d4b1}
+
+\begin{DoxyCompactList}\small\item\em Complete constructor of \hyperlink{class_ut__ocasional}{Ut\+\_\+ocasional}. \end{DoxyCompactList}\item 
 \hypertarget{class_ut__ocasional_a5a455dacffda809dd8a383896174dd07}{string {\bfseries get\+\_\+cartao} ()}\label{class_ut__ocasional_a5a455dacffda809dd8a383896174dd07}
 
 \item 
 \hypertarget{class_ut__ocasional_a4c4005d41c818c737d56121ec9a79e19}{void {\bfseries set\+\_\+cartao} (string novo)}\label{class_ut__ocasional_a4c4005d41c818c737d56121ec9a79e19}
 
 \item 
-\hypertarget{class_ut__ocasional_a372c795cc67b402e54dc78e6e24c3779}{int {\bfseries get\+Custo} ()}\label{class_ut__ocasional_a372c795cc67b402e54dc78e6e24c3779}
+int \hyperlink{class_ut__ocasional_a372c795cc67b402e54dc78e6e24c3779}{get\+Custo} ()
+\begin{DoxyCompactList}\small\item\em Get service cost for \hyperlink{class_ut__ocasional}{Ut\+\_\+ocasional} Redefinition of the same funtion on \hyperlink{class_utilizador}{Utilizador} class. \end{DoxyCompactList}\item 
+string \hyperlink{class_ut__ocasional_a500c4745815fed11a495c258a06f973a}{get\+\_\+str} () const 
+\begin{DoxyCompactList}\small\item\em Get string that represents user This function is used in \hyperlink{class_rede_abec1da6660663cd58e6851737219959e}{Rede\+::store\+Info()}, because it converts the \hyperlink{class_ut__ocasional}{Ut\+\_\+ocasional} object to a multiple line string containing all of it's information except the rental logs. \end{DoxyCompactList}\item 
+\hypertarget{class_ut__ocasional_a215c8d086f1285c12e5bb8b42ccef682}{void \hyperlink{class_ut__ocasional_a215c8d086f1285c12e5bb8b42ccef682}{make\+\_\+str} (string user)}\label{class_ut__ocasional_a215c8d086f1285c12e5bb8b42ccef682}
 
-\item 
-\hypertarget{class_ut__ocasional_a500c4745815fed11a495c258a06f973a}{string {\bfseries get\+\_\+str} () const }\label{class_ut__ocasional_a500c4745815fed11a495c258a06f973a}
-
-\item 
-\hypertarget{class_ut__ocasional_a215c8d086f1285c12e5bb8b42ccef682}{void {\bfseries make\+\_\+str} (string user)}\label{class_ut__ocasional_a215c8d086f1285c12e5bb8b42ccef682}
-
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Make a user from a string that represents it (in this case, a \hyperlink{class_ut__ocasional}{Ut\+\_\+ocasional} user) This function is used in \hyperlink{class_rede_a1751f922073f6172ba676a56959a1540}{Rede\+::load\+Info()}, because it makes a \hyperlink{class_ut__ocasional}{Ut\+\_\+ocasional} object from a multiple line string that contains all it's information except for the rental logs. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\hyperlink{class_ut__ocasional}{Ut\+\_\+ocasional} -\/ occasional network users. 
+
+This class stores information for occasional users. It is derived of \hyperlink{class_utilizador}{Utilizador}, because it only adds the user's credit card. Since, for this type of user, age and password are irrelevant, it initializes password as an empty string and age as 5 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_ut__ocasional_a500c4745815fed11a495c258a06f973a}{\index{Ut\+\_\+ocasional@{Ut\+\_\+ocasional}!get\+\_\+str@{get\+\_\+str}}
+\index{get\+\_\+str@{get\+\_\+str}!Ut\+\_\+ocasional@{Ut\+\_\+ocasional}}
+\subsubsection[{get\+\_\+str}]{\setlength{\rightskip}{0pt plus 5cm}string Ut\+\_\+ocasional\+::get\+\_\+str (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_ut__ocasional_a500c4745815fed11a495c258a06f973a}
+
+
+Get string that represents user This function is used in \hyperlink{class_rede_abec1da6660663cd58e6851737219959e}{Rede\+::store\+Info()}, because it converts the \hyperlink{class_ut__ocasional}{Ut\+\_\+ocasional} object to a multiple line string containing all of it's information except the rental logs. 
+
+\begin{DoxyReturn}{Returns}
+string representing user info 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{class_utilizador_a79a6281b24b8ecf31b25e41f5650843d}{Utilizador}.
+
+\hypertarget{class_ut__ocasional_a372c795cc67b402e54dc78e6e24c3779}{\index{Ut\+\_\+ocasional@{Ut\+\_\+ocasional}!get\+Custo@{get\+Custo}}
+\index{get\+Custo@{get\+Custo}!Ut\+\_\+ocasional@{Ut\+\_\+ocasional}}
+\subsubsection[{get\+Custo}]{\setlength{\rightskip}{0pt plus 5cm}int Ut\+\_\+ocasional\+::get\+Custo (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_ut__ocasional_a372c795cc67b402e54dc78e6e24c3779}
+
+
+Get service cost for \hyperlink{class_ut__ocasional}{Ut\+\_\+ocasional} Redefinition of the same funtion on \hyperlink{class_utilizador}{Utilizador} class. 
+
+\begin{DoxyReturn}{Returns}
+service cost for the \hyperlink{class_ut__ocasional}{Ut\+\_\+ocasional} user 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{class_utilizador_a988e8a7c0cc0625866350a476a5d7b62}{Utilizador}.
+
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-Utilizador.\+h\item 
-Utilizador.\+cpp\end{DoxyCompactItemize}
+\hyperlink{_utilizador_8h}{Utilizador.\+h}\item 
+\hyperlink{_utilizador_8cpp}{Utilizador.\+cpp}\end{DoxyCompactItemize}

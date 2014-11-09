@@ -1,18 +1,27 @@
 \hypertarget{class_data}{\section{Data Class Reference}
 \label{class_data}\index{Data@{Data}}
 }
+
+
+\hyperlink{class_data}{Data} -\/ auxiliary class to keep track of time.  
+
+
+
+
+{\ttfamily \#include $<$Data.\+h$>$}
+
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_data_a2d45e272eb3ff0783c1603ddf7a44569}{{\bfseries Data} (unsigned int ano, unsigned int mes, unsigned int dia)}\label{class_data_a2d45e272eb3ff0783c1603ddf7a44569}
+\hypertarget{class_data_af11f741cb7f587e2e495452a8905a22a}{\hyperlink{class_data_af11f741cb7f587e2e495452a8905a22a}{Data} ()}\label{class_data_af11f741cb7f587e2e495452a8905a22a}
 
-\item 
-\hypertarget{class_data_add8227267c76e3fecb385d7cd7fbcf4b}{{\bfseries Data} (string date)}\label{class_data_add8227267c76e3fecb385d7cd7fbcf4b}
-
-\item 
-\hypertarget{class_data_a2a9f0b2202a6bf68215d3e06dc3cb57e}{string {\bfseries get\+Data\+Str} () const }\label{class_data_a2a9f0b2202a6bf68215d3e06dc3cb57e}
-
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Default constructor of \hyperlink{class_data}{Data} class It initializes the object as being date 0000/00/00. \end{DoxyCompactList}\item 
+\hyperlink{class_data_a2d45e272eb3ff0783c1603ddf7a44569}{Data} (unsigned int ano, unsigned int mes, unsigned int dia)
+\begin{DoxyCompactList}\small\item\em Complete \hyperlink{class_data}{Data} constructor. \end{DoxyCompactList}\item 
+\hyperlink{class_data_add8227267c76e3fecb385d7cd7fbcf4b}{Data} (string date)
+\begin{DoxyCompactList}\small\item\em Constructor of Date from a string. \end{DoxyCompactList}\item 
+string \hyperlink{class_data_a2a9f0b2202a6bf68215d3e06dc3cb57e}{get\+Data\+Str} () const 
+\begin{DoxyCompactList}\small\item\em Convert \hyperlink{class_data}{Data} object to string This funtion converts the \hyperlink{class_data}{Data} object into a string in format Y\+Y\+Y\+Y/\+M\+M/\+D\+D. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -28,21 +37,164 @@
 \subsection*{Friends}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_data_a950a6321928619d329831ee195416f79}{int {\bfseries dif\+\_\+dias} (\hyperlink{class_data}{Data} d1, \hyperlink{class_data}{Data} d2)}\label{class_data_a950a6321928619d329831ee195416f79}
+int \hyperlink{class_data_a950a6321928619d329831ee195416f79}{dif\+\_\+dias} (\hyperlink{class_data}{Data} d1, \hyperlink{class_data}{Data} d2)
+\begin{DoxyCompactList}\small\item\em Calculates the difference between two dates in days. \end{DoxyCompactList}\item 
+bool \hyperlink{class_data_a301f290080098e5d3983bdf4e870c3b9}{operator$<$} (const \hyperlink{class_data}{Data} data1, const \hyperlink{class_data}{Data} data2)
+\begin{DoxyCompactList}\small\item\em Operator $<$ to compare \hyperlink{class_data}{Data} objects Compares two \hyperlink{class_data}{Data} objects to determine if one is \char`\"{}before\char`\"{} the other. \end{DoxyCompactList}\item 
+bool \hyperlink{class_data_a3cf90128ca701a628213a73c2ae1d5ea}{operator==} (const \hyperlink{class_data}{Data} data1, const \hyperlink{class_data}{Data} data2)
+\begin{DoxyCompactList}\small\item\em Operator == to determine equality of two \hyperlink{class_data}{Data} objects. \end{DoxyCompactList}\item 
+ostream \& \hyperlink{class_data_a9daa61b4e0bee256d9481803c4778000}{operator$<$$<$} (ostream \&o, const \hyperlink{class_data}{Data} \&data)
+\begin{DoxyCompactList}\small\item\em Allows operator $<$$<$ to use a \hyperlink{class_data}{Data} object Converts the object to a string using \hyperlink{class_data_a2a9f0b2202a6bf68215d3e06dc3cb57e}{get\+Data\+Str()} and \char`\"{}sends\char`\"{} it to the ostream o. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
-\item 
-\hypertarget{class_data_a301f290080098e5d3983bdf4e870c3b9}{bool {\bfseries operator$<$} (const \hyperlink{class_data}{Data} data1, const \hyperlink{class_data}{Data} data2)}\label{class_data_a301f290080098e5d3983bdf4e870c3b9}
 
-\item 
-\hypertarget{class_data_a3cf90128ca701a628213a73c2ae1d5ea}{bool {\bfseries operator==} (const \hyperlink{class_data}{Data} data1, const \hyperlink{class_data}{Data} data2)}\label{class_data_a3cf90128ca701a628213a73c2ae1d5ea}
+\subsection{Detailed Description}
+\hyperlink{class_data}{Data} -\/ auxiliary class to keep track of time. 
 
-\item 
-\hypertarget{class_data_a9daa61b4e0bee256d9481803c4778000}{ostream \& {\bfseries operator$<$$<$} (ostream \&o, const \hyperlink{class_data}{Data} \&data)}\label{class_data_a9daa61b4e0bee256d9481803c4778000}
+This is a simple class we built to simplify the order of time in the rental events of \hyperlink{class_rede}{Rede}. Though, it was made in a way that it can be used in other, unrelated projects, because it has a simple, public, interface and has methods that allow easy convertion between \hyperlink{class_data}{Data} and other formats 
 
-\end{DoxyCompactItemize}
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_data_a2d45e272eb3ff0783c1603ddf7a44569}{\index{Data@{Data}!Data@{Data}}
+\index{Data@{Data}!Data@{Data}}
+\subsubsection[{Data}]{\setlength{\rightskip}{0pt plus 5cm}Data\+::\+Data (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{ano, }
+\item[{unsigned int}]{mes, }
+\item[{unsigned int}]{dia}
+\end{DoxyParamCaption}
+)}}\label{class_data_a2d45e272eb3ff0783c1603ddf7a44569}
+
+
+Complete \hyperlink{class_data}{Data} constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ano} & -\/ New object's year \\
+\hline
+{\em mes} & -\/ New object's month \\
+\hline
+{\em dia} & -\/ New object's day \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_data_add8227267c76e3fecb385d7cd7fbcf4b}{\index{Data@{Data}!Data@{Data}}
+\index{Data@{Data}!Data@{Data}}
+\subsubsection[{Data}]{\setlength{\rightskip}{0pt plus 5cm}Data\+::\+Data (
+\begin{DoxyParamCaption}
+\item[{string}]{date}
+\end{DoxyParamCaption}
+)}}\label{class_data_add8227267c76e3fecb385d7cd7fbcf4b}
+
+
+Constructor of Date from a string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em date} & -\/ string with a date in format Y\+Y\+Y\+Y/\+M\+M/\+D\+D Constructs a date object from a string in the specified format, useful for construction of objects on load\+Info function of \hyperlink{class_rede}{Rede} class \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_data_a2a9f0b2202a6bf68215d3e06dc3cb57e}{\index{Data@{Data}!get\+Data\+Str@{get\+Data\+Str}}
+\index{get\+Data\+Str@{get\+Data\+Str}!Data@{Data}}
+\subsubsection[{get\+Data\+Str}]{\setlength{\rightskip}{0pt plus 5cm}string Data\+::get\+Data\+Str (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_data_a2a9f0b2202a6bf68215d3e06dc3cb57e}
+
+
+Convert \hyperlink{class_data}{Data} object to string This funtion converts the \hyperlink{class_data}{Data} object into a string in format Y\+Y\+Y\+Y/\+M\+M/\+D\+D. 
+
+\begin{DoxyReturn}{Returns}
+current \hyperlink{class_data}{Data} object in string format 
+\end{DoxyReturn}
+
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{class_data_a950a6321928619d329831ee195416f79}{\index{Data@{Data}!dif\+\_\+dias@{dif\+\_\+dias}}
+\index{dif\+\_\+dias@{dif\+\_\+dias}!Data@{Data}}
+\subsubsection[{dif\+\_\+dias}]{\setlength{\rightskip}{0pt plus 5cm}int dif\+\_\+dias (
+\begin{DoxyParamCaption}
+\item[{{\bf Data}}]{d1, }
+\item[{{\bf Data}}]{d2}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [friend]}}}\label{class_data_a950a6321928619d329831ee195416f79}
+
+
+Calculates the difference between two dates in days. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em d1} & -\/ First \hyperlink{class_data}{Data} object \\
+\hline
+{\em d2} & -\/ Second \hyperlink{class_data}{Data} object \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+day difference between two dates, given that d1 is \char`\"{}older\char`\"{} Calculates the difference between the two dates, considering the number of days in a month and other factors 
+\end{DoxyReturn}
+\hypertarget{class_data_a301f290080098e5d3983bdf4e870c3b9}{\index{Data@{Data}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!Data@{Data}}
+\subsubsection[{operator$<$}]{\setlength{\rightskip}{0pt plus 5cm}bool operator$<$ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Data}}]{data1, }
+\item[{const {\bf Data}}]{data2}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [friend]}}}\label{class_data_a301f290080098e5d3983bdf4e870c3b9}
+
+
+Operator $<$ to compare \hyperlink{class_data}{Data} objects Compares two \hyperlink{class_data}{Data} objects to determine if one is \char`\"{}before\char`\"{} the other. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data1} & -\/ First \hyperlink{class_data}{Data} object \\
+\hline
+{\em data2} & -\/ Second \hyperlink{class_data}{Data} object \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if data1 is prior to data2, and false otherwise 
+\end{DoxyReturn}
+\hypertarget{class_data_a9daa61b4e0bee256d9481803c4778000}{\index{Data@{Data}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Data@{Data}}
+\subsubsection[{operator$<$$<$}]{\setlength{\rightskip}{0pt plus 5cm}ostream\& operator$<$$<$ (
+\begin{DoxyParamCaption}
+\item[{ostream \&}]{o, }
+\item[{const {\bf Data} \&}]{data}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [friend]}}}\label{class_data_a9daa61b4e0bee256d9481803c4778000}
+
+
+Allows operator $<$$<$ to use a \hyperlink{class_data}{Data} object Converts the object to a string using \hyperlink{class_data_a2a9f0b2202a6bf68215d3e06dc3cb57e}{get\+Data\+Str()} and \char`\"{}sends\char`\"{} it to the ostream o. 
+
+\begin{DoxyReturn}{Returns}
+ostream reference to allow multiple, inline, $<$$<$ operators 
+\end{DoxyReturn}
+\hypertarget{class_data_a3cf90128ca701a628213a73c2ae1d5ea}{\index{Data@{Data}!operator==@{operator==}}
+\index{operator==@{operator==}!Data@{Data}}
+\subsubsection[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}bool operator== (
+\begin{DoxyParamCaption}
+\item[{const {\bf Data}}]{data1, }
+\item[{const {\bf Data}}]{data2}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [friend]}}}\label{class_data_a3cf90128ca701a628213a73c2ae1d5ea}
+
+
+Operator == to determine equality of two \hyperlink{class_data}{Data} objects. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data1} & -\/ First \hyperlink{class_data}{Data} object \\
+\hline
+{\em data2} & -\/ Second \hyperlink{class_data}{Data} object \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if data1 is equal to data2, and false otherwise 
+\end{DoxyReturn}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-Data.\+h\item 
-Data.\+cpp\end{DoxyCompactItemize}
+\hyperlink{_data_8h}{Data.\+h}\item 
+\hyperlink{_data_8cpp}{Data.\+cpp}\end{DoxyCompactItemize}

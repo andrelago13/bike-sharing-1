@@ -1,4 +1,19 @@
 var searchData=
 [
-  ['reset',['reset',['../class_rede.html#adec8c4515163174c0fab8068e36c6cc5',1,'Rede']]]
+  ['get_5fregs',['get_regs',['../class_rede.html#a0862364a4ce27c157b2b756184526748',1,'Rede']]],
+  ['get_5fstr',['get_str',['../class_utilizador.html#a79a6281b24b8ecf31b25e41f5650843d',1,'Utilizador::get_str()'],['../class_ut__ocasional.html#a500c4745815fed11a495c258a06f973a',1,'Ut_ocasional::get_str()']]],
+  ['getavariadas',['getAvariadas',['../class_posto_servico.html#ae2675fbf3044cd0cc366fbec67449969',1,'PostoServico']]],
+  ['getbicicletas',['getBicicletas',['../class_empresa.html#aa5786b3765e8321ca420b0c5be4bb21c',1,'Empresa::getBicicletas()'],['../class_posto_servico.html#a747fd34e7c83f28f1697284b6e139e2e',1,'PostoServico::getBicicletas()']]],
+  ['getcusto',['getCusto',['../class_utilizador.html#a988e8a7c0cc0625866350a476a5d7b62',1,'Utilizador::getCusto()'],['../class_ut__ocasional.html#a372c795cc67b402e54dc78e6e24c3779',1,'Ut_ocasional::getCusto()']]],
+  ['getdatastr',['getDataStr',['../class_data.html#a2a9f0b2202a6bf68215d3e06dc3cb57e',1,'Data']]],
+  ['getdisponiveis',['getDisponiveis',['../class_posto_servico.html#a0d3be8347bcfe2ff61915f0fe4688f11',1,'PostoServico']]],
+  ['getespacolivre',['getEspacoLivre',['../class_posto_servico.html#a9efdef3b0af8965d366dacb6e61bb6d9',1,'PostoServico']]],
+  ['getid',['getID',['../class_posto_servico.html#a12d2e1c64b373009aec51fb7f4df44ec',1,'PostoServico']]],
+  ['getidade',['getIdade',['../class_utilizador.html#a9abaeb6fbff49683f57164a57e6f0c90',1,'Utilizador']]],
+  ['getlotacao',['getLotacao',['../class_posto_servico.html#a467b1b77cd1a56131f0e5a6776a55885',1,'PostoServico']]],
+  ['getnome',['getNome',['../class_empresa.html#a22e7cb6769eca729ad9f9d8a0cb0168a',1,'Empresa::getNome()'],['../class_utilizador.html#aa5af9c1385b0a93116dd8a80264b887a',1,'Utilizador::getNome()']]],
+  ['getocupacao',['getOcupacao',['../class_posto_servico.html#a2f09c305c18b3c08686a852e2e8702ac',1,'PostoServico']]],
+  ['getpassword',['getPassword',['../class_utilizador.html#a8be0d01c3f23383c25596bd1c73918e4',1,'Utilizador']]],
+  ['getregs',['getRegs',['../class_utilizador.html#a41730715f6cdd5bd98e3647150836989',1,'Utilizador']]],
+  ['getutlizacao',['getUtlizacao',['../class_posto_servico.html#abfe611099f0fb1d79f7a2344496af023',1,'PostoServico']]]
 ];

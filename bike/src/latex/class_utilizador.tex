@@ -1,6 +1,15 @@
 \hypertarget{class_utilizador}{\section{Utilizador Class Reference}
 \label{class_utilizador}\index{Utilizador@{Utilizador}}
 }
+
+
+\hyperlink{class_utilizador}{Utilizador} -\/ class representing users of the network.  
+
+
+
+
+{\ttfamily \#include $<$Utilizador.\+h$>$}
+
 Inheritance diagram for Utilizador\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -10,72 +19,58 @@ Inheritance diagram for Utilizador\+:\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_utilizador_a4ce0d50c55e4f03e61ffa97376a2f30c}{{\bfseries Utilizador} (string name, int age)}\label{class_utilizador_a4ce0d50c55e4f03e61ffa97376a2f30c}
+\hypertarget{class_utilizador_a264cb21da71b44fc2d5cfb21e58fa24a}{\hyperlink{class_utilizador_a264cb21da71b44fc2d5cfb21e58fa24a}{Utilizador} ()}\label{class_utilizador_a264cb21da71b44fc2d5cfb21e58fa24a}
 
-\item 
-\hypertarget{class_utilizador_a8764eb80a3f0f8c352628272f62dbd6d}{{\bfseries Utilizador} (string name, int age, string pass)}\label{class_utilizador_a8764eb80a3f0f8c352628272f62dbd6d}
+\begin{DoxyCompactList}\small\item\em Default \hyperlink{class_utilizador}{Utilizador} constructos. \end{DoxyCompactList}\item 
+\hypertarget{class_utilizador_a4ce0d50c55e4f03e61ffa97376a2f30c}{\hyperlink{class_utilizador_a4ce0d50c55e4f03e61ffa97376a2f30c}{Utilizador} (string name, int age)}\label{class_utilizador_a4ce0d50c55e4f03e61ffa97376a2f30c}
 
-\item 
-\hypertarget{class_utilizador_a24f10fc3cfa2deb7aa38cc280722327a}{void {\bfseries set\+Nome} (string nome)}\label{class_utilizador_a24f10fc3cfa2deb7aa38cc280722327a}
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_utilizador}{Utilizador} constructor without password. \end{DoxyCompactList}\item 
+\hypertarget{class_utilizador_a8764eb80a3f0f8c352628272f62dbd6d}{\hyperlink{class_utilizador_a8764eb80a3f0f8c352628272f62dbd6d}{Utilizador} (string name, int age, string pass)}\label{class_utilizador_a8764eb80a3f0f8c352628272f62dbd6d}
 
-\item 
-\hypertarget{class_utilizador_a1201b047034f08dd8b1e8d4df36ca97b}{void {\bfseries set\+Idade} (int idade)}\label{class_utilizador_a1201b047034f08dd8b1e8d4df36ca97b}
-
-\item 
-\hypertarget{class_utilizador_aa5af9c1385b0a93116dd8a80264b887a}{string {\bfseries get\+Nome} () const }\label{class_utilizador_aa5af9c1385b0a93116dd8a80264b887a}
-
-\item 
-\hypertarget{class_utilizador_a9abaeb6fbff49683f57164a57e6f0c90}{int {\bfseries get\+Idade} () const }\label{class_utilizador_a9abaeb6fbff49683f57164a57e6f0c90}
-
-\item 
-\hypertarget{class_utilizador_a41730715f6cdd5bd98e3647150836989}{vector$<$ \hyperlink{class_registo}{Registo} $\ast$ $>$ {\bfseries get\+Regs} () const }\label{class_utilizador_a41730715f6cdd5bd98e3647150836989}
-
-\item 
-\hypertarget{class_utilizador_a6a319b5af1400354e5fc22056fbfefc5}{void {\bfseries set\+Regs} (vector$<$ \hyperlink{class_registo}{Registo} $\ast$ $>$ regs)}\label{class_utilizador_a6a319b5af1400354e5fc22056fbfefc5}
-
-\item 
-\hypertarget{class_utilizador_aadf5270d1131da77040b628c23ef89b2}{\hyperlink{class_registo}{Registo} $\ast$ {\bfseries ultimo\+Reg} () const }\label{class_utilizador_aadf5270d1131da77040b628c23ef89b2}
-
-\item 
-\hypertarget{class_utilizador_a8be0d01c3f23383c25596bd1c73918e4}{string {\bfseries get\+Password} () const }\label{class_utilizador_a8be0d01c3f23383c25596bd1c73918e4}
-
-\item 
-\hypertarget{class_utilizador_a14ffc9d7128ed6c99e7adc4f94315f56}{void {\bfseries set\+Password} (string pass)}\label{class_utilizador_a14ffc9d7128ed6c99e7adc4f94315f56}
-
-\item 
-\hypertarget{class_utilizador_a8d0083b685ee8023dd9bbf5b0372cb1d}{bool {\bfseries operator==} (string name)}\label{class_utilizador_a8d0083b685ee8023dd9bbf5b0372cb1d}
-
-\item 
-\hypertarget{class_utilizador_a668e5c9fd643f4e56dbdb2a6e1172bf5}{bool {\bfseries operator==} (\hyperlink{class_utilizador}{Utilizador} user)}\label{class_utilizador_a668e5c9fd643f4e56dbdb2a6e1172bf5}
-
-\item 
-\hypertarget{class_utilizador_a0ceb8bbbe6766b2f83ed9130fbf0975f}{void {\bfseries operator=} (\hyperlink{class_utilizador}{Utilizador} user)}\label{class_utilizador_a0ceb8bbbe6766b2f83ed9130fbf0975f}
-
-\item 
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_utilizador}{Utilizador} complete constructor. \end{DoxyCompactList}\item 
+void \hyperlink{class_utilizador_a24f10fc3cfa2deb7aa38cc280722327a}{set\+Nome} (string nome)
+\begin{DoxyCompactList}\small\item\em Set name of a user. \end{DoxyCompactList}\item 
+void \hyperlink{class_utilizador_a1201b047034f08dd8b1e8d4df36ca97b}{set\+Idade} (int idade)
+\begin{DoxyCompactList}\small\item\em Set idade of a user. \end{DoxyCompactList}\item 
+string \hyperlink{class_utilizador_aa5af9c1385b0a93116dd8a80264b887a}{get\+Nome} () const 
+\begin{DoxyCompactList}\small\item\em Get the name of a user. \end{DoxyCompactList}\item 
+int \hyperlink{class_utilizador_a9abaeb6fbff49683f57164a57e6f0c90}{get\+Idade} () const 
+\begin{DoxyCompactList}\small\item\em Get the age of a user. \end{DoxyCompactList}\item 
+vector$<$ \hyperlink{class_registo}{Registo} $\ast$ $>$ \hyperlink{class_utilizador_a41730715f6cdd5bd98e3647150836989}{get\+Regs} () const 
+\begin{DoxyCompactList}\small\item\em Get all the user rental records. \end{DoxyCompactList}\item 
+void \hyperlink{class_utilizador_a6a319b5af1400354e5fc22056fbfefc5}{set\+Regs} (vector$<$ \hyperlink{class_registo}{Registo} $\ast$ $>$ regs)
+\begin{DoxyCompactList}\small\item\em Set the vector of \hyperlink{class_registo}{Registo} pointers of a user. \end{DoxyCompactList}\item 
+\hyperlink{class_registo}{Registo} $\ast$ \hyperlink{class_utilizador_aadf5270d1131da77040b628c23ef89b2}{ultimo\+Reg} () const 
+\begin{DoxyCompactList}\small\item\em Get most recent rental record from user. \end{DoxyCompactList}\item 
+string \hyperlink{class_utilizador_a8be0d01c3f23383c25596bd1c73918e4}{get\+Password} () const 
+\begin{DoxyCompactList}\small\item\em Get the password of a user. \end{DoxyCompactList}\item 
+void \hyperlink{class_utilizador_a14ffc9d7128ed6c99e7adc4f94315f56}{set\+Password} (string pass)
+\begin{DoxyCompactList}\small\item\em Change the password of a user. \end{DoxyCompactList}\item 
+bool \hyperlink{class_utilizador_a8d0083b685ee8023dd9bbf5b0372cb1d}{operator==} (string name)
+\begin{DoxyCompactList}\small\item\em Compare user to string Compares a user to a string representing it's name. \end{DoxyCompactList}\item 
+bool \hyperlink{class_utilizador_a668e5c9fd643f4e56dbdb2a6e1172bf5}{operator==} (\hyperlink{class_utilizador}{Utilizador} user)
+\begin{DoxyCompactList}\small\item\em Compare two users Compares current user's name to another user's. \end{DoxyCompactList}\item 
+void \hyperlink{class_utilizador_a0ceb8bbbe6766b2f83ed9130fbf0975f}{operator=} (\hyperlink{class_utilizador}{Utilizador} user)
+\begin{DoxyCompactList}\small\item\em Assignment operator overload for \hyperlink{class_utilizador}{Utilizador} Copies one user to another one, exactly the same way and using the same pointers. \end{DoxyCompactList}\item 
 \hypertarget{class_utilizador_a6282ddeeb794835afa4ce109ebb6b53a}{int {\bfseries get\+Tipo} ()}\label{class_utilizador_a6282ddeeb794835afa4ce109ebb6b53a}
 
 \item 
-\hypertarget{class_utilizador_a988e8a7c0cc0625866350a476a5d7b62}{virtual int {\bfseries get\+Custo} ()}\label{class_utilizador_a988e8a7c0cc0625866350a476a5d7b62}
+virtual int \hyperlink{class_utilizador_a988e8a7c0cc0625866350a476a5d7b62}{get\+Custo} ()
+\begin{DoxyCompactList}\small\item\em Get service cost for \hyperlink{class_utilizador}{Utilizador} This is a virtual function that diferentiates registered from occasional users, by being redefined by the \hyperlink{class_ut__ocasional}{Ut\+\_\+ocasional} class. \end{DoxyCompactList}\item 
+\hypertarget{class_utilizador_a388ed972e4a98a3e09aca8edb9ad71a3}{void \hyperlink{class_utilizador_a388ed972e4a98a3e09aca8edb9ad71a3}{adiciona\+Registo} (\hyperlink{class_registo}{Registo} $\ast$reg)}\label{class_utilizador_a388ed972e4a98a3e09aca8edb9ad71a3}
 
-\item 
-\hypertarget{class_utilizador_a388ed972e4a98a3e09aca8edb9ad71a3}{void {\bfseries adiciona\+Registo} (\hyperlink{class_registo}{Registo} $\ast$reg)}\label{class_utilizador_a388ed972e4a98a3e09aca8edb9ad71a3}
+\begin{DoxyCompactList}\small\item\em Add a \hyperlink{class_registo}{Registo} pointer to the list of user records. \end{DoxyCompactList}\item 
+int \hyperlink{class_utilizador_a72e81f30a09f65dc12ad4388a1bb4c6f}{tempo\+\_\+aluguer} ()
+\begin{DoxyCompactList}\small\item\em Sum of all user rental time This functions calculates how long the user has been in posession of any \hyperlink{class_bicicleta}{Bicicleta}, by adding the duration of all his rentals (in days) \end{DoxyCompactList}\item 
+int \hyperlink{class_utilizador_a19b8e1ca2d9b0036e041bb9d1813b1be}{num\+\_\+aluguer} ()
+\begin{DoxyCompactList}\small\item\em Number of user's complete rentals This function returns the ammount of complete rentals for this user. If checks if the last rental was complete to determine the number of rentals. \end{DoxyCompactList}\item 
+void \hyperlink{class_utilizador_aaad55e54d2ab5a5a8dbe0c98092ab77a}{remove\+\_\+bici} (int id)
+\begin{DoxyCompactList}\small\item\em Remove a \hyperlink{class_bicicleta}{Bicicleta} from all \hyperlink{class_registo}{Registo} object pointers This function is used when a \hyperlink{class_bicicleta}{Bicicleta} is deleted from the system. It erases from the vector all \hyperlink{class_registo}{Registo} objects relative to rentals of the \hyperlink{class_bicicleta}{Bicicleta} with the specified I\+D. \end{DoxyCompactList}\item 
+virtual string \hyperlink{class_utilizador_a79a6281b24b8ecf31b25e41f5650843d}{get\+\_\+str} () const 
+\begin{DoxyCompactList}\small\item\em Get string that represents user This function is used in \hyperlink{class_rede_abec1da6660663cd58e6851737219959e}{Rede\+::store\+Info()}, because it converts the \hyperlink{class_utilizador}{Utilizador} object to a multiple line string containing all of it's information except the rental logs. \end{DoxyCompactList}\item 
+\hypertarget{class_utilizador_ae2d157ed39a4f4d8e96c288ac7de320d}{virtual void \hyperlink{class_utilizador_ae2d157ed39a4f4d8e96c288ac7de320d}{make\+\_\+str} (string user)}\label{class_utilizador_ae2d157ed39a4f4d8e96c288ac7de320d}
 
-\item 
-\hypertarget{class_utilizador_a72e81f30a09f65dc12ad4388a1bb4c6f}{int {\bfseries tempo\+\_\+aluguer} ()}\label{class_utilizador_a72e81f30a09f65dc12ad4388a1bb4c6f}
-
-\item 
-\hypertarget{class_utilizador_a19b8e1ca2d9b0036e041bb9d1813b1be}{int {\bfseries num\+\_\+aluguer} ()}\label{class_utilizador_a19b8e1ca2d9b0036e041bb9d1813b1be}
-
-\item 
-\hypertarget{class_utilizador_aaad55e54d2ab5a5a8dbe0c98092ab77a}{void {\bfseries remove\+\_\+bici} (int id)}\label{class_utilizador_aaad55e54d2ab5a5a8dbe0c98092ab77a}
-
-\item 
-\hypertarget{class_utilizador_a79a6281b24b8ecf31b25e41f5650843d}{virtual string {\bfseries get\+\_\+str} () const }\label{class_utilizador_a79a6281b24b8ecf31b25e41f5650843d}
-
-\item 
-\hypertarget{class_utilizador_ae2d157ed39a4f4d8e96c288ac7de320d}{virtual void {\bfseries make\+\_\+str} (string user)}\label{class_utilizador_ae2d157ed39a4f4d8e96c288ac7de320d}
-
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Make a user from a string that represents it This function is used in \hyperlink{class_rede_a1751f922073f6172ba676a56959a1540}{Rede\+::load\+Info()}, because it makes a \hyperlink{class_utilizador}{Utilizador} object from a multiple line string that contains all it's information except for the rental logs. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -97,12 +92,307 @@ Inheritance diagram for Utilizador\+:\begin{figure}[H]
 \subsection*{Friends}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_utilizador_adc23de1728e267f4b2dc5aed8a410e9e}{ostream \& {\bfseries operator$<$$<$} (ostream \&o, \hyperlink{class_utilizador}{Utilizador} \&user)}\label{class_utilizador_adc23de1728e267f4b2dc5aed8a410e9e}
+ostream \& \hyperlink{class_utilizador_adc23de1728e267f4b2dc5aed8a410e9e}{operator$<$$<$} (ostream \&o, \hyperlink{class_utilizador}{Utilizador} \&user)
+\begin{DoxyCompactList}\small\item\em Overload of $<$$<$ operator, to allow output of user Outputs user's information, inline, but only name and age. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
-\end{DoxyCompactItemize}
+
+\subsection{Detailed Description}
+\hyperlink{class_utilizador}{Utilizador} -\/ class representing users of the network. 
+
+This class is used to represent the users of the bike-\/sharing network, storing their name, password, age, type (occasional or frequent) and rental log 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_utilizador_a79a6281b24b8ecf31b25e41f5650843d}{\index{Utilizador@{Utilizador}!get\+\_\+str@{get\+\_\+str}}
+\index{get\+\_\+str@{get\+\_\+str}!Utilizador@{Utilizador}}
+\subsubsection[{get\+\_\+str}]{\setlength{\rightskip}{0pt plus 5cm}string Utilizador\+::get\+\_\+str (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_utilizador_a79a6281b24b8ecf31b25e41f5650843d}
+
+
+Get string that represents user This function is used in \hyperlink{class_rede_abec1da6660663cd58e6851737219959e}{Rede\+::store\+Info()}, because it converts the \hyperlink{class_utilizador}{Utilizador} object to a multiple line string containing all of it's information except the rental logs. 
+
+\begin{DoxyReturn}{Returns}
+string representing user info 
+\end{DoxyReturn}
+
+
+Reimplemented in \hyperlink{class_ut__ocasional_a500c4745815fed11a495c258a06f973a}{Ut\+\_\+ocasional}.
+
+\hypertarget{class_utilizador_a988e8a7c0cc0625866350a476a5d7b62}{\index{Utilizador@{Utilizador}!get\+Custo@{get\+Custo}}
+\index{get\+Custo@{get\+Custo}!Utilizador@{Utilizador}}
+\subsubsection[{get\+Custo}]{\setlength{\rightskip}{0pt plus 5cm}int Utilizador\+::get\+Custo (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{class_utilizador_a988e8a7c0cc0625866350a476a5d7b62}
+
+
+Get service cost for \hyperlink{class_utilizador}{Utilizador} This is a virtual function that diferentiates registered from occasional users, by being redefined by the \hyperlink{class_ut__ocasional}{Ut\+\_\+ocasional} class. 
+
+\begin{DoxyReturn}{Returns}
+service cost for the \hyperlink{class_utilizador}{Utilizador} 
+\end{DoxyReturn}
+
+
+Reimplemented in \hyperlink{class_ut__ocasional_a372c795cc67b402e54dc78e6e24c3779}{Ut\+\_\+ocasional}.
+
+\hypertarget{class_utilizador_a9abaeb6fbff49683f57164a57e6f0c90}{\index{Utilizador@{Utilizador}!get\+Idade@{get\+Idade}}
+\index{get\+Idade@{get\+Idade}!Utilizador@{Utilizador}}
+\subsubsection[{get\+Idade}]{\setlength{\rightskip}{0pt plus 5cm}int Utilizador\+::get\+Idade (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_utilizador_a9abaeb6fbff49683f57164a57e6f0c90}
+
+
+Get the age of a user. 
+
+\begin{DoxyReturn}{Returns}
+user's age 
+\end{DoxyReturn}
+\hypertarget{class_utilizador_aa5af9c1385b0a93116dd8a80264b887a}{\index{Utilizador@{Utilizador}!get\+Nome@{get\+Nome}}
+\index{get\+Nome@{get\+Nome}!Utilizador@{Utilizador}}
+\subsubsection[{get\+Nome}]{\setlength{\rightskip}{0pt plus 5cm}string Utilizador\+::get\+Nome (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_utilizador_aa5af9c1385b0a93116dd8a80264b887a}
+
+
+Get the name of a user. 
+
+\begin{DoxyReturn}{Returns}
+name of current \hyperlink{class_utilizador}{Utilizador} object 
+\end{DoxyReturn}
+\hypertarget{class_utilizador_a8be0d01c3f23383c25596bd1c73918e4}{\index{Utilizador@{Utilizador}!get\+Password@{get\+Password}}
+\index{get\+Password@{get\+Password}!Utilizador@{Utilizador}}
+\subsubsection[{get\+Password}]{\setlength{\rightskip}{0pt plus 5cm}string Utilizador\+::get\+Password (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_utilizador_a8be0d01c3f23383c25596bd1c73918e4}
+
+
+Get the password of a user. 
+
+\begin{DoxyReturn}{Returns}
+user's password 
+\end{DoxyReturn}
+\hypertarget{class_utilizador_a41730715f6cdd5bd98e3647150836989}{\index{Utilizador@{Utilizador}!get\+Regs@{get\+Regs}}
+\index{get\+Regs@{get\+Regs}!Utilizador@{Utilizador}}
+\subsubsection[{get\+Regs}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ {\bf Registo} $\ast$ $>$ Utilizador\+::get\+Regs (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_utilizador_a41730715f6cdd5bd98e3647150836989}
+
+
+Get all the user rental records. 
+
+\begin{DoxyReturn}{Returns}
+vector with pointers to all user complete and incomplete rental records (\hyperlink{class_registo}{Registo}) 
+\end{DoxyReturn}
+\hypertarget{class_utilizador_a19b8e1ca2d9b0036e041bb9d1813b1be}{\index{Utilizador@{Utilizador}!num\+\_\+aluguer@{num\+\_\+aluguer}}
+\index{num\+\_\+aluguer@{num\+\_\+aluguer}!Utilizador@{Utilizador}}
+\subsubsection[{num\+\_\+aluguer}]{\setlength{\rightskip}{0pt plus 5cm}int Utilizador\+::num\+\_\+aluguer (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_utilizador_a19b8e1ca2d9b0036e041bb9d1813b1be}
+
+
+Number of user's complete rentals This function returns the ammount of complete rentals for this user. If checks if the last rental was complete to determine the number of rentals. 
+
+\begin{DoxyReturn}{Returns}
+Number of complete rentals by the user 
+\end{DoxyReturn}
+\hypertarget{class_utilizador_a0ceb8bbbe6766b2f83ed9130fbf0975f}{\index{Utilizador@{Utilizador}!operator=@{operator=}}
+\index{operator=@{operator=}!Utilizador@{Utilizador}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}void Utilizador\+::operator= (
+\begin{DoxyParamCaption}
+\item[{{\bf Utilizador}}]{user}
+\end{DoxyParamCaption}
+)}}\label{class_utilizador_a0ceb8bbbe6766b2f83ed9130fbf0975f}
+
+
+Assignment operator overload for \hyperlink{class_utilizador}{Utilizador} Copies one user to another one, exactly the same way and using the same pointers. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user} & -\/ user to serve as \char`\"{}model\char`\"{} \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_utilizador_a8d0083b685ee8023dd9bbf5b0372cb1d}{\index{Utilizador@{Utilizador}!operator==@{operator==}}
+\index{operator==@{operator==}!Utilizador@{Utilizador}}
+\subsubsection[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}bool Utilizador\+::operator== (
+\begin{DoxyParamCaption}
+\item[{string}]{name}
+\end{DoxyParamCaption}
+)}}\label{class_utilizador_a8d0083b685ee8023dd9bbf5b0372cb1d}
+
+
+Compare user to string Compares a user to a string representing it's name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & -\/ name to check if it is the user's name \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if user's name is equal to param name, false otherwise 
+\end{DoxyReturn}
+\hypertarget{class_utilizador_a668e5c9fd643f4e56dbdb2a6e1172bf5}{\index{Utilizador@{Utilizador}!operator==@{operator==}}
+\index{operator==@{operator==}!Utilizador@{Utilizador}}
+\subsubsection[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}bool Utilizador\+::operator== (
+\begin{DoxyParamCaption}
+\item[{{\bf Utilizador}}]{user}
+\end{DoxyParamCaption}
+)}}\label{class_utilizador_a668e5c9fd643f4e56dbdb2a6e1172bf5}
+
+
+Compare two users Compares current user's name to another user's. 
+
+\begin{DoxyReturn}{Returns}
+true if users have same name, false otherwise 
+\end{DoxyReturn}
+\hypertarget{class_utilizador_aaad55e54d2ab5a5a8dbe0c98092ab77a}{\index{Utilizador@{Utilizador}!remove\+\_\+bici@{remove\+\_\+bici}}
+\index{remove\+\_\+bici@{remove\+\_\+bici}!Utilizador@{Utilizador}}
+\subsubsection[{remove\+\_\+bici}]{\setlength{\rightskip}{0pt plus 5cm}void Utilizador\+::remove\+\_\+bici (
+\begin{DoxyParamCaption}
+\item[{int}]{id}
+\end{DoxyParamCaption}
+)}}\label{class_utilizador_aaad55e54d2ab5a5a8dbe0c98092ab77a}
+
+
+Remove a \hyperlink{class_bicicleta}{Bicicleta} from all \hyperlink{class_registo}{Registo} object pointers This function is used when a \hyperlink{class_bicicleta}{Bicicleta} is deleted from the system. It erases from the vector all \hyperlink{class_registo}{Registo} objects relative to rentals of the \hyperlink{class_bicicleta}{Bicicleta} with the specified I\+D. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & -\/ I\+D of the \hyperlink{class_bicicleta}{Bicicleta} to remove \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_utilizador_a1201b047034f08dd8b1e8d4df36ca97b}{\index{Utilizador@{Utilizador}!set\+Idade@{set\+Idade}}
+\index{set\+Idade@{set\+Idade}!Utilizador@{Utilizador}}
+\subsubsection[{set\+Idade}]{\setlength{\rightskip}{0pt plus 5cm}void Utilizador\+::set\+Idade (
+\begin{DoxyParamCaption}
+\item[{int}]{idade}
+\end{DoxyParamCaption}
+)}}\label{class_utilizador_a1201b047034f08dd8b1e8d4df36ca97b}
+
+
+Set idade of a user. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em idade} & -\/ new idade for the user \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_utilizador_a24f10fc3cfa2deb7aa38cc280722327a}{\index{Utilizador@{Utilizador}!set\+Nome@{set\+Nome}}
+\index{set\+Nome@{set\+Nome}!Utilizador@{Utilizador}}
+\subsubsection[{set\+Nome}]{\setlength{\rightskip}{0pt plus 5cm}void Utilizador\+::set\+Nome (
+\begin{DoxyParamCaption}
+\item[{string}]{nome}
+\end{DoxyParamCaption}
+)}}\label{class_utilizador_a24f10fc3cfa2deb7aa38cc280722327a}
+
+
+Set name of a user. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nome} & -\/ new name for the user \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_utilizador_a14ffc9d7128ed6c99e7adc4f94315f56}{\index{Utilizador@{Utilizador}!set\+Password@{set\+Password}}
+\index{set\+Password@{set\+Password}!Utilizador@{Utilizador}}
+\subsubsection[{set\+Password}]{\setlength{\rightskip}{0pt plus 5cm}void Utilizador\+::set\+Password (
+\begin{DoxyParamCaption}
+\item[{string}]{pass}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_utilizador_a14ffc9d7128ed6c99e7adc4f94315f56}
+
+
+Change the password of a user. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pass} & -\/ new user password \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_utilizador_a6a319b5af1400354e5fc22056fbfefc5}{\index{Utilizador@{Utilizador}!set\+Regs@{set\+Regs}}
+\index{set\+Regs@{set\+Regs}!Utilizador@{Utilizador}}
+\subsubsection[{set\+Regs}]{\setlength{\rightskip}{0pt plus 5cm}void Utilizador\+::set\+Regs (
+\begin{DoxyParamCaption}
+\item[{vector$<$ {\bf Registo} $\ast$ $>$}]{regs}
+\end{DoxyParamCaption}
+)}}\label{class_utilizador_a6a319b5af1400354e5fc22056fbfefc5}
+
+
+Set the vector of \hyperlink{class_registo}{Registo} pointers of a user. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em regs} & -\/ new \hyperlink{class_utilizador}{Utilizador} rental record \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_utilizador_a72e81f30a09f65dc12ad4388a1bb4c6f}{\index{Utilizador@{Utilizador}!tempo\+\_\+aluguer@{tempo\+\_\+aluguer}}
+\index{tempo\+\_\+aluguer@{tempo\+\_\+aluguer}!Utilizador@{Utilizador}}
+\subsubsection[{tempo\+\_\+aluguer}]{\setlength{\rightskip}{0pt plus 5cm}int Utilizador\+::tempo\+\_\+aluguer (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_utilizador_a72e81f30a09f65dc12ad4388a1bb4c6f}
+
+
+Sum of all user rental time This functions calculates how long the user has been in posession of any \hyperlink{class_bicicleta}{Bicicleta}, by adding the duration of all his rentals (in days) 
+
+\begin{DoxyReturn}{Returns}
+User's rental time in days 
+\end{DoxyReturn}
+\hypertarget{class_utilizador_aadf5270d1131da77040b628c23ef89b2}{\index{Utilizador@{Utilizador}!ultimo\+Reg@{ultimo\+Reg}}
+\index{ultimo\+Reg@{ultimo\+Reg}!Utilizador@{Utilizador}}
+\subsubsection[{ultimo\+Reg}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Registo} $\ast$ Utilizador\+::ultimo\+Reg (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_utilizador_aadf5270d1131da77040b628c23ef89b2}
+
+
+Get most recent rental record from user. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to last \hyperlink{class_registo}{Registo} of vector registos, or N\+U\+L\+L if vector is empty 
+\end{DoxyReturn}
+
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{class_utilizador_adc23de1728e267f4b2dc5aed8a410e9e}{\index{Utilizador@{Utilizador}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Utilizador@{Utilizador}}
+\subsubsection[{operator$<$$<$}]{\setlength{\rightskip}{0pt plus 5cm}ostream\& operator$<$$<$ (
+\begin{DoxyParamCaption}
+\item[{ostream \&}]{o, }
+\item[{{\bf Utilizador} \&}]{user}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [friend]}}}\label{class_utilizador_adc23de1728e267f4b2dc5aed8a410e9e}
+
+
+Overload of $<$$<$ operator, to allow output of user Outputs user's information, inline, but only name and age. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em o} & -\/ stream to output to \\
+\hline
+{\em user} & -\/ \hyperlink{class_utilizador}{Utilizador} to output \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+stream to allow inline multiple $<$$<$ operators 
+\end{DoxyReturn}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-Utilizador.\+h\item 
-Utilizador.\+cpp\end{DoxyCompactItemize}
+\hyperlink{_utilizador_8h}{Utilizador.\+h}\item 
+\hyperlink{_utilizador_8cpp}{Utilizador.\+cpp}\end{DoxyCompactItemize}

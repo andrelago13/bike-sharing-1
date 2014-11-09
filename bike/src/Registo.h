@@ -10,6 +10,13 @@
 
 using namespace std;
 
+/*! \class Registo
+\brief Registo - Auxiliary program class
+
+This class allows the program objects to keep track of their history in the Bike-Sharing network. A Registo objects stores the important information of
+a bike rental. It keeps track of the ID of the rented bike, the ID's of the source and destination service posts (PostoServico), the name of the renting user
+(Utilizador), the date (Data) of rental and return of the bike and determines if the bike got broken or not during the rental
+*/
 class Registo
 {
 public:

@@ -13,6 +13,9 @@
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\hypertarget{class_rede_a0c0699d33419180c9c0792823964418c}{\hyperlink{class_rede_a0c0699d33419180c9c0792823964418c}{Rede} ()}\label{class_rede_a0c0699d33419180c9c0792823964418c}
+
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_rede}{Rede} default constructor Initializes password as an empty string. \end{DoxyCompactList}\item 
 \hypertarget{class_rede_a1751f922073f6172ba676a56959a1540}{void \hyperlink{class_rede_a1751f922073f6172ba676a56959a1540}{load\+Info} ()}\label{class_rede_a1751f922073f6172ba676a56959a1540}
 
 \begin{DoxyCompactList}\small\item\em Load \hyperlink{class_rede}{Rede} information from text files. Loads information on rede.\+txt, rede\+\_\+bikes.\+txt, rede\+\_\+spots.\+txt and rede\+\_\+user.\+txt according to format specified by function store\+Info. \end{DoxyCompactList}\item 
@@ -33,57 +36,51 @@ int \hyperlink{class_rede_a4177da39d4aa05cd0451d52a7220b7c5}{create\+\_\+add\+\_
 \begin{DoxyCompactList}\small\item\em Resets all \hyperlink{class_rede}{Rede} information Restarts all \hyperlink{class_rede}{Rede} information by clearing all vector members of the class. \end{DoxyCompactList}\item 
 void \hyperlink{class_rede_ad38e26e59622727f978b995f6b9955c5}{assign\+\_\+regs} (vector$<$ \hyperlink{class_registo}{Registo} $\ast$ $>$ \&regs)
 \begin{DoxyCompactList}\small\item\em Assing \hyperlink{class_registo}{Registo} object pointers in a vector to the class members. \end{DoxyCompactList}\item 
-\hypertarget{class_rede_a42b5a88380e63b78e5c99894aee0dfbc}{bool \hyperlink{class_rede_a42b5a88380e63b78e5c99894aee0dfbc}{existe\+Utilizador} (string nome)}\label{class_rede_a42b5a88380e63b78e5c99894aee0dfbc}
+bool \hyperlink{class_rede_a42b5a88380e63b78e5c99894aee0dfbc}{existe\+Utilizador} (string nome)
+\begin{DoxyCompactList}\small\item\em Checks if user exists. \end{DoxyCompactList}\item 
+int \hyperlink{class_rede_ac74ae338ed2ddb5b8f94c9ed33e172ef}{tipo\+User} (string nome)
+\begin{DoxyCompactList}\small\item\em Find type of a user. \end{DoxyCompactList}\item 
+string \hyperlink{class_rede_aba033af0c2cd9a4f70ca1f9459a6a3ee}{is\+\_\+busy} (int id\+\_\+bici, bool print) const 
+\begin{DoxyCompactList}\small\item\em Determine if a bike is rented and by whom. \end{DoxyCompactList}\item 
+vector$<$ \hyperlink{class_registo}{Registo} $\ast$ $>$ \hyperlink{class_rede_a0862364a4ce27c157b2b756184526748}{get\+\_\+regs} () const 
+\begin{DoxyCompactList}\small\item\em Get pointers to all \hyperlink{class_registo}{Registo} objects relative to completed rentals in the system. \end{DoxyCompactList}\item 
+\hypertarget{class_rede_a906023ec85b2043b4610e627951e93b8}{int \hyperlink{class_rede_a906023ec85b2043b4610e627951e93b8}{menu\+\_\+system} ()}\label{class_rede_a906023ec85b2043b4610e627951e93b8}
 
-\begin{DoxyCompactList}\small\item\em Resets all \hyperlink{class_rede}{Rede} information Restarts all \hyperlink{class_rede}{Rede} information by clearing all vector members of the class. \end{DoxyCompactList}\item 
-\hypertarget{class_rede_ac74ae338ed2ddb5b8f94c9ed33e172ef}{int {\bfseries tipo\+User} (string nome)}\label{class_rede_ac74ae338ed2ddb5b8f94c9ed33e172ef}
+\begin{DoxyCompactList}\small\item\em Menu controller function This function controls the whole menu system, by calling the function corresponding to the pretended menu. Basically, it consists of a while(true) cycle that keeps calling the menu functions and analyzes their return values. The return of all menu functions indicates the menu that should be loaded next. Each menu is assigned a number. For example, if a menu function wishes to return to the main menu, it must return 0, main menu's number. This function also calls load\+Info and store\+Info. \end{DoxyCompactList}\item 
+\hypertarget{class_rede_a7f6b41951357f14d8be5c0c23f59bca9}{void \hyperlink{class_rede_a7f6b41951357f14d8be5c0c23f59bca9}{print\+\_\+menu\+\_\+header} ()}\label{class_rede_a7f6b41951357f14d8be5c0c23f59bca9}
 
-\item 
-\hypertarget{class_rede_aba033af0c2cd9a4f70ca1f9459a6a3ee}{string {\bfseries is\+\_\+busy} (int id\+\_\+bici, bool print) const }\label{class_rede_aba033af0c2cd9a4f70ca1f9459a6a3ee}
+\begin{DoxyCompactList}\small\item\em Prints menu header This is a very simple function that only prints a small \char`\"{}\+Bike Sharing\char`\"{} header that appears in all \hyperlink{class_rede}{Rede} menus, except for the start menu, which has it's own, bigger, header. \end{DoxyCompactList}\item 
+\hypertarget{class_rede_ab94437bdbb3cb32b8489591748c1a57e}{void \hyperlink{class_rede_ab94437bdbb3cb32b8489591748c1a57e}{menu\+\_\+exit\+\_\+prog} ()}\label{class_rede_ab94437bdbb3cb32b8489591748c1a57e}
 
-\item 
-\hypertarget{class_rede_a0862364a4ce27c157b2b756184526748}{vector$<$ \hyperlink{class_registo}{Registo} $\ast$ $>$ {\bfseries get\+\_\+regs} () const }\label{class_rede_a0862364a4ce27c157b2b756184526748}
+\begin{DoxyCompactList}\small\item\em Print goodbye message This is a very simple function that prints a big \char`\"{}\+Goodbye\char`\"{} message upon program exit, through the menu system. \end{DoxyCompactList}\item 
+\hypertarget{class_rede_ad5f01d997329c28cc736b42e9962c2b6}{int \hyperlink{class_rede_ad5f01d997329c28cc736b42e9962c2b6}{menu\+\_\+start} ()}\label{class_rede_ad5f01d997329c28cc736b42e9962c2b6}
 
-\item 
-\hypertarget{class_rede_a906023ec85b2043b4610e627951e93b8}{int {\bfseries menu\+\_\+system} ()}\label{class_rede_a906023ec85b2043b4610e627951e93b8}
+\begin{DoxyCompactList}\small\item\em \hyperlink{class_rede}{Rede} starting menu Main \hyperlink{class_rede}{Rede} menu. This is the menu loaded upon system startup, and allows access to all the other menus. \end{DoxyCompactList}\item 
+\hypertarget{class_rede_aa36d94723cae863269eb20375c4491c4}{int \hyperlink{class_rede_aa36d94723cae863269eb20375c4491c4}{menu\+\_\+reg\+Usr} ()}\label{class_rede_aa36d94723cae863269eb20375c4491c4}
 
-\item 
-\hypertarget{class_rede_a7f6b41951357f14d8be5c0c23f59bca9}{void {\bfseries print\+\_\+menu\+\_\+header} ()}\label{class_rede_a7f6b41951357f14d8be5c0c23f59bca9}
+\begin{DoxyCompactList}\small\item\em Registered user menu This is the menu where registered users perform login, and where new users are registered. \end{DoxyCompactList}\item 
+\hypertarget{class_rede_a8865f7a80236b7a399e948a486c86bac}{int \hyperlink{class_rede_a8865f7a80236b7a399e948a486c86bac}{menu\+\_\+oc\+Usr} ()}\label{class_rede_a8865f7a80236b7a399e948a486c86bac}
 
-\item 
-\hypertarget{class_rede_ab94437bdbb3cb32b8489591748c1a57e}{void {\bfseries menu\+\_\+exit\+\_\+prog} ()}\label{class_rede_ab94437bdbb3cb32b8489591748c1a57e}
+\begin{DoxyCompactList}\small\item\em Ocasional user menu This is the menu where occasional users rent and return bikes. \end{DoxyCompactList}\item 
+\hypertarget{class_rede_a71b157db8d1ec17c2e5100faeb95e3d2}{int \hyperlink{class_rede_a71b157db8d1ec17c2e5100faeb95e3d2}{menu\+\_\+manager} ()}\label{class_rede_a71b157db8d1ec17c2e5100faeb95e3d2}
 
-\item 
-\hypertarget{class_rede_ad5f01d997329c28cc736b42e9962c2b6}{int {\bfseries menu\+\_\+start} ()}\label{class_rede_ad5f01d997329c28cc736b42e9962c2b6}
+\begin{DoxyCompactList}\small\item\em Management main menu This is the menu for system management. For it to be accessed, a system password is requested on \hyperlink{class_rede_ad5f01d997329c28cc736b42e9962c2b6}{menu\+\_\+start()}. This menu allows C\+R\+U\+D operations on all members of the \hyperlink{class_rede}{Rede}. \end{DoxyCompactList}\item 
+int \hyperlink{class_rede_af5dd3d55b3cb2f252349128787a96e27}{menu\+\_\+reg\+Usr\+\_\+logged} (\hyperlink{class_utilizador}{Utilizador} $\ast$user)
+\begin{DoxyCompactList}\small\item\em Logged in registered user menu This is a slightly different menu, because it needed to receive an argument, the logged in user. Therefore, it's return is \char`\"{}analyzed\char`\"{} by \hyperlink{class_rede_aa36d94723cae863269eb20375c4491c4}{menu\+\_\+reg\+Usr()} and not by \hyperlink{class_rede_a906023ec85b2043b4610e627951e93b8}{menu\+\_\+system()}, but it's return means the same. This menu allows the logged in registered user to rent and return bikes, change his password, view his rental log and see his monthly service cost. \end{DoxyCompactList}\item 
+\hypertarget{class_rede_a11e8c9a0d004251882872f9cc3da54da}{int \hyperlink{class_rede_a11e8c9a0d004251882872f9cc3da54da}{menu\+\_\+mngr\+\_\+supplyers} ()}\label{class_rede_a11e8c9a0d004251882872f9cc3da54da}
 
-\item 
-\hypertarget{class_rede_aa36d94723cae863269eb20375c4491c4}{int {\bfseries menu\+\_\+reg\+Usr} ()}\label{class_rede_aa36d94723cae863269eb20375c4491c4}
+\begin{DoxyCompactList}\small\item\em Management menu for supplying companies Allows the system manager to perform C\+R\+U\+D operations on \hyperlink{class_empresa}{Empresa} objects. It also allows the listing of all bikes for a supplying company. \end{DoxyCompactList}\item 
+\hypertarget{class_rede_a0d7d6e769f20ff9f3ce54441ec88727e}{int \hyperlink{class_rede_a0d7d6e769f20ff9f3ce54441ec88727e}{menu\+\_\+mngr\+\_\+spots} ()}\label{class_rede_a0d7d6e769f20ff9f3ce54441ec88727e}
 
-\item 
-\hypertarget{class_rede_a8865f7a80236b7a399e948a486c86bac}{int {\bfseries menu\+\_\+oc\+Usr} ()}\label{class_rede_a8865f7a80236b7a399e948a486c86bac}
+\begin{DoxyCompactList}\small\item\em Management menu for service posts Allows the system manager to perform C\+R\+U\+D operations on \hyperlink{class_posto_servico}{Posto\+Servico} objects, as well as repair one or more bikes in one or all of those objects, and listing of the bikes in a service post. \end{DoxyCompactList}\item 
+\hypertarget{class_rede_a2f83a9dde6e018ac57f1aefcfca388b2}{int \hyperlink{class_rede_a2f83a9dde6e018ac57f1aefcfca388b2}{menu\+\_\+mngr\+\_\+bikes} ()}\label{class_rede_a2f83a9dde6e018ac57f1aefcfca388b2}
 
-\item 
-\hypertarget{class_rede_a71b157db8d1ec17c2e5100faeb95e3d2}{int {\bfseries menu\+\_\+manager} ()}\label{class_rede_a71b157db8d1ec17c2e5100faeb95e3d2}
+\begin{DoxyCompactList}\small\item\em Management menu for bikes Allows the system manager to perform C\+R\+U\+D operation on \hyperlink{class_bicicleta}{Bicicleta} objects. It also allows the listing of all available and broken bikes, as well as rented bikes. It's based on the principle that {\bfseries all} bikes must be assigned to an \hyperlink{class_empresa}{Empresa} object. \end{DoxyCompactList}\item 
+\hypertarget{class_rede_a609866278eb7f37d19397f078a5a6ea6}{int \hyperlink{class_rede_a609866278eb7f37d19397f078a5a6ea6}{menu\+\_\+mngr\+\_\+users} ()}\label{class_rede_a609866278eb7f37d19397f078a5a6ea6}
 
-\item 
-\hypertarget{class_rede_af5dd3d55b3cb2f252349128787a96e27}{int {\bfseries menu\+\_\+reg\+Usr\+\_\+logged} (\hyperlink{class_utilizador}{Utilizador} $\ast$user)}\label{class_rede_af5dd3d55b3cb2f252349128787a96e27}
-
-\item 
-\hypertarget{class_rede_a11e8c9a0d004251882872f9cc3da54da}{int {\bfseries menu\+\_\+mngr\+\_\+supplyers} ()}\label{class_rede_a11e8c9a0d004251882872f9cc3da54da}
-
-\item 
-\hypertarget{class_rede_a0d7d6e769f20ff9f3ce54441ec88727e}{int {\bfseries menu\+\_\+mngr\+\_\+spots} ()}\label{class_rede_a0d7d6e769f20ff9f3ce54441ec88727e}
-
-\item 
-\hypertarget{class_rede_a2f83a9dde6e018ac57f1aefcfca388b2}{int {\bfseries menu\+\_\+mngr\+\_\+bikes} ()}\label{class_rede_a2f83a9dde6e018ac57f1aefcfca388b2}
-
-\item 
-\hypertarget{class_rede_a609866278eb7f37d19397f078a5a6ea6}{int {\bfseries menu\+\_\+mngr\+\_\+users} ()}\label{class_rede_a609866278eb7f37d19397f078a5a6ea6}
-
-\item 
-\hypertarget{class_rede_ae11dd331c071a1d4dace9fc89d82e251}{int {\bfseries menu\+\_\+mngr\+\_\+logs} ()}\label{class_rede_ae11dd331c071a1d4dace9fc89d82e251}
-
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Management menu for users Allows the system manager to perform C\+R\+U\+D operations on \hyperlink{class_utilizador}{Utilizador} objects. \end{DoxyCompactList}\item 
+int \hyperlink{class_rede_ae11dd331c071a1d4dace9fc89d82e251}{menu\+\_\+mngr\+\_\+logs} ()
+\begin{DoxyCompactList}\small\item\em Management menu for rental logs. Allows the system manager to view information about the Bike-\/sharing network in a easy way. Some of the lists are\+: \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -158,11 +155,115 @@ Create and add a \hyperlink{class_utilizador}{Utilizador} object.
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-0 if successfull, 1 if \hyperlink{class_utilizador}{Utilizador} already exists Creates a \hyperlink{class_utilizador}{Utilizador} object and inserts it in the vector, withou repetitions 
+0 if successfull, 1 if \hyperlink{class_utilizador}{Utilizador} already exists Creates a \hyperlink{class_utilizador}{Utilizador} object and inserts it in the vector, without repetitions 
 \end{DoxyReturn}
+\hypertarget{class_rede_a42b5a88380e63b78e5c99894aee0dfbc}{\index{Rede@{Rede}!existe\+Utilizador@{existe\+Utilizador}}
+\index{existe\+Utilizador@{existe\+Utilizador}!Rede@{Rede}}
+\subsubsection[{existe\+Utilizador}]{\setlength{\rightskip}{0pt plus 5cm}bool Rede\+::existe\+Utilizador (
+\begin{DoxyParamCaption}
+\item[{string}]{nome}
+\end{DoxyParamCaption}
+)}}\label{class_rede_a42b5a88380e63b78e5c99894aee0dfbc}
+
+
+Checks if user exists. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nome} & -\/ name of \hyperlink{class_utilizador}{Utilizador} to search Searches for the existance of a \hyperlink{class_utilizador}{Utilizador} with that name \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true is \hyperlink{class_utilizador}{Utilizador} already exists, false otherwise 
+\end{DoxyReturn}
+\hypertarget{class_rede_a0862364a4ce27c157b2b756184526748}{\index{Rede@{Rede}!get\+\_\+regs@{get\+\_\+regs}}
+\index{get\+\_\+regs@{get\+\_\+regs}!Rede@{Rede}}
+\subsubsection[{get\+\_\+regs}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ {\bf Registo} $\ast$ $>$ Rede\+::get\+\_\+regs (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_rede_a0862364a4ce27c157b2b756184526748}
+
+
+Get pointers to all \hyperlink{class_registo}{Registo} objects relative to completed rentals in the system. 
+
+\begin{DoxyReturn}{Returns}
+vector with mentioned \hyperlink{class_registo}{Registo} pointers, without repeated ones This function is useful for store\+Info 
+\end{DoxyReturn}
+\hypertarget{class_rede_aba033af0c2cd9a4f70ca1f9459a6a3ee}{\index{Rede@{Rede}!is\+\_\+busy@{is\+\_\+busy}}
+\index{is\+\_\+busy@{is\+\_\+busy}!Rede@{Rede}}
+\subsubsection[{is\+\_\+busy}]{\setlength{\rightskip}{0pt plus 5cm}string Rede\+::is\+\_\+busy (
+\begin{DoxyParamCaption}
+\item[{int}]{id\+\_\+bici, }
+\item[{bool}]{print}
+\end{DoxyParamCaption}
+) const}}\label{class_rede_aba033af0c2cd9a4f70ca1f9459a6a3ee}
+
+
+Determine if a bike is rented and by whom. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id\+\_\+bici} & -\/ I\+D of \hyperlink{class_bicicleta}{Bicicleta} to search \\
+\hline
+{\em print} & -\/ decide wether to print messages to the user or not \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+name of user renting the \hyperlink{class_bicicleta}{Bicicleta}, or an empty string if \hyperlink{class_bicicleta}{Bicicleta} is available 
+\end{DoxyReturn}
+\hypertarget{class_rede_ae11dd331c071a1d4dace9fc89d82e251}{\index{Rede@{Rede}!menu\+\_\+mngr\+\_\+logs@{menu\+\_\+mngr\+\_\+logs}}
+\index{menu\+\_\+mngr\+\_\+logs@{menu\+\_\+mngr\+\_\+logs}!Rede@{Rede}}
+\subsubsection[{menu\+\_\+mngr\+\_\+logs}]{\setlength{\rightskip}{0pt plus 5cm}int Rede\+::menu\+\_\+mngr\+\_\+logs (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_rede_ae11dd331c071a1d4dace9fc89d82e251}
+
+
+Management menu for rental logs. Allows the system manager to view information about the Bike-\/sharing network in a easy way. Some of the lists are\+: 
+
+\char`\"{}\+Time a user has rented a bike\char`\"{} \char`\"{}\+Money to charge a user\char`\"{} \char`\"{}\+Number of users served by a company\char`\"{} \char`\"{}\+Ongoing rentals\char`\"{} \char`\"{}\+Most frequent service user\char`\"{} \hypertarget{class_rede_af5dd3d55b3cb2f252349128787a96e27}{\index{Rede@{Rede}!menu\+\_\+reg\+Usr\+\_\+logged@{menu\+\_\+reg\+Usr\+\_\+logged}}
+\index{menu\+\_\+reg\+Usr\+\_\+logged@{menu\+\_\+reg\+Usr\+\_\+logged}!Rede@{Rede}}
+\subsubsection[{menu\+\_\+reg\+Usr\+\_\+logged}]{\setlength{\rightskip}{0pt plus 5cm}int Rede\+::menu\+\_\+reg\+Usr\+\_\+logged (
+\begin{DoxyParamCaption}
+\item[{{\bf Utilizador} $\ast$}]{user}
+\end{DoxyParamCaption}
+)}}\label{class_rede_af5dd3d55b3cb2f252349128787a96e27}
+
+
+Logged in registered user menu This is a slightly different menu, because it needed to receive an argument, the logged in user. Therefore, it's return is \char`\"{}analyzed\char`\"{} by \hyperlink{class_rede_aa36d94723cae863269eb20375c4491c4}{menu\+\_\+reg\+Usr()} and not by \hyperlink{class_rede_a906023ec85b2043b4610e627951e93b8}{menu\+\_\+system()}, but it's return means the same. This menu allows the logged in registered user to rent and return bikes, change his password, view his rental log and see his monthly service cost. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user} & -\/ pointer to the user that just logged in, that allows the function to know which \hyperlink{class_utilizador}{Utilizador} object to modify \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Same as other menu functions, it's effect will be the same 
+\end{DoxyReturn}
+\hypertarget{class_rede_ac74ae338ed2ddb5b8f94c9ed33e172ef}{\index{Rede@{Rede}!tipo\+User@{tipo\+User}}
+\index{tipo\+User@{tipo\+User}!Rede@{Rede}}
+\subsubsection[{tipo\+User}]{\setlength{\rightskip}{0pt plus 5cm}int Rede\+::tipo\+User (
+\begin{DoxyParamCaption}
+\item[{string}]{nome}
+\end{DoxyParamCaption}
+)}}\label{class_rede_ac74ae338ed2ddb5b8f94c9ed33e172ef}
+
+
+Find type of a user. 
+
+\begin{DoxyReturn}{Returns}
+user type if it exists, -\/1 otherwise 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+{\em nome} & -\/ name of \hyperlink{class_utilizador}{Utilizador} whose type must be determined Searches for a user with the given name to find out it's type (occasional or registered) \\
+\hline
+\end{DoxyParams}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-Rede.\+h\item 
-Rede.\+cpp\end{DoxyCompactItemize}
+\hyperlink{_rede_8h}{Rede.\+h}\item 
+\hyperlink{_rede_8cpp}{Rede.\+cpp}\end{DoxyCompactItemize}

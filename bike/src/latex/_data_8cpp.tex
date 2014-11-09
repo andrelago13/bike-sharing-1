@@ -1,0 +1,114 @@
+\hypertarget{_data_8cpp}{\section{Data.\+cpp File Reference}
+\label{_data_8cpp}\index{Data.\+cpp@{Data.\+cpp}}
+}
+
+
+Implementation of \hyperlink{class_data}{Data} class Contains the definition of all member functions of \hyperlink{class_data}{Data} class, supporting convertion of \hyperlink{class_data}{Data} to other formats.  
+
+
+{\ttfamily \#include \char`\"{}Data.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$string$>$}\\*
+{\ttfamily \#include $<$iostream$>$}\\*
+{\ttfamily \#include $<$sstream$>$}\\*
+{\ttfamily \#include \char`\"{}Tools.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$iomanip$>$}\\*
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{_data_8cpp_a301f290080098e5d3983bdf4e870c3b9}{operator$<$} (const \hyperlink{class_data}{Data} data1, const \hyperlink{class_data}{Data} data2)
+\begin{DoxyCompactList}\small\item\em Operator $<$ to compare \hyperlink{class_data}{Data} objects Compares two \hyperlink{class_data}{Data} objects to determine if one is \char`\"{}before\char`\"{} the other. \end{DoxyCompactList}\item 
+bool \hyperlink{_data_8cpp_a3cf90128ca701a628213a73c2ae1d5ea}{operator==} (const \hyperlink{class_data}{Data} data1, const \hyperlink{class_data}{Data} data2)
+\begin{DoxyCompactList}\small\item\em Operator == to determine equality of two \hyperlink{class_data}{Data} objects. \end{DoxyCompactList}\item 
+ostream \& \hyperlink{_data_8cpp_a9daa61b4e0bee256d9481803c4778000}{operator$<$$<$} (ostream \&o, const \hyperlink{class_data}{Data} \&data)
+\begin{DoxyCompactList}\small\item\em Allows operator $<$$<$ to use a \hyperlink{class_data}{Data} object Converts the object to a string using get\+Data\+Str() and \char`\"{}sends\char`\"{} it to the ostream o. \end{DoxyCompactList}\item 
+int \hyperlink{_data_8cpp_a950a6321928619d329831ee195416f79}{dif\+\_\+dias} (\hyperlink{class_data}{Data} d1, \hyperlink{class_data}{Data} d2)
+\begin{DoxyCompactList}\small\item\em Calculates the difference between two dates in days. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implementation of \hyperlink{class_data}{Data} class Contains the definition of all member functions of \hyperlink{class_data}{Data} class, supporting convertion of \hyperlink{class_data}{Data} to other formats. 
+
+
+
+\subsection{Function Documentation}
+\hypertarget{_data_8cpp_a950a6321928619d329831ee195416f79}{\index{Data.\+cpp@{Data.\+cpp}!dif\+\_\+dias@{dif\+\_\+dias}}
+\index{dif\+\_\+dias@{dif\+\_\+dias}!Data.\+cpp@{Data.\+cpp}}
+\subsubsection[{dif\+\_\+dias}]{\setlength{\rightskip}{0pt plus 5cm}int dif\+\_\+dias (
+\begin{DoxyParamCaption}
+\item[{{\bf Data}}]{d1, }
+\item[{{\bf Data}}]{d2}
+\end{DoxyParamCaption}
+)}}\label{_data_8cpp_a950a6321928619d329831ee195416f79}
+
+
+Calculates the difference between two dates in days. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em d1} & -\/ First \hyperlink{class_data}{Data} object \\
+\hline
+{\em d2} & -\/ Second \hyperlink{class_data}{Data} object \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+day difference between two dates, given that d1 is \char`\"{}older\char`\"{} Calculates the difference between the two dates, considering the number of days in a month and other factors 
+\end{DoxyReturn}
+\hypertarget{_data_8cpp_a301f290080098e5d3983bdf4e870c3b9}{\index{Data.\+cpp@{Data.\+cpp}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!Data.\+cpp@{Data.\+cpp}}
+\subsubsection[{operator$<$}]{\setlength{\rightskip}{0pt plus 5cm}bool operator$<$ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Data}}]{data1, }
+\item[{const {\bf Data}}]{data2}
+\end{DoxyParamCaption}
+)}}\label{_data_8cpp_a301f290080098e5d3983bdf4e870c3b9}
+
+
+Operator $<$ to compare \hyperlink{class_data}{Data} objects Compares two \hyperlink{class_data}{Data} objects to determine if one is \char`\"{}before\char`\"{} the other. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data1} & -\/ First \hyperlink{class_data}{Data} object \\
+\hline
+{\em data2} & -\/ Second \hyperlink{class_data}{Data} object \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if data1 is prior to data2, and false otherwise 
+\end{DoxyReturn}
+\hypertarget{_data_8cpp_a9daa61b4e0bee256d9481803c4778000}{\index{Data.\+cpp@{Data.\+cpp}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Data.\+cpp@{Data.\+cpp}}
+\subsubsection[{operator$<$$<$}]{\setlength{\rightskip}{0pt plus 5cm}ostream\& operator$<$$<$ (
+\begin{DoxyParamCaption}
+\item[{ostream \&}]{o, }
+\item[{const {\bf Data} \&}]{data}
+\end{DoxyParamCaption}
+)}}\label{_data_8cpp_a9daa61b4e0bee256d9481803c4778000}
+
+
+Allows operator $<$$<$ to use a \hyperlink{class_data}{Data} object Converts the object to a string using get\+Data\+Str() and \char`\"{}sends\char`\"{} it to the ostream o. 
+
+\begin{DoxyReturn}{Returns}
+ostream reference to allow multiple, inline, $<$$<$ operators 
+\end{DoxyReturn}
+\hypertarget{_data_8cpp_a3cf90128ca701a628213a73c2ae1d5ea}{\index{Data.\+cpp@{Data.\+cpp}!operator==@{operator==}}
+\index{operator==@{operator==}!Data.\+cpp@{Data.\+cpp}}
+\subsubsection[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}bool operator== (
+\begin{DoxyParamCaption}
+\item[{const {\bf Data}}]{data1, }
+\item[{const {\bf Data}}]{data2}
+\end{DoxyParamCaption}
+)}}\label{_data_8cpp_a3cf90128ca701a628213a73c2ae1d5ea}
+
+
+Operator == to determine equality of two \hyperlink{class_data}{Data} objects. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data1} & -\/ First \hyperlink{class_data}{Data} object \\
+\hline
+{\em data2} & -\/ Second \hyperlink{class_data}{Data} object \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if data1 is equal to data2, and false otherwise 
+\end{DoxyReturn}

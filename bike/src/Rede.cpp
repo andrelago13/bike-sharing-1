@@ -432,7 +432,7 @@ int Rede::addUser(Utilizador user)
 * \brief Create and add a Utilizador object
 * \param nome - name of the Utilizador object to create
 * \return 0 if successfull, 1 if Utilizador already exists
-* Creates a Utilizador object and inserts it in the vector, withou repetitions
+* Creates a Utilizador object and inserts it in the vector, without repetitions
 */
 int Rede::createUser(string nome)
 {
@@ -800,15 +800,16 @@ vector<Registo *> Rede::get_regs() const
 			////////////////
 
 
-// This function controls the whole menu system, by calling the function corresponding to the pretended menu. It also calls loadInfo and storeInfo
+/**
+\brief Menu controller function
+This function controls the whole menu system, by calling the function corresponding to the pretended menu.
+Basically, it consists of a while(true) cycle that keeps calling the menu functions and analyzes their return values.
+The return of all menu functions indicates the menu that should be loaded next.
+Each menu is assigned a number. For example, if a menu function wishes to return to the main menu, it must return 0, main menu's number.
+This function also calls loadInfo and storeInfo
+*/
 int Rede::menu_system()
 {
-	/* The system in this function manages the interactions between menus, i.e., the transitions between them
-
-	Each menu is assigned a number, its ID. Every menu has a corresponding function. This function's return
-	specifies which menu must be loaded next, according to the user's actions during it's execution. For example,
-	if a menu function wishes to return to the main menu, it must return 0, main menu's ID.*/
-
 	loadInfo();
 
 	int menu = 0;
@@ -872,7 +873,10 @@ int Rede::menu_system()
 	return 0;
 }
 
-// Rede starting menu
+/**
+\brief Rede starting menu
+Main Rede menu. This is the menu loaded upon system startup, and allows access to all the other menus
+*/
 int Rede::menu_start()
 {
 	cout << endl << endl << "            ______ _ _              _                _" << endl;
@@ -918,7 +922,10 @@ int Rede::menu_start()
 	return MENU_exit;
 }
 
-// Registered user menu
+/**
+\brief Registered user menu
+This is the menu where registered users perform login, and where new users are registered
+*/
 int Rede::menu_regUsr()
 {
 	print_menu_header();
@@ -978,7 +985,10 @@ int Rede::menu_regUsr()
 	return MENU_start;
 }
 
-// Occasional user menu
+/**
+\brief Ocasional user menu
+This is the menu where occasional users rent and return bikes
+*/
 int Rede::menu_ocUsr()
 {
 	
@@ -1190,7 +1200,11 @@ int Rede::menu_ocUsr()
 	return MENU_start;
 }
 
-// Management main menu
+/**
+\brief Management main menu
+This is the menu for system management. For it to be accessed, a system password is requested on menu_start().
+This menu allows CRUD operations on all members of the Rede
+*/
 int Rede::menu_manager()
 {
 	print_menu_header();
@@ -1256,7 +1270,15 @@ int Rede::menu_manager()
 	return MENU_start;
 }
 
-// Registered user menu, after logging in. This menu works slightly differently because it receives as argument the logged user
+/**
+\brief Logged in registered user menu
+This is a slightly different menu, because it needed to receive an argument, the logged in user. Therefore, it's return is "analyzed" by
+menu_regUsr() and not by menu_system(), but it's return means the same.
+This menu allows the logged in registered user to rent and return bikes, change his password, view his rental log and see his
+monthly service cost
+\param user - pointer to the user that just logged in, that allows the function to know which Utilizador object to modify
+\return Same as other menu functions, it's effect will be the same
+*/
 int Rede::menu_regUsr_logged(Utilizador *user)
 {
 	while (true)
@@ -1497,7 +1519,11 @@ int Rede::menu_regUsr_logged(Utilizador *user)
 	return MENU_start;
 }
 
-// Simple function to print the "Bike Sharing" menu header
+/**
+\brief Prints menu header
+This is a very simple function that only prints a small "Bike Sharing" header that appears in all Rede menus, except
+for the start menu, which has it's own, bigger, header
+*/
 void Rede::print_menu_header()
 {
 	cout << "      __          ___     __             __          __  " << endl;
@@ -1505,7 +1531,10 @@ void Rede::print_menu_header()
 	cout << "     |__) | |  \\ |___    .__/ |  | /~~\\ |  \\ | | \\| \\__>" << endl << endl;
 }
 
-// Simple function to print "Goodbye" upon program exit
+/**
+\brief Print goodbye message
+This is a very simple function that prints a big "Goodbye" message upon program exit, through the menu system
+*/
 void Rede::menu_exit_prog()
 {
 	cout << endl << endl << "           _____                 _     ____" << endl;
@@ -1518,7 +1547,11 @@ void Rede::menu_exit_prog()
 	cout << "                                            |___/      " << endl << endl << endl << endl;
 }
 
-// Management menu for supplying companies
+/**
+\brief Management menu for supplying companies
+Allows the system manager to perform CRUD operations on Empresa objects. It also allows the listing of all
+bikes for a supplying company
+*/
 int Rede::menu_mngr_supplyers()
 {
 	print_menu_header();
@@ -1707,7 +1740,11 @@ int Rede::menu_mngr_supplyers()
 	return MENU_manager;
 }
 
-// Management menu for bikes
+/**
+\brief Management menu for bikes
+Allows the system manager to perform CRUD operation on Bicicleta objects. It also allows the listing of all available and broken bikes,
+as well as rented bikes. It's based on the principle that \b all bikes must be assigned to an Empresa object
+*/
 int Rede::menu_mngr_bikes()
 {
 	print_menu_header();
@@ -1893,7 +1930,16 @@ int Rede::menu_mngr_bikes()
 	return MENU_manager;
 }
 
-// Management menu for rental logs
+/**
+\brief Management menu for rental logs.
+Allows the system manager to view information about the Bike-sharing network in a easy way. Some of the lists are:
+
+"Time a user has rented a bike"
+"Money to charge a user"
+"Number of users served by a company"
+"Ongoing rentals"
+"Most frequent service user"
+*/
 int Rede::menu_mngr_logs()
 {
 	print_menu_header();
@@ -2048,7 +2094,11 @@ int Rede::menu_mngr_logs()
 	return MENU_manager;
 }
 
-// Management menu for service posts
+/**
+\brief Management menu for service posts
+Allows the system manager to perform CRUD operations on PostoServico objects, as well as repair one or more bikes in one or all of those objects,
+and listing of the bikes in a service post
+*/
 int Rede::menu_mngr_spots()
 {
 	print_menu_header();
@@ -2322,7 +2372,10 @@ int Rede::menu_mngr_spots()
 	return MENU_manager;
 }
 
-// Management menu for users
+/**
+\brief Management menu for users
+Allows the system manager to perform CRUD operations on Utilizador objects
+*/
 int Rede::menu_mngr_users()
 {
 	print_menu_header();

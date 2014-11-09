@@ -70,7 +70,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Friends</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -88,6 +88,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">Bicicleta Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><a class="el" href="class_bicicleta.html" title="Bicicleta - Auxiliary program class. ">Bicicleta</a> - Auxiliary program class.  
+ <a href="class_bicicleta.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_bicicleta_8h_source.html">Bicicleta.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -160,21 +165,57 @@ string&#160;</td><td class="memItemRight" valign="bottom"><b>get_str</b> () cons
 <tr class="memitem:aff75cc7f6d1a554a8b7c663834115575"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aff75cc7f6d1a554a8b7c663834115575"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>make_str</b> (string bike)</td></tr>
 <tr class="separator:aff75cc7f6d1a554a8b7c663834115575"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae48de57881e09ac89a84558c79894640"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae48de57881e09ac89a84558c79894640"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setEmpresa</b> (string emp)</td></tr>
+<tr class="memitem:ae48de57881e09ac89a84558c79894640"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_bicicleta.html#ae48de57881e09ac89a84558c79894640">setEmpresa</a> (string emp)</td></tr>
+<tr class="memdesc:ae48de57881e09ac89a84558c79894640"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the empresa attribute of the object to emp.  <a href="#ae48de57881e09ac89a84558c79894640">More...</a><br /></td></tr>
 <tr class="separator:ae48de57881e09ac89a84558c79894640"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0f6d8c8efea7822160a397ef040438d1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0f6d8c8efea7822160a397ef040438d1"></a>
 <a class="el" href="class_registo.html">Registo</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>ultimo_reg</b> () const </td></tr>
 <tr class="separator:a0f6d8c8efea7822160a397ef040438d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="class_bicicleta.html" title="Bicicleta - Auxiliary program class. ">Bicicleta</a> - Auxiliary program class. </p>
+<p>This class is used to represent bikes, storing all it's important features like size or type, identifying it with an ID and storing the record of it's use </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="ae48de57881e09ac89a84558c79894640"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Bicicleta::setEmpresa </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>emp</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the empresa attribute of the object to emp. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">emp</td><td>- New empresa for the object </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="_bicicleta_8h_source.html">Bicicleta.h</a></li>
-<li>Bicicleta.cpp</li>
+<li><a class="el" href="_bicicleta_8cpp.html">Bicicleta.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Nov 9 2014 17:53:55 for My Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Nov 9 2014 20:37:11 for My Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

@@ -10,9 +10,9 @@
 using namespace std;
 
 /*! \class PostoServico
-\brief Rede - Auxiliary program class
+\brief PostoServico - Auxiliary program class
 
-This class let us manage everything about bikes. Here we can rent or return a bike, fix broken bikes and remove bikes or users. Therefore is class that
+This class lets us manage everything about bikes. Here we can rent or return a bike, fix broken bikes and remove bikes or users. Therefore is class that
 help us have a clear vision of what bike-sharing really is
 */
 class PostoServico
