@@ -13,18 +13,19 @@
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_registo_a17d5d8a67903e30624817b5798c6065e}{void {\bfseries print\+\_\+reg} () const }\label{class_registo_a17d5d8a67903e30624817b5798c6065e}
+\hypertarget{class_registo_a17d5d8a67903e30624817b5798c6065e}{void \hyperlink{class_registo_a17d5d8a67903e30624817b5798c6065e}{print\+\_\+reg} () const }\label{class_registo_a17d5d8a67903e30624817b5798c6065e}
 
-\item 
-\hypertarget{class_registo_a80d93fbe1e4ea760aea6e3cf74a8bcce}{void {\bfseries print\+\_\+sem\+\_\+user} () const }\label{class_registo_a80d93fbe1e4ea760aea6e3cf74a8bcce}
+\begin{DoxyCompactList}\small\item\em The status of the rental Show the status of the rental for a specified user and the bike he has rented. \end{DoxyCompactList}\item 
+\hypertarget{class_registo_a80d93fbe1e4ea760aea6e3cf74a8bcce}{void \hyperlink{class_registo_a80d93fbe1e4ea760aea6e3cf74a8bcce}{print\+\_\+sem\+\_\+user} () const }\label{class_registo_a80d93fbe1e4ea760aea6e3cf74a8bcce}
 
-\item 
-\hypertarget{class_registo_ad0220e2d516af222c01893634eace4d4}{string {\bfseries get\+\_\+str} () const }\label{class_registo_ad0220e2d516af222c01893634eace4d4}
+\begin{DoxyCompactList}\small\item\em The status of the rental Show the status of the rental for an ocasional user and the bike he has rented. \end{DoxyCompactList}\item 
+\hypertarget{class_registo_a30542f121d8c2edc83613e30d3d3ec74}{\hyperlink{class_registo_a30542f121d8c2edc83613e30d3d3ec74}{Registo} ()}\label{class_registo_a30542f121d8c2edc83613e30d3d3ec74}
 
-\item 
-\hypertarget{class_registo_aa377d8fc39a2efda5ae6452f618635c2}{void {\bfseries make\+\_\+from\+\_\+str} (string reg)}\label{class_registo_aa377d8fc39a2efda5ae6452f618635c2}
-
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Default constructor of Registration It initializes the registration as being 0, 0, 0, \char`\"{}\char`\"{}. \end{DoxyCompactList}\item 
+string \hyperlink{class_registo_ad0220e2d516af222c01893634eace4d4}{get\+\_\+str} () const 
+\begin{DoxyCompactList}\small\item\em Get string that represents the rental record This function is used in \hyperlink{class_rede_abec1da6660663cd58e6851737219959e}{Rede\+::store\+Info()}, because it converts the rental record object to a multiple line string containing all of it's information except the rental logs. \end{DoxyCompactList}\item 
+void \hyperlink{class_registo_aa377d8fc39a2efda5ae6452f618635c2}{make\+\_\+from\+\_\+str} (string reg)
+\begin{DoxyCompactList}\small\item\em Get rental record that represents the bike. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -52,15 +53,72 @@
 \subsection*{Friends}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_registo_aaf8e089b26abe6bc63d1c2399433bce6}{bool {\bfseries operator==} (const \hyperlink{class_registo}{Registo} reg1, const \hyperlink{class_registo}{Registo} reg2)}\label{class_registo_aaf8e089b26abe6bc63d1c2399433bce6}
-
-\end{DoxyCompactItemize}
+bool \hyperlink{class_registo_aaf8e089b26abe6bc63d1c2399433bce6}{operator==} (const \hyperlink{class_registo}{Registo} reg1, const \hyperlink{class_registo}{Registo} reg2)
+\begin{DoxyCompactList}\small\item\em Assignment operator overload for \hyperlink{class_registo}{Registo} Compares two registrations and see if they are the same (parameters are the same) or not. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 \hyperlink{class_registo}{Registo} -\/ Auxiliary program class. 
 
 This class allows the program objects to keep track of their history in the Bike-\/\+Sharing network. A \hyperlink{class_registo}{Registo} objects stores the important information of a bike rental. It keeps track of the I\+D of the rented bike, the I\+D's of the source and destination service posts (\hyperlink{class_posto_servico}{Posto\+Servico}), the name of the renting user (\hyperlink{class_utilizador}{Utilizador}), the date (\hyperlink{class_data}{Data}) of rental and return of the bike and determines if the bike got broken or not during the rental 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_registo_ad0220e2d516af222c01893634eace4d4}{\index{Registo@{Registo}!get\+\_\+str@{get\+\_\+str}}
+\index{get\+\_\+str@{get\+\_\+str}!Registo@{Registo}}
+\subsubsection[{get\+\_\+str}]{\setlength{\rightskip}{0pt plus 5cm}string Registo\+::get\+\_\+str (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_registo_ad0220e2d516af222c01893634eace4d4}
+
+
+Get string that represents the rental record This function is used in \hyperlink{class_rede_abec1da6660663cd58e6851737219959e}{Rede\+::store\+Info()}, because it converts the rental record object to a multiple line string containing all of it's information except the rental logs. 
+
+\begin{DoxyReturn}{Returns}
+string representing rental record info 
+\end{DoxyReturn}
+\hypertarget{class_registo_aa377d8fc39a2efda5ae6452f618635c2}{\index{Registo@{Registo}!make\+\_\+from\+\_\+str@{make\+\_\+from\+\_\+str}}
+\index{make\+\_\+from\+\_\+str@{make\+\_\+from\+\_\+str}!Registo@{Registo}}
+\subsubsection[{make\+\_\+from\+\_\+str}]{\setlength{\rightskip}{0pt plus 5cm}void Registo\+::make\+\_\+from\+\_\+str (
+\begin{DoxyParamCaption}
+\item[{string}]{reg}
+\end{DoxyParamCaption}
+)}}\label{class_registo_aa377d8fc39a2efda5ae6452f618635c2}
+
+
+Get rental record that represents the bike. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em reg} & -\/ string with a rental record This function is used in \hyperlink{class_rede_a1751f922073f6172ba676a56959a1540}{Rede\+::load\+Info()}, because it makes a rental record object from a multiple line string that contains all it's information \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{class_registo_aaf8e089b26abe6bc63d1c2399433bce6}{\index{Registo@{Registo}!operator==@{operator==}}
+\index{operator==@{operator==}!Registo@{Registo}}
+\subsubsection[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}bool operator== (
+\begin{DoxyParamCaption}
+\item[{const {\bf Registo}}]{reg1, }
+\item[{const {\bf Registo}}]{reg2}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [friend]}}}\label{class_registo_aaf8e089b26abe6bc63d1c2399433bce6}
+
+
+Assignment operator overload for \hyperlink{class_registo}{Registo} Compares two registrations and see if they are the same (parameters are the same) or not. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em reg1} & -\/ first registration \\
+\hline
+{\em reg2} & -\/ the second registration \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the registrations are the same and false if they don't 
+\end{DoxyReturn}
+
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

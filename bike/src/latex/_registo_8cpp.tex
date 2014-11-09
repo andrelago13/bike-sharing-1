@@ -14,11 +14,35 @@ Implementation of \hyperlink{class_registo}{Registo} class Contains the definiti
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{_registo_8cpp_aaf8e089b26abe6bc63d1c2399433bce6}{bool {\bfseries operator==} (const \hyperlink{class_registo}{Registo} reg1, const \hyperlink{class_registo}{Registo} reg2)}\label{_registo_8cpp_aaf8e089b26abe6bc63d1c2399433bce6}
-
-\end{DoxyCompactItemize}
+bool \hyperlink{_registo_8cpp_aaf8e089b26abe6bc63d1c2399433bce6}{operator==} (const \hyperlink{class_registo}{Registo} reg1, const \hyperlink{class_registo}{Registo} reg2)
+\begin{DoxyCompactList}\small\item\em Assignment operator overload for \hyperlink{class_registo}{Registo} Compares two registrations and see if they are the same (parameters are the same) or not. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 Implementation of \hyperlink{class_registo}{Registo} class Contains the definition of all \hyperlink{class_registo}{Registo} member functions Allows conversion between \hyperlink{class_registo}{Registo} and string, both ways. 
 
+
+
+\subsection{Function Documentation}
+\hypertarget{_registo_8cpp_aaf8e089b26abe6bc63d1c2399433bce6}{\index{Registo.\+cpp@{Registo.\+cpp}!operator==@{operator==}}
+\index{operator==@{operator==}!Registo.\+cpp@{Registo.\+cpp}}
+\subsubsection[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}bool operator== (
+\begin{DoxyParamCaption}
+\item[{const {\bf Registo}}]{reg1, }
+\item[{const {\bf Registo}}]{reg2}
+\end{DoxyParamCaption}
+)}}\label{_registo_8cpp_aaf8e089b26abe6bc63d1c2399433bce6}
+
+
+Assignment operator overload for \hyperlink{class_registo}{Registo} Compares two registrations and see if they are the same (parameters are the same) or not. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em reg1} & -\/ first registration \\
+\hline
+{\em reg2} & -\/ the second registration \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the registrations are the same and false if they don't 
+\end{DoxyReturn}

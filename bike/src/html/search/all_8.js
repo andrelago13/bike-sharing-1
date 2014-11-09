@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['make_5fstr',['make_str',['../class_utilizador.html#ae2d157ed39a4f4d8e96c288ac7de320d',1,'Utilizador::make_str()'],['../class_ut__ocasional.html#a215c8d086f1285c12e5bb8b42ccef682',1,'Ut_ocasional::make_str()']]],
+  ['make_5ffrom_5fstr',['make_from_str',['../class_registo.html#aa377d8fc39a2efda5ae6452f618635c2',1,'Registo']]],
+  ['make_5fstr',['make_str',['../class_bicicleta.html#aff75cc7f6d1a554a8b7c663834115575',1,'Bicicleta::make_str()'],['../class_utilizador.html#ae2d157ed39a4f4d8e96c288ac7de320d',1,'Utilizador::make_str()'],['../class_ut__ocasional.html#a215c8d086f1285c12e5bb8b42ccef682',1,'Ut_ocasional::make_str()']]],
   ['menu_5fexit_5fprog',['menu_exit_prog',['../class_rede.html#ab94437bdbb3cb32b8489591748c1a57e',1,'Rede']]],
   ['menu_5fmanager',['menu_manager',['../class_rede.html#a71b157db8d1ec17c2e5100faeb95e3d2',1,'Rede']]],
   ['menu_5fmngr_5fbikes',['menu_mngr_bikes',['../class_rede.html#a2f83a9dde6e018ac57f1aefcfca388b2',1,'Rede']]],

@@ -99,16 +99,22 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a17d5d8a67903e30624817b5798c6065e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a17d5d8a67903e30624817b5798c6065e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>print_reg</b> () const </td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_registo.html#a17d5d8a67903e30624817b5798c6065e">print_reg</a> () const </td></tr>
+<tr class="memdesc:a17d5d8a67903e30624817b5798c6065e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The status of the rental Show the status of the rental for a specified user and the bike he has rented. <br /></td></tr>
 <tr class="separator:a17d5d8a67903e30624817b5798c6065e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a80d93fbe1e4ea760aea6e3cf74a8bcce"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a80d93fbe1e4ea760aea6e3cf74a8bcce"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>print_sem_user</b> () const </td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_registo.html#a80d93fbe1e4ea760aea6e3cf74a8bcce">print_sem_user</a> () const </td></tr>
+<tr class="memdesc:a80d93fbe1e4ea760aea6e3cf74a8bcce"><td class="mdescLeft">&#160;</td><td class="mdescRight">The status of the rental Show the status of the rental for an ocasional user and the bike he has rented. <br /></td></tr>
 <tr class="separator:a80d93fbe1e4ea760aea6e3cf74a8bcce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad0220e2d516af222c01893634eace4d4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad0220e2d516af222c01893634eace4d4"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>get_str</b> () const </td></tr>
+<tr class="memitem:a30542f121d8c2edc83613e30d3d3ec74"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a30542f121d8c2edc83613e30d3d3ec74"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_registo.html#a30542f121d8c2edc83613e30d3d3ec74">Registo</a> ()</td></tr>
+<tr class="memdesc:a30542f121d8c2edc83613e30d3d3ec74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor of Registration It initializes the registration as being 0, 0, 0, "". <br /></td></tr>
+<tr class="separator:a30542f121d8c2edc83613e30d3d3ec74"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0220e2d516af222c01893634eace4d4"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_registo.html#ad0220e2d516af222c01893634eace4d4">get_str</a> () const </td></tr>
+<tr class="memdesc:ad0220e2d516af222c01893634eace4d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get string that represents the rental record This function is used in <a class="el" href="class_rede.html#abec1da6660663cd58e6851737219959e" title="Store Rede information from text files. Stores information on rede.txt, rede_bikes.txt, rede_spots.txt and rede_user.txt according to format specified by function storeInfo. ">Rede::storeInfo()</a>, because it converts the rental record object to a multiple line string containing all of it's information except the rental logs.  <a href="#ad0220e2d516af222c01893634eace4d4">More...</a><br /></td></tr>
 <tr class="separator:ad0220e2d516af222c01893634eace4d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa377d8fc39a2efda5ae6452f618635c2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa377d8fc39a2efda5ae6452f618635c2"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>make_from_str</b> (string reg)</td></tr>
+<tr class="memitem:aa377d8fc39a2efda5ae6452f618635c2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_registo.html#aa377d8fc39a2efda5ae6452f618635c2">make_from_str</a> (string reg)</td></tr>
+<tr class="memdesc:aa377d8fc39a2efda5ae6452f618635c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get rental record that represents the bike.  <a href="#aa377d8fc39a2efda5ae6452f618635c2">More...</a><br /></td></tr>
 <tr class="separator:aa377d8fc39a2efda5ae6452f618635c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -137,21 +143,109 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>ficou_avariada</b></t
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
 Friends</h2></td></tr>
-<tr class="memitem:aaf8e089b26abe6bc63d1c2399433bce6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaf8e089b26abe6bc63d1c2399433bce6"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const <a class="el" href="class_registo.html">Registo</a> reg1, const <a class="el" href="class_registo.html">Registo</a> reg2)</td></tr>
+<tr class="memitem:aaf8e089b26abe6bc63d1c2399433bce6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_registo.html#aaf8e089b26abe6bc63d1c2399433bce6">operator==</a> (const <a class="el" href="class_registo.html">Registo</a> reg1, const <a class="el" href="class_registo.html">Registo</a> reg2)</td></tr>
+<tr class="memdesc:aaf8e089b26abe6bc63d1c2399433bce6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assignment operator overload for <a class="el" href="class_registo.html" title="Registo - Auxiliary program class. ">Registo</a> Compares two registrations and see if they are the same (parameters are the same) or not.  <a href="#aaf8e089b26abe6bc63d1c2399433bce6">More...</a><br /></td></tr>
 <tr class="separator:aaf8e089b26abe6bc63d1c2399433bce6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="class_registo.html" title="Registo - Auxiliary program class. ">Registo</a> - Auxiliary program class. </p>
 <p>This class allows the program objects to keep track of their history in the Bike-Sharing network. A <a class="el" href="class_registo.html" title="Registo - Auxiliary program class. ">Registo</a> objects stores the important information of a bike rental. It keeps track of the ID of the rented bike, the ID's of the source and destination service posts (<a class="el" href="class_posto_servico.html" title="PostoServico - Auxiliary program class. ">PostoServico</a>), the name of the renting user (<a class="el" href="class_utilizador.html" title="Utilizador - class representing users of the network. ">Utilizador</a>), the date (<a class="el" href="class_data.html" title="Data - auxiliary class to keep track of time. ">Data</a>) of rental and return of the bike and determines if the bike got broken or not during the rental </p>
-</div><hr/>The documentation for this class was generated from the following files:<ul>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="ad0220e2d516af222c01893634eace4d4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">string Registo::get_str </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get string that represents the rental record This function is used in <a class="el" href="class_rede.html#abec1da6660663cd58e6851737219959e" title="Store Rede information from text files. Stores information on rede.txt, rede_bikes.txt, rede_spots.txt and rede_user.txt according to format specified by function storeInfo. ">Rede::storeInfo()</a>, because it converts the rental record object to a multiple line string containing all of it's information except the rental logs. </p>
+<dl class="section return"><dt>Returns</dt><dd>string representing rental record info </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aa377d8fc39a2efda5ae6452f618635c2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Registo::make_from_str </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>reg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get rental record that represents the bike. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">reg</td><td>- string with a rental record This function is used in <a class="el" href="class_rede.html#a1751f922073f6172ba676a56959a1540" title="Load Rede information from text files. Loads information on rede.txt, rede_bikes.txt, rede_spots.txt and rede_user.txt according to format specified by function storeInfo. ">Rede::loadInfo()</a>, because it makes a rental record object from a multiple line string that contains all it's information </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Friends And Related Function Documentation</h2>
+<a class="anchor" id="aaf8e089b26abe6bc63d1c2399433bce6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool operator== </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_registo.html">Registo</a>&#160;</td>
+          <td class="paramname"><em>reg1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_registo.html">Registo</a>&#160;</td>
+          <td class="paramname"><em>reg2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Assignment operator overload for <a class="el" href="class_registo.html" title="Registo - Auxiliary program class. ">Registo</a> Compares two registrations and see if they are the same (parameters are the same) or not. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">reg1</td><td>- first registration </td></tr>
+    <tr><td class="paramname">reg2</td><td>- the second registration </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the registrations are the same and false if they don't </dd></dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="_registo_8h_source.html">Registo.h</a></li>
 <li><a class="el" href="_registo_8cpp.html">Registo.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Nov 9 2014 20:37:11 for My Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Nov 9 2014 22:44:19 for My Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

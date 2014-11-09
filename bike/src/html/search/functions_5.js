@@ -1,4 +1,26 @@
 var searchData=
 [
-  ['is_5fbusy',['is_busy',['../class_rede.html#aba033af0c2cd9a4f70ca1f9459a6a3ee',1,'Rede']]]
+  ['get_5fregs',['get_regs',['../class_rede.html#a0862364a4ce27c157b2b756184526748',1,'Rede']]],
+  ['get_5fstr',['get_str',['../class_bicicleta.html#a570101dbac9300d107433c52ae698915',1,'Bicicleta::get_str()'],['../class_registo.html#ad0220e2d516af222c01893634eace4d4',1,'Registo::get_str()'],['../class_utilizador.html#a79a6281b24b8ecf31b25e41f5650843d',1,'Utilizador::get_str()'],['../class_ut__ocasional.html#a500c4745815fed11a495c258a06f973a',1,'Ut_ocasional::get_str()']]],
+  ['getavariada',['getAvariada',['../class_bicicleta.html#adcf9b86f83a83b15c98f70918469e664',1,'Bicicleta']]],
+  ['getavariadas',['getAvariadas',['../class_posto_servico.html#ae2675fbf3044cd0cc366fbec67449969',1,'PostoServico']]],
+  ['getbicicletas',['getBicicletas',['../class_empresa.html#aa5786b3765e8321ca420b0c5be4bb21c',1,'Empresa::getBicicletas()'],['../class_posto_servico.html#a747fd34e7c83f28f1697284b6e139e2e',1,'PostoServico::getBicicletas()']]],
+  ['getcusto',['getCusto',['../class_utilizador.html#a988e8a7c0cc0625866350a476a5d7b62',1,'Utilizador::getCusto()'],['../class_ut__ocasional.html#a372c795cc67b402e54dc78e6e24c3779',1,'Ut_ocasional::getCusto()']]],
+  ['getdatastr',['getDataStr',['../class_data.html#a2a9f0b2202a6bf68215d3e06dc3cb57e',1,'Data']]],
+  ['getdisponiveis',['getDisponiveis',['../class_posto_servico.html#a0d3be8347bcfe2ff61915f0fe4688f11',1,'PostoServico']]],
+  ['getempresa',['getEmpresa',['../class_bicicleta.html#a98ab039cfa35975f6d1ff2223a625a7f',1,'Bicicleta']]],
+  ['getespacolivre',['getEspacoLivre',['../class_posto_servico.html#a9efdef3b0af8965d366dacb6e61bb6d9',1,'PostoServico']]],
+  ['getid',['getID',['../class_bicicleta.html#ac85afd4971d0b6eada6eb16f9a924118',1,'Bicicleta::getID()'],['../class_posto_servico.html#a12d2e1c64b373009aec51fb7f4df44ec',1,'PostoServico::getID()']]],
+  ['getidade',['getIdade',['../class_utilizador.html#a9abaeb6fbff49683f57164a57e6f0c90',1,'Utilizador']]],
+  ['getlotacao',['getLotacao',['../class_posto_servico.html#a467b1b77cd1a56131f0e5a6776a55885',1,'PostoServico']]],
+  ['getnome',['getNome',['../class_empresa.html#a22e7cb6769eca729ad9f9d8a0cb0168a',1,'Empresa::getNome()'],['../class_utilizador.html#aa5af9c1385b0a93116dd8a80264b887a',1,'Utilizador::getNome()']]],
+  ['getocupacao',['getOcupacao',['../class_posto_servico.html#a2f09c305c18b3c08686a852e2e8702ac',1,'PostoServico']]],
+  ['getpassword',['getPassword',['../class_utilizador.html#a8be0d01c3f23383c25596bd1c73918e4',1,'Utilizador']]],
+  ['getpreco',['getPreco',['../class_bicicleta.html#adfccbf2a5c83a6c34c3454c78244cffc',1,'Bicicleta']]],
+  ['getregs',['getRegs',['../class_utilizador.html#a41730715f6cdd5bd98e3647150836989',1,'Utilizador']]],
+  ['getregsbicis',['getRegsBicis',['../class_bicicleta.html#a05f9c922b7ebc82a1f223ba8c5d64cc2',1,'Bicicleta']]],
+  ['gettamanho',['getTamanho',['../class_bicicleta.html#a9733b1f60caff10aa814dfe38e8e459f',1,'Bicicleta']]],
+  ['gettipo',['getTipo',['../class_bicicleta.html#a4582ea6f608f9d188df0b563961d7df5',1,'Bicicleta']]],
+  ['getutlizacao',['getUtlizacao',['../class_posto_servico.html#abfe611099f0fb1d79f7a2344496af023',1,'PostoServico']]],
+  ['getvelocidades',['getVelocidades',['../class_bicicleta.html#a956979f7f43934c329b143b9d6c2da49',1,'Bicicleta']]]
 ];

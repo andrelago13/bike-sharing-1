@@ -1,9 +1,7 @@
 var searchData=
 [
-  ['rede',['Rede',['../class_rede.html#a0c0699d33419180c9c0792823964418c',1,'Rede']]],
-  ['remove_5fbici',['remove_bici',['../class_utilizador.html#aaad55e54d2ab5a5a8dbe0c98092ab77a',1,'Utilizador']]],
-  ['remove_5fbicis',['remove_bicis',['../class_empresa.html#ac09f08cdc3415311fd222cfadbaf6cb4',1,'Empresa']]],
-  ['removebicicleta',['removebicicleta',['../class_posto_servico.html#a01c59324f65bf70ce5400718cde0791a',1,'PostoServico']]],
-  ['removeutilizador',['removeutilizador',['../class_posto_servico.html#a9cab807cf7fcecad5e8231abdb7ef491',1,'PostoServico']]],
-  ['reset',['reset',['../class_rede.html#adec8c4515163174c0fab8068e36c6cc5',1,'Rede']]]
+  ['postoservico',['PostoServico',['../class_posto_servico.html#a53b6ddb92aebadb5168570cbf9f87bae',1,'PostoServico']]],
+  ['print_5fmenu_5fheader',['print_menu_header',['../class_rede.html#a7f6b41951357f14d8be5c0c23f59bca9',1,'Rede']]],
+  ['print_5freg',['print_reg',['../class_registo.html#a17d5d8a67903e30624817b5798c6065e',1,'Registo']]],
+  ['print_5fsem_5fuser',['print_sem_user',['../class_registo.html#a80d93fbe1e4ea760aea6e3cf74a8bcce',1,'Registo']]]
 ];

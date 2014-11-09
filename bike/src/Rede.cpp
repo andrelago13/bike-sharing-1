@@ -201,11 +201,11 @@ void Rede::loadInfo()
 	ifstream main_file("rede.txt");
 
 	string temp;
-
-	getline(main_file, temp);
+	if (main_file.is_open() == true)
+		getline(main_file, temp);
 	sys_password = temp;
 
-	while (main_file.peek() != ((int) '-'))
+	while ((main_file.peek() != ((int) '-')) && (main_file.peek() != EOF) && (main_file.is_open() == true))
 	{
 		getline(main_file, temp);
 		Empresa emp(temp);
@@ -216,7 +216,7 @@ void Rede::loadInfo()
 
 	getline(main_file, temp);  // To remove character '-' from file
 
-	while (main_file.peek() != '#')
+	while ((main_file.peek() != '#') && (main_file.peek() != EOF) && (main_file.is_open() == true))
 	{
 		stringstream ss(ios_base::app | ios_base::out);
 		string temp;
@@ -235,7 +235,7 @@ void Rede::loadInfo()
 
 	getline(main_file, temp);  // To remove character '#' from file
 
-	while ((main_file.peek() != EOF) || (!main_file.eof()))  // Detect end of file
+	while ((main_file.peek() != EOF) && (main_file.is_open() == true))  // Detect end of file
 	{
 		stringstream ss;
 		string temp;
@@ -263,49 +263,52 @@ void Rede::loadInfo()
 	ifstream spots_file("rede_spots.txt");
 
 
-	while ((spots_file.peek() != EOF) && (!spots_file.eof())) // Detect end of file
+	if (spots_file.is_open())
 	{
-		string temp;
-		int id, lotacao;
-		getline(spots_file, temp);
-		id = str_to_int(temp);
-		getline(spots_file, temp);
-		lotacao = str_to_int(temp);
-
-		PostoServico posto(id, 0, lotacao);
-		PostoServico *posto_ptr;
-		posto_ptr = new PostoServico;
-		*posto_ptr = posto;
-
-		if (spots_file.peek() == '#')
+		while ((spots_file.peek() != EOF) && (!spots_file.eof())) // Detect end of file
 		{
+			string temp;
+			int id, lotacao;
+			getline(spots_file, temp);
+			id = str_to_int(temp);
+			getline(spots_file, temp);
+			lotacao = str_to_int(temp);
+
+			PostoServico posto(id, 0, lotacao);
+			PostoServico *posto_ptr;
+			posto_ptr = new PostoServico;
+			*posto_ptr = posto;
+
+			if (spots_file.peek() == '#')
+			{
+				postos.push_back(posto_ptr);
+				getline(spots_file, temp);  // to remove character '#' from file
+				continue;
+			}
+
+			while ((spots_file.peek() != '#') && (spots_file.peek() != EOF) && (!spots_file.eof()))
+			{
+				stringstream ss;
+				for (int i = 0; i < 7; i++)
+				{
+					getline(spots_file, temp);
+					ss << temp << endl;
+				}
+				Bicicleta bici, *bici_ptr;
+				bici.make_str(ss.str());
+				bici_ptr = new Bicicleta;
+				*bici_ptr = bici;
+				posto_ptr->adicionabicicleta(bici_ptr);
+
+				for (unsigned int i = 0; i < empresas.size(); i++)
+				{
+					if (empresas[i].getNome() == bici_ptr->getEmpresa())
+						empresas[i].adicionaBicicleta(bici_ptr);
+				}
+			}
 			postos.push_back(posto_ptr);
-			getline(spots_file, temp);  // to remove character '#' from file
-			continue;
+			getline(spots_file, temp); // to remove character '#' from file
 		}
-
-		while ((spots_file.peek() != '#') && (spots_file.peek() != EOF) && (!spots_file.eof()))
-		{
-			stringstream ss;
-			for (int i = 0; i < 7; i++)
-			{
-				getline(spots_file, temp);
-				ss << temp << endl;
-			}
-			Bicicleta bici, *bici_ptr;
-			bici.make_str(ss.str());
-			bici_ptr = new Bicicleta;
-			*bici_ptr = bici;
-			posto_ptr->adicionabicicleta(bici_ptr);
-
-			for (unsigned int i = 0; i < empresas.size(); i++)
-			{
-				if (empresas[i].getNome() == bici_ptr->getEmpresa())
-					empresas[i].adicionaBicicleta(bici_ptr);
-			}
-		}
-		postos.push_back(posto_ptr);
-		getline(spots_file, temp); // to remove character '#' from file
 	}
 
 	spots_file.close();
@@ -320,29 +323,32 @@ void Rede::loadInfo()
 	string nome, pass, cartao;
 	int idade, tipo;
 
-	while ((user_file.peek() != EOF) && (!user_file.eof()))  // Detect end of file
+	if (user_file.is_open())
 	{
-		getline(user_file, nome);
-		getline(user_file, pass);
-		getline(user_file, temp);
-		idade = str_to_int(temp);
-		getline(user_file, temp);
-		if (temp == "0")
+		while ((user_file.peek() != EOF) && (!user_file.eof()))  // Detect end of file
 		{
-			Utilizador user(nome, idade, pass);
-			Utilizador *user_ptr;
-			user_ptr = new Utilizador;
-			*user_ptr = user;
-			utilizadores.push_back(user_ptr);
-		}
-		else
-		{
-			getline(user_file, cartao);
-			Ut_ocasional oc(nome, idade, pass, cartao);
-			Ut_ocasional *oc_ptr;
-			oc_ptr = new Ut_ocasional;
-			*oc_ptr = oc;
-			ocasionais.push_back(oc_ptr);
+			getline(user_file, nome);
+			getline(user_file, pass);
+			getline(user_file, temp);
+			idade = str_to_int(temp);
+			getline(user_file, temp);
+			if (temp == "0")
+			{
+				Utilizador user(nome, idade, pass);
+				Utilizador *user_ptr;
+				user_ptr = new Utilizador;
+				*user_ptr = user;
+				utilizadores.push_back(user_ptr);
+			}
+			else
+			{
+				getline(user_file, cartao);
+				Ut_ocasional oc(nome, idade, pass, cartao);
+				Ut_ocasional *oc_ptr;
+				oc_ptr = new Ut_ocasional;
+				*oc_ptr = oc;
+				ocasionais.push_back(oc_ptr);
+			}
 		}
 	}
 
@@ -356,49 +362,52 @@ void Rede::loadInfo()
 
 	ifstream bike_file("rede_bikes.txt");
 
-	while (bike_file.peek() != '#')
+	if (bike_file.is_open())
 	{
-		stringstream ss;
-		ss.clear();
-		for (int i = 0; i < 7; i++)
+		while (bike_file.peek() != '#')
 		{
-			getline(bike_file, temp);
-			ss << temp << endl;
+			stringstream ss;
+			ss.clear();
+			for (int i = 0; i < 7; i++)
+			{
+				getline(bike_file, temp);
+				ss << temp << endl;
+			}
+			Bicicleta bici, *bici_ptr;
+			bici.make_str(ss.str());
+			bici_ptr = new Bicicleta;
+			*bici_ptr = bici;
+			rented_bikes.push_back(bici_ptr);
+
+			for (unsigned int i = 0; i < empresas.size(); i++)
+			{
+				if (empresas[i].getNome() == bici_ptr->getEmpresa())
+					empresas[i].adicionaBicicleta(bici_ptr);
+			}
 		}
-		Bicicleta bici, *bici_ptr;
-		bici.make_str(ss.str());
-		bici_ptr = new Bicicleta;
-		*bici_ptr = bici;
-		rented_bikes.push_back(bici_ptr);
 
-		for (unsigned int i = 0; i < empresas.size(); i++)
+		getline(bike_file, temp); // to remove character '#' from file
+
+		while ((bike_file.peek() != EOF) || (!bike_file.eof()))
 		{
-			if (empresas[i].getNome() == bici_ptr->getEmpresa())
-				empresas[i].adicionaBicicleta(bici_ptr);
-		}
-	}
+			stringstream ss;
+			ss.clear();
+			for (int i = 0; i < 7; i++)
+			{
+				getline(bike_file, temp);
+				ss << temp << endl;
+			}
+			Bicicleta bici, *bici_ptr;
+			bici.make_str(ss.str());
+			bici_ptr = new Bicicleta;
+			*bici_ptr = bici;
+			rented_bikes_freq.push_back(bici_ptr);
 
-	getline(bike_file, temp); // to remove character '#' from file
-
-	while ((bike_file.peek() != EOF) || (!bike_file.eof()))
-	{
-		stringstream ss;
-		ss.clear();
-		for (int i = 0; i < 7; i++)
-		{
-			getline(bike_file, temp);
-			ss << temp << endl;
-		}
-		Bicicleta bici, *bici_ptr;
-		bici.make_str(ss.str());
-		bici_ptr = new Bicicleta;
-		*bici_ptr = bici;
-		rented_bikes_freq.push_back(bici_ptr);
-
-		for (unsigned int i = 0; i < empresas.size(); i++)
-		{
-			if (empresas[i].getNome() == bici_ptr->getEmpresa())
-				empresas[i].adicionaBicicleta(bici_ptr);
+			for (unsigned int i = 0; i < empresas.size(); i++)
+			{
+				if (empresas[i].getNome() == bici_ptr->getEmpresa())
+					empresas[i].adicionaBicicleta(bici_ptr);
+			}
 		}
 	}
 

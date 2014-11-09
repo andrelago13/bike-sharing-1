@@ -1,16 +1,11 @@
 var searchData=
 [
-  ['setavariadas',['setAvariadas',['../class_posto_servico.html#afb5c121f880c880bdcc75033eb9bc7f2',1,'PostoServico']]],
-  ['setbicicletas',['setBicicletas',['../class_empresa.html#a585cffc1ecf217ea29827fb8e7fd6091',1,'Empresa']]],
-  ['setdisponiveis',['setDisponiveis',['../class_posto_servico.html#a0ee0fe238467db3ea6f207d528a6e2e9',1,'PostoServico']]],
-  ['setempresa',['setEmpresa',['../class_bicicleta.html#ae48de57881e09ac89a84558c79894640',1,'Bicicleta']]],
-  ['setid',['setID',['../class_posto_servico.html#a68ca412e4456c344981f6cb0b01c4184',1,'PostoServico']]],
-  ['setidade',['setIdade',['../class_utilizador.html#a1201b047034f08dd8b1e8d4df36ca97b',1,'Utilizador']]],
-  ['setlotacao',['setLotacao',['../class_posto_servico.html#a0acde19dbfc74b355e1aa2e34f25fa11',1,'PostoServico']]],
-  ['setnome',['setNome',['../class_empresa.html#a86f2b94b2ea2e7b11edbf645b4e55bac',1,'Empresa::setNome()'],['../class_utilizador.html#a24f10fc3cfa2deb7aa38cc280722327a',1,'Utilizador::setNome()']]],
-  ['setpassword',['setPassword',['../class_utilizador.html#a14ffc9d7128ed6c99e7adc4f94315f56',1,'Utilizador']]],
-  ['setregs',['setRegs',['../class_utilizador.html#a6a319b5af1400354e5fc22056fbfefc5',1,'Utilizador']]],
-  ['setutilizacao',['setUtilizacao',['../class_posto_servico.html#ae63f7836c55f4eb38d8916c140f62162',1,'PostoServico']]],
-  ['show_5fspecs',['show_specs',['../class_empresa.html#aa7fb06c4029739ea9e33216942cb4686',1,'Empresa']]],
-  ['storeinfo',['storeInfo',['../class_rede.html#abec1da6660663cd58e6851737219959e',1,'Rede']]]
+  ['rede',['Rede',['../class_rede.html#a0c0699d33419180c9c0792823964418c',1,'Rede']]],
+  ['registo',['Registo',['../class_registo.html#a30542f121d8c2edc83613e30d3d3ec74',1,'Registo']]],
+  ['remove_5fbici',['remove_bici',['../class_utilizador.html#aaad55e54d2ab5a5a8dbe0c98092ab77a',1,'Utilizador']]],
+  ['remove_5fbicis',['remove_bicis',['../class_empresa.html#ac09f08cdc3415311fd222cfadbaf6cb4',1,'Empresa']]],
+  ['remove_5futil',['remove_util',['../class_bicicleta.html#a791cdbbf5016ea3a0229915b84a52a04',1,'Bicicleta']]],
+  ['removebicicleta',['removebicicleta',['../class_posto_servico.html#a01c59324f65bf70ce5400718cde0791a',1,'PostoServico']]],
+  ['removeutilizador',['removeutilizador',['../class_posto_servico.html#a9cab807cf7fcecad5e8231abdb7ef491',1,'PostoServico']]],
+  ['reset',['reset',['../class_rede.html#adec8c4515163174c0fab8068e36c6cc5',1,'Rede']]]
 ];
