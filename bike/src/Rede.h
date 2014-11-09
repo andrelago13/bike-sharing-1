@@ -21,6 +21,13 @@ using namespace std;
 #define MENU_mngr_users 7
 #define MENU_mngr_logs 8
 
+
+/*! \class Rede
+\brief Rede - main program class
+
+This class stores and manages all important information of a bike-sharing network, and allows a simple user interface for occasional and registered
+users and allows system management with a password authentication
+*/
 class Rede
 {
 	vector <Empresa> empresas;				// stores all Empresa objects
@@ -35,6 +42,10 @@ class Rede
 	string sys_password;					// Rede management function's password
 
 public:
+	/*!
+	\brief Rede default constructor
+	Initializes password as an empty string
+	*/
 	Rede() : sys_password("") {}
 	~Rede();
 
@@ -43,6 +54,9 @@ public:
 	void storeInfo();
 	int addUser(Utilizador user);
 	int createUser(string nome);
+	/*!
+	\brief Add a PostoServico to postos vector
+	*/
 	void addPosto(PostoServico *posto) { postos.push_back(posto); }
 	int create_add_bike();
 	void reset();

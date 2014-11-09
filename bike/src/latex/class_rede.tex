@@ -1,36 +1,41 @@
 \hypertarget{class_rede}{\section{Rede Class Reference}
 \label{class_rede}\index{Rede@{Rede}}
 }
+
+
+\hyperlink{class_rede}{Rede} -\/ main program class.  
+
+
+
+
+{\ttfamily \#include $<$Rede.\+h$>$}
+
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{class_rede_a1751f922073f6172ba676a56959a1540}{void {\bfseries load\+Info} ()}\label{class_rede_a1751f922073f6172ba676a56959a1540}
+\hypertarget{class_rede_a1751f922073f6172ba676a56959a1540}{void \hyperlink{class_rede_a1751f922073f6172ba676a56959a1540}{load\+Info} ()}\label{class_rede_a1751f922073f6172ba676a56959a1540}
 
-\item 
-\hypertarget{class_rede_abec1da6660663cd58e6851737219959e}{void {\bfseries store\+Info} ()}\label{class_rede_abec1da6660663cd58e6851737219959e}
+\begin{DoxyCompactList}\small\item\em Load \hyperlink{class_rede}{Rede} information from text files. Loads information on rede.\+txt, rede\+\_\+bikes.\+txt, rede\+\_\+spots.\+txt and rede\+\_\+user.\+txt according to format specified by function store\+Info. \end{DoxyCompactList}\item 
+\hypertarget{class_rede_abec1da6660663cd58e6851737219959e}{void \hyperlink{class_rede_abec1da6660663cd58e6851737219959e}{store\+Info} ()}\label{class_rede_abec1da6660663cd58e6851737219959e}
 
-\item 
-\hypertarget{class_rede_ae78851a9d7efe2a9e0d2ead64f68ef73}{int {\bfseries add\+User} (\hyperlink{class_utilizador}{Utilizador} user)}\label{class_rede_ae78851a9d7efe2a9e0d2ead64f68ef73}
+\begin{DoxyCompactList}\small\item\em Store \hyperlink{class_rede}{Rede} information from text files. Stores information on rede.\+txt, rede\+\_\+bikes.\+txt, rede\+\_\+spots.\+txt and rede\+\_\+user.\+txt according to format specified by function store\+Info. \end{DoxyCompactList}\item 
+int \hyperlink{class_rede_ae78851a9d7efe2a9e0d2ead64f68ef73}{add\+User} (\hyperlink{class_utilizador}{Utilizador} user)
+\begin{DoxyCompactList}\small\item\em Add's a \hyperlink{class_utilizador}{Utilizador} object to the system. \end{DoxyCompactList}\item 
+int \hyperlink{class_rede_a39d746dc37d11b8c870701a3afa9328e}{create\+User} (string nome)
+\begin{DoxyCompactList}\small\item\em Create and add a \hyperlink{class_utilizador}{Utilizador} object. \end{DoxyCompactList}\item 
+\hypertarget{class_rede_a00b09749f19ec7535127e75531281511}{void \hyperlink{class_rede_a00b09749f19ec7535127e75531281511}{add\+Posto} (\hyperlink{class_posto_servico}{Posto\+Servico} $\ast$posto)}\label{class_rede_a00b09749f19ec7535127e75531281511}
 
-\item 
-\hypertarget{class_rede_a39d746dc37d11b8c870701a3afa9328e}{int {\bfseries create\+User} (string nome)}\label{class_rede_a39d746dc37d11b8c870701a3afa9328e}
+\begin{DoxyCompactList}\small\item\em Add a \hyperlink{class_posto_servico}{Posto\+Servico} to postos vector. \end{DoxyCompactList}\item 
+int \hyperlink{class_rede_a4177da39d4aa05cd0451d52a7220b7c5}{create\+\_\+add\+\_\+bike} ()
+\begin{DoxyCompactList}\small\item\em Create and add a \hyperlink{class_bicicleta}{Bicicleta} object to a \hyperlink{class_posto_servico}{Posto\+Servico}. \end{DoxyCompactList}\item 
+\hypertarget{class_rede_adec8c4515163174c0fab8068e36c6cc5}{void \hyperlink{class_rede_adec8c4515163174c0fab8068e36c6cc5}{reset} ()}\label{class_rede_adec8c4515163174c0fab8068e36c6cc5}
 
-\item 
-\hypertarget{class_rede_a00b09749f19ec7535127e75531281511}{void {\bfseries add\+Posto} (\hyperlink{class_posto_servico}{Posto\+Servico} $\ast$posto)}\label{class_rede_a00b09749f19ec7535127e75531281511}
+\begin{DoxyCompactList}\small\item\em Resets all \hyperlink{class_rede}{Rede} information Restarts all \hyperlink{class_rede}{Rede} information by clearing all vector members of the class. \end{DoxyCompactList}\item 
+void \hyperlink{class_rede_ad38e26e59622727f978b995f6b9955c5}{assign\+\_\+regs} (vector$<$ \hyperlink{class_registo}{Registo} $\ast$ $>$ \&regs)
+\begin{DoxyCompactList}\small\item\em Assing \hyperlink{class_registo}{Registo} object pointers in a vector to the class members. \end{DoxyCompactList}\item 
+\hypertarget{class_rede_a42b5a88380e63b78e5c99894aee0dfbc}{bool \hyperlink{class_rede_a42b5a88380e63b78e5c99894aee0dfbc}{existe\+Utilizador} (string nome)}\label{class_rede_a42b5a88380e63b78e5c99894aee0dfbc}
 
-\item 
-\hypertarget{class_rede_a4177da39d4aa05cd0451d52a7220b7c5}{int {\bfseries create\+\_\+add\+\_\+bike} ()}\label{class_rede_a4177da39d4aa05cd0451d52a7220b7c5}
-
-\item 
-\hypertarget{class_rede_adec8c4515163174c0fab8068e36c6cc5}{void {\bfseries reset} ()}\label{class_rede_adec8c4515163174c0fab8068e36c6cc5}
-
-\item 
-\hypertarget{class_rede_ad38e26e59622727f978b995f6b9955c5}{void {\bfseries assign\+\_\+regs} (vector$<$ \hyperlink{class_registo}{Registo} $\ast$ $>$ \&regs)}\label{class_rede_ad38e26e59622727f978b995f6b9955c5}
-
-\item 
-\hypertarget{class_rede_a42b5a88380e63b78e5c99894aee0dfbc}{bool {\bfseries existe\+Utilizador} (string nome)}\label{class_rede_a42b5a88380e63b78e5c99894aee0dfbc}
-
-\item 
+\begin{DoxyCompactList}\small\item\em Resets all \hyperlink{class_rede}{Rede} information Restarts all \hyperlink{class_rede}{Rede} information by clearing all vector members of the class. \end{DoxyCompactList}\item 
 \hypertarget{class_rede_ac74ae338ed2ddb5b8f94c9ed33e172ef}{int {\bfseries tipo\+User} (string nome)}\label{class_rede_ac74ae338ed2ddb5b8f94c9ed33e172ef}
 
 \item 
@@ -79,6 +84,82 @@
 \hypertarget{class_rede_ae11dd331c071a1d4dace9fc89d82e251}{int {\bfseries menu\+\_\+mngr\+\_\+logs} ()}\label{class_rede_ae11dd331c071a1d4dace9fc89d82e251}
 
 \end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{class_rede}{Rede} -\/ main program class. 
+
+This class stores and manages all important information of a bike-\/sharing network, and allows a simple user interface for occasional and registered users and allows system management with a password authentication 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_rede_ae78851a9d7efe2a9e0d2ead64f68ef73}{\index{Rede@{Rede}!add\+User@{add\+User}}
+\index{add\+User@{add\+User}!Rede@{Rede}}
+\subsubsection[{add\+User}]{\setlength{\rightskip}{0pt plus 5cm}int Rede\+::add\+User (
+\begin{DoxyParamCaption}
+\item[{{\bf Utilizador}}]{user}
+\end{DoxyParamCaption}
+)}}\label{class_rede_ae78851a9d7efe2a9e0d2ead64f68ef73}
+
+
+Add's a \hyperlink{class_utilizador}{Utilizador} object to the system. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em user} & -\/ \hyperlink{class_utilizador}{Utilizador} object to be added \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if successfull, 1 if \hyperlink{class_utilizador}{Utilizador} already exists Add a user to the registered users vector, if there is none equal to it 
+\end{DoxyReturn}
+\hypertarget{class_rede_ad38e26e59622727f978b995f6b9955c5}{\index{Rede@{Rede}!assign\+\_\+regs@{assign\+\_\+regs}}
+\index{assign\+\_\+regs@{assign\+\_\+regs}!Rede@{Rede}}
+\subsubsection[{assign\+\_\+regs}]{\setlength{\rightskip}{0pt plus 5cm}void Rede\+::assign\+\_\+regs (
+\begin{DoxyParamCaption}
+\item[{vector$<$ {\bf Registo} $\ast$ $>$ \&}]{regs}
+\end{DoxyParamCaption}
+)}}\label{class_rede_ad38e26e59622727f978b995f6b9955c5}
+
+
+Assing \hyperlink{class_registo}{Registo} object pointers in a vector to the class members. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em regs} & -\/ vector of \hyperlink{class_registo}{Registo} pointers to assign to class members This function is meant for the load information process. During the store information process, the program saves all \hyperlink{class_registo}{Registo}'s from completed rentals in a vector, and later saves it in the text file. At the load information process, this function gets the vector with all the meantioned above \hyperlink{class_registo}{Registo}'s, and add's this \hyperlink{class_registo}{Registo}'s to the correct objects (\hyperlink{class_bicicleta}{Bicicleta}, \hyperlink{class_posto_servico}{Posto\+Servico} and \hyperlink{class_utilizador}{Utilizador}). \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_rede_a4177da39d4aa05cd0451d52a7220b7c5}{\index{Rede@{Rede}!create\+\_\+add\+\_\+bike@{create\+\_\+add\+\_\+bike}}
+\index{create\+\_\+add\+\_\+bike@{create\+\_\+add\+\_\+bike}!Rede@{Rede}}
+\subsubsection[{create\+\_\+add\+\_\+bike}]{\setlength{\rightskip}{0pt plus 5cm}int Rede\+::create\+\_\+add\+\_\+bike (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_rede_a4177da39d4aa05cd0451d52a7220b7c5}
+
+
+Create and add a \hyperlink{class_bicicleta}{Bicicleta} object to a \hyperlink{class_posto_servico}{Posto\+Servico}. 
+
+\begin{DoxyReturn}{Returns}
+0 if successfull, 1 if \hyperlink{class_bicicleta}{Bicicleta} already exists Creates a \hyperlink{class_bicicleta}{Bicicleta} object and inserts it in the correct vector, in this case, of a \hyperlink{class_posto_servico}{Posto\+Servico} 
+\end{DoxyReturn}
+\hypertarget{class_rede_a39d746dc37d11b8c870701a3afa9328e}{\index{Rede@{Rede}!create\+User@{create\+User}}
+\index{create\+User@{create\+User}!Rede@{Rede}}
+\subsubsection[{create\+User}]{\setlength{\rightskip}{0pt plus 5cm}int Rede\+::create\+User (
+\begin{DoxyParamCaption}
+\item[{string}]{nome}
+\end{DoxyParamCaption}
+)}}\label{class_rede_a39d746dc37d11b8c870701a3afa9328e}
+
+
+Create and add a \hyperlink{class_utilizador}{Utilizador} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nome} & -\/ name of the \hyperlink{class_utilizador}{Utilizador} object to create \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if successfull, 1 if \hyperlink{class_utilizador}{Utilizador} already exists Creates a \hyperlink{class_utilizador}{Utilizador} object and inserts it in the vector, withou repetitions 
+\end{DoxyReturn}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['rede',['Rede',['../class_rede.html',1,'']]],
-  ['registo',['Registo',['../class_registo.html',1,'']]]
+  ['empresa',['Empresa',['../class_empresa.html',1,'']]],
+  ['existeutilizador',['existeUtilizador',['../class_rede.html#a42b5a88380e63b78e5c99894aee0dfbc',1,'Rede']]]
 ];

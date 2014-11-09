@@ -6,7 +6,9 @@
 
 using namespace std;
 
-// Main Rede functions
+			/////////////////////////
+			// Main Rede functions //
+			/////////////////////////
 
 Rede::~Rede()
 {
@@ -29,7 +31,12 @@ Rede::~Rede()
 		delete rented_bikes_freq[i];
 }
 
-/* Store Rede information in text files */
+
+
+/**
+* \brief Store Rede information from text files.
+* Stores information on rede.txt, rede_bikes.txt, rede_spots.txt and rede_user.txt according to format specified by function storeInfo.
+*/
 void Rede::storeInfo()
 {
 	//////////////////////////////////////////////////////////
@@ -180,14 +187,16 @@ void Rede::storeInfo()
 	bike_file.close();
 }
 
-/* Load Rede information from text files*/
+/**
+* \brief Load Rede information from text files.
+* Loads information on rede.txt, rede_bikes.txt, rede_spots.txt and rede_user.txt according to format specified by function storeInfo.
+*/
 void Rede::loadInfo()
+
 {
 	//////////////////////////////////////////////////////////
 	/////////////// Main file - rede.txt /////////////////////
 	//////////////////////////////////////////////////////////
-
-	// Loads information on rede.txt according to format specified by function storeInfo
 
 	ifstream main_file("rede.txt");
 
@@ -398,7 +407,12 @@ void Rede::loadInfo()
 	assign_regs(all_regs);  // See function documentation
 }
 
-/* Add a user to the registered users vector, if there is none equal to it */
+/**
+* \brief Add's a Utilizador object to the system
+* \param user - Utilizador object to be added
+* \return 0 if successfull, 1 if Utilizador already exists
+* Add a user to the registered users vector, if there is none equal to it
+*/
 int Rede::addUser(Utilizador user)
 {
 	for (unsigned int i = 0; i < utilizadores.size(); i++)
@@ -414,7 +428,12 @@ int Rede::addUser(Utilizador user)
 	return 0;
 }
 
-/* Creates a Utilizador object and inserts it in the vector, withou repetitions */
+/**
+* \brief Create and add a Utilizador object
+* \param nome - name of the Utilizador object to create
+* \return 0 if successfull, 1 if Utilizador already exists
+* Creates a Utilizador object and inserts it in the vector, withou repetitions
+*/
 int Rede::createUser(string nome)
 {
 	cout << endl << endl << " Enter user age : ";
@@ -442,7 +461,11 @@ int Rede::createUser(string nome)
 	return 0;
 }
 
-/* Creates a Bicicleta object and inserts it in the correct vector/PostoServico */
+/**
+* \brief Create and add a Bicicleta object to a PostoServico
+* \return 0 if successfull, 1 if Bicicleta already exists
+* Creates a Bicicleta object and inserts it in the correct vector, in this case, of a PostoServico
+*/
 int Rede::create_add_bike()
 {
 	clear_screen();
@@ -573,7 +596,10 @@ int Rede::create_add_bike()
 	return 0;
 }
 
-/* Resets all Rede information */
+/**
+* \brief Resets all Rede information
+* Restarts all Rede information by clearing all vector members of the class
+*/
 void Rede::reset()
 {
 	empresas.clear();
@@ -586,11 +612,14 @@ void Rede::reset()
 	sys_password = "";
 }
 
-/* This function is meant for the load information process.
-	During the store information process, the program saves all Registo's from completed rentals in a vector, and later
- saves it in the text file.
-	At the load information process, this function gets the vector with all the meantioned above Registo's, and add's this Registo's
- to the correct objects (Bicicleta, PostoServico and Utilizador).
+/**
+* \brief Assing Registo object pointers in a vector to the class members
+* \param regs - vector of Registo pointers to assign to class members
+* This function is meant for the load information process.
+*	During the store information process, the program saves all Registo's from completed rentals in a vector, and later
+* saves it in the text file.
+*	At the load information process, this function gets the vector with all the meantioned above Registo's, and add's this Registo's
+* to the correct objects (Bicicleta, PostoServico and Utilizador).
 */
 void Rede::assign_regs(vector<Registo *> &regs)
 {
@@ -647,9 +676,17 @@ void Rede::assign_regs(vector<Registo *> &regs)
 }
 
 
-// Auxiliary functions
+			/////////////////////////
+			// Auxiliary functions //
+			/////////////////////////
 
-// Returns true if a registered or occasional user with that name exists
+
+/**
+* \brief Checks if user exists
+\param nome - name of Utilizador to search
+* Searches for the existance of a Utilizador with that name
+\return true is Utilizador already exists, false otherwise
+*/
 bool Rede::existeUtilizador(string nome)
 {
 	for (unsigned int i = 0; i < utilizadores.size(); i++)
@@ -668,6 +705,12 @@ bool Rede::existeUtilizador(string nome)
 }
 
 // Returns the user type if it exists, or -1 if it doesn't
+/**
+* \brief Find type of a user
+* \return user type if it exists, -1 otherwise
+\param nome - name of Utilizador whose type must be determined
+* Searches for a user with the given name to find out it's type (occasional or registered)
+*/
 int Rede::tipoUser(string nome)
 {
 	for (unsigned int i = 0; i < utilizadores.size(); i++)
@@ -685,8 +728,12 @@ int Rede::tipoUser(string nome)
 	return -1;
 }
 
-// Returns the name of the user currently renting a bike, or an empty string if the bike is available.
-// print argument is true if caller wants function to print messages
+/**
+\brief Determine if a bike is rented and by whom
+\param id_bici - ID of Bicicleta to search
+\param print - decide wether to print messages to the user or not
+\return name of user renting the Bicicleta, or an empty string if Bicicleta is available
+*/
 string Rede::is_busy(int id_bici, bool print) const
 {
 	for (unsigned int i = 0; i < curr_rentals.size(); i++)
@@ -715,7 +762,11 @@ string Rede::is_busy(int id_bici, bool print) const
 	return "";
 }
 
-// Return a vector with all Registo objects from completed rentals. Used in storeInfo function
+/**
+\brief Get pointers to all Registo objects relative to completed rentals in the system
+\return vector with mentioned Registo pointers, without repeated ones
+This function is useful for storeInfo
+*/
 vector<Registo *> Rede::get_regs() const
 {
 	vector<Registo *> result;
@@ -744,7 +795,10 @@ vector<Registo *> Rede::get_regs() const
 }
 
 
-// Rede menus
+			////////////////
+			// Rede menus //
+			////////////////
+
 
 // This function controls the whole menu system, by calling the function corresponding to the pretended menu. It also calls loadInfo and storeInfo
 int Rede::menu_system()

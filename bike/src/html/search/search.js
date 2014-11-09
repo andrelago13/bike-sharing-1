@@ -7,14 +7,16 @@
 
 var indexSectionsWithContent =
 {
-  0: "bdepru",
-  1: "bdepru"
+  0: "abcdelprsu",
+  1: "bdepru",
+  2: "acelrs"
 };
 
 var indexSectionNames =
 {
   0: "all",
-  1: "classes"
+  1: "classes",
+  2: "functions"
 };
 
 function convertToId(search)
