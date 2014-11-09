@@ -169,16 +169,16 @@ bool is_letter(char letra)
 
 bool is_number(char letra)
 {
-	if ((letra > '0') && (letra < '9'))
+	if ((letra >= '0') && (letra <= '9'))
 		return true;
 	return false;
 }
 
 bool valid_date(string date)
 {
-	if (date.size() == 0)
+	if (date.size() == 10)
 	{
-		if (is_number(date[0]) && is_number(date[1]) && is_number(date[2]) && is_number(date[3]) % (date[4] == '/'))
+		if (is_number(date[0]) && is_number(date[1]) && is_number(date[2]) && is_number(date[3]) && (date[4] == '/'))
 		{
 			if (is_number(date[5]) && is_number(date[6]) && (date[7] == '/') && is_number(date[8]) && is_number(date[9]))
 			{

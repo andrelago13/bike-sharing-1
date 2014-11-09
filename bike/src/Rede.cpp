@@ -1026,7 +1026,7 @@ int Rede::menu_ocUsr()
 		else
 		{
 			reg_ptr = bikes[index]->ultimo_reg();
-			if (Data(data) < reg_ptr->entrega)
+			if ((reg_ptr != NULL) && (Data(data) < reg_ptr->entrega))
 			{
 				cout << endl << " Current date must be greater than date of last bike rental" << endl << endl;
 				system("pause");
@@ -1298,7 +1298,7 @@ int Rede::menu_regUsr_logged(Utilizador *user)
 			}
 			reg_ptr = user->ultimoReg();
 			reg_ptr2 = bikes[index]->ultimo_reg();
-			if ((Data(data) < reg_ptr->entrega) || (Data(data) < reg_ptr2->entrega))
+			if ((reg_ptr != NULL) && (reg_ptr2 != NULL ) & ((Data(data) < reg_ptr->entrega) || (Data(data) < reg_ptr2->entrega)))
 			{
 				cout << endl << " Current date must be later than last bike and user rentals." << endl << endl;
 				system("pause");

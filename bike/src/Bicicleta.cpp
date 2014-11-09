@@ -316,5 +316,9 @@ void Bicicleta::make_str(string bike)
 
 Registo* Bicicleta::ultimo_reg() const
 {
-	return regs[regs.size() - 1];
+	Registo *ptr;
+	if (regs.size() == 0)
+		return NULL;
+	ptr = regs[regs.size() - 1];
+	return ptr;
 }
