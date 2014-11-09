@@ -546,36 +546,28 @@ int Rede::create_add_bike()
 
 	int posto_id;
 
-	cout << endl << " Please indicate the id of the post to insert the bike : ";
-	posto_id = readInt();
-	found = false;
+	cout << endl << " Please select a post to insert the bike : ";
 
-	for (unsigned int i = 0; i < postos.size(); i++)
+	for (unsigned int i = 1; i <= postos.size(); i++)
 	{
-		if (postos[i]->getID() == posto_id)
-		{
-			found = true;
-			if (postos[i]->getEspacoLivre() <= 0)
-			{
-				cout << " That post has no room for one more bike.";
-				return -1;
-			}
-
-			Bicicleta bike(id, tipo, tamanho, velocidades, false, preco);
-			bike.setEmpresa(empresa);
-			Bicicleta *bike_ptr = new Bicicleta;
-			*bike_ptr = bike;
-
-			empresas[index].adicionaBicicleta(bike_ptr);
-			postos[i]->adicionabicicleta(bike_ptr);
-		}
+		cout << " " << i << " -> Posto " << postos[i - 1]->getID() << endl;
 	}
+	cout << endl;
+	get_option(posto_id, 1, postos.size());
 
-	if (!found)
+	if (postos[option - 1]->getEspacoLivre() <= 0)
 	{
-		cout << endl << " No service post with that ID was found";
+		cout << endl << " That post has no room for one more bike.";
 		return -1;
 	}
+
+	Bicicleta bike(id, tipo, tamanho, velocidades, false, preco);
+	bike.setEmpresa(empresa);
+	Bicicleta *bike_ptr = new Bicicleta;
+	*bike_ptr = bike;
+
+	empresas[index].adicionaBicicleta(bike_ptr);
+	postos[posto_id-1]->adicionabicicleta(bike_ptr);
 
 	cout << endl << " Bike added successfully.";
 	return 0;
@@ -919,9 +911,7 @@ int Rede::menu_regUsr()
 			if (toupper(letter) == 'Y') // create new user
 			{
 				int result = createUser(username);
-				if (result == 0)
-					cout << endl << endl << "    User created successfully!" << endl;
-				else
+				if (result != 0)
 					cout << endl << endl << "    An error has occurred while creating user." << endl;
 				system("pause");
 				break;
@@ -944,7 +934,8 @@ int Rede::menu_ocUsr()
 	cout << " 2 - Return a bike" << endl;
 	cout << " 0 - Return to previous menu" << endl;
 
-	int option, index, dias, custo;
+	int option, index, dias, custo, cartao_int;
+	stringstream ss;
 	get_option(option, 0, 2);
 	string nome, cartao, data;
 	vector<Bicicleta*> bikes;
@@ -1010,7 +1001,10 @@ int Rede::menu_ocUsr()
 
 		// User credit card
 		cout << " Please enter your credit card number : ";
-		getline(cin, cartao);
+		cartao_int = readInt();
+		ss.clear();
+		ss << cartao_int;
+		cartao = ss.str();
 		user = Ut_ocasional(nome, 5, "", cartao);
 
 		// Current date
@@ -2068,7 +2062,7 @@ int Rede::menu_mngr_spots()
 		return MENU_mngr_spots;
 	// Edit a service post
 	case 3:
-		cout << endl << " Enter new post ID : ";
+		cout << endl << " Enter post ID : ";
 		id = readInt();
 		index = -1;
 
@@ -2107,7 +2101,7 @@ int Rede::menu_mngr_spots()
 
 		if (lotacao < postos[index]->getOcupacao())
 		{
-			cout << " New capacity can't be less than current occupation. No changes were made." << endl << endl;
+			cout << endl << endl << " New capacity can't be less than current occupation. No changes were made." << endl << endl;
 			system("pause");
 			return MENU_mngr_spots;
 		}
@@ -2115,7 +2109,7 @@ int Rede::menu_mngr_spots()
 		postos[index]->setID(id);
 		postos[index]->setLotacao(lotacao);
 
-		cout << " Service post successfully edited" << endl << endl;
+		cout << endl << endl << " Service post successfully edited" << endl << endl;
 		system("pause");
 		return MENU_mngr_spots;
 	// Delete a service post
@@ -2202,7 +2196,7 @@ int Rede::menu_mngr_spots()
 			if (postos[i]->getID() == id)
 			{
 				postos[i]->arranja_bicicletas();
-				cout << " All bikes were repaired in post " << id << endl << endl;
+				cout << endl << endl << " All bikes were repaired in post " << id << endl << endl;
 				system("pause");
 				return MENU_mngr_spots;
 			}
