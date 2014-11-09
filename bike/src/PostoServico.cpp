@@ -5,10 +5,17 @@
 
 using namespace std;
 
-PostoServico::PostoServico()		// Cria um posto de serviço por defeito
+PostoServico::PostoServico()		
 {
 }
 
+/**
+* \brief Creates a service spot
+* \param iD - Name given to the new the service spot
+* \param ocupacao - ocupation of the new service spot
+* \param lotacao - include free space and ocupation of the service spot
+* Creates a service spot with a new id,  new ocupacao and  new lotacao
+*/
 PostoServico::PostoServico(int iD, int ocupacao, int lotacao)		// Cria um posto de serviço que aceita parâmetros id, ocupação e lotação
 {
 	this->iD = iD;
@@ -16,69 +23,135 @@ PostoServico::PostoServico(int iD, int ocupacao, int lotacao)		// Cria um posto 
 	this->ocupacao = ocupacao;
 }
 
+/**
+* \brief Gets the service spot's id
+* \returns the id of the service spot
+* Let us get the id of the service spot
+*/
 int PostoServico::getID() const		// função retorna o id do posto de serviço
 {
 	return iD;
 }
 
-int PostoServico::getLotacao() const		// função retorna a lotação do posto de serviço
+/**
+* \brief Gets the service spot's lotacao
+* \returns the lotacao of the service spot
+* Let us get the lotacao of the service spot
+*/
+int PostoServico::getLotacao() const		
 {
 	return lotacao;
 }
 
-int PostoServico::getOcupacao() const		// função retorna a ocupação do posto de serviço
+/**
+* \brief Gets the service spot's ocupacao
+* \returns the ocupacao of the service spot
+* Let us get the ocupacao of the service spot
+*/
+int PostoServico::getOcupacao() const		
 {
 	return ocupacao;
 }
 
-int PostoServico::getEspacoLivre() const		// função retorna o espaço livre do posto de serviço
+/**
+* \brief Gets the service spot's free space
+* \returns the free space of the service spot
+* Let us get the free space of the service spot
+*/
+int PostoServico::getEspacoLivre() const		
 {
 	return (PostoServico::getLotacao() - PostoServico::getOcupacao());
 }
 
-vector<Bicicleta*> PostoServico::getDisponiveis()			// função retorna as bicicletas disponiveis do posto de serviço
+/**
+* \brief Gets the service spot's disponiveis bikes
+* \returns the disponiveis bikes of the service spot
+* Let us get a vector of type Bicicleta with disponiveis bikes of the service spot
+*/
+vector<Bicicleta*> PostoServico::getDisponiveis()			
 {
 	return disponiveis;
 }
 
-vector<Bicicleta*> PostoServico::getAvariadas()			// função retorna as bicicletas avariadas do posto de serviço
+/**
+* \brief Gets the service spot's avariadas bikes
+* \returns the avariadas bikes of the service spot
+* Let us get a vector of type Bicicleta with avariadas bikes of the service spot
+*/
+vector<Bicicleta*> PostoServico::getAvariadas()			
 {
 	return avariadas;
 }
 
-vector<Registo*> PostoServico::getUtlizacao()		// função retorna um vetor com os registos de todas as bicicletas
+/**
+* \brief Gets the regists of all bikes of service spot
+* \returns the the regists of all bikes of the service spot
+* Let us get a vector of type Registo with all bikes of the service spot
+*/
+vector<Registo*> PostoServico::getUtlizacao()		
 {
 	return utilizacao;
 }
 
-void PostoServico::setID(int id)		// função modifica o id de um posto de serviço
+/**
+* \brief Sets a new service spot's id
+* \param id - New id to be implemented
+* Sets a new id to the service spot
+*/
+void PostoServico::setID(int id)		
 {
 	iD = id;
 }
 
-void PostoServico::setLotacao(int lot)			// funçao modifica a lotação de um posto de serviço 
+/**
+* \brief Sets a new service spot's lotacao
+* \param id - New lotacao to be implemented
+* Sets a new lotacao to the service spot
+*/
+void PostoServico::setLotacao(int lot)		 
 {
 	lotacao = lot;
 }
 
+/**
+* \brief Sets a new group of disponiveis bikes on the company
+* \param disponiveis - New pack of disponiveis bikes to be implemented
+* Sets a new pack of disponiveis bikes to the service spot's vector disponiveis
+*/
 void PostoServico::setDisponiveis(vector<Bicicleta*> disponiveis)		// função modifica as bicicletas disponiveis pelo vetor de bicicletas passado como parametro na função atualizando a ocupação do posto
 {
 		this ->disponiveis = disponiveis;
 		ocupacao = disponiveis.size() + avariadas.size();		
 }
 
-void PostoServico::setAvariadas(vector<Bicicleta*> avariadas)		// função modifica as bicicletas avariadas pelo vetor de bicicletas passado como parametro na função atualizando a ocupação do posto
+/**
+* \brief Sets a new group of avariadas bikes on the company
+* \param disponiveis - New pack of avariadas bikes to be implemented
+* Sets a new pack of avariadas bikes to the service spot's vector avariadas
+*/
+void PostoServico::setAvariadas(vector<Bicicleta*> avariadas)		
 {
 		this->avariadas = avariadas;			
 		ocupacao = disponiveis.size() + avariadas.size();
 }
 
-void PostoServico::setUtilizacao(vector<Registo*> utilizacao)		// função modifica o vetor de registos pelo que é passado como parametro da função
+/**
+* \brief Sets a new group of regists to the service spot
+* \param disponiveis - New pack of regists to be implemented
+* Sets a new pack of regists to the service spot's vector utilizacao
+*/
+void PostoServico::setUtilizacao(vector<Registo*> utilizacao)		
 {
 	this->utilizacao = utilizacao;
 }
 
-void PostoServico::adicionabicicleta(Bicicleta *bi1)		// função adiciona uma nova bicicleta ao posto de serviço. Se estiver avariada é guardada nas avariadas caso contrario fica nas disponiveis sendo que em ambos os casos a ocupação do posto é atualizada
+/**
+* \brief Adds a bike object to the service spot
+* \param *bi1 - New bike to be added
+* Adds a bike to the service spot. If it is broken, is implemented on avariadas otherwise it goes to disponiveis
+*/
+
+void PostoServico::adicionabicicleta(Bicicleta *bi1)		
 
 {
 	if (bi1->getAvariada())
@@ -89,24 +162,45 @@ void PostoServico::adicionabicicleta(Bicicleta *bi1)		// função adiciona uma nov
 	ocupacao++;
 }
 
-void PostoServico::adicionaDisponivel(Bicicleta *bi1)		// função adiciona uma nova bicicleta ás disponiveis atualizando a ocupação do posto
+/**
+* \brief Adds a bike object to the service spot
+* \param *bi1 - New bike to be added
+* Adds a bike to the service spot's vector disponiveis and increments ocupacao
+*/
+void PostoServico::adicionaDisponivel(Bicicleta *bi1)		
 {
 	disponiveis.push_back(bi1);
 	ocupacao++;
 }
 
-void PostoServico::adicionaAvariada(Bicicleta *bi1)			// função adiciona uma nova bicicleta ás avariadas atualizando a ocupação do posto
+/**
+* \brief Adds a bike object to the service spot
+* \param *bi1 - New bike to be added
+* Add a bike to the service spot's vector avariadas and increments ocupacao
+*/
+void PostoServico::adicionaAvariada(Bicicleta *bi1)			
 {
 	avariadas.push_back(bi1);
 	ocupacao++;
 }
 
-void PostoServico::adicionaUtilizacao(Registo *reg1)		// função adiciona um novo registo ao vetor de registos
+/**
+* \brief Adds a new regist object to the service spot
+* \param *reg1 - New regist to be added
+* Add a bike to the service spot's vector avariadas and increments ocupacao
+*/
+void PostoServico::adicionaUtilizacao(Registo *reg1)		
 {
 	utilizacao.push_back(reg1);
 }
 
-bool PostoServico::aluga(Bicicleta *bi1)			// O utilizador aluga uma das bicicletas disponiveis no posto de serviço
+/**
+* \brief The user rents a bike
+* \param *bi1 - bike object to be rentes
+* \return true if successfull, false if does not exist
+* The user rentes a bike from disponiveis through a parameter and then the ocupacao is decremented
+*/
+bool PostoServico::aluga(Bicicleta *bi1)		
 {																	
 	vector<Bicicleta*> dispo = PostoServico::getDisponiveis();
 
@@ -134,7 +228,13 @@ bool PostoServico::aluga(Bicicleta *bi1)			// O utilizador aluga uma das bicicle
 	}
 }
 
-bool PostoServico::devolve(Bicicleta *bi1)				// o utilizador devolve a bicicleta alugada ao posto de serviço
+/**
+* \brief The user returns a bike
+* \param *bi1 - bike object to be return
+* \return true if successfull, false if the user returns the bike broken
+* The user returns a bike and if it is broken, it goes to avariadas otherwise goes to disponiveis.On both cases the ocupacao is incremented
+*/
+bool PostoServico::devolve(Bicicleta *bi1)				
 {
 	if (bi1->getAvariada())
 	{
@@ -150,6 +250,13 @@ bool PostoServico::devolve(Bicicleta *bi1)				// o utilizador devolve a biciclet
 	return true;
 }
 
+/**
+* \brief The service spot removes a bike
+* \param id_bike - identifies the bike to be removed
+* \return true if successfull, false if the bike does not exist on disponiveis and avariadas
+* The servide spot removes a bike through an id_bike. To do so, the service spot erases the regist of that bike from utilizacao and removes the bike from disponiveis or avariadas
+* depending on which section they are. The ocupacao is decremented
+*/
 bool PostoServico::removebicicleta(unsigned int id_bike)	// remove bicicleta do vetor utilizacao
 {
 	vector<Registo*> utils = PostoServico::getUtlizacao();		
@@ -189,7 +296,13 @@ bool PostoServico::removebicicleta(unsigned int id_bike)	// remove bicicleta do 
 	return false;
 }
 
-bool PostoServico::removeutilizador(string user)		//remove utilizador do posto de serviço 
+/**
+* \brief The service spot removes a user
+* \param user - the user to be deleted
+* \return true if successfull, false if the bike does not exist on disponiveis and avariadas
+* The servide spot removes the User through an user. To do so, the service spot erases the regist of that user from utilizacao and from disponiveis or avariadas
+*/
+bool PostoServico::removeutilizador(string user)		 
 {
 	vector<Registo*>::iterator it = utilizacao.begin();
 
@@ -215,7 +328,11 @@ bool PostoServico::removeutilizador(string user)		//remove utilizador do posto d
 	return true;
 }
 
-void PostoServico::arranja_bicicletas()				// arranja as bicicletas avariadas e coloca as nas disponiveis apagando as mesmas das avariadas
+/**
+* \brief The service spot fix the broken bikes
+* The servide spot fix the broken bikes and put then back to disponiveis
+*/
+void PostoServico::arranja_bicicletas()			
 {
 	for (unsigned int i = 0; i < avariadas.size(); i++)
 	{
@@ -224,7 +341,13 @@ void PostoServico::arranja_bicicletas()				// arranja as bicicletas avariadas e 
 	}
 }
 
-bool PostoServico::arranja_bicicleta(int id_bike)		// arranja uma bicicleta em especifico (segundo um id) e coloca a nas disponiveis apagando a mesma das avariadas
+/**
+* \brief The service spot fix an especific broken bike
+* \param id_bike - identifies the bike to be fixed
+* \return true if successfull, false if the bike does not exist on avariadas
+* The servide spot fix a bike through an id_bike. Then it removes from avariadas and put him on disponiveis
+*/
+bool PostoServico::arranja_bicicleta(int id_bike)	
 {
 	for (unsigned int i = 0; i < avariadas.size(); i++)
 	{
@@ -239,6 +362,11 @@ bool PostoServico::arranja_bicicleta(int id_bike)		// arranja uma bicicleta em e
 	return false;
 }
 
+/**
+* \brief Gets the service spot's bikes
+* \returns a vector with all the service spot's bikes
+* Let us get a vector of type Bicicleta with all bikes of the service spot
+*/
 vector<Bicicleta*> PostoServico::getBicicletas()
 {
 	vector<Bicicleta *> bicis = disponiveis;

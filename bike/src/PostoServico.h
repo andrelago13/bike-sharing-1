@@ -9,6 +9,12 @@
 
 using namespace std;
 
+/*! \class PostoServico
+\brief Rede - Auxiliary program class
+
+This class let us manage everything about bikes. Here we can rent or return a bike, fix broken bikes and remove bikes or users. Therefore is class that
+help us have a clear vision of what bike-sharing really is
+*/
 class PostoServico
 {
 private:
@@ -19,8 +25,11 @@ private:
 	vector<Bicicleta*> avariadas;
 	vector<Registo*> utilizacao;
 public:
+	// Creates a Service Spot
 	PostoServico();
 	PostoServico(int iD, int ocupacao, int lotacao);
+	
+	// Basic Functions
 	int getID() const;
 	int getLotacao() const;
 	int getOcupacao() const;
@@ -38,10 +47,16 @@ public:
 	void setUtilizacao(vector<Registo*> utilizacao);
 	void setID(int id);
 	void setLotacao(int lot);
+
+	// Rent or Return a bike
 	bool aluga(Bicicleta *bi1);			
-	bool devolve(Bicicleta *bi1);	
+	bool devolve(Bicicleta *bi1);
+
+	// Remove bikes or users
 	bool removebicicleta(unsigned int id_bike);
 	bool removeutilizador(string user);
+
+	// Fix Bikes
 	void arranja_bicicletas();
 	bool arranja_bicicleta(int id_bike);
 

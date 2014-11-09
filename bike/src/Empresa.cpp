@@ -10,27 +10,55 @@ Empresa::Empresa()
 {
 }
 
+/**
+* \brief Creates a company
+* \param nome - Name given to the new company
+* Creates a company with the the the name passed as argument
+*/
+
 Empresa::Empresa(string nome)
 {
 	this->nome = nome;
 }
+
+/**
+* \brief Gets the name of a company
+* \returns a string with the company's name
+* Let us get the name of a company on a string
+*/
 
 string Empresa::getNome() const
 {
 	return nome;
 }
 
+/**
+* \brief Gets the company's bikes
+* \returns a vector with all the company's bikes
+* Let us get a vector of type Bicicleta with all bikes of the company
+*/
+
 vector<Bicicleta *> Empresa::getBicicletas() const
 {
 	return bicicletas;
 }
+
+/**
+* \brief Adds a bike object to the company
+* \param *bic - New bike to be added
+* Add a bike to the the company's bikes vector
+*/
 
 void Empresa::adicionaBicicleta(Bicicleta *bic)
 {
 	bicicletas.push_back(bic);
 }
 
-void Empresa::show_specs()		//Imprime as especificações da empresa, ou seja, mostra o seu nome e de seguida todas as bicicletas da mesma
+/**
+* \brief Shows the company's specifications
+* Shows all the company's information, the name and all the bikes
+*/
+void Empresa::show_specs()		
 {
 	string empresa = Empresa::getNome();
 	vector<Bicicleta*> bikes = Empresa::getBicicletas();
@@ -52,12 +80,22 @@ void Empresa::show_specs()		//Imprime as especificações da empresa, ou seja, mos
 	}
 }
 
+/**
+* \brief Sets a new group of bikes on the company
+* \param bicicletas - New pack of bicicletas implemented
+* Sets a new pack of bicicletas to the company's bikes vector
+*/
 void Empresa::setBicicletas(vector<Bicicleta*> bicicletas)
 {
 	this->bicicletas = bicicletas;
 }
 
-void Empresa::remove_bicis(unsigned int id)			// remove uma bicicleta da empresa de acordo com o id
+/**
+* \brief Removes a bike(s) of the company
+* \param id - identifies the bike(s) to be removed
+* Deletes bike(s) from the company's bikes vector through an id
+*/
+void Empresa::remove_bicis(unsigned int id)			
 {
 	vector<Bicicleta *> bikes = getBicicletas();
 
@@ -80,7 +118,13 @@ void Empresa::remove_bicis(unsigned int id)			// remove uma bicicleta da empresa
 	return;
 }
 
-int Empresa::num_users() const		// devolve o numero de utilizadores registados na empresa sem estarem repetidos
+/**
+* \brief Gets the number of users
+* \returns the number of users
+* Let us get the number of user without repeting users
+*/
+
+int Empresa::num_users() const		
 {
 	vector<Registo *> regs;
 	vector<string> nomes;
@@ -102,6 +146,11 @@ int Empresa::num_users() const		// devolve o numero de utilizadores registados n
 	return nomes.size();
 }
 
+/**
+* \brief Sets a company's name
+* \param novo_nome - New name to be implemented
+* Sets a new name to the company
+*/
 void Empresa::setNome(string novo_nome)
 {
 	nome = novo_nome;
