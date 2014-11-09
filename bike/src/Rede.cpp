@@ -6,6 +6,8 @@
 
 using namespace std;
 
+// Main Rede functions
+
 Rede::~Rede()
 {
 	for (unsigned int i = 0; i < utilizadores.size(); i++)
@@ -13,9 +15,391 @@ Rede::~Rede()
 
 	for (unsigned int i = 0; i < postos.size(); i++)
 		delete postos[i];
+
+	for (unsigned int i = 0; i < ocasionais.size(); i++)
+		delete ocasionais[i];
+
+	for (unsigned int i = 0; i < curr_rentals.size(); i++)
+		delete curr_rentals[i];
+
+	for (unsigned int i = 0; i < rented_bikes.size(); i++)
+		delete rented_bikes[i];
+
+	for (unsigned int i = 0; i < rented_bikes_freq.size(); i++)
+		delete rented_bikes_freq[i];
 }
 
-int Rede::addUser(Utilizador user) //função adiciona utilizador ao vetor utilizadores da rede
+/* Store Rede information in text files */
+void Rede::storeInfo()
+{
+	//////////////////////////////////////////////////////////
+	/////////////// Main file - rede.txt /////////////////////
+	//////////////////////////////////////////////////////////
+
+	/*
+	This file saves Rede password, supplyer's names and add Rede Registo's
+	in the following format:
+
+	1 - Rede password
+	2 - LOOP : supplyer company names
+	3 - '-' to separate 2 from 4
+	4 - LOOP : all Rede Registo's from completed rentals
+	5 - '#' to separate 4 from 6
+	6 - LOOP : all Rede Registo's from ongoing rentals
+	*/
+
+	ofstream main_file("rede.txt");
+	
+	// Store password
+	main_file << sys_password << endl;
+
+	// Store supplyer company's names
+	for (unsigned int i = 0; i < empresas.size(); i++)
+	{
+		main_file << empresas[i].getNome() << endl;
+	}
+
+	main_file << "-" << endl;
+	vector<Registo *> all_regs = get_regs();
+
+	// Store Registo's from completed rentals
+	for (unsigned int i = 0; i < all_regs.size(); i++)
+	{
+		string temp = all_regs[i]->get_str();
+		main_file << temp;
+	}
+
+	main_file << "#" << endl;
+
+	// Store Registo's from ongoing rentals
+	for (unsigned int i = 0; i < curr_rentals.size(); i++)
+	{
+		string temp = curr_rentals[i]->get_str();
+		main_file << temp;
+	}
+
+	main_file.close();
+
+	//////////////////////////////////////////////////////////
+	////////////// Spots file - rede_spots.txt ///////////////
+	//////////////////////////////////////////////////////////
+
+	/*
+	This file saves all Rede PostoServico objects in the following format:
+
+	LOOP:
+		1 - Posto ID
+		2 - Posto lotacao
+		3 - LOOP : Bicicleta objects stored in this PostoServico (see Bicicleta file)
+		4 - '#' to separate from other Postos
+	*/
+
+	ofstream spots_file("rede_spots.txt");
+
+	for (unsigned int i = 0; i < postos.size(); i++)
+	{
+		// Store Posto ID and lotacao
+		spots_file << postos[i]->getID() << endl << postos[i]->getLotacao() << endl;
+		vector<Bicicleta *> bicis = postos[i]->getBicicletas();
+
+		// Store Posto Bicicleta's
+		for (unsigned int j = 0; j < bicis.size(); j++)
+		{
+			spots_file << bicis[j]->get_str();
+		}
+		spots_file << "#" << endl;
+	}
+
+	spots_file.close();
+
+	//////////////////////////////////////////////////////////
+	////////////// Users file - rede_user.txt ////////////////
+	//////////////////////////////////////////////////////////
+
+	/*
+	This file savesall Rede Utilizador and Ut_ocasional objects in the following format:
+
+	LOOP:
+	1 - Utilizador nome
+	2 - Password
+	3 - Idade
+	4 - Tipo
+	(5) - If Tipo==0, this line does not existe, if Tipo==1, this line is Ut_ocasional's cartao
+	*/
+
+	ofstream user_file("rede_user.txt");
+
+	// Store registered users
+	for (unsigned int i = 0; i < utilizadores.size(); i++)
+	{
+		user_file << utilizadores[i]->get_str();
+	}
+	// Store occasional users
+	for (unsigned int i = 0; i < ocasionais.size(); i++)
+	{
+		user_file << ocasionais[i]->get_str();
+	}
+
+	user_file.close();
+
+	//////////////////////////////////////////////////////////
+	////////////// Bikes file - rede_bikes.txt ///////////////
+	//////////////////////////////////////////////////////////
+
+	/*
+	This file saves all Rede Bicicleta objects, corresponding to currently
+	rented bikes, in the following format:
+
+	LOOP - bikes rented by occasional users:
+		1 - Bicicleta ID
+		2 - Tipo
+		3 - Tamanho
+		4 - Velocidades
+		5 - Preco
+		6 - Empresa
+	'#' - to separate from next loop
+	LOOP - bikes rented by registered users (same format as before)
+	*/
+
+	ofstream bike_file("rede_bikes.txt");
+
+	// Store bikes rented by occasional users
+	for (unsigned int i = 0; i < rented_bikes.size(); i++)
+	{
+		bike_file << rented_bikes[i]->get_str();
+	}
+
+	bike_file << "#" << endl;
+
+	// Store bikes rented by registered users
+	for (unsigned int i = 0; i < rented_bikes_freq.size(); i++)
+	{
+		bike_file << rented_bikes_freq[i]->get_str();
+	}
+
+	bike_file.close();
+}
+
+/* Load Rede information from text files*/
+void Rede::loadInfo()
+{
+	//////////////////////////////////////////////////////////
+	/////////////// Main file - rede.txt /////////////////////
+	//////////////////////////////////////////////////////////
+
+	// Loads information on rede.txt according to format specified by function storeInfo
+
+	ifstream main_file("rede.txt");
+
+	string temp;
+
+	getline(main_file, temp);
+	sys_password = temp;
+
+	while (main_file.peek() != ((int) '-'))
+	{
+		getline(main_file, temp);
+		Empresa emp(temp);
+		empresas.push_back(temp);
+	}
+
+	vector<Registo *> all_regs;
+
+	getline(main_file, temp);  // To remove character '-' from file
+
+	while (main_file.peek() != '#')
+	{
+		stringstream ss(ios_base::app | ios_base::out);
+		string temp;
+		ss.clear();
+		for (unsigned int i = 0; i < 7; i++)
+		{
+			getline(main_file, temp);
+			ss << temp << endl;
+		}
+		Registo reg, *reg_ptr;
+		reg.make_from_str(ss.str());
+		reg_ptr = new Registo;
+		*reg_ptr = reg;
+		all_regs.push_back(reg_ptr);
+	}
+
+	getline(main_file, temp);  // To remove character '#' from file
+
+	while ((main_file.peek() != EOF) || (!main_file.eof()))  // Detect end of file
+	{
+		stringstream ss;
+		string temp;
+		ss.clear();
+		for (unsigned int i = 0; i < 7; i++)
+		{
+			getline(main_file, temp);
+			ss << temp << endl;
+		}
+		Registo reg, *reg_ptr;
+		reg.make_from_str(ss.str());
+		reg_ptr = new Registo;
+		*reg_ptr = reg;
+		curr_rentals.push_back(reg_ptr);
+	}
+
+	main_file.close();
+
+	//////////////////////////////////////////////////////////
+	///////////// Spots file - rede_spots.txt ////////////////
+	//////////////////////////////////////////////////////////
+
+	// Loads information on rede_spots.txt according to format specified by function storeInfo
+
+	ifstream spots_file("rede_spots.txt");
+
+
+	while ((spots_file.peek() != EOF) && (!spots_file.eof())) // Detect end of file
+	{
+		string temp;
+		int id, lotacao;
+		getline(spots_file, temp);
+		id = str_to_int(temp);
+		getline(spots_file, temp);
+		lotacao = str_to_int(temp);
+
+		PostoServico posto(id, 0, lotacao);
+		PostoServico *posto_ptr;
+		posto_ptr = new PostoServico;
+		*posto_ptr = posto;
+
+		if (spots_file.peek() == '#')
+		{
+			postos.push_back(posto_ptr);
+			getline(spots_file, temp);  // to remove character '#' from file
+			continue;
+		}
+
+		while ((spots_file.peek() != '#') && (spots_file.peek() != EOF) && (!spots_file.eof()))
+		{
+			stringstream ss;
+			for (int i = 0; i < 7; i++)
+			{
+				getline(spots_file, temp);
+				ss << temp << endl;
+			}
+			Bicicleta bici, *bici_ptr;
+			bici.make_str(ss.str());
+			bici_ptr = new Bicicleta;
+			*bici_ptr = bici;
+			posto_ptr->adicionabicicleta(bici_ptr);
+
+			for (unsigned int i = 0; i < empresas.size(); i++)
+			{
+				if (empresas[i].getNome() == bici_ptr->getEmpresa())
+					empresas[i].adicionaBicicleta(bici_ptr);
+			}
+		}
+		postos.push_back(posto_ptr);
+		getline(spots_file, temp); // to remove character '#' from file
+	}
+
+	spots_file.close();
+
+	//////////////////////////////////////////////////////////
+	///////////// Users  file - rede_user.txt ////////////////
+	//////////////////////////////////////////////////////////
+
+	// Loads information on rede_user.txt according to format specified by function storeInfo
+
+	ifstream user_file("rede_user.txt");
+	string nome, pass, cartao;
+	int idade, tipo;
+
+	while ((user_file.peek() != EOF) && (!user_file.eof()))  // Detect end of file
+	{
+		getline(user_file, nome);
+		getline(user_file, pass);
+		getline(user_file, temp);
+		idade = str_to_int(temp);
+		getline(user_file, temp);
+		if (temp == "0")
+		{
+			Utilizador user(nome, idade, pass);
+			Utilizador *user_ptr;
+			user_ptr = new Utilizador;
+			*user_ptr = user;
+			utilizadores.push_back(user_ptr);
+		}
+		else
+		{
+			getline(user_file, cartao);
+			Ut_ocasional oc(nome, idade, pass, cartao);
+			Ut_ocasional *oc_ptr;
+			oc_ptr = new Ut_ocasional;
+			*oc_ptr = oc;
+			ocasionais.push_back(oc_ptr);
+		}
+	}
+
+	user_file.close();
+
+	//////////////////////////////////////////////////////////
+	///////////// Bikes file - rede_bikes.txt ////////////////
+	//////////////////////////////////////////////////////////
+
+	// Loads information on rede_bikes.txt according to format specified by function storeInfo
+
+	ifstream bike_file("rede_bikes.txt");
+
+	while (bike_file.peek() != '#')
+	{
+		stringstream ss;
+		ss.clear();
+		for (int i = 0; i < 7; i++)
+		{
+			getline(bike_file, temp);
+			ss << temp << endl;
+		}
+		Bicicleta bici, *bici_ptr;
+		bici.make_str(ss.str());
+		bici_ptr = new Bicicleta;
+		*bici_ptr = bici;
+		rented_bikes.push_back(bici_ptr);
+
+		for (unsigned int i = 0; i < empresas.size(); i++)
+		{
+			if (empresas[i].getNome() == bici_ptr->getEmpresa())
+				empresas[i].adicionaBicicleta(bici_ptr);
+		}
+	}
+
+	getline(bike_file, temp); // to remove character '#' from file
+
+	while ((bike_file.peek() != EOF) || (!bike_file.eof()))
+	{
+		stringstream ss;
+		ss.clear();
+		for (int i = 0; i < 7; i++)
+		{
+			getline(bike_file, temp);
+			ss << temp << endl;
+		}
+		Bicicleta bici, *bici_ptr;
+		bici.make_str(ss.str());
+		bici_ptr = new Bicicleta;
+		*bici_ptr = bici;
+		rented_bikes_freq.push_back(bici_ptr);
+
+		for (unsigned int i = 0; i < empresas.size(); i++)
+		{
+			if (empresas[i].getNome() == bici_ptr->getEmpresa())
+				empresas[i].adicionaBicicleta(bici_ptr);
+		}
+	}
+
+	bike_file.close();
+
+	assign_regs(all_regs);  // See function documentation
+}
+
+/* Add a user to the registered users vector, if there is none equal to it */
+int Rede::addUser(Utilizador user)
 {
 	for (unsigned int i = 0; i < utilizadores.size(); i++)
 	{
@@ -30,6 +414,347 @@ int Rede::addUser(Utilizador user) //função adiciona utilizador ao vetor utiliza
 	return 0;
 }
 
+/* Creates a Utilizador object and inserts it in the vector, withou repetitions */
+int Rede::createUser(string nome)
+{
+	cout << endl << endl << " Enter user age : ";
+	int age;
+
+	while (true)
+	{
+		age = readInt();
+		if ((age <= 0) || (age > 120))
+		{
+			cout << endl << "ERROR : Invalid age. Try again." << endl << " Enter your age : ";
+			continue;
+		}
+		break;
+	}
+
+	cout << endl << endl << " Enter user password : ";
+	string pass = readPassword();
+
+	Utilizador usr(nome, age, pass);
+	Utilizador *ptr = new Utilizador;
+	*ptr = usr;
+	utilizadores.push_back(ptr);
+	cout << endl << "User created sucessfully!" << endl;
+	return 0;
+}
+
+/* Creates a Bicicleta object and inserts it in the correct vector/PostoServico */
+int Rede::create_add_bike()
+{
+	clear_screen();
+	print_menu_header();
+	cout << endl << " Please enter bike ID : ";
+	int id = readInt();
+	vector<Bicicleta *> bikes;
+
+	for (unsigned int i = 0; i < empresas.size(); i++)
+	{
+		bikes = empresas[i].getBicicletas();
+		for (unsigned int j = 0; j < bikes.size(); j++)
+		{
+			if (bikes[j]->getID() == id)
+			{
+				cout << endl << " There already is a bike with that ID";
+				return -1;
+			}
+		}
+	}
+
+	cout << endl << endl << " Please select a bike type : " << endl;
+	cout << " 1 - Eletrica" << endl;
+	cout << " 2 - Com cesto" << endl;
+	cout << " 3 - Sem cesto" << endl;
+	cout << " 4 - Passeio" << endl;
+	cout << " 5 - Montanha" << endl;
+	cout << " 6 - Corrida" << endl;
+
+	int option, preco, velocidades;
+	get_option(option, 1, 6);
+	string tipo, tamanho, empresa;
+
+	switch (option)
+	{
+	case 1:
+		tipo = "eletrica";
+		break;
+	case 2:
+		tipo = "com cesto";
+		break;
+	case 3:
+		tipo = "sem cesto";
+		break;
+	case 4:
+		tipo = "passeio";
+		break;
+	case 5:
+		tipo = "montanha";
+		break;
+	case 6:
+		tipo = "corrida";
+		break;
+	}
+
+	cout << endl << endl << " Please select a bike size : " << endl;
+	cout << " 1 - Crianca" << endl;
+	cout << " 2 - Adulto" << endl;
+
+	get_option(option, 1, 2);
+
+	switch (option)
+	{
+	case 1:
+		tamanho = "crianca";
+		break;
+	case 2:
+		tamanho = "adulto";
+		break;
+	}
+
+	cout << endl << endl << " Please indicate bike shifts (1-5)  : ";
+
+	get_option(option, 1, 5);
+
+	velocidades = option;
+
+	cout << endl << endl << " Please indicate a bike price : ";
+	preco = readInt();
+
+	cout << endl << " Please indicate a company to associate the bike : ";
+	getline(cin, empresa);
+
+	int index;
+	bool found = false;
+
+	for (unsigned int i = 0; i < empresas.size(); i++)
+	{
+		if (empresas[i].getNome() == empresa)
+		{
+			found = true;
+			index = i;
+		}
+	}
+
+	if (!found)
+	{
+		cout << endl << " No company was found with that name.";
+		return -1;
+	}
+
+	int posto_id;
+
+	cout << endl << " Please indicate the id of the post to insert the bike : ";
+	posto_id = readInt();
+	found = false;
+
+	for (unsigned int i = 0; i < postos.size(); i++)
+	{
+		if (postos[i]->getID() == posto_id)
+		{
+			found = true;
+			if (postos[i]->getEspacoLivre() <= 0)
+			{
+				cout << " That post has no room for one more bike.";
+				return -1;
+			}
+
+			Bicicleta bike(id, tipo, tamanho, velocidades, false, preco);
+			bike.setEmpresa(empresa);
+			Bicicleta *bike_ptr = new Bicicleta;
+			*bike_ptr = bike;
+
+			empresas[index].adicionaBicicleta(bike_ptr);
+			postos[i]->adicionabicicleta(bike_ptr);
+		}
+	}
+
+	if (!found)
+	{
+		cout << endl << " No service post with that ID was found";
+		return -1;
+	}
+
+	cout << endl << " Bike added successfully.";
+	return 0;
+}
+
+/* Resets all Rede information */
+void Rede::reset()
+{
+	empresas.clear();
+	postos.clear();
+	utilizadores.clear();
+	ocasionais.clear();
+	curr_rentals.clear();
+	rented_bikes.clear();
+	rented_bikes_freq.clear();
+	sys_password = "";
+}
+
+/* This function is meant for the load information process.
+	During the store information process, the program saves all Registo's from completed rentals in a vector, and later
+ saves it in the text file.
+	At the load information process, this function gets the vector with all the meantioned above Registo's, and add's this Registo's
+ to the correct objects (Bicicleta, PostoServico and Utilizador).
+*/
+void Rede::assign_regs(vector<Registo *> &regs)
+{
+	// Assign to PostoServico and corresponding Bicicleta's
+	for (unsigned int i = 0; i < postos.size(); i++)
+	{
+		for (unsigned int j = 0; j < regs.size(); j++)
+		{
+			if ((regs[j]->ID_posto_chegada == postos[i]->getID()) || (regs[j]->ID_posto_origem == postos[i]->getID()))
+				postos[i]->adicionaUtilizacao(regs[j]);
+		}
+
+		vector<Bicicleta *> bikes = postos[i]->getBicicletas();
+
+		for (unsigned int j = 0; j < bikes.size(); j++)
+		{
+			for (unsigned int k = 0; k < regs.size(); k++)
+			{
+				if (regs[k]->ID_Bicicleta == bikes[j]->getID())
+					bikes[j]->adicionaRegisto(regs[k]);
+			}
+		}
+	}
+
+	// Assign to Utilizador
+	for (unsigned int i = 0; i < utilizadores.size(); i++)
+	{
+		for (unsigned int j = 0; j < regs.size(); j++)
+		{
+			if (regs[j]->nome_utilizador == utilizadores[i]->getNome())
+				utilizadores[i]->adicionaRegisto(regs[j]);
+		}
+	}
+
+	// Assign to Bicicleta's on rented_bikes vector
+	for (unsigned int i = 0; i < rented_bikes.size(); i++)
+	{
+		for (unsigned int j = 0; j < regs.size(); j++)
+		{
+			if (regs[j]->ID_Bicicleta == rented_bikes[i]->getID())
+				rented_bikes[i]->adicionaRegisto(regs[j]);
+		}
+	}
+
+	// Assign to Bicicleta's on rented_bikes_freq vector
+	for (unsigned int i = 0; i < rented_bikes_freq.size(); i++)
+	{
+		for (unsigned int j = 0; j < regs.size(); j++)
+		{
+			if (regs[j]->ID_Bicicleta == rented_bikes_freq[i]->getID())
+				rented_bikes_freq[i]->adicionaRegisto(regs[j]);
+		}
+	}
+}
+
+
+// Auxiliary functions
+
+// Returns true if a registered or occasional user with that name exists
+bool Rede::existeUtilizador(string nome)
+{
+	for (unsigned int i = 0; i < utilizadores.size(); i++)
+	{
+		if (utilizadores[i]->getNome() == nome)
+			return true;
+	}
+
+	for (unsigned int i = 0; i < ocasionais.size(); i++)
+	{
+		if (ocasionais[i]->getNome() == nome)
+			return true;
+	}
+
+	return false;
+}
+
+// Returns the user type if it exists, or -1 if it doesn't
+int Rede::tipoUser(string nome)
+{
+	for (unsigned int i = 0; i < utilizadores.size(); i++)
+	{
+		if (utilizadores[i]->getNome() == nome)
+			return utilizadores[i]->getTipo();
+	}
+
+	for (unsigned int i = 0; i < ocasionais.size(); i++)
+	{
+		if (ocasionais[i]->getNome() == nome)
+			ocasionais[i]->getTipo();
+	}
+
+	return -1;
+}
+
+// Returns the name of the user currently renting a bike, or an empty string if the bike is available.
+// print argument is true if caller wants function to print messages
+string Rede::is_busy(int id_bici, bool print) const
+{
+	for (unsigned int i = 0; i < curr_rentals.size(); i++)
+	{
+		if (rented_bikes[i]->getID() == id_bici)
+		{
+			if (print)
+				cout << " This bike is currently rented by occasional user " << curr_rentals[i]->nome_utilizador << endl;
+			return curr_rentals[i]->nome_utilizador;
+		}
+	}
+
+	for (unsigned int i = 0; i < utilizadores.size(); i++)
+	{
+		Registo *reg_ptr;
+		reg_ptr = utilizadores[i]->ultimoReg();
+
+		if ((reg_ptr != NULL) && (reg_ptr->ID_Bicicleta == id_bici) && (reg_ptr->ID_posto_chegada == 0))
+		{
+			if (print)
+				cout << " This bike is currently rented by registered user " << utilizadores[i]->getNome() << endl;
+			return utilizadores[i]->getNome();;
+		}
+	}
+
+	return "";
+}
+
+// Return a vector with all Registo objects from completed rentals. Used in storeInfo function
+vector<Registo *> Rede::get_regs() const
+{
+	vector<Registo *> result;
+
+	for (unsigned int i = 0; i < postos.size(); i++)
+	{
+		insert_no_repeat(result, postos[i]->getUtlizacao());
+	}
+
+	for (unsigned int i = 0; i < utilizadores.size(); i++)
+	{
+		insert_no_repeat(result, utilizadores[i]->getRegs());
+	}
+
+	for (unsigned int i = 0; i < rented_bikes.size(); i++)
+	{
+		insert_no_repeat(result, rented_bikes[i]->getRegsBicis());
+	}
+
+	for (unsigned int i = 0; i < rented_bikes_freq.size(); i++)
+	{
+		insert_no_repeat(result, rented_bikes_freq[i]->getRegsBicis());
+	}
+
+	return result;
+}
+
+
+// Rede menus
+
+// This function controls the whole menu system, by calling the function corresponding to the pretended menu. It also calls loadInfo and storeInfo
 int Rede::menu_system()
 {
 	/* The system in this function manages the interactions between menus, i.e., the transitions between them
@@ -101,7 +826,8 @@ int Rede::menu_system()
 	return 0;
 }
 
-int Rede::menu_start() //função correspondente ao menu inicial da rede
+// Rede starting menu
+int Rede::menu_start()
 {
 	cout << endl << endl << "            ______ _ _              _                _" << endl;
 	cout << "            | ___ (_) |            | |              (_)" << endl;
@@ -122,13 +848,16 @@ int Rede::menu_start() //função correspondente ao menu inicial da rede
 	get_option(option, 0, 3);
 	string pass;
 
-	switch (option)					//elaborar as opções que o utilizador possa tomar e as consequências das mesmas(menus onde vai dar)
+	switch (option)
 	{
+	// Registered user menu
 	case 1:
 		return MENU_regUsr;
+	// Occasional user menu
 	case 2:
 		return MENU_ocUsr;
-	case 3:							//menu de configuração necessita de acesso priveligiado (password)
+	// Management menu. Requires access by password
+	case 3:
 		cout << endl << " Please insert system password : ";
 		pass = readPassword();
 		if (pass == sys_password)
@@ -143,7 +872,8 @@ int Rede::menu_start() //função correspondente ao menu inicial da rede
 	return MENU_exit;
 }
 
-int Rede::menu_regUsr() //menu onde se possibilita a entrada do utilizador(que se nao for registado tem a possibilidade de o fazer)
+// Registered user menu
+int Rede::menu_regUsr()
 {
 	print_menu_header();
 
@@ -163,12 +893,12 @@ int Rede::menu_regUsr() //menu onde se possibilita a entrada do utilizador(que s
 		}
 	}
 
-	if (existe) //se o nome do utilizador for válido pede a password do sistema
+	if (existe) // If user exists, authenticates it
 	{
 		cout << " Password : ";
 		string pass = readPassword();
 
-		if (utilizadores[index]->getPassword() == pass) //se pass se verificar acede ao próximo menu
+		if (utilizadores[index]->getPassword() == pass)
 		{
 			while (true)
 			{
@@ -177,29 +907,29 @@ int Rede::menu_regUsr() //menu onde se possibilita a entrada do utilizador(que s
 		}
 		else
 		{
-			cout << endl << endl << " Wrong password!" << endl << endl; //se pass não for a correta mostra mensagem de erro
+			cout << endl << endl << " Wrong password!" << endl << endl; // wrong password message
 			system("pause");
-			return MENU_start; //volta para o menu inicial
+			return MENU_start;
 		}
 	}
 	else
 	{
-		cout << endl << endl << " No user was found with that name.\n Would you like to create a new one? (Y/N) "; //se o nome de utilizador nao for valido mostra mensagem de erro e pergunta se quer criar um utilizador com esse nome
+		cout << endl << endl << " No user was found with that name.\n Would you like to create a new one? (Y/N) "; // if inexistant user, asks if it should create a new one
 
 		while (true)
 		{
 			char letter = _getch();
-			if (toupper(letter) == 'Y') //se utilizador quer criar um user com o nome dado pressiona "Y"
+			if (toupper(letter) == 'Y') // create new user
 			{
 				int result = createUser(username);
 				if (result == 0)
-					cout << endl << endl << "    User created successfully!" << endl; //se utilizador é criado com sucesso (significa que bool ficou a 0) mostra mensagem de sucesso
+					cout << endl << endl << "    User created successfully!" << endl;
 				else
-					cout << endl << endl << "    An error has occurred while creating user." << endl; ////se utilizador não é criado com sucesso (significa que bool ficou a 1) mostra mensagem de erro
+					cout << endl << endl << "    An error has occurred while creating user." << endl;
 				system("pause");
 				break;
 			}
-			if (toupper(letter) == 'N') //se nao se quer criar utilizador com nome dado o programa volta para o menu inicial
+			if (toupper(letter) == 'N')
 				return MENU_start;
 		}
 	}
@@ -207,6 +937,7 @@ int Rede::menu_regUsr() //menu onde se possibilita a entrada do utilizador(que s
 	return MENU_start;
 }
 
+// Occasional user menu
 int Rede::menu_ocUsr()
 {
 	
@@ -228,6 +959,7 @@ int Rede::menu_ocUsr()
 
 	switch (option)
 	{
+	// Rent a bike
 	case 1:
 		if (postos.size() == 0)
 		{
@@ -238,6 +970,7 @@ int Rede::menu_ocUsr()
 
 		clear_screen();
 		print_menu_header();
+		// Service post selection
 		cout << endl << "===> Select a service post." << endl;
 		for (unsigned int i = 0; i < postos.size(); i++)
 		{
@@ -255,6 +988,7 @@ int Rede::menu_ocUsr()
 			return MENU_ocUsr;
 		}
 
+		// Bike selection
 		cout << endl << "===> Select a bike : " << endl;
 		for (index = 0; index < bikes.size(); index++)
 		{
@@ -266,6 +1000,7 @@ int Rede::menu_ocUsr()
 		get_option(index, 1, bikes.size());
 		index--;
 
+		// Enter name, used to keep track of user
 		cout << endl << " Please enter your name : ";
 		getline(cin, nome);
 
@@ -276,6 +1011,7 @@ int Rede::menu_ocUsr()
 			return MENU_ocUsr;
 		}
 
+		// User credit card
 		cout << " Please enter your credit card number : ";
 		getline(cin, cartao);
 		user = Ut_ocasional(nome, 5, "", cartao);
@@ -286,6 +1022,7 @@ int Rede::menu_ocUsr()
 		*ptr = user;
 		ocasionais.push_back(ptr);
 
+		// Current date
 		cout << " Please enter current date (YYYY/MM/DD) : ";
 		getline(cin, data);
 		if (data.size() != 10)
@@ -308,6 +1045,7 @@ int Rede::menu_ocUsr()
 		cout << endl << " Bike rented" << endl << endl;
 		system("pause");
 		return MENU_start;
+	// Return a bike
 	case 2:
 		cout << endl << "Please enter your name : ";
 		getline(cin, nome);
@@ -325,6 +1063,7 @@ int Rede::menu_ocUsr()
 			return MENU_ocUsr;
 		}
 
+		// Return post selection
 		cout << endl << endl << "===> Select a post to return the bike" << endl;
 		for (unsigned int i = 0; i < postos.size(); i++)
 		{
@@ -390,7 +1129,8 @@ int Rede::menu_ocUsr()
 	return MENU_start;
 }
 
-int Rede::menu_manager() //menu relativo à parte de configurações
+// Management main menu
+int Rede::menu_manager()
 {
 	print_menu_header();
 	cout << "===> Management section" << endl << endl << "Select an option:" << endl;
@@ -407,7 +1147,7 @@ int Rede::menu_manager() //menu relativo à parte de configurações
 	get_option(option, 0, 7);
 	string pass;
 
-	switch (option)//opções de ida para cada uma das escolhas feitas pelo utilizador
+	switch (option)
 	{
 	case 1:
 		return MENU_mngr_supplyers;
@@ -455,9 +1195,8 @@ int Rede::menu_manager() //menu relativo à parte de configurações
 	return MENU_start;
 }
 
-int Rede::menu_regUsr_logged(Utilizador *user)	//menu existente para os utilizadores registados poderem efetuar
-												//todas as ações que pretenderem em relação as bicicletas
-												// (alugar, retornar, etc.) bem como informações da sua conta
+// Registered user menu, after logging in. This menu works slightly differently because it receives as argument the logged user
+int Rede::menu_regUsr_logged(Utilizador *user)
 {
 	while (true)
 	{
@@ -484,6 +1223,7 @@ int Rede::menu_regUsr_logged(Utilizador *user)	//menu existente para os utilizad
 
 		switch (option)
 		{
+		// Rent a bike
 		case 1:
 			reg_ptr = user->ultimoReg();
 			if (reg_ptr != NULL)
@@ -559,6 +1299,7 @@ int Rede::menu_regUsr_logged(Utilizador *user)	//menu existente para os utilizad
 			cout << endl << " Bike rented" << endl << endl;
 			system("pause");
 			continue;
+		// Return a bike
 		case 2:
 			reg_ptr = user->ultimoReg();
 			if ((reg_ptr == NULL) || (reg_ptr->ID_posto_chegada != 0) || (reg_ptr->ID_posto_origem == 0))
@@ -636,6 +1377,7 @@ int Rede::menu_regUsr_logged(Utilizador *user)	//menu existente para os utilizad
 			cout << endl << endl << " Bike returned." << endl << endl;
 			system("pause");
 			continue;
+		// Change user password
 		case 3:
 			cout << endl << " Enter old password : ";
 
@@ -652,6 +1394,7 @@ int Rede::menu_regUsr_logged(Utilizador *user)	//menu existente para os utilizad
 			cout << endl << " Password changed successfully!" << endl;
 			system("pause");
 			break;
+		// See user rental log
 		case 4:
 			regs = user->getRegs();
 			if (regs.size() == 0)
@@ -671,6 +1414,7 @@ int Rede::menu_regUsr_logged(Utilizador *user)	//menu existente para os utilizad
 				system("pause");
 			}
 			break;
+		// See monthly service cost
 		case 5:
 			cout << endl << " Monthly cost is 40 euros for all registered users." << endl << endl;
 			system("pause");
@@ -683,6 +1427,7 @@ int Rede::menu_regUsr_logged(Utilizador *user)	//menu existente para os utilizad
 	return MENU_start;
 }
 
+// Simple function to print the "Bike Sharing" menu header
 void Rede::print_menu_header()
 {
 	cout << "      __          ___     __             __          __  " << endl;
@@ -690,6 +1435,7 @@ void Rede::print_menu_header()
 	cout << "     |__) | |  \\ |___    .__/ |  | /~~\\ |  \\ | | \\| \\__>" << endl << endl;
 }
 
+// Simple function to print "Goodbye" upon program exit
 void Rede::menu_exit_prog()
 {
 	cout << endl << endl << "           _____                 _     ____" << endl;
@@ -702,33 +1448,7 @@ void Rede::menu_exit_prog()
 	cout << "                                            |___/      " << endl << endl << endl << endl;
 }
 
-int Rede::createUser(string nome)
-{
-	cout << endl << endl << " Enter user age : ";
-	int age;
-
-	while (true)
-	{
-		age = readInt();
-		if ((age <= 0) || (age > 120))
-		{
-			cout << endl << "ERROR : Invalid age. Try again." << endl << " Enter your age : ";
-			continue;
-		}
-		break;
-	}
-
-	cout << endl << endl << " Enter user password : ";
-	string pass = readPassword();
-
-	Utilizador usr(nome, age, pass);
-	Utilizador *ptr = new Utilizador;
-	*ptr = usr;
-	utilizadores.push_back(ptr);
-	cout << endl << "User created sucessfully!" << endl;
-	return 0;
-}
-
+// Management menu for supplying companies
 int Rede::menu_mngr_supplyers()
 {
 	print_menu_header();
@@ -750,6 +1470,7 @@ int Rede::menu_mngr_supplyers()
 
 	switch (option)
 	{
+	// List all supplyers
 	case 1:
 		if (empresas.size() == 0)
 		{
@@ -767,6 +1488,7 @@ int Rede::menu_mngr_supplyers()
 		system("pause");
 		return MENU_mngr_supplyers;
 
+	// Add new supplyer
 	case 2:
 		cout << endl << " Insert new supplier's name : ";
 		getline(cin, nome);
@@ -788,6 +1510,7 @@ int Rede::menu_mngr_supplyers()
 		system("pause");
 		return MENU_mngr_supplyers;
 
+	// Edit a supplyer
 	case 3:
 		cout << endl << " Please insert name of supplyer to edit : ";
 		getline(cin, nome);
@@ -820,6 +1543,7 @@ int Rede::menu_mngr_supplyers()
 		system("pause");
 		return MENU_mngr_supplyers;
 
+	// Delete a supplyer
 	case 4:
 		cout << endl << " Insert the name of the supplier to delete : ";
 		getline(cin, nome);
@@ -870,6 +1594,7 @@ int Rede::menu_mngr_supplyers()
 		system("pause");
 		return MENU_mngr_supplyers;
 
+	// List all bikes for a supplyer
 	case 5:
 		cout << endl << " Insert the name of the supplier to list : ";
 		getline(cin, nome);
@@ -912,6 +1637,7 @@ int Rede::menu_mngr_supplyers()
 	return MENU_manager;
 }
 
+// Management menu for bikes
 int Rede::menu_mngr_bikes()
 {
 	print_menu_header();
@@ -934,6 +1660,7 @@ int Rede::menu_mngr_bikes()
 
 	switch (option)
 	{
+	// List all bikes on registered companies
 	case 1:	
 		imprimiu = false;
 		for (unsigned int i = 0; i < empresas.size(); i++)
@@ -957,6 +1684,7 @@ int Rede::menu_mngr_bikes()
 		cout << endl << endl;
 		system("pause");
 		return MENU_mngr_bikes;
+	// List all available bikes
 	case 2:
 		for (unsigned int i = 0; i < postos.size(); i++)
 		{
@@ -977,6 +1705,7 @@ int Rede::menu_mngr_bikes()
 		cout << endl << endl;
 		system("pause");
 		return MENU_mngr_bikes;
+	// List all broken bikes
 	case 3:
 		for (unsigned int i = 0; i < postos.size(); i++)
 		{
@@ -997,6 +1726,7 @@ int Rede::menu_mngr_bikes()
 		cout << endl << endl;
 		system("pause");
 		return MENU_mngr_bikes;
+	// List currently rented bikes
 	case 4:
 		clear_screen();
 		print_menu_header();
@@ -1026,6 +1756,7 @@ int Rede::menu_mngr_bikes()
 		cout << endl;
 		system("pause");
 		return MENU_mngr_bikes;
+	// Repair all bikes
 	case 5:
 		for (unsigned int i = 0; i < postos.size(); i++)
 			postos[i]->arranja_bicicletas();
@@ -1033,11 +1764,13 @@ int Rede::menu_mngr_bikes()
 		cout << endl << " All bikes were repaired." << endl << endl;
 		system("pause");
 		return MENU_mngr_bikes;
+	// Create a new bike
 	case 6:
 		create_add_bike();
 		cout << endl << endl;
 		system("pause");
 		return MENU_mngr_bikes;
+	// Remove a bike
 	case 7:
 		cout << endl << " Please insert bike ID : ";
 		id = readInt();
@@ -1090,6 +1823,7 @@ int Rede::menu_mngr_bikes()
 	return MENU_manager;
 }
 
+// Management menu for rental logs
 int Rede::menu_mngr_logs()
 {
 	print_menu_header();
@@ -1112,6 +1846,7 @@ int Rede::menu_mngr_logs()
 
 	switch (option)
 	{
+	// Show the time a user has rented a bike
 	case 1:
 		cout << " Enter the name of the user : ";
 		getline(cin, name);
@@ -1138,6 +1873,7 @@ int Rede::menu_mngr_logs()
 		cout << " There is no user with that name" << endl << endl;
 		system("pause");
 		return MENU_mngr_logs;
+	// Show money to charge a user
 	case 2:
 		cout << " Enter the name of the user : ";
 		getline(cin, name);
@@ -1155,6 +1891,7 @@ int Rede::menu_mngr_logs()
 		cout << " There is no user with that name" << endl << endl;
 		system("pause");
 		return MENU_mngr_logs;
+	// Show number of users served by a company
 	case 3:
 		cout << " Enter the name of the company : ";
 		getline(cin, name);
@@ -1173,6 +1910,7 @@ int Rede::menu_mngr_logs()
 		cout << " There is no company with that name" << endl << endl;
 		system("pause");
 		return MENU_mngr_logs;
+	//Show ongoing rentals
 	case 4:
 		clear_screen();
 		print_menu_header();
@@ -1213,6 +1951,7 @@ int Rede::menu_mngr_logs()
 		cout << endl;
 		system("pause");
 		return MENU_mngr_logs;
+	// Show most frequent service user
 	case 5:
 		if (utilizadores.size() == 0)
 			cout << " There are no registered users. This log is impossible to calculate." << endl << endl;
@@ -1239,6 +1978,7 @@ int Rede::menu_mngr_logs()
 	return MENU_manager;
 }
 
+// Management menu for service posts
 int Rede::menu_mngr_spots()
 {
 	print_menu_header();
@@ -1262,6 +2002,7 @@ int Rede::menu_mngr_spots()
 
 	switch (option)
 	{
+	// Show all service posts
 	case 1:
 		if (postos.size() == 0)
 		{
@@ -1278,7 +2019,7 @@ int Rede::menu_mngr_spots()
 		cout << endl;
 		system("pause");
 		return MENU_mngr_spots;
-
+	// Create new service post
 	case 2:
 		cout << endl << " Enter new post ID : ";
 		id = readInt();
@@ -1303,6 +2044,7 @@ int Rede::menu_mngr_spots()
 		cout << endl << " Service post added" << endl << endl;
 		system("pause");
 		return MENU_mngr_spots;
+	// Edit a service post
 	case 3:
 		cout << endl << " Enter new post ID : ";
 		id = readInt();
@@ -1354,6 +2096,7 @@ int Rede::menu_mngr_spots()
 		cout << " Service post successfully edited" << endl << endl;
 		system("pause");
 		return MENU_mngr_spots;
+	// Delete a service post
 	case 4:
 		cout << endl << " Enter post ID : ";
 		id = readInt();
@@ -1393,6 +2136,7 @@ int Rede::menu_mngr_spots()
 		cout << endl << " Service post deleted" << endl << endl;
 		system("pause");
 		return MENU_mngr_spots;
+	// Repair a specific bike
 	case 5:
 		cout << endl << " Enter post ID : ";
 		id = readInt();
@@ -1426,7 +2170,7 @@ int Rede::menu_mngr_spots()
 
 		system("pause");
 		return MENU_mngr_spots;
-
+	// Repair all bikes in a service post
 	case 6:
 		cout << endl << " Enter post ID : ";
 		id = readInt();
@@ -1445,7 +2189,7 @@ int Rede::menu_mngr_spots()
 		cout << endl << " There is no post with that id." << endl << endl;
 		system("pause");
 		return MENU_mngr_spots;
-
+	// List all bikes in a post
 	case 7:
 		cout << endl << " Enter post ID : ";
 		id = readInt();
@@ -1508,6 +2252,7 @@ int Rede::menu_mngr_spots()
 	return MENU_manager;
 }
 
+// Management menu for users
 int Rede::menu_mngr_users()
 {
 	print_menu_header();
@@ -1527,8 +2272,7 @@ int Rede::menu_mngr_users()
 
 	switch (option)
 	{
-	case 0:
-		return MENU_manager;
+	// List all registered users
 	case 1:
 		if (utilizadores.size() == 0)
 		{
@@ -1547,6 +2291,7 @@ int Rede::menu_mngr_users()
 		cout << endl;
 		system("pause");
 		return MENU_mngr_users;
+	// Create new registered user
 	case 2:
 		cout << endl << "Please enter new user name : ";
 		getline(cin, nome);
@@ -1562,6 +2307,7 @@ int Rede::menu_mngr_users()
 
 		createUser(nome);
 		return MENU_mngr_users;
+	// Edit a registered user
 	case 3:
 		cout << endl << " Enter name of user to edit : ";
 		getline(cin, nome);
@@ -1597,6 +2343,7 @@ int Rede::menu_mngr_users()
 		cout << endl << " User successfully edited." << endl << endl;
 		system("pause");
 		return MENU_mngr_users;
+	// Delete a registered user
 	case 4:
 		cout << endl << " Enter name of user to delete : ";
 		getline(cin, nome);
@@ -1675,575 +2422,5 @@ int Rede::menu_mngr_users()
 		break;
 	}
 
-	return MENU_start;
-}
-
-bool Rede::existeUtilizador(string nome)
-{
-	for (unsigned int i = 0; i < utilizadores.size(); i++)
-	{
-		if (utilizadores[i]->getNome() == nome)
-			return true;
-	}
-
-	for (unsigned int i = 0; i < ocasionais.size(); i++)
-	{
-		if (ocasionais[i]->getNome() == nome)
-			return true;
-	}
-
-	return false;
-}
-
-int Rede::tipoUser(string nome)
-{
-	for (unsigned int i = 0; i < utilizadores.size(); i++)
-	{
-		if (utilizadores[i]->getNome() == nome)
-			return utilizadores[i]->getTipo();
-	}
-
-	for (unsigned int i = 0; i < ocasionais.size(); i++)
-	{
-		if (ocasionais[i]->getNome() == nome)
-			ocasionais[i]->getTipo();
-	}
-
-	return -1;
-}
-
-string Rede::is_busy(int id_bici, bool print) const
-{
-	for (unsigned int i = 0; i < curr_rentals.size(); i++)
-	{
-		if (rented_bikes[i]->getID() == id_bici)
-		{
-			if (print)
-				cout << " This bike is currently rented by occasional user " << curr_rentals[i]->nome_utilizador << endl;
-			return curr_rentals[i]->nome_utilizador;
-		}
-	}
-
-	for (unsigned int i = 0; i < utilizadores.size(); i++)
-	{
-		Registo *reg_ptr;
-		reg_ptr = utilizadores[i]->ultimoReg();
-
-		if ((reg_ptr != NULL) && (reg_ptr->ID_Bicicleta == id_bici) && (reg_ptr->ID_posto_chegada == 0))
-		{
-			if (print)
-				cout << " This bike is currently rented by registered user " << utilizadores[i]->getNome() << endl;
-			return utilizadores[i]->getNome();;
-		}
-	}
-
-	return "";
-}
-
-int Rede::create_add_bike()
-{
-	clear_screen();
-	print_menu_header();
-	cout << endl << " Please enter bike ID : ";
-	int id = readInt();
-	vector<Bicicleta *> bikes;
-
-	for (unsigned int i = 0; i < empresas.size(); i++)
-	{
-		bikes = empresas[i].getBicicletas();
-		for (unsigned int j = 0; j < bikes.size(); j++)
-		{
-			if (bikes[j]->getID() == id)
-			{
-				cout << endl << " There already is a bike with that ID";
-				return -1;
-			}
-		}
-	}
-
-	cout << endl << endl << " Please select a bike type : " << endl;
-	cout << " 1 - Eletrica" << endl;
-	cout << " 2 - Com cesto" << endl;
-	cout << " 3 - Sem cesto" << endl;
-	cout << " 4 - Passeio" << endl;
-	cout << " 5 - Montanha" << endl;
-	cout << " 6 - Corrida" << endl;
-
-	int option, preco, velocidades;
-	get_option(option, 1, 6);
-	string tipo, tamanho, empresa;
-
-	switch (option)
-	{
-	case 1:
-		tipo = "eletrica";
-		break;
-	case 2:
-		tipo = "com cesto";
-		break;
-	case 3:
-		tipo = "sem cesto";
-		break;
-	case 4:
-		tipo = "passeio";
-		break;
-	case 5:
-		tipo = "montanha";
-		break;
-	case 6:
-		tipo = "corrida";
-		break;
-	}
-
-	cout << endl << endl << " Please select a bike size : " << endl;
-	cout << " 1 - Crianca" << endl;
-	cout << " 2 - Adulto" << endl;
-
-	get_option(option, 1, 2);
-
-	switch (option)
-	{
-	case 1:
-		tamanho = "crianca";
-		break;
-	case 2:
-		tamanho = "adulto";
-		break;
-	}
-	
-	cout << endl << endl << " Please indicate bike shifts (1-5)  : ";
-
-	get_option(option, 1, 5);
-
-	velocidades = option;
-
-	cout << endl << endl << " Please indicate a bike price : ";
-	preco = readInt();
-
-	cout << endl << " Please indicate a company to associate the bike : ";
-	getline(cin, empresa);
-
-	int index;
-	bool found = false;
-
-	for (unsigned int i = 0; i < empresas.size(); i++)
-	{
-		if (empresas[i].getNome() == empresa)
-		{
-			found = true;
-			index = i;
-		}
-	}
-
-	if (!found)
-	{
-		cout << endl << " No company was found with that name.";
-		return -1;
-	}
-
-	int posto_id;
-
-	cout << endl << " Please indicate the id of the post to insert the bike : ";
-	posto_id = readInt();
-	found = false;
-
-	for (unsigned int i = 0; i < postos.size(); i++)
-	{
-		if (postos[i]->getID() == posto_id)
-		{
-			found = true;
-			if (postos[i]->getEspacoLivre() <= 0)
-			{
-				cout << " That post has no room for one more bike.";
-				return -1;
-			}
-
-			Bicicleta bike(id, tipo, tamanho, velocidades, false, preco);
-			bike.setEmpresa(empresa);
-			Bicicleta *bike_ptr = new Bicicleta;
-			*bike_ptr = bike;
-
-			empresas[index].adicionaBicicleta(bike_ptr);
-			postos[i]->adicionabicicleta(bike_ptr);
-		}
-	}
-
-	if (!found)
-	{
-		cout << endl << " No service post with that ID was found";
-		return -1;
-	}
-
-	cout << endl << " Bike added successfully.";
-	return 0;
-}
-
-vector<Registo *> Rede::get_regs() const
-{
-	vector<Registo *> result;
-
-	for (unsigned int i = 0; i < postos.size(); i++)
-	{
-		insert_no_repeat(result, postos[i]->getUtlizacao());
-	}
-
-	for (unsigned int i = 0; i < utilizadores.size(); i++)
-	{
-		insert_no_repeat(result, utilizadores[i]->getRegs());
-	}
-
-	for (unsigned int i = 0; i < rented_bikes.size(); i++)
-	{
-		insert_no_repeat(result, rented_bikes[i]->getRegsBicis());
-	}
-
-	for (unsigned int i = 0; i < rented_bikes_freq.size(); i++)
-	{
-		insert_no_repeat(result, rented_bikes_freq[i]->getRegsBicis());
-	}
-
-	return result;
-}
-
-void Rede::assign_regs(vector<Registo *> &regs)
-{
-	for (unsigned int i = 0; i < postos.size(); i++)
-	{
-		for (unsigned int j = 0; j < regs.size(); j++)
-		{
-			if ((regs[j]->ID_posto_chegada == postos[i]->getID()) || (regs[j]->ID_posto_origem == postos[i]->getID()))
-				postos[i]->adicionaUtilizacao(regs[j]);
-		}
-
-		vector<Bicicleta *> bikes = postos[i]->getBicicletas();
-
-		for (unsigned int j = 0; j < bikes.size(); j++)
-		{
-			for (unsigned int k = 0; k < regs.size(); k++)
-			{
-				if (regs[k]->ID_Bicicleta == bikes[j]->getID())
-					bikes[j]->adicionaRegisto(regs[k]);
-			}
-		}
-	}
-
-	for (unsigned int i = 0; i < utilizadores.size(); i++)
-	{
-		for (unsigned int j = 0; j < regs.size(); j++)
-		{
-			if (regs[j]->nome_utilizador == utilizadores[i]->getNome())
-				utilizadores[i]->adicionaRegisto(regs[j]);
-		}
-	}
-
-	for (unsigned int i = 0; i < rented_bikes.size(); i++)
-	{
-		for (unsigned int j = 0; j < regs.size(); j++)
-		{
-			if (regs[j]->ID_Bicicleta == rented_bikes[i]->getID())
-				rented_bikes[i]->adicionaRegisto(regs[j]);
-		}
-	}
-
-	for (unsigned int i = 0; i < rented_bikes_freq.size(); i++)
-	{
-		for (unsigned int j = 0; j < regs.size(); j++)
-		{
-			if (regs[j]->ID_Bicicleta == rented_bikes_freq[i]->getID())
-				rented_bikes_freq[i]->adicionaRegisto(regs[j]);
-		}
-	}
-}
-
-void Rede::reset()
-{
-	empresas.clear();
-	postos.clear();
-	utilizadores.clear();
-	ocasionais.clear();
-	curr_rentals.clear();
-	rented_bikes.clear();
-	rented_bikes_freq.clear();
-	sys_password = "";
-}
-
-void Rede::storeInfo()
-{
-	/// Main file ///////////////////////////////////////////////////////////
-	ofstream main_file("rede.txt");
-
-	main_file << sys_password << endl;
-	for (unsigned int i = 0; i < empresas.size(); i++)
-	{
-		main_file << empresas[i].getNome() << endl;
-	}
-
-	main_file << "-" << endl;
-	vector<Registo *> all_regs = get_regs();
-
-	for (unsigned int i = 0; i < all_regs.size(); i++)
-	{
-		string temp = all_regs[i]->get_str();
-		main_file << temp;
-	}
-
-	main_file << "#" << endl;
-
-	for (unsigned int i = 0; i < curr_rentals.size(); i++)
-	{
-		string temp = curr_rentals[i]->get_str();
-		main_file << temp;
-	}
-
-	main_file.close();
-
-	/// Spots file ///////////////////////////////////////////////////////////
-
-	ofstream spots_file("rede_spots.txt");
-
-	for (unsigned int i = 0; i < postos.size(); i++)
-	{
-		spots_file << postos[i]->getID() << endl << postos[i]->getLotacao() << endl;
-		vector<Bicicleta *> bicis = postos[i]->getBicicletas();
-
-		for (unsigned int j = 0; j < bicis.size(); j++)
-		{
-			spots_file << bicis[j]->get_str();
-		}
-		spots_file << "#" << endl;
-	}
-
-	spots_file.close();
-
-	/// Users file ///////////////////////////////////////////////////////////
-
-	ofstream user_file("rede_user.txt");
-
-	for (unsigned int i = 0; i < utilizadores.size(); i++)
-	{
-		user_file << utilizadores[i]->get_str();
-	}
-	for (unsigned int i = 0; i < ocasionais.size(); i++)
-	{
-		user_file << ocasionais[i]->get_str();
-	}
-
-	user_file.close();
-
-	/// Rented bikes file ///////////////////////////////////////////////////////////
-
-	ofstream bike_file("rede_bikes.txt");
-
-	for (unsigned int i = 0; i < rented_bikes.size(); i++)
-	{
-		bike_file << rented_bikes[i]->get_str();
-	}
-	bike_file << "#" << endl;
-	for (unsigned int i = 0; i < rented_bikes_freq.size(); i++)
-	{
-		bike_file << rented_bikes_freq[i]->get_str();
-	}
-
-	bike_file.close();
-}
-
-void Rede::loadInfo()
-{
-	/// Main file ///////////////////////////////////////////////////////////
-
-	ifstream main_file("rede.txt");
-
-	string temp;
-
-	getline(main_file, temp);
-	sys_password = temp;
-
-	while (main_file.peek() != ((int) '-'))
-	{
-		getline(main_file, temp);
-		Empresa emp(temp);
-		empresas.push_back(temp);
-	}
-
-	vector<Registo *> all_regs;
-
-	getline(main_file, temp);  // Para remover '-'
-
-	while (main_file.peek() != '#')
-	{
-		stringstream ss(ios_base::app | ios_base::out);
-		string temp;
-		ss.clear();
-		for (unsigned int i = 0; i < 7; i++)
-		{
-			getline(main_file, temp);
-			ss << temp << endl;
-		}
-		Registo reg, *reg_ptr;
-		reg.make_from_str(ss.str());
-		reg_ptr = new Registo;
-		*reg_ptr = reg;
-		all_regs.push_back(reg_ptr);
-	}
-
-	getline(main_file, temp);  // Para remover '#'
-
-	while ((main_file.peek() != EOF) || (!main_file.eof()))
-	{
-		stringstream ss;
-		string temp;
-		ss.clear();
-		for (unsigned int i = 0; i < 7; i++)
-		{
-			getline(main_file, temp);
-			ss << temp << endl;
-		}
-		Registo reg, *reg_ptr;
-		reg.make_from_str(ss.str());
-		reg_ptr = new Registo;
-		*reg_ptr = reg;
-		curr_rentals.push_back(reg_ptr);
-	}
-
-	main_file.close();
-
-	/// Spots file ///////////////////////////////////////////////////////////
-
-	ifstream spots_file("rede_spots.txt");
-
-
-	while ((spots_file.peek() != EOF) && (!spots_file.eof()))
-	{
-		string temp;
-		int id, lotacao;
-		getline(spots_file, temp);
-		id = str_to_int(temp);
-		getline(spots_file, temp);
-		lotacao = str_to_int(temp);
-
-		PostoServico posto(id, 0, lotacao);
-		PostoServico *posto_ptr;
-		posto_ptr = new PostoServico;
-		*posto_ptr = posto;
-
-		if (spots_file.peek() == '#')
-		{
-			postos.push_back(posto_ptr);
-			getline(spots_file, temp);  // para remover '#'
-			continue;
-		}
-
-		while ((spots_file.peek() != '#') && (spots_file.peek() != EOF) && (!spots_file.eof()))
-		{
-			stringstream ss;
-			for (int i = 0; i < 7; i++)
-			{
-				getline(spots_file, temp);
-				ss << temp << endl;
-			}
-			Bicicleta bici, *bici_ptr;
-			bici.make_str(ss.str());
-			bici_ptr = new Bicicleta;
-			*bici_ptr = bici;
-			posto_ptr->adicionabicicleta(bici_ptr);
-
-			for (unsigned int i = 0; i < empresas.size(); i++)
-			{
-				if (empresas[i].getNome() == bici_ptr->getEmpresa())
-					empresas[i].adicionaBicicleta(bici_ptr);
-			}
-		}
-		postos.push_back(posto_ptr);
-		getline(spots_file, temp); // para remover '#'
-	}
-
-	spots_file.close();
-
-	/// Users file ///////////////////////////////////////////////////////////
-
-	ifstream user_file("rede_user.txt");
-	string nome, pass, cartao;
-	int idade, tipo;
-
-	while ((user_file.peek() != EOF) && (!user_file.eof()))
-	{
-		getline(user_file, nome);
-		getline(user_file, pass);
-		getline(user_file, temp);
-		idade = str_to_int(temp);
-		getline(user_file, temp);
-		if (temp == "0")
-		{
-			Utilizador user(nome, idade, pass);
-			Utilizador *user_ptr;
-			user_ptr = new Utilizador;
-			*user_ptr = user;
-			utilizadores.push_back(user_ptr);
-		}
-		else
-		{
-			getline(user_file, cartao);
-			Ut_ocasional oc(nome, idade, pass, cartao);
-			Ut_ocasional *oc_ptr;
-			oc_ptr = new Ut_ocasional;
-			*oc_ptr = oc;
-			ocasionais.push_back(oc_ptr);
-		}
-	}
-
-	user_file.close();
-
-	/// Rented bikes file ///////////////////////////////////////////////////////////
-
-	ifstream bike_file("rede_bikes.txt");
-
-	while (bike_file.peek() != '#')
-	{
-		stringstream ss;
-		ss.clear();
-		for (int i = 0; i < 7; i++)
-		{
-			getline(bike_file, temp);
-			ss << temp << endl;
-		}
-		Bicicleta bici, *bici_ptr;
-		bici.make_str(ss.str());
-		bici_ptr = new Bicicleta;
-		*bici_ptr = bici;
-		rented_bikes.push_back(bici_ptr);
-
-		for (unsigned int i = 0; i < empresas.size(); i++)
-		{
-			if (empresas[i].getNome() == bici_ptr->getEmpresa())
-				empresas[i].adicionaBicicleta(bici_ptr);
-		}
-	}
-
-	getline(bike_file, temp); // para remover '#'
-
-	while ((bike_file.peek() != EOF) || (!bike_file.eof()))
-	{
-		stringstream ss;
-		ss.clear();
-		for (int i = 0; i < 7; i++)
-		{
-			getline(bike_file, temp);
-			ss << temp << endl;
-		}
-		Bicicleta bici, *bici_ptr;
-		bici.make_str(ss.str());
-		bici_ptr = new Bicicleta;
-		*bici_ptr = bici;
-		rented_bikes_freq.push_back(bici_ptr);
-
-		for (unsigned int i = 0; i < empresas.size(); i++)
-		{
-			if (empresas[i].getNome() == bici_ptr->getEmpresa())
-				empresas[i].adicionaBicicleta(bici_ptr);
-		}
-	}
-
-	bike_file.close();
-
-	assign_regs(all_regs);
+	return MENU_manager;
 }

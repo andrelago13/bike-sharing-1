@@ -9,6 +9,7 @@
 
 using namespace std;
 
+// Constants for use in menu functions. This values are used for a menu to indicate which menu should be loaded next
 #define MENU_exit -1
 #define MENU_start 0
 #define MENU_regUsr 1
@@ -22,32 +23,36 @@ using namespace std;
 
 class Rede
 {
-	vector <Empresa> empresas;
-	vector<PostoServico*> postos;
-	vector<Utilizador*> utilizadores;
-	vector<Ut_ocasional*> ocasionais;
-	vector<Registo*> curr_rentals;
-	vector<Bicicleta*> rented_bikes;
-	vector<Bicicleta*> rented_bikes_freq;
-	string sys_password;
+	vector <Empresa> empresas;				// stores all Empresa objects
+	vector<PostoServico*> postos;			// stores all PostoServico objects, and therefore, bikes assigned to posts
+	vector<Utilizador*> utilizadores;		// stores all Utilizador objects
+	vector<Ut_ocasional*> ocasionais;		// stores all Ut_ocasional objects
+	vector<Registo*> curr_rentals;			// stores all Registo objects corresponding to ongoing rentals by occasional users
+	vector<Bicicleta*> rented_bikes;		// stores all Bicicleta objects corresponding to bikes currently rented by occasional users
+	/* The last 3 vectors are associated with each other. Index i of all vectors corresponds to the same
+	ongoing rental by an occasional user*/
+	vector<Bicicleta*> rented_bikes_freq;	// stores all Bicicleta objects corresponding to bikes currently rented by occasional users
+	string sys_password;					// Rede management function's password
 
 public:
 	Rede() : sys_password("") {}
 	~Rede();
-	void loadInfo(); // Load all Rede info from text files
-	void storeInfo(); // Store all Rede info into text files
 
 	// Rede functions
+	void loadInfo();
+	void storeInfo();
 	int addUser(Utilizador user);
 	int createUser(string nome);
+	void addPosto(PostoServico *posto) { postos.push_back(posto); }
+	int create_add_bike();
+	void reset();
+	void assign_regs(vector<Registo *> &regs);
+
+	// Auxiliary functions
 	bool existeUtilizador(string nome);
 	int tipoUser(string nome);
-	void addPosto(PostoServico *posto) { postos.push_back(posto); }
 	string is_busy(int id_bici, bool print) const;
-	int create_add_bike();
 	vector<Registo *> get_regs() const;
-	void assign_regs(vector<Registo *> &regs);
-	void reset();
 
 	// Menu system base functions
 	int menu_system();
