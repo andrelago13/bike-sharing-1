@@ -266,6 +266,7 @@ string Ut_ocasional::get_str() const
 
 /*!
 \brief Make a user from a string that represents it (in this case, a Ut_ocasional user)
+\param user - string with a user
 This function is used in Rede::loadInfo(), because it makes a Ut_ocasional object from a multiple line string that contains all it's information
 except for the rental logs
 */
