@@ -19,7 +19,7 @@ Data::Data() : ano(0), mes(0), dia(0) {}
 \param mes - New object's month
 \param dia - New object's day
 */
-Data::Data(unsigned int ano, unsigned int mes, unsigned int dia) : ano(ano), mes(mes), dia(dia) {}/
+Data::Data(unsigned int ano, unsigned int mes, unsigned int dia) : ano(ano), mes(mes), dia(dia) {}
 
 
 /*!
