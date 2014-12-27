@@ -6,6 +6,7 @@
 #include "Utilizador.h"
 #include "Empresa.h"
 #include "Bicicleta.h"
+#include <boost/tr1/unordered_set.hpp>
 
 using namespace std;
 
@@ -20,6 +21,22 @@ using namespace std;
 #define MENU_mngr_bikes 6
 #define MENU_mngr_users 7
 #define MENU_mngr_logs 8
+
+#define USER_MONTHS_LIMIT 12
+
+struct hUtilizador {
+
+	int operator()(const Utilizador& v1) const{
+		return v1.getPassword().size() * v1.getIdade();
+	}
+
+	bool operator()(const Utilizador& v1, const Utilizador& v2) const {
+		return v1 == v2;
+	}
+
+};
+
+typedef tr1::unordered_set<Utilizador, hUtilizador, hUtilizador> hashUtilizador;
 
 
 /*! \class Rede
@@ -41,6 +58,10 @@ class Rede
 	vector<Bicicleta*> rented_bikes_freq;	// stores all Bicicleta objects corresponding to bikes currently rented by occasional users
 	string sys_password;					// Rede management function's password
 
+	// Part 2 of the project
+
+	hashUtilizador util_antigos;
+
 public:
 	/*!
 	\brief Rede default constructor
@@ -61,6 +82,7 @@ public:
 	int create_add_bike();
 	void reset();
 	void assign_regs(vector<Registo *> &regs);
+	void update_old_users(Data data_atual);
 
 	// Auxiliary functions
 	bool existeUtilizador(string nome);

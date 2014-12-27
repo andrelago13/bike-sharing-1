@@ -26,6 +26,7 @@ public:
 	Data(string date);
 	string getDataStr() const;
 	friend int dif_dias(Data d1, Data d2);
+	friend int dif_meses(Data d1, Data d2);
 	friend bool operator<(const Data data1, const Data data2);
 	friend bool operator==(const Data data1, const Data data2);
 	friend ostream& operator<<(ostream &o, const Data &data);

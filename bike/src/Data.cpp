@@ -129,6 +129,21 @@ int dif_dias(Data d1, Data d2)
 	return dias;
 }
 
+int dif_meses(Data d1, Data d2)
+{
+	int meses = 0;
+	if (d1 < d2)
+	{
+		meses = (d2.ano - d1.ano) * 12 + d2.mes - d1.mes;
+	}
+	else
+	{
+		meses = (d1.ano - d2.ano) * 12 + d1.mes - d2.mes;
+	}
+
+	return meses;
+}
+
 /*!
 \brief Constructor of Date from a string
 \param date - string with a date in format YYYY/MM/DD

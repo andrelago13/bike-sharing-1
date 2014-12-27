@@ -20,6 +20,8 @@ class Utilizador
 protected:
 	string nome;
 	string password;
+	string morada;
+	int contacto;
 	unsigned int idade;
 	vector <Registo*> registos;
 	int tipo; // 0 se frequente, 1 se ocasional
@@ -27,21 +29,29 @@ public:
 	/*!
 	\brief Default Utilizador constructos
 	*/
-	Utilizador() : nome(""), password(""), idade(0), tipo(0) {}
+	Utilizador() : nome(""), password(""), idade(0), tipo(0), contacto(0) {}
 	/*!
-	\brief Utilizador constructor without password
+	\brief Utilizador constructor without password or contact
 	*/
-	Utilizador(string name, int age) : nome(name), idade(age), password(""), tipo(0) {}
+	Utilizador(string name, int age) : nome(name), idade(age), password(""), tipo(0), contacto(0) {}
+	/*!
+	\brief Utilizador constructor without contact
+	*/
+	Utilizador(string name, int age, string pass) : nome(name), idade(age), password(pass), tipo(0), contacto(0) {}
 	/*!
 	\brief Utilizador complete constructor
 	*/
-	Utilizador(string name, int age, string pass) : nome(name), idade(age), password(pass), tipo(0) {}
+	Utilizador(string name, int age, string pass, int num, string addr) : nome(name), idade(age), password(pass), tipo(0), contacto(num), morada(addr) {}
 	void setNome(string nome);
 	void setIdade(int idade);
 	string getNome() const;
 	int getIdade() const;
 	vector <Registo *> getRegs() const;
 	void setRegs(vector <Registo *> regs);
+	void setMorada(string addr) { morada = addr; }
+	void setContacto(int num) { contacto = num; }
+	string getMorada() const { return morada; }
+	int getContacto() const { return contacto; }
 	Registo* ultimoReg() const;
 	/*!
 	\brief Get the password of a user
@@ -54,7 +64,7 @@ public:
 	*/
 	void setPassword(string pass) { password = pass; }
 	bool operator==(string name);
-	bool operator==(Utilizador user);
+	bool operator==(const Utilizador user) const;
 	void operator=(Utilizador user);
 	int getTipo() { return tipo; }
 	virtual int getCusto();

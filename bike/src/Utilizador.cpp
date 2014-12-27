@@ -86,7 +86,7 @@ bool Utilizador::operator==(string name) //funçao que redefine a expressão de co
 Compares current user's name to another user's
 \return true if users have same name, false otherwise
 */
-bool Utilizador::operator==(Utilizador user) //funçao que redefine a expressão de comparação "==" para comparar utilizadores(os seus nomes)
+bool Utilizador::operator==(const Utilizador user) const //funçao que redefine a expressão de comparação "==" para comparar utilizadores(os seus nomes)
 {
 	if (nome == user.nome)
 		return true;
@@ -103,6 +103,8 @@ void Utilizador::operator=(Utilizador user) //funçao que redefine a expressão de
 	nome = user.nome;
 	idade = user.idade;
 	password = user.password;
+	contacto = user.contacto;
+	morada = user.morada;
 
 	vector<Registo*> regs2 = user.getRegs();
 
@@ -225,7 +227,7 @@ except the rental logs
 string Utilizador::get_str() const
 {
 	stringstream ss;
-	ss << nome << endl << password << endl << idade << endl << tipo << endl;
+	ss << nome << endl << password << endl << idade << endl << tipo << endl << morada << endl << contacto << endl;
 	return ss.str();
 }
 

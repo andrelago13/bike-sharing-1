@@ -3,6 +3,7 @@
 #include <iostream>
 #include <conio.h>
 #include <fstream>
+#include <boost/tr1/unordered_set.hpp>
 
 using namespace std;
 
@@ -320,8 +321,8 @@ void Rede::loadInfo()
 	// Loads information on rede_user.txt according to format specified by function storeInfo
 
 	ifstream user_file("rede_user.txt");
-	string nome, pass, cartao;
-	int idade, tipo;
+	string nome, pass, cartao, morada;
+	int idade, tipo, contacto;
 
 	if (user_file.is_open())
 	{
@@ -334,7 +335,10 @@ void Rede::loadInfo()
 			getline(user_file, temp);
 			if (temp == "0")
 			{
-				Utilizador user(nome, idade, pass);
+				getline(user_file, morada);
+				getline(user_file, temp);
+				contacto = str_to_int(temp);
+				Utilizador user(nome, idade, pass, contacto, morada);
 				Utilizador *user_ptr;
 				user_ptr = new Utilizador;
 				*user_ptr = user;
@@ -342,6 +346,8 @@ void Rede::loadInfo()
 			}
 			else
 			{
+				getline(user_file, temp);
+				getline(user_file, temp);
 				getline(user_file, cartao);
 				Ut_ocasional oc(nome, idade, pass, cartao);
 				Ut_ocasional *oc_ptr;
@@ -462,7 +468,25 @@ int Rede::createUser(string nome)
 	cout << endl << endl << " Enter user password : ";
 	string pass = readPassword();
 
-	Utilizador usr(nome, age, pass);
+	cout << endl << endl << " Enter user contact : ";
+	int contact;
+
+	while (true)
+	{
+		contact = readInt();
+		if ((contact <= 0) || (contact > 999999999))
+		{
+			cout << endl << "ERROR : Invalid contact. Try again." << endl << " Enter your contact : ";
+			continue;
+		}
+		break;
+	}
+
+	cout << endl << endl << " Enter user address : ";
+	string address;
+	getline(cin, address);
+
+	Utilizador usr(nome, age, pass, contact, address);
 	Utilizador *ptr = new Utilizador;
 	*ptr = usr;
 	utilizadores.push_back(ptr);
@@ -803,6 +827,22 @@ vector<Registo *> Rede::get_regs() const
 	return result;
 }
 
+void Rede::update_old_users(Data data_atual)
+{
+	for (unsigned int i = 0; i < utilizadores.size(); i++)
+	{
+		Data d1;
+		vector<Registo *> regs = utilizadores[i]->getRegs();
+		if (!regs.empty())
+		{
+			Registo last_reg = *utilizadores[i]->ultimoReg();
+			if (dif_meses(last_reg.entrega, data_atual) >= USER_MONTHS_LIMIT)
+				util_antigos.insert(*utilizadores[i]);
+		}
+		else
+			util_antigos.insert(*utilizadores[i]);
+	}
+}
 
 			////////////////
 			// Rede menus //
@@ -1301,17 +1341,20 @@ int Rede::menu_regUsr_logged(Utilizador *user)
 		cout << " 3 - Change password" << endl;
 		cout << " 4 - View rental log" << endl;
 		cout << " 5 - See monthly service cost" << endl;
+		cout << " 6 - Edit user info" << endl;
 		cout << " 0 - Return to previous menu" << endl;
 
-		int option, index, dias, custo, id;
-		get_option(option, 0, 5);
-		string old_pass, pass, nome, data;
+		int option, index, dias, custo, id, idade, numero;
+		get_option(option, 0, 6);
+		string old_pass, pass, nome, data, morada;
 		vector<Registo*> regs;
 
 		vector<Bicicleta*> bikes;
 		Ut_ocasional *ptr;
 		Registo reg;
 		Registo *reg_ptr, *reg_ptr2;
+
+		hashUtilizador::iterator it;
 
 		switch (option)
 		{
@@ -1397,6 +1440,10 @@ int Rede::menu_regUsr_logged(Utilizador *user)
 			*reg_ptr = reg;
 			user->adicionaRegisto(reg_ptr);
 
+			it = util_antigos.find(*user);
+			if (it != util_antigos.end())
+				util_antigos.erase(it);
+
 			cout << endl << " Bike rented" << endl << endl;
 			system("pause");
 			continue;
@@ -1475,6 +1522,10 @@ int Rede::menu_regUsr_logged(Utilizador *user)
 			postos[option]->adicionabicicleta(rented_bikes_freq[index]);
 			rented_bikes_freq.erase(rented_bikes_freq.begin() + index);
 
+			it = util_antigos.find(*user);
+			if (it != util_antigos.end())
+				util_antigos.erase(it);
+
 			cout << endl << endl << " Bike returned." << endl << endl;
 			system("pause");
 			continue;
@@ -1519,6 +1570,45 @@ int Rede::menu_regUsr_logged(Utilizador *user)
 		case 5:
 			cout << endl << " Monthly cost is 40 euros for all registered users." << endl << endl;
 			system("pause");
+			break;
+		// Edit user info
+		case 6:
+			cout << " Current user age : " << user->getIdade();
+			cout << endl << " New user age : ";
+			while (true)
+			{
+				idade = readInt();
+				if ((idade <= 0) || (idade > 120))
+				{
+					cout << endl << "ERROR : Invalid age. Try again." << endl << " New user age : ";
+					continue;
+				}
+				break;
+			}
+			user->setIdade(idade);
+
+			cout << endl << " Current user address : " << user->getMorada();
+			cout << endl << " New user address : ";
+			getline(cin, morada);
+			user->setMorada(morada);
+
+			cout << " Current user contact : " << user->getContacto();
+			cout << endl << " New user contact : ";
+			while (true)
+			{
+				numero = readInt();
+				if ((numero <= 0) || (numero > 999999999))
+				{
+					cout << endl << "ERROR : Invalid contact. Try again." << endl << " New user contact : ";
+					continue;
+				}
+				break;
+			}
+			user->setContacto(numero);
+
+			cout << endl << " User successfully edited." << endl << endl;
+			system("pause");
+
 			break;
 		case 0:
 			return MENU_start;
@@ -2380,7 +2470,7 @@ int Rede::menu_mngr_spots()
 
 	return MENU_manager;
 }
-
+//////////////////////////////////////////////////////////////////////////////// CHECKED ^^
 /**
 \brief Management menu for users
 Allows the system manager to perform CRUD operations on Utilizador objects
@@ -2394,13 +2484,17 @@ int Rede::menu_mngr_users()
 	cout << " 2 - Create a new user" << endl;
 	cout << " 3 - Edit existing user" << endl;
 	cout << " 4 - Delete user" << endl;
+	//cout << " 5 - List old users (inactive for over " << USER_MONTHS_LIMIT << " months)" << endl;
+	//cout << " 6 - Update old users list" << endl;
 	cout << " 0 - Return to previous menu" << endl;
 
-	int option, index, idade;
-	get_option(option, 0, 4);
-	string nome, pass;
+	int option, index, idade, numero;
+	get_option(option, 0, 6);
+	string nome, pass, morada;
 	Registo *reg_ptr;
 	vector<Bicicleta *> bikes;
+
+	hashUtilizador::iterator it;
 
 	switch (option)
 	{
@@ -2472,6 +2566,26 @@ int Rede::menu_mngr_users()
 		cout << " New user password : ";
 		pass = readPassword();
 		utilizadores[index]->setPassword(pass);
+
+		cout << endl << " Current user address : " << utilizadores[index]->getMorada();
+		cout << endl << " New user address : ";
+		getline(cin, morada);
+		utilizadores[index]->setMorada(morada);
+
+		cout << " Current user contact : " << utilizadores[index]->getContacto();
+		cout << endl << " New user contact : ";
+		while (true)
+		{
+			numero = readInt();
+			if ((numero <= 0) || (numero > 999999999))
+			{
+				cout << endl << "ERROR : Invalid contact. Try again." << endl << " New user contact : ";
+				continue;
+			}
+			break;
+		}
+		utilizadores[index]->setContacto(numero);
+
 		cout << endl << " User successfully edited." << endl << endl;
 		system("pause");
 		return MENU_mngr_users;
@@ -2545,6 +2659,9 @@ int Rede::menu_mngr_users()
 				postos[i]->removeutilizador(utilizadores[index]->getNome());
 			for (unsigned int i = 0; i < rented_bikes_freq.size(); i++)
 				rented_bikes_freq[i]->remove_util(utilizadores[index]->getNome());
+			it = util_antigos.find(*utilizadores[index]);
+			if (it != util_antigos.end())
+				util_antigos.erase(it);
 			utilizadores.erase(utilizadores.begin() + index);
 
 			cout << endl << " User deleted successfully." << endl << endl;
