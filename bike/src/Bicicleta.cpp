@@ -455,3 +455,37 @@ Registo* Bicicleta::ultimo_reg() const
 	ptr = regs[regs.size() - 1];
 	return ptr;
 }
+
+int Bicicleta::getUtilizacaoTempoUso()
+{
+	int tempo_uso = 0;
+
+	if (regs.size() == 0)
+		return tempo_uso;
+
+	else
+	{
+		if (!avariada)
+		{
+			for (unsigned int i = regs.size() - 1; i >= 0; i--)
+			{
+				if (regs[i]->ficou_avariada)
+					break;
+
+				tempo_uso += dif_dias(regs[i]->entrega, regs[i]->levantamento) + 1;
+			}
+			return tempo_uso;
+		}
+		else
+		{
+			for (unsigned int i = regs.size() - 1; i >= 0; i--)
+			{
+				if (regs[i]->ficou_avariada)
+					break;
+
+				tempo_uso += dif_dias(regs[i]->entrega, regs[i]->levantamento) + 1;
+			}
+			return tempo_uso;
+		}
+	}
+}

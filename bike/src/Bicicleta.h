@@ -40,6 +40,7 @@ public:
 	bool getAvariada(); 
 	void setAvariada();
 	int getPreco();
+	int getUtilizacaoTempoUso();
 	void setPrecoDia(int velocidade, string tamanho); 
 	bool velocidades_valido(int veloc); 
 	string tipo_valido(); 
@@ -60,6 +61,7 @@ public:
 	*/
 	void setEmpresa(string emp) { empresa = emp; }
 	Registo* ultimo_reg() const;
+	// Falta um setUtilizacaoTempoUso()
 	// Falta fazer o int getUtilizacaoTempoUso() -> Dá-nos o temp de uso de cada bicicleta. Ver as situações em que fica avariada e o contrario.
 	// falta fazer o operador < para ordenar as bicicletas por ordem decrescente.
 };
