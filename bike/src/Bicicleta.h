@@ -61,12 +61,11 @@ public:
 	*/
 	void setEmpresa(string emp) { empresa = emp; }
 	Registo* ultimo_reg() const;
-
+	/*
 	friend bool operator <(const Bicicleta bi1, const Bicicleta bi2) 
 	{
 		return (bi1.getUtilizacaoTempoUso() < bi2.getUtilizacaoTempoUso());
-	}
-	// falta fazer o operador < para ordenar as bicicletas por ordem decrescente.
+	}*/
 };
 
 #endif /* BICICLETA_H_ */

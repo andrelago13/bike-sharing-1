@@ -844,6 +844,12 @@ void Rede::update_old_users(Data data_atual)
 	}
 }
 
+void Rede::adicionaBikesTempUso(Bicicleta *bi1)
+{
+	bikes_tempo_uso.push(bi1);
+}
+
+
 			////////////////
 			// Rede menus //
 			////////////////

@@ -478,7 +478,8 @@ int Bicicleta::getUtilizacaoTempoUso()
 		}
 		else
 		{
-			for (unsigned int i = regs.size() - 1; i >= 0; i--)
+			tempo_uso += dif_dias(regs[regs.size()-1]->entrega, regs[regs.size()-1]->levantamento) + 1;
+			for (int i = regs.size() - 2; i >= 0; i--)
 			{
 				if (regs[i]->ficou_avariada)
 					break;
