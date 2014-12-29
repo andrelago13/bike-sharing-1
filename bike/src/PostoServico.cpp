@@ -373,3 +373,18 @@ vector<Bicicleta*> PostoServico::getBicicletas()
 	bicis.insert(bicis.end(), avariadas.begin(), avariadas.end());
 	return bicis;
 }
+
+priority_queue < Bicicleta *> PostoServico::getBikesTempUso()
+{
+	return bikes_tempo_uso;
+}
+
+void PostoServico::adicionaBikesTempUso(Bicicleta *bi1)
+{
+	bikes_tempo_uso.push(bi1);
+}
+
+void PostoServico::setBikesTempUso(priority_queue<Bicicleta *> bikes)
+{
+	bikes_tempo_uso = bikes;
+}

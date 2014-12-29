@@ -25,7 +25,7 @@ private:
 	vector<Bicicleta*> disponiveis;
 	vector<Bicicleta*> avariadas;
 	vector<Registo*> utilizacao;
-	priority_queue <Bicicleta *> bikes_temp_uso;
+	priority_queue <Bicicleta *> bikes_tempo_uso;
 public:
 	// Creates a Service Spot
 	PostoServico();
@@ -40,16 +40,16 @@ public:
 	vector<Bicicleta*> getAvariadas();
 	vector<Bicicleta*> getBicicletas();
 	vector<Registo*> getUtlizacao();
-	priority_queue<Bicicleta *> getBikesTempUso();			/// falta
+	priority_queue<Bicicleta *> getBikesTempUso();			
 	void adicionabicicleta(Bicicleta *bi1);
 	void adicionaDisponivel(Bicicleta *bi1);
 	void adicionaAvariada(Bicicleta *bi1);
-	void adicionaBikesTempUso(Bicicleta *bi1);			/// falta
+	void adicionaBikesTempUso(Bicicleta *bi1);			
 	void adicionaUtilizacao(Registo *reg1);
 	void setDisponiveis(vector<Bicicleta*> disponiveis);
 	void setAvariadas(vector<Bicicleta*> avariadas);
 	void setUtilizacao(vector<Registo*> utilizacao);
-	void setBikesTempUso(priority_queue<Bicicleta *> bikes);		/// falta
+	void setBikesTempUso(priority_queue<Bicicleta *> bikes);
 	void setID(int id);
 	void setLotacao(int lot);
 	// Fazer uma função para selecionar as mais utilizadas			/// falta

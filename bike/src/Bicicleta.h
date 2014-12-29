@@ -61,8 +61,11 @@ public:
 	*/
 	void setEmpresa(string emp) { empresa = emp; }
 	Registo* ultimo_reg() const;
-	// Falta um setUtilizacaoTempoUso()
-	// Falta fazer o int getUtilizacaoTempoUso() -> Dá-nos o temp de uso de cada bicicleta. Ver as situações em que fica avariada e o contrario.
+
+	friend bool operator <(const Bicicleta bi1, const Bicicleta bi2) 
+	{
+		return (bi1.getUtilizacaoTempoUso() < bi2.getUtilizacaoTempoUso());
+	}
 	// falta fazer o operador < para ordenar as bicicletas por ordem decrescente.
 };
 
