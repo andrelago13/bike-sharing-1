@@ -65,7 +65,7 @@ public:
 	friend bool operator <(const Bicicleta bi1, const Bicicleta bi2) 
 	{
 		return (bi1.getUtilizacaoTempoUso() < bi2.getUtilizacaoTempoUso());
-	}*/
+	}*/ 
 };
 
 #endif /* BICICLETA_H_ */
