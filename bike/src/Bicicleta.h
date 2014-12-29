@@ -60,7 +60,8 @@ public:
 	*/
 	void setEmpresa(string emp) { empresa = emp; }
 	Registo* ultimo_reg() const;
-
+	// Falta fazer o int getUtilizacaoTempoUso() -> Dá-nos o temp de uso de cada bicicleta. Ver as situações em que fica avariada e o contrario.
+	// falta fazer o operador < para ordenar as bicicletas por ordem decrescente.
 };
 
 #endif /* BICICLETA_H_ */
