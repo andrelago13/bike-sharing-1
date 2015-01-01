@@ -849,6 +849,26 @@ void Rede::adicionaBikesTempUso(Bicicleta *bi1)
 	bikes_tempo_uso.push(bi1);
 }
 
+bool Rede::remove_Bikes_Tempo(unsigned int id_bike)
+{
+	vector<Bicicleta *> temp;
+
+	while (!bikes_tempo_uso.empty())
+	{
+		if (bikes_tempo_uso.top()->getID() == id_bike)
+		{
+			bikes_tempo_uso.pop();
+			return true;
+		}
+		temp.push_back(bikes_tempo_uso.top());
+		bikes_tempo_uso.pop();
+	}
+	for (unsigned int i = 0; i < temp.size(); i++)
+		bikes_tempo_uso.push(temp[i]);
+
+	return false;
+}
+
 
 			////////////////
 			// Rede menus //

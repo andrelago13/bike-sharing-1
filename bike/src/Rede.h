@@ -91,6 +91,7 @@ public:
 	string is_busy(int id_bici, bool print) const;
 	vector<Registo *> get_regs() const;
 	void adicionaBikesTempUso(Bicicleta *bi1);
+	bool remove_Bikes_Tempo(unsigned int id_bike);
 
 	// Menu system base functions
 	int menu_system();
