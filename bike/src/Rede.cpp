@@ -385,7 +385,6 @@ void Rede::loadInfo()
 			bici_ptr = new Bicicleta;
 			*bici_ptr = bici;
 			rented_bikes.push_back(bici_ptr);
-			adicionaBikesTempUso(bici);				/////
 
 			for (unsigned int i = 0; i < empresas.size(); i++)
 			{
@@ -410,7 +409,6 @@ void Rede::loadInfo()
 			bici_ptr = new Bicicleta;
 			*bici_ptr = bici;
 			rented_bikes_freq.push_back(bici_ptr);
-			adicionaBikesTempUso(bici);
 
 			for (unsigned int i = 0; i < empresas.size(); i++)
 			{
@@ -872,9 +870,9 @@ bool Rede::remove_Bikes_Tempo(unsigned int id_bike)
 
 	return false;
 }
+
 void Rede::show_Mais_utilizados(int n)
 {
-
 	priority_queue<Bicicleta> temp = bikes_tempo_uso;
 
 	if (temp.empty())
@@ -889,6 +887,7 @@ void Rede::show_Mais_utilizados(int n)
 		{
 			break;
 		}
+
 		Bicicleta b1 = temp.top();
 		cout << "ID: " << b1.getID() << "  (" << b1.getUtilizacaoTempoUso() << " days of use)" << endl << endl;
 		
@@ -898,6 +897,55 @@ void Rede::show_Mais_utilizados(int n)
 	cout << endl << endl;
 }
 
+void Rede::update_mais_utilizados()
+{
+	priority_queue<Bicicleta> temp;
+
+	for (int i = 0; i < postos.size(); i++)
+	{
+		vector<Bicicleta *> temp2 = postos[i]->getBicicletas();
+
+		if (temp2.empty())
+			continue;
+
+		for (int j = 0; j < temp2.size(); j++)
+		{
+			temp.push(*temp2[j]);
+		}
+	}
+	bikes_tempo_uso = temp;
+}
+
+void Rede::sendotoMaintenance(int n)
+{
+	vector<Bicicleta> temp2;
+
+	while (n != 0)
+	{
+		if (bikes_tempo_uso.empty())
+		{
+			break;
+		}
+
+		Bicicleta b1 = bikes_tempo_uso.top();
+		int iden = b1.getID();
+
+
+		for (unsigned int i = 0; i < postos.size(); i++)
+		{
+			PostoServico* temp = postos[i];
+			temp->manda_manutencao(iden);
+		}
+		temp2.push_back(b1);
+		bikes_tempo_uso.pop();
+		n--;
+	}
+	for (unsigned int i = 0; i < temp2.size(); i++)
+	{
+		bikes_tempo_uso.push(temp2[i]);
+	}
+
+}
 
 			////////////////
 			// Rede menus //
@@ -1196,8 +1244,10 @@ int Rede::menu_ocUsr()
 			}
 		}
 
+
 		rented_bikes.push_back(bikes[index]);
 		postos[option]->aluga(bikes[index]);
+		update_mais_utilizados();
 		ptr = new Ut_ocasional();
 		*ptr = user;
 		ocasionais.push_back(ptr);
@@ -1290,6 +1340,7 @@ int Rede::menu_ocUsr()
 		ocasionais.erase(ocasionais.begin() + index);
 		rented_bikes[index]->adicionaRegisto(curr_rentals[index]);
 		postos[option]->adicionabicicleta(rented_bikes[index]);
+		adicionaBikesTempUso(*rented_bikes[index]);
 		rented_bikes.erase(rented_bikes.begin() + index);
 		curr_rentals.erase(curr_rentals.begin() + index);
 
@@ -1475,15 +1526,13 @@ int Rede::menu_regUsr_logged(Utilizador *user)
 			}
 			reg_ptr = user->ultimoReg();
 			reg_ptr2 = bikes[index]->ultimo_reg();
-			if ((reg_ptr != NULL) && (reg_ptr2 != NULL ) & ((Data(data) < reg_ptr->entrega) || (Data(data) < reg_ptr2->entrega)))
+			if ((reg_ptr != NULL) && (reg_ptr2 != NULL ) && ((Data(data) < reg_ptr->entrega) || (Data(data) < reg_ptr2->entrega)))
 			{
 				cout << endl << " Current date must be later than last bike and user rentals." << endl << endl;
 				system("pause");
 				continue;
 			}
 
-			rented_bikes_freq.push_back(bikes[index]);
-			postos[option]->aluga(bikes[index]);
 
 			reg.ID_Bicicleta = bikes[index]->getID();
 			reg.ID_posto_origem = postos[option]->getID();
@@ -1498,6 +1547,10 @@ int Rede::menu_regUsr_logged(Utilizador *user)
 			it = util_antigos.find(*user);
 			if (it != util_antigos.end())
 				util_antigos.erase(it);
+
+			rented_bikes_freq.push_back(bikes[index]);
+			postos[option]->aluga(bikes[index]);
+			update_mais_utilizados();
 
 			cout << endl << " Bike rented" << endl << endl;
 			system("pause");
@@ -1576,6 +1629,7 @@ int Rede::menu_regUsr_logged(Utilizador *user)
 			rented_bikes_freq[index]->adicionaRegisto(reg_ptr);
 			postos[option]->adicionabicicleta(rented_bikes_freq[index]);
 			rented_bikes_freq.erase(rented_bikes_freq.begin() + index);
+			update_mais_utilizados();
 
 			it = util_antigos.find(*user);
 			if (it != util_antigos.end())
@@ -2089,15 +2143,28 @@ int Rede::menu_mngr_bikes()
 		n = readInt(); 
 		cout << endl << endl;
 		
-		if (n = 0)
+		if (n == 0)
 			cout << "Please insert a value number greater than 0" << endl << endl;
+		else
+		{
+			show_Mais_utilizados(n);
 
-		show_Mais_utilizados(n);
+			cout << "Please insert how many bikes do you wish to send to maintenace: ";
+			int n1;
+			n1 = readInt();
+			cout << endl << endl;
 
-		//cout << "Please insert how many bikes do you wish to send to maintenace: ";
+			if (n1 == 0)
+				cout << "Please insert a value number greater than 0" << endl << endl;
+			else
+			{
+				sendotoMaintenance(n1);
+				cout << endl << " Bike(s) successfully sent to maintenance" << endl << endl;
 
-		
-		//cout << endl << " Bike(s) successfully sent to maintenance" << endl << endl;
+			}
+
+			update_mais_utilizados();
+		}
 		system("pause");
 		return MENU_mngr_bikes;
 	}

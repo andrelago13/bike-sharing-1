@@ -61,6 +61,7 @@ public:
 	// Fix Bikes
 	void arranja_bicicletas();
 	bool arranja_bicicleta(int id_bike);
+	bool manda_manutencao(int id_bike);
 
 
 };

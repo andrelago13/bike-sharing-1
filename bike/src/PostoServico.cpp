@@ -337,6 +337,7 @@ void PostoServico::arranja_bicicletas()
 	for (unsigned int i = 0; i < avariadas.size(); i++)
 	{
 		disponiveis.push_back(avariadas[i]);
+		avariadas[i]->setAvariada(false);
 		avariadas.erase(avariadas.begin());
 	}
 }
@@ -353,13 +354,50 @@ bool PostoServico::arranja_bicicleta(int id_bike)
 	{
 		if (avariadas[i]->getID() == id_bike)
 		{
+
 			disponiveis.push_back(avariadas[i]);
+			avariadas[i]->setAvariada(false);
 			avariadas.erase(avariadas.begin() + i);
 			return true;
 		}
 	}
 
 	return false;
+}
+bool PostoServico::manda_manutencao(int id_bike)
+{
+	for (unsigned int i = 0; i < avariadas.size(); i++)
+	{
+		if (avariadas[i]->getID() == id_bike)
+		{
+			Registo *reg;
+			reg = new Registo;
+			reg->ID_posto_origem = -1;
+			avariadas[i]->adicionaRegisto(reg);
+
+			disponiveis.push_back(avariadas[i]);
+			avariadas[i]->setAvariada(false);
+
+			avariadas.erase(avariadas.begin() + i);
+			return true;
+		}
+	}
+
+	for (unsigned int j = 0; j < disponiveis.size(); j++)
+	{
+		if (disponiveis[j]->getID() == id_bike)
+		{
+			Registo *reg;
+			reg = new Registo;
+			reg->ID_posto_origem = -1;
+			disponiveis[j]->adicionaRegisto(reg);
+			disponiveis[j]->setAvariada(false);
+			return true;
+		}
+	}
+
+	return false;
+
 }
 
 /**

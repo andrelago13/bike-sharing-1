@@ -43,6 +43,7 @@ public:
 	int getUtilizacaoTempoUso() const;
 	void setPrecoDia(int velocidade, string tamanho); 
 	bool velocidades_valido(int veloc); 
+	void setAvariada(bool state);
 	string tipo_valido(); 
 	string imprime(); 
 	void setID(int id); 

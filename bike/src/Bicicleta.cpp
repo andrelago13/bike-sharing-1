@@ -462,29 +462,27 @@ int Bicicleta::getUtilizacaoTempoUso() const
 
 	if (regs.size() == 0)
 		return tempo_uso;
-
 	else
 	{
 		if (!avariada)
 		{
-			for (unsigned int i = regs.size() - 1; i >= 0; i--)
+			for (int i = regs.size() - 1; i >= 0; i--)
 			{
-				if (regs[i]->ficou_avariada)
+				if ((regs[i]->ficou_avariada) || (regs[i]->ID_posto_origem == -1))
 					break;
 
-				tempo_uso += dif_dias(regs[i]->entrega, regs[i]->levantamento) + 1;
+				tempo_uso += dif_dias(regs[i]->levantamento, regs[i]->entrega) + 1;
 			}
 			return tempo_uso;
 		}
 		else
 		{
-			tempo_uso += dif_dias(regs[regs.size()-1]->entrega, regs[regs.size()-1]->levantamento) + 1;
-			for (int i = regs.size() - 2; i >= 0; i--)
+			for (int i = regs.size() - 1; i >= 0; i--)
 			{
-				if (regs[i]->ficou_avariada)
+				if ((regs[i]->ficou_avariada) && (i != regs.size() - 1))
 					break;
 
-				tempo_uso += dif_dias(regs[i]->entrega, regs[i]->levantamento) + 1;
+				tempo_uso += dif_dias(regs[i]->levantamento, regs[i]->entrega) + 1;
 			}
 			return tempo_uso;
 		}
@@ -494,4 +492,9 @@ int Bicicleta::getUtilizacaoTempoUso() const
 bool operator <(const Bicicleta bi1, const Bicicleta bi2)
 {
 	return (bi1.getUtilizacaoTempoUso() < bi2.getUtilizacaoTempoUso());
+}
+
+void Bicicleta::setAvariada(bool state)
+{
+	avariada = state;
 }

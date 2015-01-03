@@ -93,6 +93,8 @@ public:
 	void adicionaBikesTempUso(Bicicleta bi1);
 	bool remove_Bikes_Tempo(unsigned int id_bike);
 	void show_Mais_utilizados(int n);
+	void update_mais_utilizados();
+	void sendotoMaintenance(int n);
 
 	// Menu system base functions
 	int menu_system();
