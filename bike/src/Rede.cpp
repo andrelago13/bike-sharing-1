@@ -2138,7 +2138,7 @@ int Rede::menu_mngr_bikes()
 
 	case 8:
 		
-		cout << "Please insert how many bikes do wish to see: ";
+		cout << " Please insert how many bikes do wish to see: ";
 		int n;
 		n = readInt(); 
 		cout << endl << endl;
