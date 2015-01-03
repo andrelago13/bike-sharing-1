@@ -456,7 +456,7 @@ Registo* Bicicleta::ultimo_reg() const
 	return ptr;
 }
 
-int Bicicleta::getUtilizacaoTempoUso()
+int Bicicleta::getUtilizacaoTempoUso() const
 {
 	int tempo_uso = 0;
 
@@ -489,4 +489,9 @@ int Bicicleta::getUtilizacaoTempoUso()
 			return tempo_uso;
 		}
 	}
+}
+
+bool operator <(const Bicicleta bi1, const Bicicleta bi2)
+{
+	return (bi1.getUtilizacaoTempoUso() < bi2.getUtilizacaoTempoUso());
 }

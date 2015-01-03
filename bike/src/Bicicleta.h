@@ -40,7 +40,7 @@ public:
 	bool getAvariada(); 
 	void setAvariada();
 	int getPreco();
-	int getUtilizacaoTempoUso();
+	int getUtilizacaoTempoUso() const;
 	void setPrecoDia(int velocidade, string tamanho); 
 	bool velocidades_valido(int veloc); 
 	string tipo_valido(); 
@@ -61,11 +61,8 @@ public:
 	*/
 	void setEmpresa(string emp) { empresa = emp; }
 	Registo* ultimo_reg() const;
-	/*
-	friend bool operator <(const Bicicleta bi1, const Bicicleta bi2) 
-	{
-		return (bi1.getUtilizacaoTempoUso() < bi2.getUtilizacaoTempoUso());
-	}*/ 
+	
+	friend bool operator <(const Bicicleta bi1, const Bicicleta bi2);
 };
 
 #endif /* BICICLETA_H_ */

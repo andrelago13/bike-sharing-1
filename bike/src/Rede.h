@@ -53,7 +53,7 @@ class Rede
 	vector<Ut_ocasional*> ocasionais;		// stores all Ut_ocasional objects
 	vector<Registo*> curr_rentals;			// stores all Registo objects corresponding to ongoing rentals by occasional users
 	vector<Bicicleta*> rented_bikes;		// stores all Bicicleta objects corresponding to bikes currently rented by occasional users
-	priority_queue <Bicicleta *> bikes_tempo_uso;		// stores all Bicicleta objects ordered by "use time"
+	priority_queue <Bicicleta> bikes_tempo_uso;		// stores all Bicicleta objects ordered by "use time"
 	/* The last 3 vectors are associated with each other. Index i of all vectors corresponds to the same
 	ongoing rental by an occasional user*/
 	vector<Bicicleta*> rented_bikes_freq;	// stores all Bicicleta objects corresponding to bikes currently rented by occasional users
@@ -90,8 +90,9 @@ public:
 	int tipoUser(string nome);
 	string is_busy(int id_bici, bool print) const;
 	vector<Registo *> get_regs() const;
-	void adicionaBikesTempUso(Bicicleta *bi1);
+	void adicionaBikesTempUso(Bicicleta bi1);
 	bool remove_Bikes_Tempo(unsigned int id_bike);
+	void show_Mais_utilizados(int n);
 
 	// Menu system base functions
 	int menu_system();

@@ -299,6 +299,7 @@ void Rede::loadInfo()
 				bici.make_str(ss.str());
 				bici_ptr = new Bicicleta;
 				*bici_ptr = bici;
+				adicionaBikesTempUso(bici);
 				posto_ptr->adicionabicicleta(bici_ptr);
 
 				for (unsigned int i = 0; i < empresas.size(); i++)
@@ -384,6 +385,7 @@ void Rede::loadInfo()
 			bici_ptr = new Bicicleta;
 			*bici_ptr = bici;
 			rented_bikes.push_back(bici_ptr);
+			adicionaBikesTempUso(bici);				/////
 
 			for (unsigned int i = 0; i < empresas.size(); i++)
 			{
@@ -408,6 +410,7 @@ void Rede::loadInfo()
 			bici_ptr = new Bicicleta;
 			*bici_ptr = bici;
 			rented_bikes_freq.push_back(bici_ptr);
+			adicionaBikesTempUso(bici);
 
 			for (unsigned int i = 0; i < empresas.size(); i++)
 			{
@@ -611,13 +614,14 @@ int Rede::create_add_bike()
 	cout << endl;
 	get_option(posto_id, 1, postos.size());
 
-	if (postos[option - 1]->getEspacoLivre() <= 0)
+	if (postos[posto_id - 1]->getEspacoLivre() <= 0)
 	{
 		cout << endl << " That post has no room for one more bike.";
 		return -1;
 	}
 
 	Bicicleta bike(id, tipo, tamanho, velocidades, false, preco);
+	adicionaBikesTempUso(bike);
 	bike.setEmpresa(empresa);
 	Bicicleta *bike_ptr = new Bicicleta;
 	*bike_ptr = bike;
@@ -844,18 +848,18 @@ void Rede::update_old_users(Data data_atual)
 	}
 }
 
-void Rede::adicionaBikesTempUso(Bicicleta *bi1)
+void Rede::adicionaBikesTempUso(Bicicleta bi1)
 {
 	bikes_tempo_uso.push(bi1);
 }
 
 bool Rede::remove_Bikes_Tempo(unsigned int id_bike)
 {
-	vector<Bicicleta *> temp;
+	vector<Bicicleta> temp;
 
 	while (!bikes_tempo_uso.empty())
 	{
-		if (bikes_tempo_uso.top()->getID() == id_bike)
+		if (bikes_tempo_uso.top().getID() == id_bike)
 		{
 			bikes_tempo_uso.pop();
 			return true;
@@ -867,6 +871,31 @@ bool Rede::remove_Bikes_Tempo(unsigned int id_bike)
 		bikes_tempo_uso.push(temp[i]);
 
 	return false;
+}
+void Rede::show_Mais_utilizados(int n)
+{
+
+	priority_queue<Bicicleta> temp = bikes_tempo_uso;
+
+	if (temp.empty())
+	{
+		cout << endl << " There are no bikes available" << endl << endl;
+		return;
+	}
+
+	while (n != 0)
+	{
+		if (temp.empty())
+		{
+			break;
+		}
+		Bicicleta b1 = temp.top();
+		cout << "ID: " << b1.getID() << "  (" << b1.getUtilizacaoTempoUso() << " days of use)" << endl << endl;
+		
+		temp.pop();
+		n--;
+	}
+	cout << endl << endl;
 }
 
 
@@ -1880,20 +1909,21 @@ int Rede::menu_mngr_bikes()
 	cout << " 3 - List broken bikes" << endl;
 	cout << " 4 - List rented bikes" << endl;
 	cout << " 5 - Repair all bikes" << endl;
-	cout << " 6 - Add a new bike" << endl;
-	cout << " 7 - Delete a bike" << endl;
+	cout << " 6 - Add a new bike" << endl;			///
+	cout << " 7 - Delete a bike" << endl;			///
+	cout << " 8 - List more used bikes" << endl;
 	cout << " 0 - Return to previous menu" << endl;
 
 	int option, id;
-	get_option(option, 0, 7);
+	get_option(option, 0, 8);
 	vector<Bicicleta *> bikes, bikes_dispo, bikes_avariadas;
 	bool imprimiu, apagou;
 	string nome;
 
 	switch (option)
 	{
-	// List all bikes on registered companies
-	case 1:	
+		// List all bikes on registered companies
+	case 1:
 		imprimiu = false;
 		for (unsigned int i = 0; i < empresas.size(); i++)
 		{
@@ -1916,7 +1946,7 @@ int Rede::menu_mngr_bikes()
 		cout << endl << endl;
 		system("pause");
 		return MENU_mngr_bikes;
-	// List all available bikes
+		// List all available bikes
 	case 2:
 		for (unsigned int i = 0; i < postos.size(); i++)
 		{
@@ -1937,7 +1967,7 @@ int Rede::menu_mngr_bikes()
 		cout << endl << endl;
 		system("pause");
 		return MENU_mngr_bikes;
-	// List all broken bikes
+		// List all broken bikes
 	case 3:
 		for (unsigned int i = 0; i < postos.size(); i++)
 		{
@@ -1958,11 +1988,11 @@ int Rede::menu_mngr_bikes()
 		cout << endl << endl;
 		system("pause");
 		return MENU_mngr_bikes;
-	// List currently rented bikes
+		// List currently rented bikes
 	case 4:
 		clear_screen();
 		print_menu_header();
-		
+
 		if (rented_bikes.size() == 0)
 			cout << endl << " There are no bikes rented by occasional users." << endl << endl;
 		else
@@ -1988,7 +2018,7 @@ int Rede::menu_mngr_bikes()
 		cout << endl;
 		system("pause");
 		return MENU_mngr_bikes;
-	// Repair all bikes
+		// Repair all bikes
 	case 5:
 		for (unsigned int i = 0; i < postos.size(); i++)
 			postos[i]->arranja_bicicletas();
@@ -1996,13 +2026,13 @@ int Rede::menu_mngr_bikes()
 		cout << endl << " All bikes were repaired." << endl << endl;
 		system("pause");
 		return MENU_mngr_bikes;
-	// Create a new bike
+		// Create a new bike
 	case 6:
 		create_add_bike();
 		cout << endl << endl;
 		system("pause");
 		return MENU_mngr_bikes;
-	// Remove a bike
+		// Remove a bike
 	case 7:
 		cout << endl << " Please insert bike ID : ";
 		id = readInt();
@@ -2025,6 +2055,7 @@ int Rede::menu_mngr_bikes()
 				if (bikes[j]->getID() == id)
 				{
 					apagou = true;
+					remove_Bikes_Tempo(id);
 					empresas[i].remove_bicis(id);
 				}
 			}
@@ -2048,6 +2079,25 @@ int Rede::menu_mngr_bikes()
 		}
 
 		cout << endl << " Bike successfully removed" << endl << endl;
+		system("pause");
+		return MENU_mngr_bikes;
+
+	case 8:
+		
+		cout << "Please insert how many bikes do wish to see: ";
+		int n;
+		n = readInt(); 
+		cout << endl << endl;
+		
+		if (n = 0)
+			cout << "Please insert a value number greater than 0" << endl << endl;
+
+		show_Mais_utilizados(n);
+
+		//cout << "Please insert how many bikes do you wish to send to maintenace: ";
+
+		
+		//cout << endl << " Bike(s) successfully sent to maintenance" << endl << endl;
 		system("pause");
 		return MENU_mngr_bikes;
 	}
