@@ -1966,10 +1966,11 @@ int Rede::menu_mngr_bikes()
 	cout << " 6 - Add a new bike" << endl;			///
 	cout << " 7 - Delete a bike" << endl;			///
 	cout << " 8 - List more used bikes" << endl;
+	cout << " 9 - Send to maintenance" << endl;
 	cout << " 0 - Return to previous menu" << endl;
 
 	int option, id;
-	get_option(option, 0, 8);
+	get_option(option, 0, 9);
 	vector<Bicicleta *> bikes, bikes_dispo, bikes_avariadas;
 	bool imprimiu, apagou;
 	string nome;
@@ -2149,24 +2150,29 @@ int Rede::menu_mngr_bikes()
 		{
 			show_Mais_utilizados(n);
 
-			cout << "Please insert how many bikes do you wish to send to maintenace: ";
-			int n1;
-			n1 = readInt();
-			cout << endl << endl;
-
-			if (n1 == 0)
-				cout << "Please insert a value number greater than 0" << endl << endl;
-			else
-			{
-				sendotoMaintenance(n1);
-				cout << endl << " Bike(s) successfully sent to maintenance" << endl << endl;
-
-			}
-
-			update_mais_utilizados();
 		}
+		
 		system("pause");
 		return MENU_mngr_bikes;
+	case 9:
+
+		cout << "Please insert how many bikes do you wish to send to maintenace: ";
+		int n1;
+		n1 = readInt();
+		cout << endl << endl;
+
+		if (n1 == 0)
+			cout << "Please insert a value number greater than 0" << endl << endl;
+		else
+		{
+			sendotoMaintenance(n1);
+			cout << endl << " Bike(s) successfully sent to maintenance" << endl << endl;
+		}
+		update_mais_utilizados();
+
+		system("pause");
+		return MENU_mngr_bikes;
+
 	}
 
 	return MENU_manager;
