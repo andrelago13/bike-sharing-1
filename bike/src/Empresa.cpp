@@ -176,8 +176,17 @@ bool Empresa::operator<(const Empresa &emp2) const
 		return false;
 	else
 	{
-		if (numUtilsBicis() <= emp2.numUtilsBicis())
+		if (numUtilsBicis() < emp2.numUtilsBicis())
 			return true;
+		else if (numUtilsBicis() > emp2.numUtilsBicis())
+			return false;
+		else
+		{
+			if (nome < emp2.nome)
+				return true;
+			else
+				return false;
+		}
 	}
 
 	return false;
