@@ -2528,7 +2528,7 @@ int Rede::menu_mngr_spots()
 			return MENU_mngr_spots;
 		}
 
-		cout << " Post occupation : " << postos[index]->getOcupacao() << "/" << postos[index]->getLotacao() << " bike slots taken" << endl << endl;
+		cout << endl " Post occupation : " << postos[index]->getOcupacao() << "/" << postos[index]->getLotacao() << " bike slots taken" << endl << endl;
 		cout << " Insert new post id : ";
 		id = readInt();
 
