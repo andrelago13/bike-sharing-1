@@ -873,6 +873,11 @@ vector<Registo *> Rede::get_regs() const
 	return result;
 }
 
+/**
+* \brief Updates the list of old users
+* \param data_atual current date, from which the old user criteria will be assessed
+* Updates the hash table with the users inactive for longer then 12 months
+*/
 void Rede::update_old_users(Data data_atual)
 {
 	for (unsigned int i = 0; i < utilizadores.size(); i++)
@@ -890,11 +895,20 @@ void Rede::update_old_users(Data data_atual)
 	}
 }
 
+/**
+* \brief Adds a bike to the priority queue of bikes
+* \param bi1 - bike to be added
+*/
 void Rede::adicionaBikesTempUso(Bicicleta bi1)
 {
 	bikes_tempo_uso.push(bi1);
 }
 
+/**
+* \brief Removes a bike with given id from the bike priority queue
+* \param id_bike - id of the bike to be removed
+* \returns true if bike was removed, false otherwise (bike didn't exist)
+*/
 bool Rede::remove_Bikes_Tempo(unsigned int id_bike)
 {
 	vector<Bicicleta> temp;
@@ -919,6 +933,11 @@ bool Rede::remove_Bikes_Tempo(unsigned int id_bike)
 	return false;
 }
 
+/**
+* \brief Shows the n more used bikes
+* \param n - number of bikes to show
+* Displays the list of "n" bikes with longer usage time, since their last maintenance
+*/
 void Rede::show_Mais_utilizados(int n)
 {
 	priority_queue<Bicicleta> temp = bikes_tempo_uso;
@@ -945,6 +964,10 @@ void Rede::show_Mais_utilizados(int n)
 	cout << endl << endl;
 }
 
+/**
+* \brief Updates the priority queue of bikes
+* Gathers all bikes in the network and puts them in a new priority queue, therefore updating it
+*/
 void Rede::update_mais_utilizados()
 {
 	priority_queue<Bicicleta> temp;
@@ -964,6 +987,11 @@ void Rede::update_mais_utilizados()
 	bikes_tempo_uso = temp;
 }
 
+/**
+* \brief Sends the n more used bikes to maintenance
+* \param n - number of bikes to send to maintenance
+* Sends the bikes to maintenance, updating their status in the PostoServico as well
+*/
 void Rede::sendotoMaintenance(int n)
 {
 	vector<Bicicleta> temp2;

@@ -456,6 +456,10 @@ Registo* Bicicleta::ultimo_reg() const
 	return ptr;
 }
 
+/**
+* \brief Calculates a bike's usage time
+* \returns the number of days a bike has been under rent, since it's last maintenance
+*/
 int Bicicleta::getUtilizacaoTempoUso() const
 {
 	int tempo_uso = 0;
@@ -489,6 +493,9 @@ int Bicicleta::getUtilizacaoTempoUso() const
 	}
 }
 
+/**
+* \returns true if the bike has been less used since it's last maintenance
+*/
 bool operator <(const Bicicleta bi1, const Bicicleta bi2)
 {
 	return (bi1.getUtilizacaoTempoUso() < bi2.getUtilizacaoTempoUso());

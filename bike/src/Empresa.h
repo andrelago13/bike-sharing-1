@@ -37,8 +37,6 @@ public:
 	int numUtilsBicis() const;
 	bool operator<(const Empresa &emp2) const;
 	bool operator==(const Empresa &emp2) const;
-	//friend bool operator<(const Empresa &emp1, const Empresa &emp2);
-	//friend bool operator==(const Empresa &emp1, const Empresa &emp2);
 };
 
 #endif /* EMPRESA_H_ */

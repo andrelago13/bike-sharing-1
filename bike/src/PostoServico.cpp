@@ -150,7 +150,6 @@ void PostoServico::setUtilizacao(vector<Registo*> utilizacao)
 * \param *bi1 - New bike to be added
 * Adds a bike to the service spot. If it is broken, is implemented on avariadas otherwise it goes to disponiveis
 */
-
 void PostoServico::adicionabicicleta(Bicicleta *bi1)		
 
 {
@@ -364,6 +363,15 @@ bool PostoServico::arranja_bicicleta(int id_bike)
 
 	return false;
 }
+
+/**
+* \brief Sends a posto Bike to maintenance
+* \param id_bike - id of the bike to send to maintenance
+* \returns true if the bike existed, false otherwise
+* Sends one of the posto bike's to maintenance, making it available (if 
+* it was broken, and adding it a new Registo to tell the system the 
+* bike was sent to maintenance
+*/
 bool PostoServico::manda_manutencao(int id_bike)
 {
 	for (unsigned int i = 0; i < avariadas.size(); i++)

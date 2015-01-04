@@ -157,6 +157,10 @@ void Empresa::setNome(string novo_nome)
 	nome = novo_nome;
 }
 
+/**
+* \brief Calculates the ammount of hours it's bikes have been used
+* \returns the sum of all company's bike's days of use (since last maintenance)
+*/
 int Empresa::numUtilsBicis() const
 {
 	int soma = 0;
@@ -168,6 +172,12 @@ int Empresa::numUtilsBicis() const
 	return soma;
 }
 
+/**
+* \brief Tells if a company is "minor" than the other
+* \returns true if the company is minor
+* The criteria used for this assessment is the number of bikes in the
+* company. Then, their day's of use (since last maintenance) and only then, the company name.
+*/
 bool Empresa::operator<(const Empresa &emp2) const
 {
 	if (bicicletas.size() < emp2.bicicletas.size())
@@ -192,6 +202,10 @@ bool Empresa::operator<(const Empresa &emp2) const
 	return false;
 }
 
+/**
+* \brief Tells if two companies are the same
+* \return true if the companies have the same name
+*/
 bool Empresa::operator==(const Empresa &emp2) const
 {
 	if (nome == emp2.nome)
