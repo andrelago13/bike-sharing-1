@@ -16,9 +16,10 @@ Empresa::Empresa()
 * Creates a company with the the the name passed as argument
 */
 
-Empresa::Empresa(string nome)
+Empresa::Empresa(string nome, string addr)
 {
 	this->nome = nome;
+	this->morada = addr;
 }
 
 /**
@@ -156,26 +157,6 @@ void Empresa::setNome(string novo_nome)
 	nome = novo_nome;
 }
 
-bool operator<(const Empresa emp1, const Empresa &emp2)
-{
-	if (emp1.bicicletas.size() < emp2.bicicletas.size())
-		return true;
-	else if (emp1.bicicletas.size() > emp2.bicicletas.size())
-		return false;
-	else
-	{
-		if (emp1.numUtilsBicis() < emp2.numUtilsBicis())
-			return true;
-	}
-
-	return false;
-}
-
-bool operator==(const Empresa emp1, const Empresa &emp2)
-{
-	return (emp1.nome == emp2.nome);
-}
-
 int Empresa::numUtilsBicis() const
 {
 	int soma = 0;
@@ -185,4 +166,26 @@ int Empresa::numUtilsBicis() const
 		soma += bicicletas[i]->getNumUtils();
 	}
 	return soma;
+}
+
+bool Empresa::operator<(const Empresa &emp2) const
+{
+	if (bicicletas.size() < emp2.bicicletas.size())
+		return true;
+	else if (bicicletas.size() > emp2.bicicletas.size())
+		return false;
+	else
+	{
+		if (numUtilsBicis() <= emp2.numUtilsBicis())
+			return true;
+	}
+
+	return false;
+}
+
+bool Empresa::operator==(const Empresa &emp2) const
+{
+	if (nome == emp2.nome)
+		return true;
+	return false;
 }

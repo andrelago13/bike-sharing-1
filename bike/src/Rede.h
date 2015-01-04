@@ -69,7 +69,7 @@ public:
 	\brief Rede default constructor
 	Initializes password as an empty string
 	*/
-	Rede() : sys_password(""), empresas_bst(Empresa("")) {}
+	Rede() : sys_password(""), empresas_bst(Empresa("", "")) {}
 	~Rede();
 
 	// Rede functions

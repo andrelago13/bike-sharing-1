@@ -79,7 +79,7 @@ public:
 	virtual string get_str() const;
 	virtual void make_str(string user);
 
-	friend ostream& operator<<(ostream &o, Utilizador &user);
+	friend ostream& operator<<(ostream &o, const Utilizador &user);
 
 };
 

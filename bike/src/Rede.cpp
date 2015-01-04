@@ -66,7 +66,7 @@ void Rede::storeInfo()
 
 	while (!it.isAtEnd())
 	{
-		main_file << it.retrieve().getNome() << endl;
+		main_file << it.retrieve().getNome() << endl << it.retrieve().getMorada() << endl;
 		it.advance();
 	}
 
@@ -204,7 +204,7 @@ void Rede::loadInfo()
 
 	ifstream main_file("rede.txt");
 
-	string temp;
+	string temp, temp2;
 	if (main_file.is_open() == true)
 		getline(main_file, temp);
 	sys_password = temp;
@@ -212,8 +212,9 @@ void Rede::loadInfo()
 	while ((main_file.peek() != ((int) '-')) && (main_file.peek() != EOF) && (main_file.is_open() == true))
 	{
 		getline(main_file, temp);
-		Empresa emp(temp);
-		empresas_bst.insert(temp);
+		getline(main_file, temp2);
+		Empresa emp(temp, temp2);
+		empresas_bst.insert(emp);
 	}
 
 	vector<Registo *> all_regs;
@@ -305,7 +306,7 @@ void Rede::loadInfo()
 				adicionaBikesTempUso(bici);
 				posto_ptr->adicionabicicleta(bici_ptr);
 
-				Empresa emp(bici_ptr->getEmpresa());
+				Empresa emp(bici_ptr->getEmpresa(), "");
 				Empresa temp = empresas_bst.find(emp);
 
 				if ((temp.getNome() != "") && (temp.getNome() == bici_ptr->getEmpresa()))
@@ -393,7 +394,7 @@ void Rede::loadInfo()
 			*bici_ptr = bici;
 			rented_bikes.push_back(bici_ptr);
 
-			Empresa emp(bici_ptr->getEmpresa());
+			Empresa emp(bici_ptr->getEmpresa(), "");
 			Empresa temp = empresas_bst.find(emp);
 
 			if ((temp.getNome() != "") && (temp.getNome() == bici_ptr->getEmpresa()))
@@ -421,7 +422,7 @@ void Rede::loadInfo()
 			*bici_ptr = bici;
 			rented_bikes_freq.push_back(bici_ptr);
 
-			Empresa emp(bici_ptr->getEmpresa());
+			Empresa emp(bici_ptr->getEmpresa(), "");
 			Empresa temp = empresas_bst.find(emp);
 
 			if ((temp.getNome() != "") && (temp.getNome() == bici_ptr->getEmpresa()))
@@ -1807,7 +1808,7 @@ int Rede::menu_mngr_supplyers()
 
 	int option, index;
 	get_option(option, 0, 5);
-	string nome;
+	string nome, old_nome, morada;
 	Empresa emp, emp2;
 	vector<int> id_s;
 	vector<Bicicleta *> bicis;
@@ -1827,7 +1828,7 @@ int Rede::menu_mngr_supplyers()
 		cout << endl << "===> List of supplyers:" << endl << endl;
 		while (!it.isAtEnd())
 		{
-			cout << " -> " << it.retrieve().getNome() << endl;
+			cout << " -> " << it.retrieve().getNome() << "  (" << it.retrieve().getMorada() << ")" << endl;
 			it.advance();
 		}
 		cout << endl;
@@ -1839,14 +1840,19 @@ int Rede::menu_mngr_supplyers()
 		cout << endl << " Insert new supplier's name : ";
 		getline(cin, nome);
 
-		emp = Empresa(nome);
+		emp = Empresa(nome, "");
+		emp2 = empresas_bst.find(emp);
 
-		if (empresas_bst.find(emp).getNome() != "")
+		if (emp2.getNome() == nome)
 		{
 			cout << endl << " There already is a supplyer with that name." << endl << endl;
 			system("pause");
 			return MENU_mngr_supplyers;
 		}
+
+		cout << endl << " Insert new supplier's address : ";
+		getline(cin, morada);
+		emp.setMorada(morada);
 		
 		empresas_bst.insert(emp);
 
@@ -1857,18 +1863,18 @@ int Rede::menu_mngr_supplyers()
 	// Edit a supplyer
 	case 3:
 		cout << endl << " Please insert name of supplyer to edit : ";
-		getline(cin, nome);
+		getline(cin, old_nome);
 
 		while (!it.isAtEnd())
 		{
-			if (it.retrieve().getNome() == nome)
+			if (it.retrieve().getNome() == old_nome)
 			{
 				cout << endl << " Insert new supplyer name : ";
 				getline(cin, nome);
 
-				emp = Empresa(nome);
+				emp = Empresa(nome, "");
 
-				if (empresas_bst.find(emp).getNome() == nome)
+				if ((empresas_bst.find(emp).getNome() != "") && (nome != old_nome))
 				{
 					cout << endl << " There already is a supplyer with that name." << endl << endl;
 					system("pause");
@@ -1877,6 +1883,10 @@ int Rede::menu_mngr_supplyers()
 
 				emp = it.retrieve();
 				emp.setNome(nome);
+				cout << endl << " Address : " << it.retrieve().getMorada() << endl;
+				cout << " Insert new supplyer address : ";
+				getline(cin, morada);
+				emp.setMorada(morada);
 				empresas_bst.remove(it.retrieve());
 				empresas_bst.insert(emp);
 				cout << endl << endl << " Supplyer edited successfully." << endl << endl;
@@ -1895,7 +1905,7 @@ int Rede::menu_mngr_supplyers()
 		cout << endl << " Insert the name of the supplier to delete : ";
 		getline(cin, nome);
 
-		emp = Empresa(nome);
+		emp = Empresa(nome, "");
 		emp2 = empresas_bst.find(emp);
 
 		if (emp2.getNome() != nome)
@@ -2009,7 +2019,7 @@ int Rede::menu_mngr_bikes()
 	vector<Bicicleta *> bikes, bikes_dispo, bikes_avariadas;
 	bool imprimiu, apagou;
 	string nome;
-	BST<Empresa> temp_bst(Empresa(""));
+	BST<Empresa> temp_bst(Empresa("", ""));
 	BSTItrIn<Empresa> it(empresas_bst);
 	Empresa emp, emp2;
 
@@ -2305,7 +2315,7 @@ int Rede::menu_mngr_logs()
 		cout << " Enter the name of the company : ";
 		getline(cin, name);
 
-		emp = Empresa(name);
+		emp = Empresa(name, "");
 		emp2 = empresas_bst.find(emp);
 
 		if (emp2.getNome() == name)
@@ -2411,7 +2421,7 @@ int Rede::menu_mngr_spots()
 	PostoServico posto, *posto_ptr;
 	vector<Bicicleta *> bicis, bicis2;
 	bool result;
-	BST<Empresa> temp_bst(Empresa(""));
+	BST<Empresa> temp_bst(Empresa("", ""));
 	BSTItrIn<Empresa> it(empresas_bst);
 	Empresa emp;
 
@@ -2687,13 +2697,12 @@ int Rede::menu_mngr_users()
 	cout << " 2 - Create a new user" << endl;
 	cout << " 3 - Edit existing user" << endl;
 	cout << " 4 - Delete user" << endl;
-	//cout << " 5 - List old users (inactive for over " << USER_MONTHS_LIMIT << " months)" << endl;
-	//cout << " 6 - Update old users list" << endl;
+	cout << " 5 - List old users (inactive for over " << USER_MONTHS_LIMIT << " months)" << endl;
 	cout << " 0 - Return to previous menu" << endl;
 
 	int option, index, idade, numero;
-	get_option(option, 0, 6);
-	string nome, pass, morada;
+	get_option(option, 0, 5);
+	string nome, pass, morada, data;
 	Registo *reg_ptr;
 	vector<Bicicleta *> bikes;
 
@@ -2871,6 +2880,40 @@ int Rede::menu_mngr_users()
 			system("pause");
 			return MENU_mngr_users;
 		}
+		break;
+	case 5:
+		cout << endl << endl << " Please enter current date (YYYY/MM/DD) : ";
+		getline(cin, data);
+
+		if (!valid_date(data))
+		{
+			cout << endl << " Invalid date." << endl << endl;
+			system("pause");
+			break;
+		}
+
+		update_old_users(Data(data));
+
+		hashUtilizador temp = util_antigos;
+
+		if (temp.empty())
+		{
+			cout << endl << " There are no users inactive for over " << USER_MONTHS_LIMIT << " months" << endl << endl;
+			system("pause");
+			break;
+		}
+		else
+		{
+			it = temp.begin();
+			cout << endl << "==> List of inactive users:" << endl << endl;
+			while (it != temp.end())
+			{
+				cout << *it << endl;
+				it++;
+			}
+		}
+		cout << endl << endl;
+		system("pause");
 		break;
 	}
 

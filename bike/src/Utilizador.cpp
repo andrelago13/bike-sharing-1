@@ -124,7 +124,7 @@ Outputs user's information, inline, but only name and age
 \param user - Utilizador to output
 \return stream to allow inline multiple << operators
 */
-ostream& operator<<(ostream &o, Utilizador &user)
+ostream& operator<<(ostream &o, const Utilizador &user)
 {
 	o << user.nome << " - " << user.idade << " y/o";
 	return o;

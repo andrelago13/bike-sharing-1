@@ -18,11 +18,12 @@ class Empresa
 {
 private:
 	string nome;
+	string morada;
 	vector<Bicicleta*> bicicletas;
 public:
 	// Basic Functions
 	Empresa();
-	Empresa(string nome);
+	Empresa(string nome, string addr);
 	string getNome() const;
 	vector<Bicicleta *> getBicicletas() const;
 	void adicionaBicicleta(Bicicleta *bic);
@@ -30,10 +31,14 @@ public:
 	void setNome(string novo_nome);
 	void remove_bicis(unsigned int id);
 	void show_specs();
+	void setMorada(string addr) { morada = addr; }
+	string getMorada() const { return morada; }
 	int num_users() const;
 	int numUtilsBicis() const;
-	friend bool operator<(const Empresa emp1, const Empresa &emp2);
-	friend bool operator==(const Empresa emp1, const Empresa &emp2);
+	bool operator<(const Empresa &emp2) const;
+	bool operator==(const Empresa &emp2) const;
+	//friend bool operator<(const Empresa &emp1, const Empresa &emp2);
+	//friend bool operator==(const Empresa &emp1, const Empresa &emp2);
 };
 
 #endif /* EMPRESA_H_ */
