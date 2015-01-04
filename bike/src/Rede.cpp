@@ -306,14 +306,19 @@ void Rede::loadInfo()
 				adicionaBikesTempUso(bici);
 				posto_ptr->adicionabicicleta(bici_ptr);
 
-				Empresa emp(bici_ptr->getEmpresa(), "");
-				Empresa temp = empresas_bst.find(emp);
+				BSTItrIn<Empresa> it(empresas_bst);
 
-				if ((temp.getNome() != "") && (temp.getNome() == bici_ptr->getEmpresa()))
+				while (!it.isAtEnd())
 				{
-					empresas_bst.remove(temp);
-					temp.adicionaBicicleta(bici_ptr);
-					empresas_bst.insert(temp);
+					if (it.retrieve().getNome() == bici_ptr->getEmpresa())
+					{
+						Empresa temp = it.retrieve();
+						temp.adicionaBicicleta(bici_ptr);
+						empresas_bst.remove(it.retrieve());
+						empresas_bst.insert(temp);
+						break;
+					}
+					it.advance();
 				}
 			}
 			postos.push_back(posto_ptr);
@@ -394,15 +399,20 @@ void Rede::loadInfo()
 			*bici_ptr = bici;
 			rented_bikes.push_back(bici_ptr);
 
-			Empresa emp(bici_ptr->getEmpresa(), "");
-			Empresa temp = empresas_bst.find(emp);
+			BSTItrIn<Empresa> it(empresas_bst);
 
-			if ((temp.getNome() != "") && (temp.getNome() == bici_ptr->getEmpresa()))
+			while (!it.isAtEnd())
 			{
-				empresas_bst.remove(temp);
-				temp.adicionaBicicleta(bici_ptr);
-				empresas_bst.insert(temp);
+				Empresa temp = it.retrieve();
+				if (temp.getNome() == bici_ptr->getEmpresa())
+				{
+					empresas_bst.remove(it.retrieve());
+					temp.adicionaBicicleta(bici_ptr);
+					empresas_bst.insert(temp);
+				}
+				it.advance();
 			}
+			
 		}
 
 		getline(bike_file, temp); // to remove character '#' from file
@@ -422,14 +432,18 @@ void Rede::loadInfo()
 			*bici_ptr = bici;
 			rented_bikes_freq.push_back(bici_ptr);
 
-			Empresa emp(bici_ptr->getEmpresa(), "");
-			Empresa temp = empresas_bst.find(emp);
+			BSTItrIn<Empresa> it(empresas_bst);
 
-			if ((temp.getNome() != "") && (temp.getNome() == bici_ptr->getEmpresa()))
+			while (!it.isAtEnd())
 			{
-				empresas_bst.remove(temp);
-				temp.adicionaBicicleta(bici_ptr);
-				empresas_bst.insert(temp);
+				Empresa temp = it.retrieve();
+				if (temp.getNome() == bici_ptr->getEmpresa())
+				{
+					empresas_bst.remove(it.retrieve());
+					temp.adicionaBicicleta(bici_ptr);
+					empresas_bst.insert(temp);
+				}
+				it.advance();
 			}
 		}
 	}
@@ -1813,6 +1827,7 @@ int Rede::menu_mngr_supplyers()
 	vector<int> id_s;
 	vector<Bicicleta *> bicis;
 	BSTItrIn<Empresa> it(empresas_bst);
+	BSTItrIn<Empresa> it2(empresas_bst);
 
 	switch (option)
 	{
@@ -1840,15 +1855,17 @@ int Rede::menu_mngr_supplyers()
 		cout << endl << " Insert new supplier's name : ";
 		getline(cin, nome);
 
-		emp = Empresa(nome, "");
-		emp2 = empresas_bst.find(emp);
-
-		if (emp2.getNome() == nome)
+		while (!it.isAtEnd())
 		{
-			cout << endl << " There already is a supplyer with that name." << endl << endl;
-			system("pause");
-			return MENU_mngr_supplyers;
+			if (it.retrieve().getNome() == nome)
+			{
+				cout << endl << " There already is a supplyer with that name." << endl << endl;
+				system("pause");
+				return MENU_mngr_supplyers;
+			}
 		}
+
+		emp = Empresa(nome, "");
 
 		cout << endl << " Insert new supplier's address : ";
 		getline(cin, morada);
@@ -1874,11 +1891,19 @@ int Rede::menu_mngr_supplyers()
 
 				emp = Empresa(nome, "");
 
-				if ((empresas_bst.find(emp).getNome() != "") && (nome != old_nome))
+				if (nome != old_nome)
 				{
-					cout << endl << " There already is a supplyer with that name." << endl << endl;
-					system("pause");
-					return MENU_mngr_supplyers;
+					while (!it2.isAtEnd())
+					{
+						if ((it2.retrieve().getNome() == nome) && (nome != old_nome))
+						{
+							cout << endl << " There already is a supplyer with that name." << endl << endl;
+							system("pause");
+							return MENU_mngr_supplyers;
+						}
+
+						it2.advance();
+					}
 				}
 
 				emp = it.retrieve();
@@ -1905,17 +1930,24 @@ int Rede::menu_mngr_supplyers()
 		cout << endl << " Insert the name of the supplier to delete : ";
 		getline(cin, nome);
 
-		emp = Empresa(nome, "");
-		emp2 = empresas_bst.find(emp);
-
-		if (emp2.getNome() != nome)
+		while (!it.isAtEnd())
+		{
+			if (it.retrieve().getNome() == nome)
+			{
+				break;
+			}
+			it.advance();
+		}
+		
+		if (it.isAtEnd())
 		{
 			cout << endl << endl << " No supplyer was found with that name." << endl << endl;
 			system("pause");
 			return MENU_mngr_supplyers;
 		}
 
-		emp = emp2;
+		emp = it.retrieve();
+		emp2 = emp;
 
 		bicis = emp2.getBicicletas();
 		for (unsigned int i = 0; i < bicis.size(); i++)
@@ -1941,7 +1973,7 @@ int Rede::menu_mngr_supplyers()
 				postos[j]->removebicicleta(id_s[i]);
 		}
 
-		empresas_bst.remove(emp);
+		empresas_bst.remove(emp2);
 		
 		cout << endl << " Supplyer successfully removed." << endl << endl;
 		system("pause");
@@ -2262,6 +2294,7 @@ int Rede::menu_mngr_logs()
 	vector<Utilizador*> users;
 	vector<Bicicleta*> bici;
 	Empresa emp, emp2;
+	BSTItrIn<Empresa> it(empresas_bst);
 
 	switch (option)
 	{
@@ -2315,15 +2348,17 @@ int Rede::menu_mngr_logs()
 		cout << " Enter the name of the company : ";
 		getline(cin, name);
 
-		emp = Empresa(name, "");
-		emp2 = empresas_bst.find(emp);
-
-		if (emp2.getNome() == name)
+		while (!it.isAtEnd())
 		{
-			soma = emp2.num_users();
-			cout << endl << " This company has served " << soma << " user(s)" << endl << endl;
-			system("pause");
-			return MENU_mngr_logs;
+			if (it.retrieve().getNome() == name)
+			{
+				soma = it.retrieve().num_users();
+				cout << endl << " This company has served " << soma << " user(s)" << endl << endl;
+				system("pause");
+				return MENU_mngr_logs;
+			}
+
+			it.advance();
 		}
 
 		cout << " There is no company with that name" << endl << endl;
@@ -2683,7 +2718,7 @@ int Rede::menu_mngr_spots()
 
 	return MENU_manager;
 }
-//////////////////////////////////////////////////////////////////////////////// CHECKED ^^
+ 
 /**
 \brief Management menu for users
 Allows the system manager to perform CRUD operations on Utilizador objects
