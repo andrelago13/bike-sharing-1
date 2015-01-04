@@ -498,3 +498,16 @@ void Bicicleta::setAvariada(bool state)
 {
 	avariada = state;
 }
+
+int Bicicleta::getNumUtils() const
+{
+	int soma = 0;
+
+	for (int i = 0; i < regs.size(); i++)
+	{
+		if (regs[i]->ID_posto_origem != -1)
+			soma++;
+	}
+	
+	return soma;
+}

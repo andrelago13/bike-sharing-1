@@ -7,6 +7,7 @@
 #include "Empresa.h"
 #include "Bicicleta.h"
 #include <boost/tr1/unordered_set.hpp>
+#include "BST.h"
 
 using namespace std;
 
@@ -47,7 +48,7 @@ users and allows system management with a password authentication
 */
 class Rede
 {
-	vector <Empresa> empresas;				// stores all Empresa objects
+	BST<Empresa> empresas_bst;				// stores all Empresa objects
 	vector<PostoServico*> postos;			// stores all PostoServico objects, and therefore, bikes assigned to posts
 	vector<Utilizador*> utilizadores;		// stores all Utilizador objects
 	vector<Ut_ocasional*> ocasionais;		// stores all Ut_ocasional objects
@@ -68,7 +69,7 @@ public:
 	\brief Rede default constructor
 	Initializes password as an empty string
 	*/
-	Rede() : sys_password("") {}
+	Rede() : sys_password(""), empresas_bst(Empresa("")) {}
 	~Rede();
 
 	// Rede functions

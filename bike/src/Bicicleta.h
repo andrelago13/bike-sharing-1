@@ -56,6 +56,7 @@ public:
 	bool remove_util(string nome);
 	string get_str() const;
 	void make_str(string bike);
+	int getNumUtils() const;
 	/*! 
 	\brief Sets the empresa attribute of the object to emp
 	\param emp - New empresa for the object

@@ -31,6 +31,9 @@ public:
 	void remove_bicis(unsigned int id);
 	void show_specs();
 	int num_users() const;
+	int numUtilsBicis() const;
+	friend bool operator<(const Empresa emp1, const Empresa &emp2);
+	friend bool operator==(const Empresa emp1, const Empresa &emp2);
 };
 
 #endif /* EMPRESA_H_ */

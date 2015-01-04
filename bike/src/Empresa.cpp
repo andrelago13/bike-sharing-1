@@ -155,3 +155,34 @@ void Empresa::setNome(string novo_nome)
 {
 	nome = novo_nome;
 }
+
+bool operator<(const Empresa emp1, const Empresa &emp2)
+{
+	if (emp1.bicicletas.size() < emp2.bicicletas.size())
+		return true;
+	else if (emp1.bicicletas.size() > emp2.bicicletas.size())
+		return false;
+	else
+	{
+		if (emp1.numUtilsBicis() < emp2.numUtilsBicis())
+			return true;
+	}
+
+	return false;
+}
+
+bool operator==(const Empresa emp1, const Empresa &emp2)
+{
+	return (emp1.nome == emp2.nome);
+}
+
+int Empresa::numUtilsBicis() const
+{
+	int soma = 0;
+
+	for (int i = 0; i < bicicletas.size(); i++)
+	{
+		soma += bicicletas[i]->getNumUtils();
+	}
+	return soma;
+}

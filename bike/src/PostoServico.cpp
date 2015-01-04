@@ -373,6 +373,7 @@ bool PostoServico::manda_manutencao(int id_bike)
 			Registo *reg;
 			reg = new Registo;
 			reg->ID_posto_origem = -1;
+			reg->ID_Bicicleta = id_bike;
 			avariadas[i]->adicionaRegisto(reg);
 
 			disponiveis.push_back(avariadas[i]);
