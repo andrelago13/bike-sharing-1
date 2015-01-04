@@ -644,7 +644,7 @@ int Rede::create_add_bike()
 
 	int posto_id;
 
-	cout << endl << " Please select a post to insert the bike : ";
+	cout << endl << " Please select a post to insert the bike : " << endl;
 
 	for (unsigned int i = 1; i <= postos.size(); i++)
 	{
