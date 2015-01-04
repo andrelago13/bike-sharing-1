@@ -860,6 +860,10 @@ bool Rede::remove_Bikes_Tempo(unsigned int id_bike)
 		if (bikes_tempo_uso.top().getID() == id_bike)
 		{
 			bikes_tempo_uso.pop();
+
+			for (unsigned int i = 0; i < temp.size(); i++)
+				bikes_tempo_uso.push(temp[i]);
+
 			return true;
 		}
 		temp.push_back(bikes_tempo_uso.top());
