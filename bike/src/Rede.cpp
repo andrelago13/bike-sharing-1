@@ -1863,6 +1863,7 @@ int Rede::menu_mngr_supplyers()
 				system("pause");
 				return MENU_mngr_supplyers;
 			}
+			it.advance();
 		}
 
 		emp = Empresa(nome, "");
